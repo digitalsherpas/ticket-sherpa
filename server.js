@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
+var opn = require('opn');
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -12,4 +13,5 @@ new WebpackDevServer(webpack(config), {
   }
 
   console.log('Listening at http://localhost:3000/');
+  opn('http://localhost:3000');
 });
