@@ -11,6 +11,8 @@ export default class App extends Component {
         <h1>Hello, worlds.</h1>
 
         <h1>My hot reload is finally working</h1>
+
+        <h1>This is still working, right?</h1>
       </div>
     );
   }
