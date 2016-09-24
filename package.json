@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "",
-    "dev": "grunt start",
+    "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "lint": "eslint src"
   },
   "repository": {
