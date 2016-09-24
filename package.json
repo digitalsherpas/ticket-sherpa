@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": "",
+    "dev": "grunt start",
     "lint": "eslint src"
   },
   "repository": {
@@ -37,6 +38,7 @@
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
     "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-cssmin": "^1.0.2",
