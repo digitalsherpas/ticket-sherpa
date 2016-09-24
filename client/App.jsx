@@ -5,6 +5,9 @@ export default class App extends Component {
     return (
       <div>
         <h1>Tickether</h1>
+        <h1>Cool team</h1>
+        <h1>What?!?!</h1>
+        <h1>Hot reload is the shit</h1>
       </div>
     );
   }
