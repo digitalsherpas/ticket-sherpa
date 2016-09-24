@@ -37,5 +37,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
 
-  grunt.registerTask('start', ['build', 'startServer']);
+  grunt.registerTask('dev', ['build', 'startServer']);
 };
