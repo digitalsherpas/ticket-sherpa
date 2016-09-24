@@ -35,7 +35,7 @@ module.exports = function(grunt) {
     'processhtml'
   ]);
 
-  grunt.registerTask('start', ['shell:startDevServer']);
+  grunt.registerTask('startServer', ['shell:startDevServer']);
 
-  grunt.registerTask('run', ['build', 'start']);
+  grunt.registerTask('start', ['build', 'startServer']);
 };
