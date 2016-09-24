@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         stderr: false
       },
       compile: {
-        command: 'webpack'
+        command: 'node ./node_modules/webpack/bin/webpack.js'
       },
       startDevServer: {
         command: 'node server.js'
@@ -37,5 +37,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
 
-  grunt.registerTask('start', ['build', 'startServer']);
+  grunt.registerTask('dev', ['build', 'startServer']);
 };
