@@ -1,16 +1,22 @@
+pragma solidity ^0.4.2;
+
 contract Event {  // can be killed, so the owner gets sent the money in the end
 
 	address public organizer;
 	mapping (address => bool) public attendeesPaid;
 	uint public numAttendees;
 	uint public quota;
+	uint public price;
+	string title;
 
 	event PurchaseTicket(address _from, uint _amount); // so you can log the event
 	event RefundTicket(address _to, uint _amount); // so you can log the event
 	event HowMuchMoneyWasSent(uint _amount);
 
-	function Event() {
+	function Event() { //TODO: add params to customize the event
 		organizer = msg.sender;
+		title = 'Cool Event';
+		price = 10;
 		quota = 100;
 		numAttendees = 0;
 	}
