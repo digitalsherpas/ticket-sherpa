@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "",
+    "eth": "node ./node_modules/grunt-cli/bin/grunt eth",
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "lint": "eslint src",
     "test": "./node_modules/.bin/mocha ./tests/server/ethSvcsTests.js"

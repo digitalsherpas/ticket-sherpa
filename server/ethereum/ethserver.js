@@ -1,7 +1,8 @@
 'use strict';
 
+let config = require('../../config');
 let express = require('express');
-let ethController = require('./ethereum/ethController.js');
+let ethController = require('./ethController.js');
 let app = express();
 
 app.get('/', (req, res) => {
@@ -12,8 +13,8 @@ app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
-app.listen(3000, function() {
-  console.log('Running on 3000');
+app.listen(config.ETH_SERVER_PORT, function() {
+  console.log('Running on', config.ETH_SERVER_PORT);
 });
 
 let Web3 = require('web3');
