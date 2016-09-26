@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     processhtml: {
       dist: {
         files: {
-          'compiled/index.html': ['index.html']
+          'compiled/index.html': ['client/index.html']
         }
       }
     },
@@ -19,10 +19,9 @@ module.exports = function(grunt) {
         command: 'node ./node_modules/webpack/bin/webpack.js'
       },
       startDevServer: {
-        command: 'node server.js'
+        command: 'nodemon server/server.js'
       }
     }
-
   });
 
 //dependencies
@@ -34,6 +33,8 @@ module.exports = function(grunt) {
     'shell:compile',
     'processhtml'
   ]);
+
+  grunt.registerTask('open', ['open:dev']);
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
 
