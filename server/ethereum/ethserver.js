@@ -13,6 +13,10 @@ app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
+app.post('/api/buyTicket', (req, res) => {
+  ethController.buyTicket(req, res);
+})
+
 app.listen(config.ETH_SERVER_PORT, function() {
   console.log('Running on', config.ETH_SERVER_PORT);
 });
