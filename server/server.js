@@ -2,11 +2,11 @@
 
 const express = require('express');
 const ethController = require('./ethereum/ethController.js');
-let app = express();
-var path = require('path');
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('../webpack.config');
+const app = express();
+const path = require('path');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('../webpack.config');
 const port = process.env.PORT || 3000;
 
 // main server
@@ -25,7 +25,8 @@ app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
-app.listen(3000);
+app.listen(port);
+console.log('Listening at port: ' + port);
 
 // webpack proxy
 new WebpackDevServer(webpack(config), {
@@ -40,5 +41,5 @@ new WebpackDevServer(webpack(config), {
     return console.log(err);
   }
 
-  console.log('Listening at http://localhost:3001/');
+  console.log('Webpack Dev Server listening at http://localhost:3001/');
 });
