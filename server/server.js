@@ -1,12 +1,13 @@
 'use strict';
 
-let express = require('express');
-let ethController = require('./ethereum/ethController.js');
+const express = require('express');
+const ethController = require('./ethereum/ethController.js');
 let app = express();
 var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('../webpack.config');
+const port = process.env.PORT || 3000;
 
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
@@ -39,6 +40,3 @@ new WebpackDevServer(webpack(config), {
 
   console.log('Listening at http://localhost:3001/');
 });
-
-let Web3 = require('web3');
-let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
