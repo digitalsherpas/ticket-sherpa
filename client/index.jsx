@@ -16,7 +16,8 @@ const store = createStore(
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// Main component goes here
+// TODO: add route for HostLogin once Kevin figures out server
+// <Route path="/HostLogin" component={HostLogin} />
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>

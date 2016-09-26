@@ -8,7 +8,7 @@ export default class App extends Component {
       <div>
         <h1>Home Page</h1>
 
-        <h2>Welcome</h2>
+        <h3>Welcome to Tickether</h3>
 
         <HostLogin />
 
