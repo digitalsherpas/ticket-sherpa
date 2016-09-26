@@ -5,8 +5,8 @@ app.get('/', function(req, res) {
   res.send('hello world');
 });
 
-app.listen(3001, function() {
-  console.log('Running on 3001');
+app.listen(3000, function() {
+  console.log('Running on 3000');
 });
 
 var Web3 = require('web3');
