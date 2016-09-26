@@ -1,9 +1,12 @@
-var express = require('express');
+'use strict';
+
+let express = require('express');
+let ethController = require('./ethereum/ethController.js');
+let app = express();
 var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('../webpack.config');
-var app = express();
 
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
@@ -17,11 +20,9 @@ app.get('/host', function(req, res) {
   res.send('Host Page');
 })
 
-app.listen(3000);
-
-// web3 server
-var Web3 = require('web3');
-var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+app.post('/api/createEvent', (req, res) => {
+  ethController.createEvent(req, res);
+});
 
 // webpack proxy
 new WebpackDevServer(webpack(config), {
@@ -38,3 +39,6 @@ new WebpackDevServer(webpack(config), {
 
   console.log('Listening at http://localhost:3001/');
 });
+
+let Web3 = require('web3');
+let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
