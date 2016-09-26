@@ -25,6 +25,8 @@ app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
+app.listen(3000);
+
 // webpack proxy
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
