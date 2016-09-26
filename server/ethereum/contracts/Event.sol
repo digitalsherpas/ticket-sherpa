@@ -11,7 +11,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
 
 	event PurchaseTicket(address _from, uint _amount); // so you can log the event
 	event RefundTicket(address _to, uint _amount); // so you can log the event
-	event HowMuchMoneyWasSent(uint _amount);
+	event MoneySent(uint _amount);
 
 	function Event() { //TODO: add params to customize the event
 		organizer = msg.sender;
@@ -27,7 +27,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
 		}
 
 		if (msg.value != price) { //
-			HowMuchMoneyWasSent(msg.value);
+			MoneySent(msg.value);
 			throw;
 		}
 

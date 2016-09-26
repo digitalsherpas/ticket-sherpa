@@ -7,16 +7,23 @@ let fs = require('fs');
 
 let buySvc = {
   buyTicket: (req, res) => {
-    var contractAddress = req.address;
+    const contractAddress = req.address; //address of deployed contract;
     var input = '';
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
-      input = data.toString();
-      var output = solc.compile(input, 1);
-      compiledContract = output.contracts['Event'];
-      var MyContract = web3.eth.contract(JSON.parse(compiledContract)); //abi
-      var mySenderAddress = web3.eth.accounts[0];
-      var contractInstance = MyContract.at(contractAddress);
-      res.send(JSON.stringify(contractInstance));//TODO
+      if (err) throw err;
+      const output = solc.compile(data, 1);
+      for (let contractName in output.contracts) {
+        // Deploy the contract asynchronous:
+        const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName].interface));
+        const eventContractInstance = EventContract.at(contractAddress);
+        eventContractInstance.buyTicket('someparam', 23, {
+          value: 10,
+          gas: 200000
+        })
+
+      }
+      res.send('OK')
+      
     });
   }
 }
