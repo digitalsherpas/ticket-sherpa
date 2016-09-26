@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HostLogin from './HostLogin.jsx';
+import Events from './Events.jsx';
 
 export default class App extends Component {
   render() {
@@ -10,6 +11,8 @@ export default class App extends Component {
         <h2>Welcome</h2>
 
         <HostLogin />
+
+        <Events />
       </div>
     );
   }
