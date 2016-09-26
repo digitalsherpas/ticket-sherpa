@@ -1,13 +1,13 @@
 'use strict';
 
 const express = require('express');
-const ethController = require('./ethereum/ethController.js');
-const app = express();
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('../webpack.config');
+const ethController = require('./ethereum/ethController.js');
 const port = process.env.PORT || 3000;
+const app = express();
 
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
