@@ -1,8 +1,8 @@
 'use strict';
 
-let createSvc = require('./services/createSvc.js');
+const createSvc = require('./services/createSvc.js');
 
-let controller = {
+const controller = {
   createEvent: (req, res) => {
     createSvc.createContract(req, res);
   }
