@@ -1,9 +1,28 @@
 'use strict';
 
-let config = require('../../config');
-let express = require('express');
-let ethController = require('./ethController.js');
-let app = express();
+const config = require('../../config');
+const express = require('express');
+const ethController = require('./ethController.js');
+const app = express();
+const bodyParser = require('body-parser');
+
+const jsonParser = bodyParser.json();
+
+const allowCrossDomain = function(req, res, next) { //enable CORS
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.header('Access-Control-Max-Age', 10);
+  // intercept OPTIONS method
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+};
+
+app.use(allowCrossDomain);
+app.use(jsonParser);
 
 app.get('/', (req, res) => {
   res.send('hello world');
@@ -14,6 +33,7 @@ app.post('/api/createEvent', (req, res) => {
 });
 
 app.post('/api/buyTicket', (req, res) => {
+  console.log('BODY:', req);
   ethController.buyTicket(req, res);
 })
 

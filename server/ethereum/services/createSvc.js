@@ -30,7 +30,7 @@ const createSvc = {
                 // check address on the second call (contract deployed)
             } else {
               console.log('checking it exists on blockchain' + web3.eth.getCode(contract.address));
-              res.sendStatus(200);
+              res.send('Contract address is: ' + contract.address);
             }
             // Note that the returned "eventContractInstance" === "myContract",
             // so the returned "eventContractInstance" object will also get the address set.
