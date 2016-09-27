@@ -6,7 +6,7 @@ const request = require('supertest');
 describe('Create Service', () => {
   let server;
   beforeEach(function () {
-      server = require('../../server/server.js');
+      server = require('../../server/ethereum/ethserver.js');
     });
     afterEach(function () {
       server.close();

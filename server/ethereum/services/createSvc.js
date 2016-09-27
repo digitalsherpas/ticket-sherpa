@@ -5,7 +5,7 @@ const solc = require('solc');
 const web3Connection = require('../web3.js');
 const web3 = web3Connection.web3;
 
-const senderAddress = web3.eth.accounts[0];
+var senderAddress = web3.eth.accounts[0];
 
 const createSvc = {
   createContract: (req, res) => {

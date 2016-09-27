@@ -8,7 +8,7 @@ let fs = require('fs');
 let buySvc = {
   buyTicket: (req, res) => {
     console.log('ADDRESS IS', req.body);
-    const contractAddress = req.contractAddress; //address of deployed contract;
+    var contractAddress = req.contractAddress; //address of deployed contract;
     var input = '';
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
       if (err) throw err;
