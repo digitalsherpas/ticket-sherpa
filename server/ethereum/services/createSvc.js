@@ -13,7 +13,8 @@ const createSvc = {
     const title = req.body.eventTitle;
     const quota = req.body.quota;
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf8', (err, data) => {
-      if (err) throw err;
+      if (err)
+        throw err;
       const output = solc.compile(data, 1); // 1 activates the optimiser
       for (let contractName in output.contracts) {
         // Deploy the contract asyncronous:
@@ -30,7 +31,7 @@ const createSvc = {
             // e.g. check tx hash on the first call (transaction send)
             if (!contract.address) {
               // console.log(contract.transactionHash) // The hash of the transaction, which deploys the contract
-                // check address on the second call (contract deployed)
+              // check address on the second call (contract deployed)
             } else {
               // console.log('checking it exists on blockchain' + web3.eth.getCode(contract.address));
               eventContractInstance.CreateEvent(function(error, result) {
@@ -47,8 +48,6 @@ const createSvc = {
               });
               res.send('Contract address is: ' + contract.address);
             }
-            // Note that the returned "eventContractInstance" === "myContract",
-            // so the returned "eventContractInstance" object will also get the address set.
           } else {
             console.log(err);
           }
