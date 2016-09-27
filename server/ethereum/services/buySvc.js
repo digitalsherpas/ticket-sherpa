@@ -7,8 +7,8 @@ let fs = require('fs');
 
 let buySvc = {
   buyTicket: (req, res) => {
-    console.log('ADDRESS IS', req.body);
-    var contractAddress = req.contractAddress; //address of deployed contract;
+    console.log('ADDRESS IS', req.body.contractAddress);
+    var contractAddress = req.body.contractAddress; //address of deployed contract;
     var input = '';
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
       if (err) throw err;
@@ -18,12 +18,18 @@ let buySvc = {
         const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName].interface));
         const eventContractInstance = EventContract.at(contractAddress);
         eventContractInstance.buyTicket({
+          from: web3.eth.accounts[1],
           value: 10,
           gas: 200000
+        }, function(err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send(result);
+          }
         });
 
       }
-      res.send('OK')
       
     });
   }

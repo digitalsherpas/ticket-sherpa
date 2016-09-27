@@ -21,7 +21,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
 		numAttendees = 0;
 	}
 
-	function buyTicket() public {
+	function buyTicket() payable {
 		if (numAttendees > quota) {
 			throw; // throw ensures funds will be returned
 		}
