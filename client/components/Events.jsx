@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Event from './Event'
+import Event from './Event.jsx'
 
 const Events = ({ events }) => (
   <div className="events">

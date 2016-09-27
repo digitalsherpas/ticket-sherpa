@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 const Event = ({ eventName, date, time, address, price }) => (
   <li className="event">
-    <h4>{eventName}</h4>
+    <h4><Link to={"/event"}>{eventName}</Link></h4>
     <p>{date}</p>
     <p>{time}</p>
     <p>{address}</p>

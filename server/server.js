@@ -12,14 +12,18 @@ const opn = require('opn');
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
 
+app.get('/host', function(req, res) {
+  res.send('Host Page');
+});
+
 app.get('/', function(req, res) {
   console.log(index);
   res.render('index');
 });
 
-app.get('/host', function(req, res) {
-  res.send('Host Page');
-})
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/index.html'));
+});
 
 app.listen(config.SERVER_PORT);
 

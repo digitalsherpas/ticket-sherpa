@@ -2,48 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { browserHistory } from 'react-router';
+import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
+import routes from './routes.jsx';
 import App from './components/App.jsx';
+import EventDetailApp from './components/EventDetailApp.jsx';
+import EventsListApp from './components/EventsListApp.jsx';
 import eventsReducer from './reducers/eventsReducer';
-import DevTools from './containers/DevTools';
+import eventDetailReducer from './reducers/eventDetailReducer';
 
 const store = createStore(
   combineReducers({
   events: eventsReducer,
+  event: eventDetailReducer,
   routing: routerReducer
   })
 );
 
-const history = syncHistoryWithStore(browserHistory, store);
-
-if (module.hot) {
-  // Whenever a new version of App.js is available
-  module.hot.accept('./components/App.jsx', function () {
-    // Require the new version and render it instead
-    var NextApp = require('./components/App.jsx')
-    ReactDOM.render(
-      <Provider store={store}>
-        <Router history={history}>
-        <Route path="/" component={NextApp}>
-        </Route>
-        <DevTools />
-        </Router>
-      </Provider>, 
-      document.getElementById('root')
-    );
-  });
-}
+export const history = syncHistoryWithStore(browserHistory, store);
 
 // TODO: add route for HostLogin once Kevin figures out server
 // <Route path="/HostLogin" component={HostLogin} />
+  // <Provider store={store}>
+  // </Provider>, 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-    <Route path="/" component={App}>
-    </Route>
-    <DevTools />
-    </Router>
-  </Provider>, 
+    routes,
   document.getElementById('root')
 );
