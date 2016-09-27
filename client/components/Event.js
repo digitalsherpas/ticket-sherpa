@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Event = ({ eventName, date, time, address, price }) => (
-  <li>
+  <li className="event">
     <h4>{eventName}</h4>
     <p>{date}</p>
     <p>{time}</p>

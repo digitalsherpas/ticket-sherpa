@@ -2,14 +2,17 @@ import React, { PropTypes } from 'react'
 import Event from './Event'
 
 const Events = ({ events }) => (
-  <ul>
-    {events.map(event => 
-      <Event 
-        key={event.eventName}
-        {...event}
-      />
-    )}
-  </ul>
+  <div className="events">
+    <h2>Events</h2>
+    <ul>
+      {events.map(event => 
+        <Event 
+          key={event.eventName}
+          {...event}
+        />
+      )}
+    </ul>
+  </div>
 )
 
 Events.propTypes = {
