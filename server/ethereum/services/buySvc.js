@@ -43,7 +43,6 @@ const buySvc = {
             });
             res.sendStatus(500);
           } else {
-            console.log('hello world');
             eventContractInstance.PurchaseTicket(function(error, result) {
               if (error) {
                 console.log('Error with Purchase Ticket Event', error);
