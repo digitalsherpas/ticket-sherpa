@@ -32,12 +32,12 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
 		}
 
 		attendeesPaid[msg.sender] = true;
-		if (!organizer.send(msg.value)) throw; //send ether but catch error
 		numAttendees++;
+		if (!organizer.send(msg.value)) throw; //send ether but catch error
 		PurchaseTicket(msg.sender, msg.value);
 	}
 
-	function getNumAttendees() returns (uint numAttendees){
+	function getNumAttendees() constant returns (uint){
 		return numAttendees;
 	}
 
