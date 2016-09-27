@@ -1,3 +1,4 @@
+
 const events = [
   {
     eventName: 'Leonard\'s birthday bonanza',

@@ -7,6 +7,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('../webpack.config')
 const config = require('../config');
 const app = express();
+const opn = require('opn');
 
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
@@ -39,4 +40,5 @@ new WebpackDevServer(webpack(webpackConfig), {
   }
 
   console.log('Webpack Dev Server listening at http://localhost:' + config.WEBPACK_DEV_SERVER_PORT + '/');
+  opn('http://localhost:3001');
 });

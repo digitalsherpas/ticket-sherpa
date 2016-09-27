@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
 
 const EventsList = connect(
   mapStateToProps
+  // actions go here mapDispatchToProps
 )(Events)
 
 export default EventsList
