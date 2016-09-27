@@ -15,11 +15,11 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
   event CreateEvent(address _organizer, uint _numAttendees, uint _quota, uint _price, string _title);
   event ExceedQuota(uint _numAttendees, uint _quota);
 
-  function Event(string title, uint price, uint quota) { //TODO: add params to customize the event
+  function Event(string _title, uint _price, uint _quota) { //TODO: add params to customize the event
     organizer = msg.sender;
-    title = title;
-    price = price;
-    quota = quota;
+    title = _title;
+    price = _price;
+    quota = _quota;
     numAttendees = 0;
     CreateEvent(organizer, numAttendees, quota, price, title);
   }
@@ -45,8 +45,8 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
     return numAttendees;
   }
 
-  function verifyAttendee(address attendee) constant returns (bool) {
-    if (attendeesPaid[attendee]) {
+  function verifyAttendee(address _attendee) constant returns (bool) {
+    if (attendeesPaid[_attendee]) {
       return true;
     } else {
       return false;

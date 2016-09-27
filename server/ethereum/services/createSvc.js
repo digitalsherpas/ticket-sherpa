@@ -5,10 +5,9 @@ const solc = require('solc');
 const web3Connection = require('../web3.js');
 const web3 = web3Connection.web3;
 
-const senderAddress = web3.eth.accounts[0];
-
 const createSvc = {
   createContract: (req, res) => {
+    const senderAddress = req.body.senderAddress;
     const price = req.body.ticketPrice;
     const title = req.body.eventTitle;
     const quota = req.body.quota;
@@ -17,7 +16,6 @@ const createSvc = {
         throw err;
       const output = solc.compile(data, 1); // 1 activates the optimiser
       for (let contractName in output.contracts) {
-        // Deploy the contract asyncronous:
         const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName].interface));
         const eventContractInstance = EventContract.new(title, price, quota, {
           data: output.contracts[contractName].bytecode,
