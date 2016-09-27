@@ -7,7 +7,6 @@ const web3 = web3Connection.web3;
 
 const verifySvc = {
   getNumAttendees: (req, res) => {
-    console.log('CONTRACT ADDRESS:', req.body.contractAddress);
     const contractAddress = req.body.contractAddress;
     const fromAddress = req.body.fromAddress;
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
@@ -19,14 +18,12 @@ const verifySvc = {
         eventContractInstance.getNumAttendees.call({
           from: fromAddress
         }, function(err, data) {
-          console.log('getNumAttendees returned', err, data);
           res.send(data.toString());
         })
       }
     });
   },
   verifyAttendee: (req, res) => {
-    console.log('CONTRACT ADDRESS:', req.body.contractAddress);
     const contractAddress = req.body.contractAddress;
     const fromAddress = req.body.fromAddress;
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
@@ -38,7 +35,6 @@ const verifySvc = {
         eventContractInstance.verifyAttendee.call(fromAddress, {
           from: fromAddress
         }, function(err, data) {
-          console.log('verifyAttendee returned', err, data);
           res.send(data.toString());
         });
       }
