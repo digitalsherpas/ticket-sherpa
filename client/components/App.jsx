@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import HostLogin from './HostLogin.jsx';
-import Events from './Events.jsx';
+import EventsList from '../containers/EventsList';
+import DevTools from '../containers/DevTools'
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Home Page</h1>
+// <HostLogin />
+const App = () => (
+  <div>
+    <h1>Home Page</h1>
 
-        <h3>Welcome to Tickether</h3>
+    <h3>Welcome to Tickether</h3>
 
-        <HostLogin />
+    <h3>Sup dawg</h3>
 
-        <Events />
-      </div>
-    );
-  }
-}
+    <EventsList />
+    <DevTools />
+  </div>
+)
+
+export default App

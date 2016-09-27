@@ -1,7 +1,4 @@
-let nextToDoId = 0;
-
-export const addToDo = (text) => ({
-  type: 'ADD_TODO',
-  id: nextToDoId,
-  text
-});
+export const setVisibilityFilter = (filter) => ({
+  type: 'SET_VISIBILITY_FILTER',
+  filter
+})

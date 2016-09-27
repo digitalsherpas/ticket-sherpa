@@ -5,11 +5,12 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import App from './components/App.jsx';
-import reducer from './reducers';
+import eventsReducer from './reducers/eventsReducer';
+import DevTools from './containers/DevTools';
 
 const store = createStore(
   combineReducers({
-  ...reducer,
+  events: eventsReducer,
   routing: routerReducer
   })
 );
@@ -23,6 +24,7 @@ ReactDOM.render(
     <Router history={history}>
     <Route path="/" component={App}>
     </Route>
+    <DevTools />
     </Router>
   </Provider>, 
   document.getElementById('root')
