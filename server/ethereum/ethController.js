@@ -1,7 +1,8 @@
 'use strict';
 
-const createSvc = require('./services/createSvc.js');
-const buySvc = require('./services/buySvc.js');
+const createSvc = require('./services/createSvc');
+const buySvc = require('./services/buySvc');
+const verifySvc = require('./services/verifySvc')
 
 const controller = {
   createEvent: (req, res) => {
@@ -9,6 +10,12 @@ const controller = {
   },
   buyTicket: (req, res) => {
     buySvc.buyTicket(req, res);
+  },
+  getNumAttendees: (req, res) => {
+    verifySvc.getNumAttendees(req, res);
+  },
+  verifyAttendee: (req, res) => {
+    verifySvc.verifyAttendee(req, res);
   }
 };
 
