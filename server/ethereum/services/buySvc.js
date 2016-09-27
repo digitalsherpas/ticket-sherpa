@@ -7,7 +7,8 @@ const web3 = web3Connection.web3;
 
 const buySvc = {
   buyTicket: (req, res) => {
-    var contractAddress = req.body.contractAddress; //address of deployed contract;
+    const contractAddress = req.body.contractAddress; //address of deployed contract;
+    const fromAddress = req.body.fromAddress;
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
       if (err)
         throw err;
@@ -16,7 +17,7 @@ const buySvc = {
         const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName].interface));
         const eventContractInstance = EventContract.at(contractAddress);
         eventContractInstance.buyTicket({
-          from: web3.eth.accounts[1],
+          from: fromAddress,
           value: 10,
           gas: 200000
         }, function(err, result) {
@@ -42,6 +43,7 @@ const buySvc = {
             });
             res.sendStatus(500);
           } else {
+            console.log('hello world');
             eventContractInstance.PurchaseTicket(function(error, result) {
               if (error) {
                 console.log('Error with Purchase Ticket Event', error);
