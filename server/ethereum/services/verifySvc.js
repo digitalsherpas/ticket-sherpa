@@ -24,23 +24,26 @@ const verifySvc = {
         })
       }
     });
-  }//,
-  // verifyAttendee: (req, res) => {
-  //   console.log('CONTRACT ADDRESS:', req.body.contractAddress);
-  //   const contractAddress = req.body.contractAddress;
-  //   const fromAddress = req.body.fromAddress;
-  //   fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
-  //     if (err) throw err;
-  //       const output = solc.compile(data, 1);
-  //     for (let contractName in output.contracts) {
-  //       const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName]));
-  //       const eventContractInstance = EventContract.at(contractAddress);
-  //       eventContractInstance.verifyAttendee.call({
-  //         from: fromAddress
-  //       });
-  //     }
-  //   });
-  // }
+  },
+  verifyAttendee: (req, res) => {
+    console.log('CONTRACT ADDRESS:', req.body.contractAddress);
+    const contractAddress = req.body.contractAddress;
+    const fromAddress = req.body.fromAddress;
+    fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
+      if (err) throw err;
+        const output = solc.compile(data, 1);
+      for (let contractName in output.contracts) {
+        const EventContract = web3.eth.contract(JSON.parse(output.contracts[contractName].interface));
+        const eventContractInstance = EventContract.at(contractAddress);
+        eventContractInstance.verifyAttendee.call(fromAddress, {
+          from: fromAddress
+        }, function(err, data) {
+          console.log('verifyAttendee returned', err, data);
+          res.send(data.toString());
+        });
+      }
+    });
+  }
 }
 
 module.exports = verifySvc;

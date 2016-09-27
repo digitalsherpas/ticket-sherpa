@@ -41,6 +41,14 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
 		return numAttendees;
 	}
 
+	function verifyAttendee(address attendee) constant returns (bool) {
+    if (attendeesPaid[attendee]) { 
+      return true; 
+    } else {
+      return false;
+    }
+	}
+
 	// function refundTicket(address recipient, uint amount) public {
 	// 	if (msg.sender != organizer) { return; }
 	// 	if (attendeesPaid[recipient] == amount) {

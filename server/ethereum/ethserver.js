@@ -40,6 +40,10 @@ app.post('/api/getNumAttendees', (req, res) => {
   ethController.getNumAttendees(req, res);
 })
 
+app.post('/api/verifyAttendee', (req, res) => {
+  ethController.verifyAttendee(req, res);
+})
+
 const server = app.listen(config.ETH_SERVER_PORT, function() {
   console.log('Running on', config.ETH_SERVER_PORT);
 });

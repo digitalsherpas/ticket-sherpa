@@ -13,8 +13,10 @@ const controller = {
   },
   getNumAttendees: (req, res) => {
     verifySvc.getNumAttendees(req, res);
+  },
+  verifyAttendee: (req, res) => {
+    verifySvc.verifyAttendee(req, res);
   }
-
 };
 
 module.exports = controller;
