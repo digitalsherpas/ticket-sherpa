@@ -25,7 +25,7 @@ app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
-app.listen(port);
+const server = app.listen(port);
 console.log('Listening at port: ' + port);
 
 // webpack proxy
@@ -40,6 +40,7 @@ new WebpackDevServer(webpack(config), {
   if (err) {
     return console.log(err);
   }
-
   console.log('Webpack Dev Server listening at http://localhost:3001/');
 });
+
+module.exports = server;
