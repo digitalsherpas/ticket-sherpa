@@ -4,9 +4,10 @@
   "description": "",
   "scripts": {
     "start": "",
+    "eth": "node ./node_modules/grunt-cli/bin/grunt eth",
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "lint": "eslint src",
-    "test": "./node_modules/.bin/mocha ./tests/server/ethSvcsTests.js"
+    "test": "./node_modules/.bin/mocha ./tests/server/ethSvcs.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "body-parser": "^1.15.2",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
     "grunt": "^1.0.1",
