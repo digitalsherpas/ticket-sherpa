@@ -1,15 +1,14 @@
 'use strict';
 
-let Web3 = require('web3');
-let solc = require('solc');
-let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
-let fs = require('fs');
+const fs = require('fs');
+const solc = require('solc');
+const web3Connection = require('../web3.js');
+const web3 = web3Connection.web3;
 
-let buySvc = {
+const buySvc = {
   buyTicket: (req, res) => {
     console.log('ADDRESS IS', req.body.contractAddress);
     var contractAddress = req.body.contractAddress; //address of deployed contract;
-    var input = '';
     fs.readFile(__dirname + '/../contracts/Event.sol', 'utf-8', function(err, data) {
       if (err) throw err;
       const output = solc.compile(data, 1);

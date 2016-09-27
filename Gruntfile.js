@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         stderr: false
       },
       compile: {
-        command: 'node ./node_modules/webpack/bin/webpack.js '
+        command: 'node ./node_modules/webpack/bin/webpack.js'
       },
       startDevServer: {
         command: 'nodemon server/server.js'

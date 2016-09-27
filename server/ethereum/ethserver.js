@@ -33,7 +33,6 @@ app.post('/api/createEvent', (req, res) => {
 });
 
 app.post('/api/buyTicket', (req, res) => {
-  console.log('BODY:', req);
   ethController.buyTicket(req, res);
 })
 
