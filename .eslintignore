@@ -1,3 +1,4 @@
+.eslint*
 **/node_modules
 **/bower_components
 **/lib
@@ -9,3 +10,4 @@
 **/blockchain
 bundle.js
 **/*.jsx
+.tern-project
