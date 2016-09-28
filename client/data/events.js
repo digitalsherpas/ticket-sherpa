@@ -21,3 +21,5 @@ const events = [
     price: 1000000000000000000000000000
   }
 ]
+
+export default events;
