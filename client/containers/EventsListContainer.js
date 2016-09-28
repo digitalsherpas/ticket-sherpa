@@ -1,18 +1,9 @@
 import { connect } from 'react-redux'
 import Events from '../components/Events.jsx'
 
-const getVisibleEvents = (events, filter) => {
-  switch (filter) {
-    case 'SHOW_ALL':
-      return events
-    default: 
-      return events
-  }
-}
-
 const mapStateToProps = (state) => ({
-  events: getVisibleEvents(state.events, state.visibilityFilter)
-})
+  events: state.eventsListReducer.eventsList
+});
 
 const EventsListContainer = connect(
   mapStateToProps

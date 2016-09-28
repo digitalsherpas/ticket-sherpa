@@ -11,9 +11,12 @@ import EventDetails from './components/EventDetails.jsx';
 import eventsListReducer from './reducers/eventsListReducer';
 import eventDetailsReducer from './reducers/eventDetailsReducer';
 
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
+
 const store = createStore(
   combineReducers({
-  events: eventsListReducer,
+  eventsListReducer,
   event: eventDetailsReducer,
   routing: routerReducer
   })
