@@ -9,8 +9,9 @@ const buySvc = {
   buyTicket: (req, res) => {
     const contractAddress = req.body.contractAddress; //address of deployed contract;
     const fromAddress = req.body.fromAddress;
+    const name = req.body.name;
     const eventContractInstance = web3.eth.contract(contractHelper.contractObj).at(contractAddress);
-    eventContractInstance.buyTicket({
+    eventContractInstance.buyTicket(name, {
       from: fromAddress,
       value: 10,
       // gas: 200000
