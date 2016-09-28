@@ -1,9 +1,8 @@
-var path = require('path');
-var webpack = require('webpack');
-var APP_DIR = path.resolve(__dirname, 'client');
-var SERVER_DIR = path.resolve(__dirname, 'server');
+const path = require('path');
+const webpack = require('webpack');
+const APP_DIR = path.resolve(__dirname, 'client');
+const SERVER_DIR = path.resolve(__dirname, 'server');
 
-console.log('=============', path.join(__dirname, 'dist'))
 module.exports = {
   devtool: 'eval',
   entry: [
