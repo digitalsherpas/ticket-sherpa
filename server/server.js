@@ -46,4 +46,3 @@ app.get('*', function(req, res) {
 });
 
 app.listen(config.SERVER_PORT);
-opn('http://localhost:3000');

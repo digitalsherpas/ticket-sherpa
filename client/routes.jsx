@@ -1,12 +1,12 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import history from './index.jsx';
 import App from './components/App.jsx';
 import Home from './components/Home.jsx';
-import EventsList from './components/EventsList.jsx';
-import EventsListContainer from './containers/EventsListContainer.js';
-import EventDetails from './components/EventDetails.jsx';
-import HostLogin from './components/HostLogin.jsx';
+import HostHome from './components/HostHome.jsx';
+import HostEventsContainer from './containers/hostEventsContainer.js';
+import EventsListContainer from './containers/eventsListContainer.js';
+import EventDetails from './components/Events/EventDetails.jsx';
+
 
 const routes = (
   <Router history={browserHistory}>
@@ -14,7 +14,11 @@ const routes = (
       <IndexRoute component={Home} />
       <Route path="/events" component={EventsListContainer} />
       <Route path="/details/:eventName" component={EventDetails} />
-      <Route path="/host" component={HostLogin} />
+
+      <Route path="/host">
+        <IndexRoute component={HostHome} />
+          <Route path="/hostevents" component={HostEventsContainer} />
+      </Route>
     </Route>
   </Router>
 )

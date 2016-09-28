@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class HostLogin extends Component {
+export default class History extends Component {
   render() {
     return (
       <div>
-        <h1>HostLogin goes here</h1>
+        <h1>History</h1>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EventsListContainer from '../containers/EventsListContainer';
+import EventsListContainer from '../../containers/eventsListContainer';
 
 export default class EventsList extends Component {
   render () {
