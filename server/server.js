@@ -12,9 +12,9 @@ const opn = require('opn');
 // main server
 app.use(express.static(path.join(__dirname + '/../client')));
 
-app.get('/host', function(req, res) {
-  res.send('Host Page');
-});
+// app.get('/host', function(req, res) {
+//   res.send('Host Page');
+// });
 
 app.get('/', function(req, res) {
   console.log(index);
