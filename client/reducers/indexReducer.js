@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import eventsReducer from './eventsReducer'
-import visibilityFilterReducer from './visibilityFilterReducer'
+import eventsListReducer from 'eventsListReducer'
+import eventDetailsReducer from 'eventDetailsReducer'
 
 const eventsAppReducer = combineReducers({
-  eventsReducer,
-  visibilityFilterReducer
+  eventsListReducer,
+  eventDetailsReducer
 })
 
 export default eventsAppReducer

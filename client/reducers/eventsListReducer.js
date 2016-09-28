@@ -44,7 +44,7 @@ const event = (state, action) => {
   }
 }
 
-const eventsReducer = (state = events, action) => {
+const eventsListReducer = (state = events, action) => {
   switch (action.type) {
   //   case 'ADD_TODO':
   //     return [
@@ -60,4 +60,4 @@ const eventsReducer = (state = events, action) => {
   }
 }
 
-export default eventsReducer
+export default eventsListReducer

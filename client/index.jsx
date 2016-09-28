@@ -8,13 +8,13 @@ import routes from './routes.jsx';
 import App from './components/App.jsx';
 import EventsList from './components/EventsList.jsx';
 import EventDetails from './components/EventDetails.jsx';
-import eventsReducer from './reducers/eventsReducer';
-import eventDetailReducer from './reducers/eventDetailReducer';
+import eventsListReducer from './reducers/eventsListReducer';
+import eventDetailsReducer from './reducers/eventDetailsReducer';
 
 const store = createStore(
   combineReducers({
-  events: eventsReducer,
-  event: eventDetailReducer,
+  events: eventsListReducer,
+  event: eventDetailsReducer,
   routing: routerReducer
   })
 );

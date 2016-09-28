@@ -6,7 +6,7 @@ const event = {
   price: 100000000000
 }
 
-const eventDetailReducer = (state = event, action) => {
+const eventDetailsReducer = (state = event, action) => {
   switch (action.type) {
     // case 'ADD_TODO':
     //   return {
@@ -28,4 +28,4 @@ const eventDetailReducer = (state = event, action) => {
   }
 }
 
-export default eventDetailReducer
+export default eventDetailsReducer
