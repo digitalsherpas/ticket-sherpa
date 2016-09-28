@@ -1,13 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
-
+const path = require('path');
+const webpack = require('webpack');
+const APP_DIR = path.resolve(__dirname, 'client');
+const SERVER_DIR = path.resolve(__dirname, 'server');
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3001',
-    'webpack/hot/only-dev-server',
-    './client/index.jsx'
+    'webpack-hot-middleware/client', 'webpack/hot/dev-server',
+    APP_DIR + '/index.jsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -18,10 +18,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    loaders: [{
-      test: /\.jsx$|\.js/,
+    loaders: [
+    {
+      test: /\.jsx?/,
       loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'client')
+      include: APP_DIR
     }]
   }
-}
+};
