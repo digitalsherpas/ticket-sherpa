@@ -8,8 +8,11 @@ import routes from './routes.jsx';
 import App from './components/App.jsx';
 import EventsList from './components/EventsList.jsx';
 import EventDetails from './components/EventDetails.jsx';
-import eventsListReducer from './reducers/eventsListReducer';
+
 import eventDetailsReducer from './reducers/eventDetailsReducer';
+import eventsListReducer from './reducers/eventsListReducer';
+import hostEventsReducer from './reducers/hostEventsReducer';
+
 
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -18,6 +21,7 @@ const store = createStore(
   combineReducers({
   eventsListReducer,
   event: eventDetailsReducer,
+  hostevents: hostEventsReducer,
   routing: routerReducer
   })
 );

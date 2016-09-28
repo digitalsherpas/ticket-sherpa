@@ -1,10 +1,14 @@
-import { combineReducers } from 'redux'
-import eventsListReducer from 'eventsListReducer'
-import eventDetailsReducer from 'eventDetailsReducer'
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import eventsListReducer from './eventsListReducer.js'
+import eventDetailsReducer from './eventDetailsReducer.js'
+import hostEventsReducer from './hostEventsReducer.js'
 
-const eventsAppReducer = combineReducers({
+const rootReducer = combineReducers({
+  eventDetailsReducer,
   eventsListReducer,
-  eventDetailsReducer
+  hostEventsReducer,
+  routing: routerReducer
 })
 
-export default eventsAppReducer
+export default rootReducer

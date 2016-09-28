@@ -3,13 +3,19 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import history from './index.jsx';
 import App from './components/App.jsx';
 import Home from './components/Home.jsx';
+
 import EventsList from './components/EventsList.jsx';
 import EventsListContainer from './containers/EventsListContainer.js';
 import EventDetails from './components/EventDetails.jsx';
-import HostLogin from './components/HostLogin.jsx';
-import Profile from './components/host/profile.jsx';
-import HostEvent from './components/host/hostevent.jsx';
-import History from './components/host/profile.jsx';
+
+import HostLogin from './components/HostHome.jsx';
+
+import HostCreateEvent from './components/Host/HostCreatEevent.jsx';
+import HostHistory from './components/Host/HostHistory.jsx';
+import HostEvents from './components/Host/HostEvents.jsx';
+import HostProfile from './components/Host/HostProfile.jsx';
+
+import HostEventsContainer from './containers/hostEventsContainer.js';
 
 const routes = (
   <Router history={browserHistory}>
@@ -18,12 +24,10 @@ const routes = (
       <Route path="/events" component={EventsListContainer} />
       <Route path="/details/:eventName" component={EventDetails} />
 
-      <Route path="/host" component={HostLogin} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/hostevent" component={HostEvent} />
-      <Route path="/history" component={History} />
-      <Route path="/logout" component={Home} />
-      
+      <Route path="/host">
+        <IndexRoute component={HostLogin} />
+          <Route path="/hostevents" component={HostEventsContainer} />
+      </Route>
     </Route>
   </Router>
 )
