@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('../webpack.config')
+// const webpackConfig = require('../webpack.config')
 const config = require('../config');
-const dbController = require('./database/dbController.js');
 const app = express();
+const request = require('request');
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -40,8 +40,13 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/events', (req, res) => {
+  request({'url': `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/findEvent`,
+  'qs': req.body.eventName});
+});
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../client/index.html'));
+  res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 
 app.listen(config.SERVER_PORT);

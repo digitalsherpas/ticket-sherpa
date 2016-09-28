@@ -24,10 +24,6 @@ const allowCrossDomain = function(req, res, next) { //enable CORS
 app.use(allowCrossDomain);
 app.use(jsonParser);
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
-
 app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
@@ -42,6 +38,11 @@ app.post('/api/getNumAttendees', (req, res) => {
 
 app.post('/api/verifyAttendee', (req, res) => {
   ethController.verifyAttendee(req, res);
+})
+
+app.get('api/findEvent', (req, res) => {
+  console.log('made it to eth server');
+  ethController.findEvent(req, res);
 })
 
 const server = app.listen(config.ETH_SERVER_PORT, function() {
