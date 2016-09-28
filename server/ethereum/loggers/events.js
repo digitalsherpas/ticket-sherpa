@@ -1,4 +1,4 @@
-module.exports = function(eventContractInstance) {
+module.exports = (eventContractInstance) => {
   return {
     ExceedQuota: (cb) => {
       let watcher = eventContractInstance.ExceedQuota((error, result) => {
