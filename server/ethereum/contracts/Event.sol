@@ -3,7 +3,7 @@ pragma solidity ^0.4.2;
 contract Event {  // can be killed, so the owner gets sent the money in the end
 
   address public organizer;
-  mapping (address => bool) public attendeesPaid;
+  mapping (address => string) public attendeesPaid;
   uint public numAttendees;
   uint public quota;
   uint public price;
@@ -24,7 +24,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
     CreateEvent(organizer, numAttendees, quota, price, title);
   }
 
-  function buyTicket() payable {
+  function buyTicket(string _name) payable {
     if (numAttendees > quota) {
       ExceedQuota(numAttendees, quota);
       throw; // throw ensures funds will be returned
@@ -35,7 +35,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
       throw;
     }
 
-    attendeesPaid[msg.sender] = true;
+    attendeesPaid[msg.sender] = _name;
     if (!organizer.send(msg.value)) throw; //send ether but catch error
     numAttendees++;
     PurchaseTicket(msg.sender, msg.value, numAttendees);
@@ -45,11 +45,11 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
     return numAttendees;
   }
 
-  function verifyAttendee(address _attendee) constant returns (bool) {
-    if (attendeesPaid[_attendee]) {
-      return true;
+  function verifyAttendee(address _attendee) constant returns (string) {
+    if (bytes(attendeesPaid[_attendee]).length > 0) {
+      return attendeesPaid[_attendee];
     } else {
-      return false;
+      return "";
     }
   }
 

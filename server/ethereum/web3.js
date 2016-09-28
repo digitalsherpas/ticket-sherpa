@@ -7,4 +7,4 @@ const web3 = new Web3(new Web3.providers.HttpProvider(connectionString));
 
 module.exports = {
   web3: web3
-} ;
+};
