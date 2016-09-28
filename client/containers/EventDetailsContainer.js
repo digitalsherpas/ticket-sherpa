@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Event from '../components/Event.jsx'
+import Event from '../components/Events/Event.jsx'
 
 const mapStateToProps = (state) => ({
   events: state.event

@@ -1,4 +1,4 @@
-import events from '../data/events.js'
+import staticEvents from '../data/events.js'
 
 import { combineReducers } from 'redux'
 import {

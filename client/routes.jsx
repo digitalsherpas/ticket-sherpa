@@ -4,9 +4,8 @@ import App from './components/App.jsx';
 import Home from './components/Home.jsx';
 import HostHome from './components/HostHome.jsx';
 import HostEventsContainer from './containers/hostEventsContainer.js';
-import EventsList from './components/EventsList.jsx';
-import EventsListContainer from './containers/EventsListContainer.js';
-import EventDetails from './components/EventDetails.jsx';
+import EventsListContainer from './containers/eventsListContainer.js';
+import EventDetails from './components/Events/EventDetails.jsx';
 
 
 const routes = (

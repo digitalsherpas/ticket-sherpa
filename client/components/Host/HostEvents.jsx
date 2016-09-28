@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Event from '../Event.jsx'
+import Event from '../Events/Event.jsx'
 
 
 export default class HostEvents extends Component {

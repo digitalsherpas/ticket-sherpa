@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EventDetailsContainer from '../containers/EventDetailsContainer';
+import EventDetailsContainer from '../../containers/EventDetailsContainer';
 
 export default class EventDetails extends Component {
   render () {

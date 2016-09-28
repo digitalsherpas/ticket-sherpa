@@ -7,7 +7,7 @@ import hostEventsReducer from './hostEventsReducer.js'
 
 const rootReducer = combineReducers({
   event: eventDetailsReducer,
-  events: eventsListReducer,
+  eventsListReducer,
   hostevents: hostEventsReducer,
   routing: routerReducer
 })
