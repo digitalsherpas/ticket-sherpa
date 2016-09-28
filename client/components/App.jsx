@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+// renders logo and maps props
+export default class App extends Component {
   render () {
     return (
       <div>
@@ -10,14 +11,3 @@ class App extends Component {
     );
   }
 }
-
-// // <HostLogin />
-// const App = () => (
-//   <div>
-//     <h1>Tickether</h1>
-
-
-//   </div>
-// )
-
-export default App

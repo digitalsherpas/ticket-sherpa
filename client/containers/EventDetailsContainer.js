@@ -14,9 +14,9 @@ const mapStateToProps = (state) => ({
   event: getVisibleEvents(state.event, state.visibilityFilter)
 })
 
-const EventDetail = connect(
+const EventDetailsContainer = connect(
   mapStateToProps
   // actions go here mapDispatchToProps
 )(Event)
 
-export default EventDetail
+export default EventDetailsContainer

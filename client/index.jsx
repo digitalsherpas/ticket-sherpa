@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes.jsx';
 import App from './components/App.jsx';
-import EventDetailApp from './components/EventDetailApp.jsx';
+import EventDetails from './components/EventDetails.jsx';
 import EventsList from './components/EventsList.jsx';
 import eventsReducer from './reducers/eventsReducer';
 import eventDetailReducer from './reducers/eventDetailReducer';
@@ -21,8 +21,6 @@ const store = createStore(
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
-// TODO: add route for HostLogin once Kevin figures out server
-// <Route path="/HostLogin" component={HostLogin} />
 ReactDOM.render(  
   <Provider store={store}>
     {routes}

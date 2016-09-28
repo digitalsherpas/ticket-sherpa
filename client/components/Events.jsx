@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import Event from './Event.jsx'
 
+// creates an events array for the eventsListContainer
 const Events = ({ events }) => (
   <div className="events">
     <h2>Events</h2>
