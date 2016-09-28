@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EventsList from '../containers/EventsList';
 
 class App extends Component {
   render () {
