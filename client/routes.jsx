@@ -12,6 +12,7 @@ const routes = (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="/events" component={EventsList} />
+      <Route path="/details/:eventName" component={EventDetails} />
       <Route path="/host" component={HostLogin} />
     </Route>
   </Router>
