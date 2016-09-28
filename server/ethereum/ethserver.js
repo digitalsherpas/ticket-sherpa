@@ -58,6 +58,7 @@ app.post('/api/verifyAttendee', (req, res) => {
 // Retrieves an event based on event name.
 // Look at server.js webserver to see where this is called.
 app.get('/api/findEvent/', (req, res) => {
+  console.log('made it to eth server');
   ethController.findEvent(req, res);
 });
 

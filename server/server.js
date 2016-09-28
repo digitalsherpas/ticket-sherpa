@@ -2,11 +2,10 @@
 
 const express = require('express');
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('../webpack.config')
+// const webpackConfig = require('../webpack.config')
 const config = require('../config');
-const dbController = require('./database/dbController.js');
 const app = express();
 const opn = require('opn');
 const rp = require('request-promise');
