@@ -19,9 +19,14 @@ const controller = {
     })
   },
   createEvent: (eventObj, res) => {
-    eventModel.create({eventName: eventObj.eventName, contractAddress: eventObj.contractAddress}).then((event) => {
+    eventModel.create({eventName: eventObj.eventName, contractAddress: eventObj.contractAddress})
+    .then((event) => {
       console.log(event.eventName + ' added to DB');
       res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
     })
   }
 };

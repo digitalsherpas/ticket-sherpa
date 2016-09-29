@@ -73,7 +73,6 @@
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
-    "request": "^2.75.0",
     "request-promise": "^4.1.1",
     "sequelize": "^3.24.3",
     "solc": "^0.4.2",

@@ -1,8 +1,5 @@
 const express = require('express');
 const path = require('path');
-// const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-// const webpackConfig = require('../webpack.config')
 const config = require('../config');
 const app = express();
 const rp = require('request-promise');
@@ -57,7 +54,7 @@ app.get('/events', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../client/index.html'));
+  res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
 
 app.listen(config.SERVER_PORT);
