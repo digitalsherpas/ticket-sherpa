@@ -62,6 +62,9 @@ module.exports = (eventContractInstance) => {
           console.log('  Event price: ' + result.args._price.toString());
           console.log('  Event quota: ' + result.args._quota.toString());
           console.log('  Current number of attendees: ' + result.args._numAttendees.toString());
+          console.log(`  Event createDateTime: ${new Date(parseInt(result.args._eventCreateDateTime.toString()))}`);
+          console.log(`  Event startDateTime: ${new Date(parseInt(result.args._eventStartDateTime.toString()))}`);
+          console.log(`  Event endDateTime: ${new Date(parseInt(result.args._eventEndDateTime.toString()))}`);
         }
 
         if (typeof cb === 'function') {
