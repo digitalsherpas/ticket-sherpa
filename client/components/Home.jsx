@@ -9,6 +9,7 @@ export default class Home extends Component {
           <li><Link to="/events">Events</Link></li>
           <li><Link to="/host">Host</Link></li>
         </ul>
+        {this.props.children}
       </div>
     );
   }
