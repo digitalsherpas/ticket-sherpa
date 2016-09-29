@@ -1,14 +1,29 @@
-import React, { Component } from 'react';
-import Event from '../Events/Event.jsx';
+import React, { PropTypes } from 'react';
+import HostEvent from '../Host/HostEvent.jsx';
 
+// creates an events array for the eventsListContainer
+const HostEvents = ({ hostEvents }) => (
+  <div className="hostEvents">
+    <h2>Host Events</h2>
+    <ul>
+      {hostEvents.map(hostEvent =>
+        <HostEvent
+          key={hostEvent.eventName}
+          {...hostEvent}
+        />
+      )}
+    </ul>
+  </div>
+);
 
-export default class HostEvents extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Events go here</h1>
-        {this.props.myEvents}
-      </div>
-    );
-  }
-}
+HostEvents.propTypes = {
+  hostEvents: PropTypes.arrayOf(PropTypes.shape({
+    eventName: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
+};
+
+export default HostEvents;

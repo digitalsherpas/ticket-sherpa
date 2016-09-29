@@ -7,8 +7,10 @@ import HostEventsContainer from './containers/hostEventsContainer.js';
 import HostCreateEventContainer from './containers/HostCreateEventContainer.js';
 import HostProfileContainer from './containers/HostProfileContainer';
 import EventsListContainer from './containers/eventsListContainer.js';
-import EventDetails from './components/Events/EventDetails.jsx';
 import EventDetailsContainer from './containers/EventDetailsContainer.js';
+import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js';
+import HostCreateEvent from './components/Host/HostCreateEvent.jsx';
+
 
 
 const routes = (
@@ -16,11 +18,11 @@ const routes = (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="/events" component={EventsListContainer} />
-      <Route path="/details/:eventName" component={EventDetailsContainer} />
+      <Route path="/details/:hostEventName" component={HostEventDetailsContainer} />
 
       <Route path="/host" component={HostHome}>
           <Route path="/hostevents" component={HostEventsContainer} />
-          <Route path="/hostcreateevent" component={HostCreateEventContainer} />
+          <Route path="/hostcreateevent" component={HostCreateEvent} />
           <Route path="/hostprofile" component={HostProfileContainer} />
       </Route>
     </Route>

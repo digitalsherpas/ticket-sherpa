@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import HostEvents from '../components/Host/HostEvents.jsx';
 
 const mapStateToProps = (state) => ({
-  myEvents: JSON.stringify(state.hostevents[0]),
+  hostEvents: state.hostEventsReducer.hostEventsList,
 });
 
 const HostEventsContainer = connect(

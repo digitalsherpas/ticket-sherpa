@@ -6,9 +6,9 @@ import eventsListReducer from './eventsListReducer';
 import hostEventsReducer from './hostEventsReducer';
 
 const rootReducer = combineReducers({
-  event: eventDetailsReducer,
+  eventDetailsReducer,
   eventsListReducer,
-  hostevents: hostEventsReducer,
+  hostEventsReducer,
   routing: routerReducer,
 });
 
