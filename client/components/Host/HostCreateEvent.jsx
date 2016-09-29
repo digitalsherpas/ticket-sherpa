@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 export default class HostEvent extends Component {
   handleSubmit(e) {
     e.preventDefault();
-    console.log('Creating event');
-    console.log(this.props);
+    this.props.addEvent(this.refs.eventName.value, 
+      this.refs.date.value, 
+      this.refs.time.value, 
+      this.refs.address.value, 
+      this.refs.price.value);
   }
   render() {
     return (
       <div>
-        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
+        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h2>Event Name</h2>
-          <input type="text" ref="eventname" placeholder="Event Name"/>
+          <input type="text" ref="eventName" placeholder="Event Name"/>
           <h2>Date</h2>
           <input type="text" ref="date" placeholder="Date"/>
           <h2>Time</h2>

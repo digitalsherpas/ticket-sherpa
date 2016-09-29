@@ -3,7 +3,6 @@ import fetch from 'isomorphic-fetch';
 export const SELECT_EVENT = 'SELECT_EVENT';
 
 export function addEvent(eventName, date, time, address, price) {
-  console.log('dispatching addevent');
   return {
     type: 'ADD_EVENT',
     eventName,

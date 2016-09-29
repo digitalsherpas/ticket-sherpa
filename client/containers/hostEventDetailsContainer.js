@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import HostEventDetails from '../components/Host/HostEventsDetails.jsx';
+import HostEventDetails from '../components/Host/HostEventDetails.jsx';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   hostEvents: state.hostEventsReducer.hostEventsList,
 });
 
