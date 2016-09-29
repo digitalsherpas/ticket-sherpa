@@ -5,7 +5,6 @@ const WebpackDevServer = require('webpack-dev-server');
 // const webpackConfig = require('../webpack.config')
 const config = require('../config');
 const app = express();
-const opn = require('opn');
 const rp = require('request-promise');
 
 const webpack = require('webpack');
