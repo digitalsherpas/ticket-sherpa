@@ -23,7 +23,10 @@ module.exports = function (grunt) {
       startEthServer: {
         command: 'nodemon server/ethereum/ethserver.js',
       },
-    },
+      setup: {
+        command: 'node setup.js'
+      }
+    }
   });
 
 // dependencies
@@ -35,6 +38,8 @@ module.exports = function (grunt) {
     'shell:compile',
     'processhtml',
   ]);
+
+  grunt.registerTask('setup', ['shell:setup']);
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
 

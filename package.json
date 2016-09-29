@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "",
+    "setup": "node ./node_modules/grunt-cli/bin/grunt setup",
     "eth": "node ./node_modules/grunt-cli/bin/grunt eth",
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend",
@@ -54,6 +55,8 @@
     "grunt-processhtml": "^0.4.1",
     "grunt-shell": "^1.3.1",
     "mocha": "^3.0.2",
+    "opn": "^4.0.2",
+    "pgtools": "^0.2.2",
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
@@ -63,6 +66,7 @@
     "supertest": "^2.0.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.6.5",
     "axios": "^0.14.0",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
