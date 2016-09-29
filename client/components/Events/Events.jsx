@@ -1,7 +1,14 @@
 import React, { PropTypes } from 'react';
 import Event from './Event.jsx';
 
-// creates an events array for the eventsListContainer
+// export default class Events extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//   clickHandler(event) {
+//   }
+// }
+
 const Events = ({ events }) => (
   <div className="events">
     <h2>Events</h2>
