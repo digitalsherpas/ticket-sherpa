@@ -24,14 +24,24 @@ const allowCrossDomain = function(req, res, next) { //enable CORS
 app.use(allowCrossDomain);
 app.use(jsonParser);
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
-
+/* Example body of JSON request
+{
+  "ticketPrice":"10",
+  "eventName" : "The Best Event",
+  "quota" : "100",
+  "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19"
+}
+*/
 app.post('/api/createEvent', (req, res) => {
   ethController.createEvent(req, res);
 });
 
+/* Example body of JSON request
+{
+  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
+  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9"
+}
+*/
 app.post('/api/buyTicket', (req, res) => {
   ethController.buyTicket(req, res);
 })
@@ -42,6 +52,12 @@ app.post('/api/getNumAttendees', (req, res) => {
 
 app.post('/api/verifyAttendee', (req, res) => {
   ethController.verifyAttendee(req, res);
+})
+
+// Retrieves an event based on event name.
+// Look at server.js webserver to see where this is called.
+app.get('/api/findEvent/', (req, res) => {
+  ethController.findEvent(req, res);
 })
 
 const server = app.listen(config.ETH_SERVER_PORT, function() {

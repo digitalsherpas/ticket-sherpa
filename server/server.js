@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const config = require('../config');
-
 const app = express();
+const rp = require('request-promise');
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -35,6 +35,22 @@ app.use(express.static(path.join(__dirname, '/../client')));
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+/* Example HTTP GET request
+  http://localhost:3000/events?eventName=THIS IS A NEW EVENT
+*/
+// This endpoint retrieves details about a single event based on event name match.
+// This makes a HTTP GET Request to the Ethereum server
+app.get('/events', (req, res) => {
+  rp({
+    'url': `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+    'qs': {eventName: req.query.eventName}
+  }).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  })
 });
 
 app.get('*', (req, res) => {
