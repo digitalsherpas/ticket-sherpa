@@ -1,10 +1,10 @@
-import hostEvents from '../data/hostEvents.js'
+import hostEvents from '../data/hostEvents';
 
 const hostEventsReducer = (state = hostEvents, action) => {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default hostEventsReducer
+export default hostEventsReducer;

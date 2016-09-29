@@ -1,13 +1,13 @@
-import { connect } from 'react-redux'
-import Event from '../components/Events/Event.jsx'
+import { connect } from 'react-redux';
+import Event from '../components/Events/Event.jsx';
 
 const mapStateToProps = (state) => ({
-  events: state.event
+  events: state.event,
 })
 
 const EventDetailsContainer = connect(
   mapStateToProps
   // actions go here mapDispatchToProps
-)(Event)
+)(Event);
 
-export default EventDetailsContainer
+export default EventDetailsContainer;

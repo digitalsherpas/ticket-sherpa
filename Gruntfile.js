@@ -1,40 +1,39 @@
-module.exports = function(grunt) {
-
-//config
+module.exports = function (grunt) {
+// config
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     processhtml: {
       dist: {
         files: {
-          'compiled/index.html': ['client/index.html']
-        }
-      }
+          'compiled/index.html': ['client/index.html'],
+        },
+      },
     },
 
     shell: {
       options: {
-        stderr: false
+        stderr: false,
       },
       compile: {
-        command: 'node ./node_modules/webpack/bin/webpack.js'
+        command: 'node ./node_modules/webpack/bin/webpack.js',
       },
       startDevServer: {
-        command: 'nodemon server/server.js'
+        command: 'nodemon server/server.js',
       },
       startEthServer: {
-        command: 'nodemon server/ethereum/ethserver.js'
-      }
-    }
+        command: 'nodemon server/ethereum/ethserver.js',
+      },
+    },
   });
 
-//dependencies
+// dependencies
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-processhtml');
 
-//tasks
+// tasks
   grunt.registerTask('build', [
     'shell:compile',
-    'processhtml'
+    'processhtml',
   ]);
 
   grunt.registerTask('startServer', ['shell:startDevServer']);

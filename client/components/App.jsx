@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>Tickether</h1>
-        <hr></hr>
+        <hr />
         {React.cloneElement(this.props.children, this.props)}
       </div>
     );

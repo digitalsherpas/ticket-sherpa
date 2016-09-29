@@ -1,52 +1,52 @@
-import staticEvents from '../data/events.js'
+import { combineReducers } from 'redux';
+import staticEvents from '../data/events.js';
 
-import { combineReducers } from 'redux'
 import {
-  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS
-} from '../actions/index.jsx'
+  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS,
+} from '../actions/index.jsx';
 
 const selectedEvent = (state = 'reactjs', action) => {
   switch (action.type) {
     case SELECT_EVENT:
-      return action.event
+      return action.event;
     default:
-      return state
+      return state;
   }
-}
+};
 
 const event = (state = {}, action) => {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
-}
+};
 
 const events = (state = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  items: [],
 }, action) => {
   switch (action.type) {
     case INVALIDATE_EVENT:
       return Object.assign({}, state, {
-        didInvalidate: true
-      })
+        didInvalidate: true,
+      });
     case REQUEST_EVENTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
-      })
+        didInvalidate: false,
+      });
     case RECEIVE_EVENTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.events,
-        lastUpdated: action.receivedAt
-      })
+        lastUpdated: action.receivedAt,
+      });
     default:
-      return state
+      return state;
   }
-}
+};
 
 const eventDetails = (state = {}, action) => {
   switch (action.type) {
@@ -54,25 +54,25 @@ const eventDetails = (state = {}, action) => {
     case RECEIVE_EVENTS:
     case REQUEST_EVENTS:
       return Object.assign({}, state, {
-        [action.event]: events(state[action.event], action)
-      })
+        [action.event]: events(state[action.event], action),
+      });
     default:
-      return state
+      return state;
   }
-}
+};
 
 const eventsList = (state = staticEvents, action) => {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
-}
+};
 
 const eventsListReducer = combineReducers({
   selectedEvent,
   eventDetails,
   events,
-  eventsList
-})
+  eventsList,
+});
 
-export default eventsListReducer
+export default eventsListReducer;
