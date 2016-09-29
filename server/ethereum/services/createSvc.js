@@ -11,9 +11,9 @@ const createSvc = {
     return new Promise((fulfill, reject) => {
       const senderAddress = req.body.senderAddress || web3.eth.accounts[0];
       const price = req.body.ticketPrice;
-      const title = req.body.eventTitle;
+      const eventName = req.body.eventName;
       const quota = req.body.quota;
-      const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(title, price, quota, {
+      const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, {
         data: contractHelper.bytecode,
         // gas: 300000,
         // gasPrice: 500000,
@@ -30,7 +30,7 @@ const createSvc = {
             loggers(eventContractInstance).CreateEvent();
             fulfill({
               contractAddress: contract.address,
-              eventName: title
+              eventName: eventName
             });
             // res.send('Contract address is: ' + contract.address);
           }

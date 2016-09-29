@@ -1,29 +1,29 @@
 const sequelize = require('./database.js');
 const eventModel = require('./models/event.js');
+const Promise = require('bluebird');
 
 const controller = {
   readEvents: (req) => {
-    eventModel.findAll({
-      where: {
-        eventTitle: req.body.eventName
-      }
-    }).then((event) => {
-      if (event) {
-        return event;
-      } else {
-        return null;
-      }
-    });
+    return new Promise((fulfill, reject) => {
+      eventModel.findOne({
+        where: {
+          eventName: req.query.eventName
+        }
+      }).then((event) => {
+        if (event) {
+          fulfill(event);
+        } else {
+          reject('No events found');
+        }
+      });
+    })
   },
   createEvent: (eventObj, res) => {
-    eventModel.create({
-      eventName: eventObj.eventName,
-      contractAddress: eventObj.contractAddress
-    }).then((event) => {
+    eventModel.create({eventName: eventObj.eventName, contractAddress: eventObj.contractAddress}).then((event) => {
       console.log(event.eventName + ' added to DB');
       res.sendStatus(200);
     })
   }
-}
+};
 
 module.exports = controller;

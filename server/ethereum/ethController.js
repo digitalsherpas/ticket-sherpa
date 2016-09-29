@@ -22,8 +22,13 @@ const controller = {
     verifySvc.verifyAttendee(req, res);
   },
   findEvent: (req, res) => {
-    let event = dbController.readEvents(req);
-    readSvc.readEvent(event.contractAddress, res);
+    dbController.readEvents(req)
+    .then((event) => {
+      readSvc.readEvent(req, res, event.contractAddress);
+    })
+    .catch((err) =>{
+      res.status(500).send(err);
+    })
   }
 };
 

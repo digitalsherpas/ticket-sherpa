@@ -6,28 +6,17 @@ const loggers = require('../loggers/events.js');
 const web3 = web3Connection.web3;
 
 const readSvc = {
-  readEvent: (eventContractAddress, res) => {
-    // const contractAddress = req.body.contractAddress; //address of deployed contract;
-    // const fromAddress = req.body.fromAddress;
-    const eventContractInstance = web3.eth.contract(contractHelper.contractObj).at(contractAddress);
-    console.log(eventContractInstance.numAttendees());
-    res.sendStatus(200);
-    // eventContractInstance.buyTicket({
-    //   from: fromAddress,
-    //   value: 10,
-    //   // gas: 200000
-    // }, function(err, result) {
-    //   if (err) {
-    //     console.log(err);
-    //     loggers(eventContractInstance).ExceedQuota();
-    //     loggers(eventContractInstance).InsufficientEther();
-    //     res.sendStatus(500);
-    //   } else {
-    //     loggers(eventContractInstance).PurchaseTicket((error, result) => {
-    //       res.status(200).send('Number of attendees: ' + result.args._numAttendees.toString());
-    //     })
-    //   }
-    // })
+  readEvent: (req, res, eventContractAddress) => {
+    const eventContractInstance = web3.eth.contract(contractHelper.contractObj).at(eventContractAddress);
+    const eventObj = {
+      organizer: eventContractInstance.organizer.toString(),
+      numAttendees: eventContractInstance.numAttendees().toString(),
+      attendeesPaid: eventContractInstance.attendeesPaid(), //TODO: Parse this mapping variable correctly
+      quota: eventContractInstance.quota().toString(),
+      price: eventContractInstance.price().toString(),
+      eventName: eventContractInstance.eventName().toString()
+    }
+    res.status(200).send(eventObj);
   }
 }
 

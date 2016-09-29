@@ -58,7 +58,7 @@ module.exports = (eventContractInstance) => {
         } else {
           console.log('Event successfully created')
           console.log('  Event organizer address: ' + result.args._organizer.toString());
-          console.log('  Event title: ' + result.args._title.toString());
+          console.log('  Event eventName: ' + result.args._eventName.toString());
           console.log('  Event price: ' + result.args._price.toString());
           console.log('  Event quota: ' + result.args._quota.toString());
           console.log('  Current number of attendees: ' + result.args._numAttendees.toString());
