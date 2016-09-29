@@ -1,39 +1,39 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
-export const SELECT_EVENT = 'SELECT_EVENT'
+export const SELECT_EVENT = 'SELECT_EVENT';
 
 export function selectEvent(event) {
   return {
     type: SELECT_EVENT,
-    event
-  }
+    event,
+  };
 }
 
-export const INVALIDATE_EVENT = 'INVALIDATE_EVENT'
+export const INVALIDATE_EVENT = 'INVALIDATE_EVENT';
 
 export function invalidateEvent(event) {
   return {
     type: INVALIDATE_EVENT,
-    event
-  }
+    event,
+  };
 }
 
-export const REQUEST_EVENTS = 'REQUEST_EVENTS'
+export const REQUEST_EVENTS = 'REQUEST_EVENTS';
 
 export function requestEvents(event) {
   return {
     type: REQUEST_EVENTS,
-    event
-  }
+    event,
+  };
 }
 
-export const RECEIVE_EVENTS = 'RECEIVE_EVENTS'
+export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function receiveEvents(event, json) {
   return {
     type: RECEIVE_EVENTS,
     event,
     Events: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
+    receivedAt: Date.now(),
+  };
 }

@@ -1,10 +1,10 @@
-import event from '../data/event.js'
+import event from '../data/event';
 
 const eventDetailsReducer = (state = event, action) => {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default eventDetailsReducer
+export default eventDetailsReducer;

@@ -7,9 +7,9 @@ export default class HostHome extends Component {
       <div>
         <h1>Host</h1>
         <ul>
-          <li><Link to="/hostevents">Host Events</Link></li>      
+          <li><Link to="/hostevents">Host Events</Link></li>
         </ul>
-        <hr></hr>
+        <hr />
       </div>
     );
   }

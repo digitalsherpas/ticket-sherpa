@@ -1,4 +1,3 @@
-.eslint*
 **/node_modules
 **/bower_components
 **/lib
@@ -9,3 +8,4 @@
 **/*.config.js
 **/blockchain
 bundle.js
+**/*.jsx

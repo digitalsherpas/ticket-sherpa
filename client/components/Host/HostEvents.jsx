@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Event from '../Events/Event.jsx'
+import Event from '../Events/Event.jsx';
 
 
 export default class HostEvents extends Component {
-  render () {
+  render() {
     return (
       <div>
         <h1>Events go here</h1>

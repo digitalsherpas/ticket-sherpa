@@ -1,20 +1,20 @@
-import React, { PropTypes } from 'react'
-import Event from './Event.jsx'
+import React, { PropTypes } from 'react';
+import Event from './Event.jsx';
 
 // creates an events array for the eventsListContainer
 const Events = ({ events }) => (
   <div className="events">
     <h2>Events</h2>
     <ul>
-      {events.map(event => 
-        <Event 
+      {events.map(event =>
+        <Event
           key={event.eventName}
           {...event}
         />
       )}
     </ul>
   </div>
-)
+);
 
 Events.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
@@ -22,8 +22,8 @@ Events.propTypes = {
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
-  }).isRequired).isRequired
-}
+    price: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
+};
 
-export default Events
+export default Events;
