@@ -3,25 +3,31 @@ pragma solidity ^0.4.2;
 contract Event {  // can be killed, so the owner gets sent the money in the end
 
   address public organizer;
+  string public eventName;
   mapping (address => string) public attendeesPaid;
   uint public numAttendees;
   uint public quota;
   uint public price;
-  string public eventName;
+  uint public eventCreateDateTime;
+  uint public eventStartDateTime;
+  uint public eventEndDateTime;
 
   event PurchaseTicket(address _from, uint _amount, uint _numAttendees); // so you can log the event
   event RefundTicket(address _to, uint _amount); // so you can log the event
   event InsufficientEther(uint _amountSent, uint _price);
-  event CreateEvent(address _organizer, uint _numAttendees, uint _quota, uint _price, string _eventName);
+  event CreateEvent(address _organizer, uint _numAttendees, uint _quota, uint _price, string _eventName, uint _eventCreateDateTime, uint _eventStartDateTime, uint _eventEndDateTime);
   event ExceedQuota(uint _numAttendees, uint _quota);
 
-  function Event(string _eventName, uint _price, uint _quota) { //TODO: add params to customize the event
+  function Event(string _eventName, uint _price, uint _quota, uint _eventCreateDateTime, uint _eventStartDateTime, uint _eventEndDateTime) { //TODO: add params to customize the event
     organizer = msg.sender;
     eventName = _eventName;
     price = _price;
     quota = _quota;
     numAttendees = 0;
-    CreateEvent(organizer, numAttendees, quota, price, eventName);
+    eventCreateDateTime = _eventCreateDateTime;
+    eventStartDateTime = _eventStartDateTime;
+    eventEndDateTime = _eventEndDateTime;
+    CreateEvent(organizer, numAttendees, quota, price, eventName, eventCreateDateTime, eventStartDateTime, eventEndDateTime);
   }
 
   // payable keyword is necessary to allow for transfer of ether.
