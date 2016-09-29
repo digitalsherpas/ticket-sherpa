@@ -8,6 +8,7 @@ import HostCreateEventContainer from './containers/HostCreateEventContainer.js';
 import HostProfileContainer from './containers/HostProfileContainer';
 import EventsListContainer from './containers/eventsListContainer.js';
 import EventDetails from './components/Events/EventDetails.jsx';
+import EventDetailsContainer from './containers/EventDetailsContainer.js';
 
 
 const routes = (
