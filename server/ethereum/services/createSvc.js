@@ -1,10 +1,9 @@
-'use strict';
-
 const contractHelper = require('../contracts/contractHelpers.js');
 const web3Connection = require('../web3.js');
 const loggers = require('../loggers/events.js');
-const web3 = web3Connection.web3;
 const Promise = require('bluebird');
+
+const web3 = web3Connection.web3;
 
 const createSvc = {
   createContract: (req) => {
@@ -17,8 +16,8 @@ const createSvc = {
         data: contractHelper.bytecode,
         // gas: 300000,
         // gasPrice: 500000,
-        from: senderAddress
-      }, function(err, contract) {
+        from: senderAddress,
+      }, (err, contract) => {
         if (!err) {
           // NOTE: The callback will fire twice!
           // Once the contract has the transactionHash property set and once its deployed on an address

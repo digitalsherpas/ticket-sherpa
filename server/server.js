@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
 const config = require('../config');
-const app = express();
 const rp = require('request-promise');
-
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 
+const app = express();
 const webpackcompiler = webpack(webpackconfig);
 
 // enable webpack middleware for hot-reloads in development
@@ -17,13 +16,12 @@ const useWebpackMiddleware = (expressApp) => {
     publicPath: webpackconfig.output.publicPath,
     stats: {
       colors: true,
-      chunks: false,  // this reduces the amount of stuff I see in my terminal;
-                      // configure to your needs
+      chunks: false, // this reduces the amount of stuff I see in my terminal;
+      // configure to your needs
       'errors-only': true,
     },
   }));
-  expressApp.use(webpackHotMiddleware(webpackcompiler, {
-  }));
+  expressApp.use(webpackHotMiddleware(webpackcompiler, {}));
 
   return expressApp;
 };
@@ -44,13 +42,15 @@ app.get('/', (req, res) => {
 // This makes a HTTP GET Request to the Ethereum server
 app.get('/events', (req, res) => {
   rp({
-    'url': `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
-    'qs': {eventName: req.query.eventName}
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+    qs: {
+      eventName: req.query.eventName,
+    },
   }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
     res.status(500).send(err.error);
-  })
+  });
 });
 
 app.get('*', (req, res) => {

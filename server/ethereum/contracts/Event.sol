@@ -25,7 +25,7 @@ contract Event {  // can be killed, so the owner gets sent the money in the end
   }
 
   // payable keyword is necessary to allow for transfer of ether.
-  function buyTicket() payable {
+  function buyTicket(string _name) payable {
     if (numAttendees > quota) {
       ExceedQuota(numAttendees, quota);
       throw; // throw ensures funds will be returned
