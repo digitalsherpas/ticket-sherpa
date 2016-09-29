@@ -1,8 +1,6 @@
-'use strict';
-
 const createSvc = require('./services/createSvc');
 const buySvc = require('./services/buySvc');
-const verifySvc = require('./services/verifySvc')
+const verifySvc = require('./services/verifySvc');
 const readSvc = require('./services/readSvc');
 const dbController = require('../database/dbController.js');
 
@@ -26,10 +24,10 @@ const controller = {
     .then((event) => {
       readSvc.readEvent(req, res, event.contractAddress);
     })
-    .catch((err) =>{
+    .catch((err) => {
       res.status(500).send(err);
-    })
-  }
+    });
+  },
 };
 
 module.exports = controller;
