@@ -21,7 +21,7 @@ module.exports = {
     loaders: [
     {
       test: /\.jsx?/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['react-hot', 'babel', 'raw-loader'],
       include: APP_DIR
     }]
   }
