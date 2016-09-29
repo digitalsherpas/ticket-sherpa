@@ -28,8 +28,8 @@ app.use(jsonParser);
   "eventName" : "The Best Event",
   "quota" : "100",
   "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19",
-  "startDateTime": "",
-  "endDateTime": "",
+  "startDateTime": "2016-09-30T10:00",
+  "endDateTime": "2016-09-30T12:00"
 }
 */
 app.post('/api/createEvent', (req, res) => {

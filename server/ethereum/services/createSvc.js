@@ -14,7 +14,8 @@ const createSvc = {
       const quota = req.body.quota;
       const startDateTime = new Date(req.body.startDateTime).getTime();
       const endDateTime = new Date(req.body.endDateTime).getTime();
-      const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, (new Date()).getTime(), startDateTime, endDateTime, {
+      const createdDateTime = (new Date()).getTime();
+      const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, createdDateTime, startDateTime, endDateTime, {
         data: contractHelper.bytecode,
         // gas: 300000,
         // gasPrice: 500000,
