@@ -35,27 +35,6 @@ const useWebpackMiddleware = (expressApp) => {
 
 useWebpackMiddleware(app);
 
-// const JwtStrategy = require('passport-jwt').Strategy;
-// const ExtractJwt = require('passport-jwt').ExtractJwt;
-// let opts = {}
-// opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-// opts.secretOrKey = config.SECRET_OR_KEY;
-// opts.issuer = 'gusty.banjo.com';
-// opts.audience = 'localhost';
-
-// passport.use(new JwtStrategy(opts, (jwt_payload, done)) {
-//   User.findOne({id: jwt_payload.sub}, (error, user) {
-//     if (err) {
-//       return done(err, false);
-//     }
-//     if (user) {
-//       done(null, user);
-//     } else {
-//       done(null, false);
-//     }
-//   })
-// }));
-
 // main server
 app.use(express.static(path.join(__dirname, '/../client')));
 
@@ -84,6 +63,18 @@ app.get('/api/events', (req, res) => {
   }
 
   rp(reqObj).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
+app.post('/registerUser', (req, res) => {
+  console.log('HERE', `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}`);
+  rp({
+    url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
+    body: req.body
+  }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
     res.status(500).send(err.error);

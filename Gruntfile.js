@@ -23,9 +23,12 @@ module.exports = function (grunt) {
       startEthServer: {
         command: 'nodemon server/ethereum/ethserver.js',
       },
+      startAuthServer: {
+        command: 'nodemon server/auth/authserver.js',
+      },
       setup: {
-        command: 'node setup.js'
-      }
+        command: 'node setup.js',
+      },
     }
   });
 
@@ -46,4 +49,6 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', ['build', 'startServer']);
 
   grunt.registerTask('eth', ['shell:startEthServer']);
+
+  grunt.registerTask('auth', ['shell:startAuthServer']);
 };

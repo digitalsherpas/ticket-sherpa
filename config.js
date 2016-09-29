@@ -5,4 +5,5 @@ module.exports = {
   SECRET_OR_KEY: 'gustybanjo',
   SERVER_URL: 'http://localhost',
   BLOCKCHAIN_PORT: 8545,
+  AUTH_SERVER_PORT: 3003,
 };

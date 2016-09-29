@@ -7,6 +7,7 @@
     "setup": "node ./node_modules/grunt-cli/bin/grunt setup",
     "eth": "node ./node_modules/grunt-cli/bin/grunt eth",
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
+    "auth": "node ./node_modules/grunt-cli/bin/grunt auth",
     "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend",
     "lint": "eslint src",
     "test": "./node_modules/.bin/mocha ./tests/server/ethSvcs.js",
