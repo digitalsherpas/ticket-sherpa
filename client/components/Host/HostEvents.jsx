@@ -6,9 +6,10 @@ const HostEvents = ({ hostEvents }) => (
   <div className="hostEvents">
     <h2>Host Events</h2>
     <ul>
-      {hostEvents.map(hostEvent =>
+      {hostEvents.map((hostEvent, i) =>
         <HostEvent
-          key={hostEvent.eventName}
+          key={i}
+          i={i}
           {...hostEvent}
         />
       )}
