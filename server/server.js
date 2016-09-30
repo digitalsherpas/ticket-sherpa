@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 */
 // This endpoint retrieves details about a single event based on event name match.
 // This makes a HTTP GET Request to the Ethereum server
-app.get('/events', (req, res) => {
+app.get('/api/events', (req, res) => {
   let reqObj = {};
   if (req.query.eventName) {
     reqObj = {

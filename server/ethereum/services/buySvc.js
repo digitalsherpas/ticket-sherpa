@@ -14,7 +14,7 @@ const buySvc = {
       from: fromAddress,
       value: 10,
       // gas: 200000
-    }, (err, result) => {
+    }, (err) => {
       if (err) {
         console.log(err);
         loggers(eventContractInstance).ExceedQuota();
@@ -23,10 +23,10 @@ const buySvc = {
       } else {
         loggers(eventContractInstance).PurchaseTicket((error, result) => {
           res.status(200).send(`Number of attendees: ${result.args._numAttendees.toString()}`);
-        })
+        });
       }
-    })
-  }
-}
+    });
+  },
+};
 
 module.exports = buySvc;
