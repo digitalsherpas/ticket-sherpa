@@ -13,8 +13,8 @@ const createSvc = {
     const quota = req.body.quota;
     const startDateTime = new Date(req.body.startDateTime).getTime();
     const endDateTime = new Date(req.body.endDateTime).getTime();
-    const createdDateTime = (new Date()).getTime();
-    const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, createdDateTime, startDateTime, endDateTime, {
+    const createDateTime = (new Date()).getTime();
+    const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, createDateTime, startDateTime, endDateTime, {
       data: contractHelper.bytecode,
       gas: 2000000,
       // gasPrice: 500000,
@@ -31,7 +31,10 @@ const createSvc = {
           loggers(eventContractInstance).CreateEvent();
           fulfill({
             contractAddress: contract.address,
-            eventName: eventName
+            eventName: eventName,
+            createDateTime: createDateTime,
+            startDateTime: startDateTime,
+            endDateTime: endDateTime,
           });
           // res.send('Contract address is: ' + contract.address);
         }
