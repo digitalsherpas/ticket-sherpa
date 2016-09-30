@@ -2,6 +2,17 @@ import fetch from 'isomorphic-fetch';
 
 export const SELECT_EVENT = 'SELECT_EVENT';
 
+export function addEvent(eventName, date, time, address, price) {
+  return {
+    type: 'ADD_EVENT',
+    eventName,
+    date,
+    time,
+    address,
+    price,
+  };
+}
+
 export function selectEvent(event) {
   return {
     type: SELECT_EVENT,
