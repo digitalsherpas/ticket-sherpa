@@ -16,7 +16,7 @@ const createSvc = {
     const createdDateTime = (new Date()).getTime();
     const eventContractInstance = web3.eth.contract(contractHelper.contractObj).new(eventName, price, quota, createdDateTime, startDateTime, endDateTime, {
       data: contractHelper.bytecode,
-      // gas: 300000,
+      gas: 2000000,
       // gasPrice: 500000,
       from: senderAddress,
     }, (err, contract) => {

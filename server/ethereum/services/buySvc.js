@@ -13,7 +13,7 @@ const buySvc = {
     eventContractInstance.buyTicket(name, {
       from: fromAddress,
       value: 10,
-      // gas: 200000
+      gas: 200000
     }, (err) => {
       if (err) {
         console.log(err);
