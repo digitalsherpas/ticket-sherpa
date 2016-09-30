@@ -27,28 +27,45 @@ const event = (state = {}, action) => {
   }
 };
 
+// const events = (state = {
+//   isFetching: false,
+//   didInvalidate: false,
+//   items: [],
+// }, action) => {
+//   switch (action.type) {
+//     case INVALIDATE_EVENT:
+//       return Object.assign({}, state, {
+//         didInvalidate: true,
+//       });
+//     case REQUEST_EVENTS:
+//       return Object.assign({}, state, {
+//         isFetching: true,
+//         didInvalidate: false,
+//       });
+//     case RECEIVE_EVENTS:
+//       return Object.assign({}, state, {
+//         isFetching: false,
+//         didInvalidate: false,
+//         items: action.events,
+//         lastUpdated: action.receivedAt,
+//       });
+//     default:
+//       return state;
+//   }
+// };
+
 const events = (state = {
-  isFetching: false,
-  didInvalidate: false,
-  items: [],
+  events: [],
 }, action) => {
   switch (action.type) {
-    case INVALIDATE_EVENT:
-      return Object.assign({}, state, {
-        didInvalidate: true,
-      });
     case REQUEST_EVENTS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        didInvalidate: false,
-      });
-    case RECEIVE_EVENTS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        didInvalidate: false,
-        items: action.events,
-        lastUpdated: action.receivedAt,
-      });
+      console.log('REQUEST_EVENTS was called');
+      console.log(action.payload);
+      return {
+        ...state,
+        requestedEvents: action.payload,
+      };
+      // action.payload;
     default:
       return state;
   }

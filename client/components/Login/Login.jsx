@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
 // create a React Component to search through passed down events
-export default class SearchEvents extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    // style the header and input field inline
     return (
       <form>
-        <h4>Search</h4>
-        <input type="text" />
+        <h4>Username</h4>
+        <input id="username" type="text" />
+        <h4>Password</h4>
+        <input id="password" type="password" />
         <button type="submit">Submit</button>
       </form>
     );

@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
+import SearchEvents from './SearchEvents.jsx';
 
 // export default class Events extends Component {
 //   constructor(props) {
@@ -9,19 +10,53 @@ import Event from './Event.jsx';
 //   }
 // }
 
-const Events = ({ events }) => (
-  <div className="events">
-    <h2>Events</h2>
-    <ul>
-      {events.map(event =>
-        <Event
-          key={event.eventName}
-          {...event}
-        />
-      )}
-    </ul>
-  </div>
-);
+export default class Events extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    // fetch('/api/events')
+    // .then((response) => {
+    //   return response.json().then((json) => {
+    //     console.log(json);
+    //   });
+    // });
+    this.props.requestEvents();
+    console.log(this.props.otherEvents);
+  }
+
+  render() {
+    return (
+      <div className="events">
+        <SearchEvents />
+        <h2>Events</h2>
+        <ul>
+          {this.props.events.map(event =>
+            <Event
+              key={event.eventName}
+              {...event}
+            />
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
+
+// const Events = ({ events }) => (
+//   <div className="events">
+//     <h2>Events</h2>
+//     <ul>
+//       {events.map(event =>
+//         <Event
+//           key={event.eventName}
+//           {...event}
+//         />
+//       )}
+//     </ul>
+//   </div>
+// );
 
 Events.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
@@ -33,4 +68,4 @@ Events.propTypes = {
   }).isRequired).isRequired,
 };
 
-export default Events;
+// export default Events;

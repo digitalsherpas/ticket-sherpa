@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch';
-
+// import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 export function addEvent(eventName, date, time, address, price) {
   return {
@@ -32,10 +32,19 @@ export function invalidateEvent(event) {
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS';
 
-export function requestEvents(event) {
-  return {
-    type: REQUEST_EVENTS,
-    event,
+export function requestEvents() {
+  const request = axios.get('/api/events');
+  return (dispatch) => {
+    // type: REQUEST_EVENTS,
+    // event,
+    request.then(({ data }) => {
+      dispatch({ type: REQUEST_EVENTS,
+      payload: data });
+    });
+    // .catch((error) => {
+    //   // dispatch({ type: REQUEST_EVENTS,
+    //   // payload: error });
+    // });
   };
 }
 
@@ -48,4 +57,9 @@ export function receiveEvents(event, json) {
     Events: json.data.children.map(child => child.data),
     receivedAt: Date.now(),
   };
+}
+
+// insert post request to Amazon authentication server here
+export function authenticateLogin() {
+  // const request = axios.post()
 }

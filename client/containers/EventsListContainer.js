@@ -5,14 +5,14 @@ import Events from '../components/Events/Events.jsx';
 
 const mapStateToProps = state => ({
   events: state.eventsListReducer.eventsList,
+  otherEvents: state.eventsListReducer.events,
 });
 
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators(actionCreators, dispatch);
-// };
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 const EventsListContainer = connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Events);
 
 export default EventsListContainer;
