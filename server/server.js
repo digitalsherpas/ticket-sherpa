@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const path = require('path');
 const config = require('../config');
@@ -40,13 +42,22 @@ app.get('/', (req, res) => {
 */
 // This endpoint retrieves details about a single event based on event name match.
 // This makes a HTTP GET Request to the Ethereum server
-app.get('/events', (req, res) => {
-  rp({
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
-    qs: {
-      eventName: req.query.eventName,
-    },
-  }).then((obj) => {
+app.get('/api/events', (req, res) => {
+  let reqObj = {};
+  if (req.query.eventName) {
+    reqObj = {
+      url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+      qs: {
+        eventName: req.query.eventName,
+      },
+    };
+  } else {
+    reqObj = {
+      url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
+    };
+  }
+
+  rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
     res.status(500).send(err.error);

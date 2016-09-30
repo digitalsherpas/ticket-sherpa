@@ -1,15 +1,17 @@
-'use strict';
-
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(`postgres://${process.env.DATABASEUSER || 'postgres'}:${process.env.DATABASEPASSWORD || 'password'}@localhost:5432/tickether`);
+const sequelize = new Sequelize(`postgres://${process.env.DATABASEUSER || 'postgres'}:${process.env.DATABASEPASSWORD || 'password'}@localhost:5432/tickether`);
 
 sequelize
   .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.');
+  .then((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Connection has been established successfully.');
+    }
   })
-  .catch(function (err) {
+  .catch((err) => {
     console.log('Unable to connect to the database:', err);
   });
 

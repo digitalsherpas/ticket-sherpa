@@ -61,6 +61,10 @@ app.get('/api/findEvent/', (req, res) => {
   ethController.findEvent(req, res);
 });
 
+app.get('/api/getAllEvents/', (req, res) => {
+  ethController.getAllEvents(req, res);
+});
+
 const server = app.listen(config.ETH_SERVER_PORT, () => {
   console.log('Running on', config.ETH_SERVER_PORT);
 });
