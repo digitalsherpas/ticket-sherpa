@@ -47,6 +47,7 @@ app.get('/events', (req, res) => {
       eventName: req.query.eventName,
     },
   }).then((obj) => {
+    console.log('got here!');
     res.status(200).send(obj);
   }).catch((err) => {
     res.status(500).send(err.error);
