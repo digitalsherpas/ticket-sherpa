@@ -9,7 +9,8 @@
     "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend",
     "lint": "eslint src",
     "test": "./node_modules/.bin/mocha ./tests/server/ethSvcs.js",
-    "testrpc": "node ./server/blockchain/blockchainserver.js"
+    "testrpc": "node ./server/blockchain/blockchainserver.js",
+    "gethtestnet": "geth --testnet --fast --cache=512 --rpc console"
   },
   "repository": {
     "type": "git",
