@@ -5,10 +5,16 @@ import {
   SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS,
 } from '../actions/index.jsx';
 
-const selectedEvent = (state = 'reactjs', action) => {
+const selectEvent = (state = staticEvents, action) => {
   switch (action.type) {
-    case SELECT_EVENT:
-      return action.event;
+    case 'SELECT_EVENT':
+      return [...state, {
+        eventName: action.eventName,
+        date: action.date,
+        time: action.time,
+        address: action.address,
+        price: action.price,
+      }];
     default:
       return state;
   }
@@ -69,7 +75,7 @@ const eventsList = (state = staticEvents, action) => {
 };
 
 const eventsListReducer = combineReducers({
-  selectedEvent,
+  selectEvent,
   eventDetails,
   events,
   eventsList,

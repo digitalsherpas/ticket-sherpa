@@ -1,13 +1,20 @@
 import { connect } from 'react-redux';
-import Event from '../components/Events/Event.jsx';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/index.jsx';
+import EventDetails from '../components/Events/EventDetails.jsx';
 
 const mapStateToProps = state => ({
-  event: state.eventDetailsContainer,
+  event: state.eventsListReducer.selectEvent,
 });
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(actionCreators, dispatch);
+};
+
 const EventDetailsContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
   // actions go here mapDispatchToProps
-)(Event);
+)(EventDetails);
 
 export default EventDetailsContainer;
