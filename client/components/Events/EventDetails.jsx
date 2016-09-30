@@ -1,22 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// export default class EventDetails extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>This is the EventDetailPage</h1>
-//       </div>
-//     );
-//   }
-// }
-
-const EventDetails = ({ event }) => (
+const EventDetails = ({
+  params: { eventName },
+  location: { query },
+}) => (
   <div>
-    <h4>{event.eventName}</h4>
-    <p>{event.date}</p>
-    <p>{event.time}</p>
-    <p>{event.address}</p>
-    <p>{event.price}</p>
+    <h1>Hello</h1>
+    <h4>{eventName}</h4>
+    <p>{query.date}</p>
+    <p>{query.time}</p>
+    <p>{query.address}</p>
+    <p>{query.price}</p>
   </div>
 );
 

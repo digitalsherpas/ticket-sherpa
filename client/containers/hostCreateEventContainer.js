@@ -7,9 +7,7 @@ const mapStateToProps = state => ({
   hostEventsCreate: state.hostEventsReducer.hostEventsList,
 });
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(actionCreators, dispatch);
-};
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 const HostCreateEventContainer = connect(
   mapStateToProps,
