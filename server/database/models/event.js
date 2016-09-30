@@ -1,17 +1,26 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database');
 
-var Event = sequelize.define('event', {
+const Event = sequelize.define('event', {
   eventName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   contractAddress: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+  },
+  createDateTime: {
+    type: Sequelize.DATE,
+  },
+  startDateTime: {
+    type: Sequelize.DATE,
+  },
+  endDateTime: {
+    type: Sequelize.DATE,
+  },
 });
 
 // force: true will drop the table if it already exists
-Event.sync().then(function () {
+Event.sync().then(() => {
   // Table created
   // return Event.create({
   //   firstName: 'John',

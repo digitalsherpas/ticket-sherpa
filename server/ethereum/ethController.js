@@ -20,9 +20,20 @@ const controller = {
     verifySvc.verifyAttendee(req, res);
   },
   findEvent: (req, res) => {
-    dbController.readEvents(req)
+    dbController.findEvent(req)
     .then((event) => {
-      readSvc.readEvent(req, res, event.contractAddress);
+      const eventObj = readSvc.readEvent(event.contractAddress);
+      res.status(200).send(eventObj);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+  },
+  getAllEvents: (req, res) => {
+    dbController.getAllEvents(req)
+    .then((events) => {
+      const resultArray = events.map(event => readSvc.readEvent(event.contractAddress));
+      res.status(200).send(resultArray);
     })
     .catch((err) => {
       res.status(500).send(err);
