@@ -8,7 +8,8 @@
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend",
     "lint": "eslint src",
-    "test": "./node_modules/.bin/mocha ./tests/server/ethSvcs.js"
+    "test": "./node_modules/.bin/mocha ./tests/server/ethSvcs.js",
+    "testrpc": "node ./server/blockchain/blockchainserver.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
+    "ethereumjs-testrpc": "^2.2.7",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
