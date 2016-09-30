@@ -3,7 +3,18 @@ import { Link } from 'react-router';
 
 const Event = ({ eventName, date, time, address, price }) => (
   <li className="event">
-    <h4><Link to={`/events/${eventName}`}>{eventName}</Link></h4>
+    <h4><Link
+      to={{ pathname:
+      '/events/' + eventName,
+      query: {
+        eventName,
+        date,
+        time,
+        address,
+        price,
+      },
+    }}
+    >{eventName}</Link></h4>
     <p>{date}</p>
     <p>{time}</p>
     <p>{address}</p>
