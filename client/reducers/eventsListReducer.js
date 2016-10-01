@@ -59,11 +59,10 @@ const events = (state = {
 }, action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
-      console.log('REQUEST_EVENTS was called');
-      console.log(action.payload);
       return {
         ...state,
         requestedEvents: action.payload,
+        success: true,
       };
       // action.payload;
     default:
@@ -92,6 +91,12 @@ const eventsList = (state = [], action) => {
       return state;
   }
 };
+
+// const finishAjax = (state = {}, action) => {
+//   switch (action.type) {
+//     case 
+//   }
+// }
 
 const searchEvents = (state = {}, action) => {
   switch (action.type) {

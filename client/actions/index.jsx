@@ -21,14 +21,14 @@ export function selectEvent(event) {
   };
 }
 
-export const INVALIDATE_EVENT = 'INVALIDATE_EVENT';
+// export const INVALIDATE_EVENT = 'INVALIDATE_EVENT';
 
-export function invalidateEvent(event) {
-  return {
-    type: INVALIDATE_EVENT,
-    event,
-  };
-}
+// export function invalidateEvent(event) {
+//   return {
+//     type: INVALIDATE_EVENT,
+//     event,
+//   };
+// }
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS';
 
@@ -45,23 +45,21 @@ export function requestEvents() {
   };
 }
 
+export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
+
+export function receiveEvents() {
+  return {
+    type: RECEIVE_EVENTS,
+    spinner,
+  };
+}
+
 export const SEARCH_EVENTS = 'SEARCH_EVENTS';
 
 export function searchEvents(event) {
   return {
     type: SEARCH_EVENTS,
     event,
-  };
-}
-
-export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
-
-export function receiveEvents(event, json) {
-  return {
-    type: RECEIVE_EVENTS,
-    event,
-    Events: json.data.children.map(child => child.data),
-    receivedAt: Date.now(),
   };
 }
 

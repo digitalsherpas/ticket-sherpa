@@ -82,6 +82,7 @@
     "pg-hstore": "^2.3.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-md-spinner": "^0.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
