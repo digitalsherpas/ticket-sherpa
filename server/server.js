@@ -6,8 +6,6 @@
 // const letsencrypt = require('letsencrypt');
 
 const express = require('express');
-const fs = require('fs');
-const https = require('https');
 const path = require('path');
 const config = require('../config');
 const rp = require('request-promise');
