@@ -1,6 +1,8 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
+export const ADD_EVENT = 'ADD_EVENT';
+
 export function addEvent(eventName, date, time, address, price) {
   return {
     type: ADD_EVENT,
@@ -14,6 +16,23 @@ export function addEvent(eventName, date, time, address, price) {
   return (dispatch) => {
     request.then(({data}) => {
       dispatch({ type: 'ADD_EVENT', payload: data})
+    });
+  };
+}
+
+
+
+export const REQUEST_EVENTS = 'REQUEST_EVENTS';
+
+export function requestEvents() {
+  const request = axios.get('/api/events');
+  return (dispatch) => {
+    request.then(({ data }) => {
+      dispatch({ type: REQUEST_EVENTS,
+      payload: data });
+    }).catch((error) => {
+      dispatch({ type: REQUEST_EVENTS,
+      payload: error });
     });
   };
 }

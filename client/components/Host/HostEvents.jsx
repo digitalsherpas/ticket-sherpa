@@ -17,7 +17,7 @@ export default class HostEvents extends Component {
         <ul>
           {this.props.hostEvents.map((hostEvent, i) =>
             <HostEvent
-              key={i}
+              key={hostEvent.eventName}
               {...hostEvent}
             />
           )}

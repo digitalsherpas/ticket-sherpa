@@ -2,24 +2,43 @@ import React, { Component, PropTypes } from 'react';
 
 export default class HostEventDetails extends Component {
   render() {
-    const i = this.props.hostEvent.findIndex((event) => event.eventName === this.props.params.eventName);
+    const i = this.props.hostEvent.findIndex((event) =>
+      event.eventName === this.props.params.eventName);
 
-    const eventName = this.props.hostEvent[i].eventName;
-    const date = this.props.hostEvent[i].date;
-    const time = this.props.hostEvent[i].time;
-    const address = this.props.hostEvent[i].address;
+    const numAttendees = this.props.hostEvent[i].numAttendees;
+    const attendeesPaid = this.props.hostEvent[i].attendeesPaid;
+    const quota = this.props.hostEvent[i].quota;
     const price = this.props.hostEvent[i].price;
-
+    const eventName = this.props.hostEvent[i].numAttendees;
+    const eventCreateDateTime = this.props.hostEvent[i].eventCreateDateTime;
+    const eventStartDateTime = this.props.hostEvent[i].eventStartDateTime;
+    const eventEndDateTime = this.props.hostEvent[i].eventEndDateTime;
 
     return (
       <div>
-        <h1>This is the Host EventDetailPage</h1>
-        <h1>{eventName}</h1>
-        <h1>{date}</h1>
-        <h1>{time}</h1>
-        <h1>{address}</h1>
-        <h1>{price}</h1>
+        <h1>Event Name: {eventName}</h1>
+        <h1>Attendees Paid: {attendeesPaid}</h1>
+        <h1>Number of Attendees: {numAttendees}</h1>
+        <h1>Quota: {quota}</h1>
+        <h1>Price: {price}</h1>
+        <h1>Event Create Date Time: {eventCreateDateTime}</h1>
+        <h1>Event Start Date Time: {eventStartDateTime}</h1>
+        <h1>Event End Date Time: {eventEndDateTime}</h1>
       </div>
     );
   }
 }
+
+HostEventDetails.propTypes = {
+  hostEvent: PropTypes.arrayOf(PropTypes.shape({
+    numAttendees: PropTypes.string.isRequired,
+    attendeesPaid: PropTypes.string.isRequired,
+    quota: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    eventName: PropTypes.number.isRequired,
+    eventCreateDateTime: PropTypes.number.isRequired,
+    eventStartDateTime: PropTypes.number.isRequired,
+    eventEndDateTime: PropTypes.number.isRequired,
+
+  }).isRequired).isRequired,
+};
