@@ -22,21 +22,6 @@ export function addEvent(event) {
   };
 }
 
-export const REQUEST_EVENTS = 'REQUEST_EVENTS';
-
-export function requestEvents() {
-  const request = axios.get('/api/events');
-  return (dispatch) => {
-    request.then(({ data }) => {
-      dispatch({ type: REQUEST_EVENTS,
-      payload: data });
-    }).catch((error) => {
-      dispatch({ type: REQUEST_EVENTS,
-      payload: error });
-    });
-  };
-}
-
 export const SELECT_EVENT = 'SELECT_EVENT';
 
 export function selectEvent(event) {
