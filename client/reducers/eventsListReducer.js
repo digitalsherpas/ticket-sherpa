@@ -96,7 +96,7 @@ const eventsList = (state = [], action) => {
 const searchEvents = (state = {}, action) => {
   switch (action.type) {
     case SEARCH_EVENTS:
-      e.preventDefault();
+      // e.preventDefault();
       console.log('something happened');
       return state;
     default:
