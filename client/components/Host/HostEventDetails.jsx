@@ -9,7 +9,7 @@ export default class HostEventDetails extends Component {
     const attendeesPaid = this.props.hostEvent[i].attendeesPaid;
     const quota = this.props.hostEvent[i].quota;
     const price = this.props.hostEvent[i].price;
-    const eventName = this.props.hostEvent[i].numAttendees;
+    const eventName = this.props.hostEvent[i].eventName;
     const eventCreateDateTime = this.props.hostEvent[i].eventCreateDateTime;
     const eventStartDateTime = this.props.hostEvent[i].eventStartDateTime;
     const eventEndDateTime = this.props.hostEvent[i].eventEndDateTime;
@@ -35,10 +35,10 @@ HostEventDetails.propTypes = {
     attendeesPaid: PropTypes.string.isRequired,
     quota: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    eventName: PropTypes.number.isRequired,
-    eventCreateDateTime: PropTypes.number.isRequired,
-    eventStartDateTime: PropTypes.number.isRequired,
-    eventEndDateTime: PropTypes.number.isRequired,
+    eventName: PropTypes.string.isRequired,
+    eventCreateDateTime: PropTypes.string.isRequired,
+    eventStartDateTime: PropTypes.string.isRequired,
+    eventEndDateTime: PropTypes.string.isRequired,
 
   }).isRequired).isRequired,
 };
