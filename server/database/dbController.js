@@ -1,4 +1,5 @@
 const eventModel = require('./models/event.js');
+const userModel = require('./models/user.js');
 const Promise = require('bluebird');
 
 const controller = {
@@ -45,6 +46,16 @@ const controller = {
       }
     });
   }),
+  findOrCreateUser: (userObj, res) => {
+    userModel.findOrCreate({
+      where: {
+        username: userObj.username,
+      },
+    }).spread((user, created) => {
+      res.status(200).send(user);
+      console.log(user, created);
+    });
+  },
 };
 
 module.exports = controller;

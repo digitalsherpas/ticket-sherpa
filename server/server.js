@@ -1,5 +1,10 @@
 'use strict';
 
+// SSL dependencies
+// const fs = require('fs');;
+// const https = require('https');
+// const letsencrypt = require('letsencrypt');
+
 const express = require('express');
 const path = require('path');
 const config = require('../config');
@@ -8,9 +13,34 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
+const session = require('express-session');
+const keys = require('../keys.js');
+const app = express();
+
+app.use(session({
+  secret: keys.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
+
 const bodyParser = require('body-parser');
 
-const app = express();
+
+// LetsEncrypt SSL settings
+
+// const le = letsencrypt.create({ server: 'staging' });
+// let opts = {
+//   domains: ['lentan.info'], email: 'user@email.com', agreeTos: true
+// };
+
+// le.register(opts).then((certs) => {
+//   console.log(certs);
+// }).catch((error) => {
+//   console.log(error);
+// });
+
+// app.use(le.middleware());
+
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
@@ -128,7 +158,7 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
-app.get('/getUser', (req, res) => {
+app.get('/getUserSession', (req, res) => {
   if (req.get('Authorization')) {
     const token = req.get('Authorization').slice(7);
     rp({
@@ -137,6 +167,7 @@ app.get('/getUser', (req, res) => {
       body: { token },
       json: true,
     }).then((obj) => {
+      req.session.user = obj;
       res.status(200).send(obj);
     }).catch((err) => {
       res.status(500).send(err.error);
@@ -146,8 +177,24 @@ app.get('/getUser', (req, res) => {
   }
 });
 
+app.get('/getUser', (req, res) => {
+  if (req.session.user) {
+    res.status(200).send(req.session.user);
+  } else {
+    res.status(500).send('Not Authenticated');
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
+
+// Manual SSL settings (for development)
+// const credentials = {
+//   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
+//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
+// };
+
+// https.createServer(credentials, app).listen(config.SERVER_PORT);
 
 app.listen(config.SERVER_PORT);

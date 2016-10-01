@@ -1,13 +1,14 @@
-'use strict';
 const awsCognitoController = require('./awsCognitoController.js');
 const express = require('express');
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
 const config = require('../../config');
-const keys = require('../../keys');
+// const keys = require('../../keys');
 const rp = require('request-promise');
 const jwt = require('jsonwebtoken');
 const jwkToPem = require('jwk-to-pem');
+const dbController = require('../database/dbController.js');
+
+const jsonParser = bodyParser.json();
 const app = express();
 
 const allowCrossDomain = (req, res, next) => { // enable CORS
@@ -37,19 +38,20 @@ app.post('/registerUser', (req, res) => {
 });
 
 app.post('/verifyUser', (req, res) => {
-  let token = jwt.decode(req.body.token, {complete: true});
-  let userPoolUrl = 'https://cognito-idp.us-west-2.amazonaws.com/us-west-2_q8JXfprZ3';
-  let userPoolJwkUrl = userPoolUrl + '/.well-known/jwks.json';
-  rp({ //TODO: put this in a worker
+  const token = jwt.decode(req.body.token, { complete: true });
+  const userPoolUrl = 'https://cognito-idp.us-west-2.amazonaws.com/us-west-2_q8JXfprZ3';
+  const userPoolJwkUrl = `${userPoolUrl}/.well-known/jwks.json`;
+  // TODO: put this in a worker
+  rp({
     url: userPoolJwkUrl,
   }).then((obj) => {
-    let jwtSet = JSON.parse(obj);
-    let jwtSetObj = {};
+    const jwtSet = JSON.parse(obj);
+    const jwtSetObj = {};
     jwtSet.keys.forEach((tkn) => {
       jwtSetObj[tkn.kid] = tkn;
     });
 
-    var userJwk = jwtSetObj[token.header.kid];
+    const userJwk = jwtSetObj[token.header.kid];
     if (userJwk === undefined) {
       res.status(403).send('Authorization failed');
       return;
@@ -62,19 +64,19 @@ app.post('/verifyUser', (req, res) => {
       res.status(403).send('Authorization failed');
       return;
     }
-    let isVerified = jwt.verify(req.body.token, jwkToPem(userJwk));
+    const isVerified = jwt.verify(req.body.token, jwkToPem(userJwk));
     if (isVerified) {
-      res.status(200).send(token.payload.username);
-      return;
-    } else {
-      res.status(403).send('Authorization failed');
+      dbController.findOrCreateUser({
+        username: token.payload.username,
+      }, res);
       return;
     }
+    res.status(403).send('Authorization failed');
+    return;
   }).catch((err) => {
     console.log(err);
     res.status(500).send(err.error);
   });
-
-})
+});
 
 app.listen(config.AUTH_SERVER_PORT);
