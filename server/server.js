@@ -1,6 +1,8 @@
 'use strict';
 
 const express = require('express');
+const fs = require('fs');
+const https = require('https');
 const path = require('path');
 const config = require('../config');
 const rp = require('request-promise');
@@ -8,7 +10,27 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
+const app = express();
+
+//SSL settings
+const httpOptions = {
+  cert: fs.readFileSync(path.join(__dirname, 'ssl')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl')) 
+};
+
 const bodyParser = require('body-parser');
+// const le = require('letsencrypt').create({ server: 'staging' });
+// let opts = {
+//   domains: ['lentan.info'], email: 'user@email.com', agreeTos: true
+// };
+
+// le.register(opts).then((certs) => {
+//   console.log(certs);
+// }).catch((error) => {
+//   console.log(error);
+// });
+
+// app.use(le.middleware());
 
 const app = express();
 const jsonParser = bodyParser.json();
