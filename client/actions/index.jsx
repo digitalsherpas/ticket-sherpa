@@ -21,36 +21,37 @@ export function selectEvent(event) {
   };
 }
 
-// export const INVALIDATE_EVENT = 'INVALIDATE_EVENT';
-
-// export function invalidateEvent(event) {
-//   return {
-//     type: INVALIDATE_EVENT,
-//     event,
-//   };
-// }
-
+// retrieves events from api
+// on receipt, dispatches an event to remove spinner
 export const REQUEST_EVENTS = 'REQUEST_EVENTS';
+export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function requestEvents() {
   const request = axios.get('/api/events');
   return (dispatch) => {
-    request.then(({ data }) => {
-      dispatch({ type: REQUEST_EVENTS,
-      payload: data });
-    }).catch((error) => {
-      dispatch({ type: REQUEST_EVENTS,
-      payload: error });
+    dispatch({
+      type: RECEIVE_EVENTS,
+      payload: false,
     });
-  };
-}
-
-export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
-
-export function receiveEvents() {
-  return {
-    type: RECEIVE_EVENTS,
-    spinner,
+    request.then(({ data }) => {
+      dispatch({
+        type: REQUEST_EVENTS,
+        payload: data,
+      });
+      dispatch({
+        type: RECEIVE_EVENTS,
+        payload: true,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: REQUEST_EVENTS,
+        payload: error,
+      });
+      dispatch({
+        type: RECEIVE_EVENTS,
+        payload: true,
+      });
+    });
   };
 }
 

@@ -10,13 +10,9 @@ export default class SearchEvents extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.refs.search.value);
-    console.log(this.props.searchEvents(this.refs.search.value));
   }
 
   render() {
-    // style the header and input field inline
-    console.log(this.props.searchEvents);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

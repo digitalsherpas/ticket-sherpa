@@ -10,39 +10,16 @@ export default class Events extends Component {
     super(props);
 
     this.state = {
-      rendering: false,
+      rendering: true,
     };
   }
 
   componentWillMount() {
     this.props.requestEvents();
-    this.setState({
-      rendering: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        rendering: false,
-      });
-    }, 5000);
   }
 
-  // componentDidMount() {
-  //   setTimeout(
-  //     this.setState({
-  //       rendering: false,
-  //     })
-  //   , 5000);
-  // }
-
   render() {
-    const div = this.state.rendering ?
-    (
-      <div className="events">
-        <SearchEvents />
-        <h2>Events</h2>
-        <MDSpinner />
-      </div>
-    ) :
+    const loaded = this.props.loaded ?
     (
       <div className="events">
         <SearchEvents />
@@ -56,21 +33,28 @@ export default class Events extends Component {
           )}
         </ul>
       </div>
+    ) :
+    (
+      <div className="events">
+        <SearchEvents />
+        <h2>Events</h2>
+        <MDSpinner singleColor="#03a9f4" />
+      </div>
     );
     return (
       <div>
-        { div }
+        { loaded }
       </div>
     );
   }
 }
 
-Events.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.shape({
-    eventName: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
-};
+// Events.propTypes = {
+//   events: PropTypes.arrayOf(PropTypes.shape({
+//     eventName: PropTypes.string.isRequired,
+//     date: PropTypes.string.isRequired,
+//     time: PropTypes.string.isRequired,
+//     address: PropTypes.string.isRequired,
+//     price: PropTypes.number.isRequired,
+//   }).isRequired).isRequired,
+// };

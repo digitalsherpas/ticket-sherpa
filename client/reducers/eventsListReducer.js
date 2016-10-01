@@ -20,69 +20,6 @@ const selectEvent = (state = staticEvents, action) => {
   }
 };
 
-const event = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
-
-// const events = (state = {
-//   isFetching: false,
-//   didInvalidate: false,
-//   items: [],
-// }, action) => {
-//   switch (action.type) {
-//     case INVALIDATE_EVENT:
-//       return Object.assign({}, state, {
-//         didInvalidate: true,
-//       });
-//     case REQUEST_EVENTS:
-//       return Object.assign({}, state, {
-//         isFetching: true,
-//         didInvalidate: false,
-//       });
-//     case RECEIVE_EVENTS:
-//       return Object.assign({}, state, {
-//         isFetching: false,
-//         didInvalidate: false,
-//         items: action.events,
-//         lastUpdated: action.receivedAt,
-//       });
-//     default:
-//       return state;
-//   }
-// };
-
-const events = (state = {
-  events: [],
-}, action) => {
-  switch (action.type) {
-    case REQUEST_EVENTS:
-      return {
-        ...state,
-        requestedEvents: action.payload,
-        success: true,
-      };
-      // action.payload;
-    default:
-      return state;
-  }
-};
-
-const eventDetails = (state = {}, action) => {
-  switch (action.type) {
-    case INVALIDATE_EVENT:
-    case RECEIVE_EVENTS:
-    case REQUEST_EVENTS:
-      return Object.assign({}, state, {
-        [action.event]: events(state[action.event], action),
-      });
-    default:
-      return state;
-  }
-};
-
 const eventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
@@ -92,17 +29,18 @@ const eventsList = (state = [], action) => {
   }
 };
 
-// const finishAjax = (state = {}, action) => {
-//   switch (action.type) {
-//     case 
-//   }
-// }
+const receiveEvents = (state = false, action) => {
+  switch (action.type) {
+    case RECEIVE_EVENTS:
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 const searchEvents = (state = {}, action) => {
   switch (action.type) {
     case 'SEARCH_EVENTS':
-      // e.preventDefault();
-      console.log('something happened');
       return {
         ...state,
         searchEvents: action.search,
@@ -114,9 +52,8 @@ const searchEvents = (state = {}, action) => {
 
 const eventsListReducer = combineReducers({
   selectEvent,
-  eventDetails,
-  events,
   eventsList,
+  receiveEvents,
   searchEvents,
 });
 

@@ -5,6 +5,7 @@ import Events from '../components/Events/Events.jsx';
 
 const mapStateToProps = state => ({
   events: state.eventsListReducer.eventsList,
+  loaded: state.eventsListReducer.receiveEvents,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
