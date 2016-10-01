@@ -1,10 +1,12 @@
 'use strict';
 
+// SSL dependencies
+// const fs = require('fs');;
+// const https = require('https');
+// const letsencrypt = require('letsencrypt');
+
 const express = require('express');
-const fs = require('fs');
-const https = require('https');
 const path = require('path');
-const letsencrypt = require('letsencrypt');
 const config = require('../config');
 const rp = require('request-promise');
 const webpack = require('webpack');
@@ -12,16 +14,19 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const session = require('express-session');
+const keys = require('../keys.js');
 const app = express();
 
 app.use(session({
-  secret: 
-}))
+  secret: keys.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
 
 const bodyParser = require('body-parser');
 
 
-//LetsEncrypt SSL settings
+// LetsEncrypt SSL settings
 
 // const le = letsencrypt.create({ server: 'staging' });
 // let opts = {
@@ -153,7 +158,7 @@ app.post('/registerUser', (req, res) => {
   });
 });
 
-app.get('/getUser', (req, res) => {
+app.get('/getUserSession', (req, res) => {
   if (req.get('Authorization')) {
     const token = req.get('Authorization').slice(7);
     rp({
@@ -162,12 +167,21 @@ app.get('/getUser', (req, res) => {
       body: { token },
       json: true,
     }).then((obj) => {
+      req.session.user = obj;
       res.status(200).send(obj);
     }).catch((err) => {
       res.status(500).send(err.error);
     });
   } else {
     res.status(403).send('Authorization failed');
+  }
+});
+
+app.get('/getUser', (req, res) => {
+  if (req.session.user) {
+    res.status(200).send(req.session.user);
+  } else {
+    res.status(500).send('Not Authenticated');
   }
 });
 

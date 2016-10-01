@@ -1,31 +1,42 @@
 const awsCognito = require('amazon-cognito-identity-js');
+const axios = require('axios');
 const keys = require('../../keys');
-const poolData = { 
-  UserPoolId : keys.AWS_COGNITO_USER_POOL_ID, // Your user pool id here
-  ClientId : keys.AWS_COGNITO_CLIENT_ID // Your client id here
-};  
+const config = require('../../config');
+
+const poolData = {
+  UserPoolId: keys.AWS_COGNITO_USER_POOL_ID, // Your user pool id here
+  ClientId: keys.AWS_COGNITO_CLIENT_ID, // Your client id here
+};
 const userPool = new awsCognito.CognitoUserPool(poolData);
 
 module.exports = {
-  authenticateUser: (userObj, cb) => {
-    let authenticationData = {
+  authenticateUser: (userObj) => {
+    const authenticationData = {
       Username: userObj.username,
-      Password: userObj.password
+      Password: userObj.password,
     };
-    let authenticationDetails = new awsCognito.AuthenticationDetails(authenticationData);
-    let userData = {
+    const authenticationDetails = new awsCognito.AuthenticationDetails(authenticationData);
+    const userData = {
       Username: userObj.username,
-      Pool: userPool
+      Pool: userPool,
     };
-    let cognitoUser = new awsCognito.CognitoUser(userData);
+    const cognitoUser = new awsCognito.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: function (result) {
+      onSuccess: (result) => {
+        const authHeader = `Bearer ${result.getAccessToken().getJwtToken()}`;
+        axios({
+          url: `${config.SERVER_URL}:${config.SERVER_PORT}/getUserSession`,
+          headers: {
+            Authorization: authHeader,
+          },
+        });
         console.log('Authentication success');
       },
 
-      onFailure: function(error) {
+      onFailure: (error) => {
         console.log(error);
       },
     });
-  }
-}
+  },
+};
+
