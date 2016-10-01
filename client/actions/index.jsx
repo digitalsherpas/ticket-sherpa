@@ -1,14 +1,24 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
-export function addEvent(eventName, date, time, address, price) {
-  return {
-    type: 'ADD_EVENT',
-    eventName,
-    date,
-    time,
-    address,
-    price,
+export const ADD_EVENT = 'ADD_EVENT';
+
+export function addEvent(event) {
+  const obj = {
+    // type: ADD_EVENT,
+    // numAttendees: '0',
+    // attendeesPaid: '0',
+    quota: event.quota.value,
+    ticketPrice: event.price.value,
+    eventName: event.eventName.value,
+    senderAddress: '',
+    // eventCreateDateTime: 'event create date time',
+    startDateTime: event.eventStartDateTime.value,
+    endDateTime: event.eventEndDateTime.value,
+  };
+
+  return (dispatch) => {
+    return axios.post('/api/events', obj);
   };
 }
 
