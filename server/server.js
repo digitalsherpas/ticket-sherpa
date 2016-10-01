@@ -4,6 +4,7 @@ const express = require('express');
 const fs = require('fs');
 const https = require('https');
 const path = require('path');
+const letsencrypt = require('letsencrypt');
 const config = require('../config');
 const rp = require('request-promise');
 const webpack = require('webpack');
@@ -12,14 +13,12 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const app = express();
 
-// //SSL settings
-// const httpOptions = {
-//   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
-//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
-// };
-
 const bodyParser = require('body-parser');
-// const le = require('letsencrypt').create({ server: 'staging' });
+
+
+//LetsEncrypt SSL settings
+
+// const le = letsencrypt.create({ server: 'staging' });
 // let opts = {
 //   domains: ['lentan.info'], email: 'user@email.com', agreeTos: true
 // };
@@ -171,7 +170,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
 
-//SSL settings
+// Manual SSL settings (for development)
 // const credentials = {
 //   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
 //   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
