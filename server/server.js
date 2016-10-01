@@ -4,13 +4,16 @@ const express = require('express');
 const path = require('path');
 const config = require('../config');
 const rp = require('request-promise');
-const jwt = require('jsonwebtoken');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
+const bodyParser = require('body-parser');
 
 const app = express();
+const jsonParser = bodyParser.json();
+app.use(jsonParser);
+
 const webpackcompiler = webpack(webpackconfig);
 
 // enable webpack middleware for hot-reloads in development
@@ -52,6 +55,7 @@ app.get('/api/events', (req, res) => {
       qs: {
         eventName: req.query.eventName,
       },
+      json: true,
     };
   } else {
     reqObj = {
@@ -66,12 +70,57 @@ app.get('/api/events', (req, res) => {
   });
 });
 
+/* Example body of JSON request
+{
+  "ticketPrice":"10",
+  "eventName" : "The Best Event",
+  "quota" : "100",
+  "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19",
+  "startDateTime": "2016-09-30T10:00",
+  "endDateTime": "2016-09-30T12:00"
+}
+*/
+app.post('/api/events', (req, res) => {
+  rp({
+    method: 'POST',
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
+    body: req.body,
+    json: true,
+  })
+  .then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
+
+/* Example body of JSON request
+{
+  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
+  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
+  "name": "Andrew"
+}
+*/
+app.post('/api/tickets', (req, res) => {
+  rp({
+    method: 'POST',
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
+    body: req.body,
+    json: true,
+  })
+  .then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
 app.post('/registerUser', (req, res) => {
-  console.log('HERE', `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}`);
   rp({
     method: 'POST',
     url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
-    body: req.body
+    body: req.body,
   }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
@@ -81,13 +130,12 @@ app.post('/registerUser', (req, res) => {
 
 app.get('/getUser', (req, res) => {
   if (req.get('Authorization')) {
-    console.log('here');
-    let token = req.get('Authorization').slice(7);
+    const token = req.get('Authorization').slice(7);
     rp({
       method: 'POST',
       url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
       body: { token },
-      json: true
+      json: true,
     }).then((obj) => {
       res.status(200).send(obj);
     }).catch((err) => {
@@ -96,7 +144,7 @@ app.get('/getUser', (req, res) => {
   } else {
     res.status(403).send('Authorization failed');
   }
-})
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));

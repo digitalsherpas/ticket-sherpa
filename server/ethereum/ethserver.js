@@ -22,28 +22,12 @@ const allowCrossDomain = (req, res, next) => { // enable CORS
 app.use(allowCrossDomain);
 app.use(jsonParser);
 
-/* Example body of JSON request
-{
-  "ticketPrice":"10",
-  "eventName" : "The Best Event",
-  "quota" : "100",
-  "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19",
-  "startDateTime": "2016-09-30T10:00",
-  "endDateTime": "2016-09-30T12:00"
-}
-*/
-app.post('/api/createEvent', (req, res) => {
+app.post('/api/events', (req, res) => {
   ethController.createEvent(req, res);
 });
 
-/* Example body of JSON request
-{
-  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
-  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
-  "name": "Andrew"
-}
-*/
-app.post('/api/buyTicket', (req, res) => {
+
+app.post('/api/tickets', (req, res) => {
   ethController.buyTicket(req, res);
 });
 
