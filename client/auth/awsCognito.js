@@ -20,7 +20,7 @@ module.exports = {
     let cognitoUser = new awsCognito.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
-        console.log('auth success');
+        console.log('Authentication success');
       },
 
       onFailure: function(error) {

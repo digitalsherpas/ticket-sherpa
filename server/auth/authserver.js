@@ -28,7 +28,6 @@ app.use(allowCrossDomain);
 app.use(jsonParser);
 
 app.post('/registerUser', (req, res) => {
-  console.log(req.body);
   awsCognitoController.registerUser(req.body.token, (error, result) => {
     if (error) {
       res.status(500).send(error);
@@ -40,13 +39,11 @@ app.post('/registerUser', (req, res) => {
 
 app.post('/verifyUser', (req, res) => {
   let token = jwt.decode(req.body.token, {complete: true});
-  console.log(req.body);
   let userPoolUrl = 'https://cognito-idp.us-west-2.amazonaws.com/us-west-2_q8JXfprZ3';
   let userPoolJwkUrl = userPoolUrl + '/.well-known/jwks.json';
   rp({ //TODO: put this in a worker
     url: userPoolJwkUrl,
   }).then((obj) => {
-    // console.log(obj);
     let jwtSet = JSON.parse(obj);
     let jwtSetObj = {};
     jwtSet.keys.forEach((tkn) => {
@@ -66,7 +63,6 @@ app.post('/verifyUser', (req, res) => {
       res.status(403).send('Authorization failed');
       return;
     }
-    console.log(token);
     let isVerified = jwt.verify(req.body.token, jwkToPem(userJwk));
     if (isVerified) {
       res.status(200).send(token.payload.username);
