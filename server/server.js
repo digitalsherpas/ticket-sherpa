@@ -6,6 +6,8 @@
 // const letsencrypt = require('letsencrypt');
 
 const express = require('express');
+const fs = require('fs');
+const https = require('https');
 const path = require('path');
 const config = require('../config');
 const rp = require('request-promise');
@@ -41,6 +43,7 @@ const bodyParser = require('body-parser');
 
 // app.use(le.middleware());
 
+const app = express();
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
