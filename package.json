@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ./node_modules/grunt-cli/bin/grunt eth",
+    "start": "",
     "eth": "node ./node_modules/grunt-cli/bin/grunt eth",
     "dev": "node ./node_modules/grunt-cli/bin/grunt dev",
     "auth": "node ./node_modules/grunt-cli/bin/grunt auth",
