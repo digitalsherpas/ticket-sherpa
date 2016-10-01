@@ -3,24 +3,24 @@ import axios from 'axios';
 
 export const ADD_EVENT = 'ADD_EVENT';
 
-export function addEvent(eventName, date, time, address, price) {
-  return {
-    type: ADD_EVENT,
-    eventName,
-    date,
-    time,
-    address,
-    price,
+export function addEvent(event) {
+  const obj = {
+    // type: ADD_EVENT,
+    // numAttendees: '0',
+    // attendeesPaid: '0',
+    quota: event.quota.value,
+    ticketPrice: event.price.value,
+    eventName: event.eventName.value,
+    senderAddress: '0xf3f3fa1fddb9df932fe022d76c63cd3fec9ebc8e',
+    // eventCreateDateTime: 'event create date time',
+    startDateTime: event.eventStartDateTime.value,
+    endDateTime: event.eventEndDateTime.value,
   };
 
   return (dispatch) => {
-    request.then(({data}) => {
-      dispatch({ type: 'ADD_EVENT', payload: data})
-    });
+    return axios.post('/api/events', obj);
   };
 }
-
-
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS';
 

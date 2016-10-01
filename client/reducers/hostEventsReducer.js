@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import hostEvents from '../data/hostEvents';
 
 import {
-  REQUEST_EVENTS,
+  REQUEST_EVENTS, ADD_EVENT
 } from '../actions/index.jsx';
 
 const hostEventsList = (state = [], action) => {
@@ -11,11 +11,14 @@ const hostEventsList = (state = [], action) => {
       return state.concat(action.payload);
     case 'ADD_EVENT':
       return [...state, {
-        eventName: action.eventName,
-        date: action.date,
-        time: action.time,
-        address: action.address,
+        numAttendees: action.numAttendees,
+        attendeesPaid: action.attendeesPaid,
+        quota: action.quota,
         price: action.price,
+        eventName: action.eventName,
+        eventCreateDateTime: action.eventCreateDateTime,
+        eventStartDateTime: action.eventStartDateTime,
+        eventEndDateTime: action.eventEndDateTime,
       }];
     default:
       return state;
