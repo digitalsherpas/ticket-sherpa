@@ -16,6 +16,7 @@ const routes = (
       <IndexRoute component={Home} />
       <Route path="/events" component={EventsListContainer} />
       <Route path="/events/:eventName" component={EventDetailsContainer} />
+      <Route path="/hostevents/:eventName" component={HostEventDetailsContainer} />
 
       <Route path="/host" component={HostHome}>
         <Route path="/hostevents" component={HostEventsContainer} />

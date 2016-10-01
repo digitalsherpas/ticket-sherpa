@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class EventDetails extends Component {
+export default class HostEventDetails extends Component {
   render() {
-    console.log(this.props);
-    const i = this.props.hostEvent.findIndex((event) => event.eventName === this.props.params.hostEventName);
-    console.log(i);
+    const i = this.props.hostEvent.findIndex((event) => event.eventName === this.props.params.eventName);
 
     const eventName = this.props.hostEvent[i].eventName;
     const date = this.props.hostEvent[i].date;
@@ -16,11 +14,11 @@ export default class EventDetails extends Component {
     return (
       <div>
         <h1>This is the Host EventDetailPage</h1>
-        {eventName}
-        {date}
-        {time}
-        {address}
-        {price}
+        <h1>{eventName}</h1>
+        <h1>{date}</h1>
+        <h1>{time}</h1>
+        <h1>{address}</h1>
+        <h1>{price}</h1>
       </div>
     );
   }

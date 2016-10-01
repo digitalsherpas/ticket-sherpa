@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 export default class HostEvent extends Component {
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addEvent(this.refs.eventName.value, 
-      this.refs.date.value, 
-      this.refs.time.value, 
-      this.refs.address.value, 
+    this.props.addEvent(this.refs.eventName.value,
+      this.refs.date.value,
+      this.refs.time.value,
+      this.refs.address.value,
       this.refs.price.value);
   }
   render() {

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const HostEvent = ({ eventName, date, time, address, price }) => (
   <li className="event">
-    <h4><Link to={`/hostEvents/${eventName}`}>{eventName}</Link></h4>
+    <h4><Link to={`/hostevents/${eventName}`}>{eventName}</Link></h4>
     <p>{date}</p>
     <p>{time}</p>
     <p>{address}</p>
@@ -11,7 +11,7 @@ const HostEvent = ({ eventName, date, time, address, price }) => (
   </li>
 );
 
-Event.propTypes = {
+HostEvent.propTypes = {
   eventName: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,

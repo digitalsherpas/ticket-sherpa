@@ -3,12 +3,18 @@ import axios from 'axios';
 
 export function addEvent(eventName, date, time, address, price) {
   return {
-    type: 'ADD_EVENT',
+    type: ADD_EVENT,
     eventName,
     date,
     time,
     address,
     price,
+  };
+
+  return (dispatch) => {
+    request.then(({data}) => {
+      dispatch({ type: 'ADD_EVENT', payload: data})
+    });
   };
 }
 

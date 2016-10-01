@@ -9,7 +9,6 @@ const HostEvents = ({ hostEvents }) => (
       {hostEvents.map((hostEvent, i) =>
         <HostEvent
           key={i}
-          i={i}
           {...hostEvent}
         />
       )}
