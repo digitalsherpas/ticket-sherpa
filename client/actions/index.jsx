@@ -45,6 +45,15 @@ export function requestEvents() {
   };
 }
 
+export const SEARCH_EVENTS = 'SEARCH_EVENTS';
+
+export function searchEvents(event) {
+  return {
+    type: SEARCH_EVENTS,
+    event,
+  };
+}
+
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function receiveEvents(event, json) {

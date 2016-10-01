@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import staticEvents from '../data/events.js';
 
 import {
-  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS,
+  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS,
 } from '../actions/index.jsx';
 
 const selectEvent = (state = staticEvents, action) => {
@@ -87,18 +87,22 @@ const eventDetails = (state = {}, action) => {
 const eventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
-      console.log(action.payload, 'action.payload');
-      console.log(state.concat(action.payload), 'this is the concatted one');
       return state.concat(action.payload);
-      // action.payload;
     default:
       return state;
   }
-  // const eventsList = (state = [], action) => {
-  // switch (action.type) {
-  //   default:
-  //     return state;
-  // }
+};
+
+const searchEvents = (state = {}, action) => {
+  switch (action.type) {
+    case SEARCH_EVENTS:
+      e.preventDefault();
+      console.log('something happened');
+      return state;
+    default:
+      console.log('did it at least get here');
+      return state;
+  }
 };
 
 const eventsListReducer = combineReducers({
@@ -106,6 +110,7 @@ const eventsListReducer = combineReducers({
   eventDetails,
   events,
   eventsList,
+  searchEvents,
 });
 
 export default eventsListReducer;
