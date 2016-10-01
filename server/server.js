@@ -12,11 +12,11 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const app = express();
 
-//SSL settings
-const httpOptions = {
-  cert: fs.readFileSync(path.join(__dirname, 'ssl')),
-  key: fs.readFileSync(path.join(__dirname, 'ssl')) 
-};
+// //SSL settings
+// const httpOptions = {
+//   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
+//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
+// };
 
 const bodyParser = require('body-parser');
 // const le = require('letsencrypt').create({ server: 'staging' });
@@ -172,4 +172,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
 
-app.listen(config.SERVER_PORT);
+//SSL settings
+const credentials = {
+  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
+};
+
+https.createServer(credentials, app).listen(config.SERVER_PORT);
