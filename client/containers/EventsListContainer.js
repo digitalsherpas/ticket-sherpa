@@ -7,12 +7,11 @@ const mapStateToProps = state => ({
   events: state.eventsListReducer.eventsList,
 });
 
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators(actionCreators, dispatch);
-// };
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 const EventsListContainer = connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Events);
 
 export default EventsListContainer;

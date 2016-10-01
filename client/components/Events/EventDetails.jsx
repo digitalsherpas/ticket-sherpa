@@ -7,9 +7,7 @@ const EventDetails = ({
   <div>
     <h1>Hello</h1>
     <h4>{eventName}</h4>
-    <p>{query.date}</p>
-    <p>{query.time}</p>
-    <p>{query.address}</p>
+    <p>{query.eventStartDate}</p>
     <p>{query.price}</p>
   </div>
 );

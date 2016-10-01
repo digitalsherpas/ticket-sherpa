@@ -8,8 +8,8 @@ import HostCreateEventContainer from './containers/HostCreateEventContainer.js';
 import EventsListContainer from './containers/eventsListContainer.js';
 import EventDetailsContainer from './containers/EventDetailsContainer.js';
 import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js';
+import LoginContainer from './containers/LoginContainer.js';
 
-      // <Route path="/events/:eventName" component={EventDetailsContainer} />
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
@@ -22,6 +22,8 @@ const routes = (
         <Route path="/hostcreateevent" component={HostCreateEventContainer} />
       </Route>
       <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} />
+
+      <Route path="/login" component={LoginContainer} />
     </Route>
   </Router>
 );

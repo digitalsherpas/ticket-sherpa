@@ -27,28 +27,45 @@ const event = (state = {}, action) => {
   }
 };
 
+// const events = (state = {
+//   isFetching: false,
+//   didInvalidate: false,
+//   items: [],
+// }, action) => {
+//   switch (action.type) {
+//     case INVALIDATE_EVENT:
+//       return Object.assign({}, state, {
+//         didInvalidate: true,
+//       });
+//     case REQUEST_EVENTS:
+//       return Object.assign({}, state, {
+//         isFetching: true,
+//         didInvalidate: false,
+//       });
+//     case RECEIVE_EVENTS:
+//       return Object.assign({}, state, {
+//         isFetching: false,
+//         didInvalidate: false,
+//         items: action.events,
+//         lastUpdated: action.receivedAt,
+//       });
+//     default:
+//       return state;
+//   }
+// };
+
 const events = (state = {
-  isFetching: false,
-  didInvalidate: false,
-  items: [],
+  events: [],
 }, action) => {
   switch (action.type) {
-    case INVALIDATE_EVENT:
-      return Object.assign({}, state, {
-        didInvalidate: true,
-      });
     case REQUEST_EVENTS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        didInvalidate: false,
-      });
-    case RECEIVE_EVENTS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        didInvalidate: false,
-        items: action.events,
-        lastUpdated: action.receivedAt,
-      });
+      console.log('REQUEST_EVENTS was called');
+      console.log(action.payload);
+      return {
+        ...state,
+        requestedEvents: action.payload,
+      };
+      // action.payload;
     default:
       return state;
   }
@@ -67,11 +84,21 @@ const eventDetails = (state = {}, action) => {
   }
 };
 
-const eventsList = (state = staticEvents, action) => {
+const eventsList = (state = [], action) => {
   switch (action.type) {
+    case REQUEST_EVENTS:
+      console.log(action.payload, 'action.payload');
+      console.log(state.concat(action.payload), 'this is the concatted one');
+      return state.concat(action.payload);
+      // action.payload;
     default:
       return state;
   }
+  // const eventsList = (state = [], action) => {
+  // switch (action.type) {
+  //   default:
+  //     return state;
+  // }
 };
 
 const eventsListReducer = combineReducers({
