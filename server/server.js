@@ -97,14 +97,6 @@ app.get('/getUser', (req, res) => {
     }).catch((err) => {
       res.status(500).send(err.error);
     });
-    // rp({
-    //   url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
-    //   body: token
-    // }).then((obj) => {
-    //   res.status(200).send(obj);
-    // }).catch((err) => {
-    //   res.status(500).send(err.error);
-    // });
   } else {
     res.status(403).send('Authorization failed');
   }
