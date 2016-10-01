@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const Event = ({ eventName, eventStartDateTime, price }) => (
-  <li className="event">
+  <li className="eventsList">
     <h4><Link
       to={{ pathname:
       '/events/' + eventName,
