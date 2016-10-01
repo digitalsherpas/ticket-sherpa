@@ -7,7 +7,6 @@ const web3 = web3Connection.web3;
 
 const createSvc = {
   createContract: req => new Promise((fulfill, reject) => {
-    console.log(req.body);
     const senderAddress = req.body.senderAddress || web3.eth.accounts[0];
     const price = req.body.ticketPrice;
     const eventName = req.body.eventName;
