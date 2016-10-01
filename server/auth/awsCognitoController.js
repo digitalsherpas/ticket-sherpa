@@ -1,7 +1,10 @@
+const AWS = require('aws-sdk');
 const awsCognito = require('amazon-cognito-identity-js');
-var poolData = { 
-  UserPoolId : 'us-west-2_q8JXfprZ3', // Your user pool id here
-  ClientId : '4va0ha493o2r4be2kendbn9cga' // Your client id here
+const keys = require('../../keys');
+
+const poolData = { 
+  UserPoolId : keys.AWS_COGNITO_USER_POOL_ID, // Your user pool id here
+  ClientId : keys.AWS_COGNITO_CLIENT_ID // Your client id here
 };
 const userPool = new awsCognito.CognitoUserPool(poolData);
 
@@ -33,6 +36,10 @@ module.exports = {
     userPool.signUp(userObj.username, userObj.password, attributeList, null, function(error, result){
       cb(error, result);
     });
+  },
+
+  verifyUser: (userObj, cb) => {
+
   }
 }
 
