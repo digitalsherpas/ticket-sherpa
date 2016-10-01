@@ -1,5 +1,4 @@
 'use strict';
-const alert = function(){};
 const awsCognitoController = require('./awsCognitoController.js');
 const express = require('express');
 const bodyParser = require('body-parser');
