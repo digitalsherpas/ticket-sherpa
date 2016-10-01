@@ -9,7 +9,7 @@ import EventsListContainer from './containers/eventsListContainer.js';
 import EventDetailsContainer from './containers/EventDetailsContainer.js';
 import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js';
 import LoginContainer from './containers/LoginContainer.js';
-      // <Route path="/events/:eventName" component={EventDetailsContainer} />
+
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>

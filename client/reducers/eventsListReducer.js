@@ -84,11 +84,21 @@ const eventDetails = (state = {}, action) => {
   }
 };
 
-const eventsList = (state = staticEvents, action) => {
+const eventsList = (state = [], action) => {
   switch (action.type) {
+    case REQUEST_EVENTS:
+      console.log(action.payload, 'action.payload');
+      console.log(state.concat(action.payload), 'this is the concatted one');
+      return state.concat(action.payload);
+      // action.payload;
     default:
       return state;
   }
+  // const eventsList = (state = [], action) => {
+  // switch (action.type) {
+  //   default:
+  //     return state;
+  // }
 };
 
 const eventsListReducer = combineReducers({
