@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import searchEventsContainer from '../containers/searchEventsContainer.js';
 
 // renders logo and maps props
 
@@ -8,6 +9,7 @@ export default class App extends Component {
     return (
       <div>
         <h1><Link to={'/'}>Tickether</Link></h1>
+        <searchEventsContainer />
         <hr></hr>
         {this.props.children}
       </div>

@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
-import SearchEvents from './SearchEvents.jsx';
+// import searchEventsContainer from '../../containers/searchEventsContainer.js';
+import SearchEvents from '../Events/SearchEvents.jsx';
 
 export default class Events extends Component {
   constructor(props) {

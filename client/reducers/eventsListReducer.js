@@ -95,12 +95,14 @@ const eventsList = (state = [], action) => {
 
 const searchEvents = (state = {}, action) => {
   switch (action.type) {
-    case SEARCH_EVENTS:
+    case 'SEARCH_EVENTS':
       // e.preventDefault();
       console.log('something happened');
-      return state;
+      return {
+        ...state,
+        searchEvents: action.search,
+      };
     default:
-      console.log('did it at least get here');
       return state;
   }
 };
