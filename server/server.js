@@ -11,7 +11,12 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
+const session = require('express-session');
 const app = express();
+
+app.use(session({
+  secret: 
+}))
 
 const bodyParser = require('body-parser');
 

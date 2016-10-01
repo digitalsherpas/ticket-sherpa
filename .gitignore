@@ -5,3 +5,4 @@ dist
 compiled
 server/ssl
 .tern-project
+keys.js
