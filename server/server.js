@@ -32,7 +32,6 @@ const bodyParser = require('body-parser');
 
 // app.use(le.middleware());
 
-const app = express();
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
@@ -173,9 +172,11 @@ app.get('*', (req, res) => {
 });
 
 //SSL settings
-const credentials = {
-  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
-  key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
-};
+// const credentials = {
+//   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
+//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
+// };
 
-https.createServer(credentials, app).listen(config.SERVER_PORT);
+// https.createServer(credentials, app).listen(config.SERVER_PORT);
+
+app.listen(config.SERVER_PORT);
