@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux';
 import hostEvents from '../data/hostEvents';
 
-const hostEventsList = (state = hostEvents, action) => {
+import {
+  REQUEST_EVENTS,
+} from '../actions/index.jsx';
+
+const hostEventsList = (state = [], action) => {
   switch (action.type) {
+    case REQUEST_EVENTS:
+      return state.concat(action.payload);
     case 'ADD_EVENT':
       return [...state, {
         eventName: action.eventName,

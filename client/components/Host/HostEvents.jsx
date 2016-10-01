@@ -1,20 +1,31 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import HostEvent from '../Host/HostEvent.jsx';
 
-// creates an events array for the eventsListContainer
-const HostEvents = ({ hostEvents }) => (
-  <div className="hostEvents">
-    <h2>Host Events</h2>
-    <ul>
-      {hostEvents.map((hostEvent, i) =>
-        <HostEvent
-          key={i}
-          {...hostEvent}
-        />
-      )}
-    </ul>
-  </div>
-);
+export default class HostEvents extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.requestEvents();
+  }
+
+  render() {
+    return (
+      <div className="hostEvents">
+        <h2>Host Events</h2>
+        <ul>
+          {this.props.hostEvents.map((hostEvent, i) =>
+            <HostEvent
+              key={i}
+              {...hostEvent}
+            />
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
 
 HostEvents.propTypes = {
   hostEvents: PropTypes.arrayOf(PropTypes.shape({
@@ -25,5 +36,3 @@ HostEvents.propTypes = {
     price: PropTypes.number.isRequired,
   }).isRequired).isRequired,
 };
-
-export default HostEvents;
