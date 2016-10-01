@@ -2,9 +2,7 @@
 
 const express = require('express');
 const path = require('path');
-const WebpackDevServer = require('webpack-dev-server');
 const config = require('../config');
-const opn = require('opn');
 const rp = require('request-promise');
 const jwt = require('jsonwebtoken');
 const webpack = require('webpack');
