@@ -25,10 +25,7 @@ module.exports = function (grunt) {
       },
       startAuthServer: {
         command: 'nodemon server/auth/authserver.js',
-      },
-      setup: {
-        command: 'node setup.js',
-      },
+      }
     }
   });
 
@@ -41,8 +38,6 @@ module.exports = function (grunt) {
     'shell:compile',
     'processhtml',
   ]);
-
-  grunt.registerTask('setup', ['shell:setup']);
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
 
