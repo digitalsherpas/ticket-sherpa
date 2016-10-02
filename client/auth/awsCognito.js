@@ -10,7 +10,7 @@ const poolData = {
 const userPool = new awsCognito.CognitoUserPool(poolData);
 
 module.exports = {
-  authenticateUser: (userObj) => {
+  authenticateUser: (userObj, cb) => {
     const authenticationData = {
       Username: userObj.username,
       Password: userObj.password,
@@ -31,10 +31,12 @@ module.exports = {
           },
         });
         console.log('Authentication success');
+        if (cb) cb(null, result);
       },
 
       onFailure: (error) => {
         console.log(error);
+        if (cb) cb(error, null);
       },
     });
   },
