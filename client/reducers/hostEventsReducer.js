@@ -8,7 +8,7 @@ import {
 const hostEventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
-      return state.concat(action.payload);
+      return action.payload;
     case 'ADD_EVENT':
       return [...state, {
         numAttendees: action.numAttendees,
