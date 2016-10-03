@@ -12,28 +12,28 @@ const userPool = new awsCognito.CognitoUserPool(poolData);
 module.exports = {
   registerUser: (userObj, cb) => {
 
-    let attributeList = [];
-    let dataEmail = {
+    const attributeList = [];
+    const dataEmail = {
       Name : 'email',
-      Value : userObj.email
+      Value : userObj.email,
     };
-    let dataPhoneNumber = {
+    const dataPhoneNumber = {
       Name : 'phone_number',
-      Value : userObj.phone_number
+      Value : userObj.phone_number,
     };
-    let dataName = {
+    const dataName = {
       Name: 'name',
-      Value: userObj.name
-    }
-    let attributeEmail = new awsCognito.CognitoUserAttribute(dataEmail);
-    let attributePhoneNumber = new awsCognito.CognitoUserAttribute(dataPhoneNumber);
-    let attributeName = new awsCognito.CognitoUserAttribute(dataName);
+      Value: userObj.name,
+    };
+    const attributeEmail = new awsCognito.CognitoUserAttribute(dataEmail);
+    const attributePhoneNumber = new awsCognito.CognitoUserAttribute(dataPhoneNumber);
+    const attributeName = new awsCognito.CognitoUserAttribute(dataName);
 
     attributeList.push(attributeEmail);
     attributeList.push(attributePhoneNumber);
     attributeList.push(attributeName);
 
-    userPool.signUp(userObj.username, userObj.password, attributeList, null, function(error, result){
+    userPool.signUp(userObj.username, userObj.password, attributeList, null, (error, result) => {
       cb(error, result);
     });
   },
