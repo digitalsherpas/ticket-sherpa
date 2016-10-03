@@ -24,9 +24,9 @@ export default class Events extends Component {
         <SearchEvents />
         <h2>Events</h2>
         <ul>
-          {this.props.events.map(event =>
+          {this.props.events.map((event, i) =>
             <Event
-              key={event.eventName}
+              key={i}
               {...event}
             />
           )}

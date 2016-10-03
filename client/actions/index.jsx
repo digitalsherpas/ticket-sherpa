@@ -1,6 +1,6 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
-
+import { authenticateUser } from '../auth/awsCognito.js';
 export const ADD_EVENT = 'ADD_EVENT';
 
 export function addEvent(event) {
@@ -11,7 +11,7 @@ export function addEvent(event) {
     quota: event.quota.value,
     ticketPrice: event.price.value,
     eventName: event.eventName.value,
-    senderAddress: '',
+    senderAddress: '0x26d2a6f4536eb288c6da4ca1277944962a7ac4a7',
     // eventCreateDateTime: 'event create date time',
     startDateTime: event.eventStartDateTime.value,
     endDateTime: event.eventEndDateTime.value,
@@ -75,6 +75,27 @@ export function searchEvents(event) {
 }
 
 // insert post request to Amazon authentication server here
-export function authenticateLogin() {
-  // const request = axios.post()
+
+export const USER_IS_AUTHENTICATING = 'USER_IS_AUTHENTICATING';
+export const USER_AUTHENTICATION_FAILED = 'USER_AUTHENTICATION_FAILED';
+export const USER_IS_AUTHENTICATED = 'USER_IS_AUTHENTICATED';
+
+export function authenticateLogin(userObj) {
+  return (dispatch) => {
+    authenticateUser(userObj, (error, result) => {
+      if (error) {
+        dispatch({
+          type: USER_AUTHENTICATION_FAILED,
+        });
+      } else {
+        dispatch({
+          type: USER_IS_AUTHENTICATED,
+          payload: result,
+        });
+      }
+    });
+    return {
+      type: USER_IS_AUTHENTICATING,
+    };
+  };
 }

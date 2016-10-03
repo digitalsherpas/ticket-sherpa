@@ -6,13 +6,21 @@ export default class Login extends Component {
     super(props);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.authenticateLogin({
+      username: this.refs.username.value,
+      password: this.refs.password.value,
+    });
+  }
+
   render() {
     return (
-      <form>
+      <form ref="loginForm" onSubmit={this.handleSubmit.bind(this)}>
         <h4>Username</h4>
-        <input id="username" type="text" />
+        <input ref="username" type="text" />
         <h4>Password</h4>
-        <input id="password" type="password" />
+        <input ref="password" type="password" />
         <button type="submit">Submit</button>
       </form>
     );

@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   event: state.eventsListReducer.selectEvent,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 };
 

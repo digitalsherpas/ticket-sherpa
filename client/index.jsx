@@ -1,8 +1,5 @@
 import { authenticateUser, getUserSession } from './auth/awsCognito.js';
 
-window.authenticateUser = authenticateUser; //TODO: remove global reference
-window.getUserSession = getUserSession;
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
