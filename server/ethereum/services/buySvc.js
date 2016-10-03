@@ -12,8 +12,7 @@ const buySvc = {
     const eventContractInstance = web3.eth.contract(contractHelper.contractObj).at(contractAddress);
     eventContractInstance.buyTicket(name, {
       from: fromAddress,
-      value: 10,
-      gas: 200000
+      value: req.body.price,
     }, (err) => {
       if (err) {
         console.log(err);

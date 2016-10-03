@@ -26,7 +26,6 @@ app.post('/api/events', (req, res) => {
   ethController.createEvent(req, res);
 });
 
-
 app.post('/api/tickets', (req, res) => {
   ethController.buyTicket(req, res);
 });

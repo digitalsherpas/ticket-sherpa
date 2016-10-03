@@ -13,7 +13,7 @@ export function addEvent(event) {
     quota: event.quota.value,
     ticketPrice: event.price.value,
     eventName: event.eventName.value,
-    senderAddress: '0x26d2a6f4536eb288c6da4ca1277944962a7ac4a7',
+    senderAddress: '0x1178279d1c2adac223b7a9bcc7d80e35c8955288',
     // eventCreateDateTime: 'event create date time',
     startDateTime: event.eventStartDateTime.value,
     endDateTime: event.eventEndDateTime.value,
