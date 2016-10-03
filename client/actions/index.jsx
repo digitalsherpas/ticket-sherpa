@@ -1,6 +1,8 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
+import { browserHistory } from 'react-router';
+
 export const ADD_EVENT = 'ADD_EVENT';
 
 export function addEvent(event) {
@@ -92,10 +94,11 @@ export function authenticateLogin(userObj) {
           type: USER_IS_AUTHENTICATED,
           payload: result,
         });
+        browserHistory.push('/');
       }
     });
-    return {
+    dispatch({
       type: USER_IS_AUTHENTICATING,
-    };
+    });
   };
 }
