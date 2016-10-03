@@ -1,11 +1,42 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
-import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
+import { authenticateUser } from '../auth/awsCognito.js';
+
+export const BUY_EVENT = 'BUY_EVENT';
+
+export function buyEvent(info, eventName) {
+  const fromAddress = info.walletAddress.value;
+  const name = info.name.value;
+  axios.get('/api/events/?eventName='+eventName)
+  .then(({ data }) => {
+    const obj = {
+      contractAddress: data.eventContractAddress,
+      fromAddress: fromAddress,
+      name: name,
+      price:  data.price,
+    };
+    axios.post('/api/tickets', obj)
+    .then(() => {
+      console.log('change pages');
+      browserHistory.push('/hostevents');
+    });
+  });
+}
 
 export const ADD_EVENT = 'ADD_EVENT';
 
 export function addEvent(event) {
+  const eventStartDateTime = new Date(
+    event.eventStartYear.value,
+    event.eventStartMonth.value,
+    event.eventStartDay.value,
+    event.eventStartTime.value).toISOString();
+  const eventEndDateTime = new Date(
+    event.eventEndYear.value,
+    event.eventEndMonth.value,
+    event.eventEndDay.value,
+    event.eventEndTime.value).toISOString();
   const obj = {
     // type: ADD_EVENT,
     // numAttendees: '0',
@@ -13,11 +44,12 @@ export function addEvent(event) {
     quota: event.quota.value,
     ticketPrice: event.price.value,
     eventName: event.eventName.value,
-    senderAddress: '0x1178279d1c2adac223b7a9bcc7d80e35c8955288',
+    senderAddress: event.walletAddress.value,
     // eventCreateDateTime: 'event create date time',
-    startDateTime: event.eventStartDateTime.value,
-    endDateTime: event.eventEndDateTime.value,
+    startDateTime: eventStartDateTime,
+    endDateTime: eventEndDateTime,
   };
+  console.log(obj)
 
   return (dispatch) => {
     return axios.post('/api/events', obj);
