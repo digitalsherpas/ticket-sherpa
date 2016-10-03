@@ -19,6 +19,8 @@ export default class HostEvent extends Component {
           <input type="text" ref="eventStartDateTime" placeholder="Event Start Date Time"/>
           <h2>Event End Date Time</h2>
           <input type="text" ref="eventEndDateTime" placeholder="Event End Date Time"/>
+          <h2>Wallet Address</h2>
+          <input type="text" ref="walletAddress" placeholder="Wallet Address"/>
           <h2>Submit</h2>
           <input type="submit"/>
         </form>

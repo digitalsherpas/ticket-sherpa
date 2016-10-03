@@ -1,14 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-const EventDetails = ({
-  params: { eventName },
-  location: { query },
-}) => (
+const EventDetails = ({params: { eventName }, location: { query }}) => (
   <div>
-    <h1>Hello</h1>
     <h4>{eventName}</h4>
     <p>{query.eventStartDate}</p>
     <p>{query.price}</p>
+    <h4><Link 
+      to={{ pathname:
+        '/buyevent/' + eventName,
+        query: {
+          eventName,
+        },
+    }}
+    >Buy Ticket</Link></h4>
+
   </div>
 );
 

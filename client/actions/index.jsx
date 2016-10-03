@@ -1,7 +1,27 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
-import { browserHistory } from 'react-router';
+
+
+export const BUY_EVENT = 'BUY_EVENT';
+
+// export function buyEvent(info) {
+//   console.log('in buy event');
+//   console.log(info);
+//   const obj = {
+//     contractAddress: '',
+//     fromAddress: this.ref.walletAddress,
+//     name: this.refs.name,
+//   }
+// }
+
+/* Example body of JSON request
+{
+  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
+  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
+  "name": "Andrew"
+}
+*/
 
 export const ADD_EVENT = 'ADD_EVENT';
 
@@ -13,7 +33,7 @@ export function addEvent(event) {
     quota: event.quota.value,
     ticketPrice: event.price.value,
     eventName: event.eventName.value,
-    senderAddress: '0x1178279d1c2adac223b7a9bcc7d80e35c8955288',
+    senderAddress: event.walletAddress.value,
     // eventCreateDateTime: 'event create date time',
     startDateTime: event.eventStartDateTime.value,
     endDateTime: event.eventEndDateTime.value,
