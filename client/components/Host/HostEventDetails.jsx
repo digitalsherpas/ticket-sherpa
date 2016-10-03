@@ -16,14 +16,14 @@ export default class HostEventDetails extends Component {
 
     return (
       <div>
-        <h1>Event Name: {eventName}</h1>
-        <h1>Attendees Paid: {attendeesPaid}</h1>
-        <h1>Number of Attendees: {numAttendees}</h1>
-        <h1>Quota: {quota}</h1>
-        <h1>Price: {price}</h1>
-        <h1>Event Create Date Time: {eventCreateDateTime}</h1>
-        <h1>Event Start Date Time: {eventStartDateTime}</h1>
-        <h1>Event End Date Time: {eventEndDateTime}</h1>
+        <h3>Event Name: {eventName}</h3>
+        <h3>Attendees Paid: {attendeesPaid}</h3>
+        <h3>Number of Attendees: {numAttendees}</h3>
+        <h3>Quota: {quota}</h3>
+        <h3>Price: {price}</h3>
+        <h3>Event Create Date Time: {eventCreateDateTime}</h3>
+        <h3>Event Start Date Time: {eventStartDateTime}</h3>
+        <h3>Event End Date Time: {eventEndDateTime}</h3>
       </div>
     );
   }

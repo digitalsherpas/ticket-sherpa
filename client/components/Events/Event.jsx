@@ -1,20 +1,21 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const Event = ({ eventName, eventStartDateTime, price }) => (
+const Event = ({ eventName, eventStartDateTime, eventEndDateTime, price }) => (
   <li className="eventsList">
-    <h4><Link
+    <h2><Link
       to={{ pathname:
       '/events/' + eventName,
       query: {
         eventName,
         eventStartDateTime,
+        eventEndDateTime,
         price,
       },
     }}
-    >{eventName}</Link></h4>
-    <p>{eventStartDateTime}</p>
-    <p>{price}</p>
+    >{eventName}</Link></h2>
+    <p>Date: {eventStartDateTime}</p>
+    <p>Price: {price}</p>
   </li>
 );
 
