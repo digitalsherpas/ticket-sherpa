@@ -2,18 +2,31 @@
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 
-
 export const BUY_EVENT = 'BUY_EVENT';
 
-// export function buyEvent(info) {
-//   console.log('in buy event');
-//   console.log(info);
-//   const obj = {
-//     contractAddress: '',
-//     fromAddress: this.ref.walletAddress,
-//     name: this.refs.name,
-//   }
-// }
+export function buyEvent(info, eventName) {
+  const fromAddress = info.walletAddress.value;
+  const name = info.name.value;
+  axios.get('/api/events/?eventName='+eventName)
+  .then(({ data }) => {
+    const obj = {
+      contractAddress: data.eventContractAddress,
+      fromAddress: fromAddress,
+      name: name,
+    };
+    console.log(obj, 'obj');
+    axios.post('/api/tickets', obj);
+  });
+  // console.log(contractAddress, 'contractAddress');
+  // contractAddress.then
+  
+
+  // request.then(({ data }) => {
+  //   dispatch({
+  //     type: REQUEST_EVENTS,
+  //     payload: data,
+  //   });
+}
 
 /* Example body of JSON request
 {

@@ -8,7 +8,7 @@ export default class HostEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.buyEvent(this.refs);
+    this.props.buyEvent(this.refs, this.props.params.eventName);
   }
   render() {
     return (
