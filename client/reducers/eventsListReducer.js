@@ -23,7 +23,7 @@ const selectEvent = (state = staticEvents, action) => {
 const eventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
-      return action.payload;
+      return action.payload || state;
     default:
       return state;
   }

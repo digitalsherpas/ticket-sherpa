@@ -41,7 +41,6 @@ const bodyParser = require('body-parser');
 
 // app.use(le.middleware());
 
-const app = express();
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
