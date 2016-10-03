@@ -4,7 +4,8 @@ import * as actionCreators from '../actions/index.jsx';
 import Login from '../components/Login/Login.jsx';
 
 const mapStateToProps = state => ({
-  event: state.eventsListReducer.selectEvent,
+  auth: state.loginReducer.auth,
+  authenticating: state.loginReducer.authenticating,
 });
 
 const mapDispatchToProps = dispatch => {

@@ -1,6 +1,8 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
+import { browserHistory } from 'react-router';
+
 export const ADD_EVENT = 'ADD_EVENT';
 
 export function addEvent(event) {
@@ -11,7 +13,7 @@ export function addEvent(event) {
     quota: event.quota.value,
     ticketPrice: event.price.value,
     eventName: event.eventName.value,
-    senderAddress: '0x26d2a6f4536eb288c6da4ca1277944962a7ac4a7',
+    senderAddress: '0x1178279d1c2adac223b7a9bcc7d80e35c8955288',
     // eventCreateDateTime: 'event create date time',
     startDateTime: event.eventStartDateTime.value,
     endDateTime: event.eventEndDateTime.value,
@@ -92,10 +94,11 @@ export function authenticateLogin(userObj) {
           type: USER_IS_AUTHENTICATED,
           payload: result,
         });
+        browserHistory.push('/');
       }
     });
-    return {
+    dispatch({
       type: USER_IS_AUTHENTICATING,
-    };
+    });
   };
 }

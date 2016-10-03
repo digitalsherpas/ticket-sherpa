@@ -10,11 +10,15 @@ const buySvc = {
     const fromAddress = req.body.fromAddress;
     const name = req.body.name;
     const eventContractInstance = web3.eth.contract(contractHelper.contractObj).at(contractAddress);
-    eventContractInstance.buyTicket(name, {
+    const opts = {
       from: fromAddress,
-      value: 10,
-      gas: 200000
-    }, (err) => {
+      value: req.body.price,
+    };
+    if (req.body.gas) {
+      opts.gas = req.body.gas;
+    }
+
+    eventContractInstance.buyTicket(name, opts, (err) => {
       if (err) {
         console.log(err);
         loggers(eventContractInstance).ExceedQuota();
