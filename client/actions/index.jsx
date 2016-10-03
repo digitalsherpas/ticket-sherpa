@@ -13,28 +13,11 @@ export function buyEvent(info, eventName) {
       contractAddress: data.eventContractAddress,
       fromAddress: fromAddress,
       name: name,
+      price:  data.price,
     };
-    console.log(obj, 'obj');
     axios.post('/api/tickets', obj);
   });
-  // console.log(contractAddress, 'contractAddress');
-  // contractAddress.then
-  
-
-  // request.then(({ data }) => {
-  //   dispatch({
-  //     type: REQUEST_EVENTS,
-  //     payload: data,
-  //   });
 }
-
-/* Example body of JSON request
-{
-  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
-  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
-  "name": "Andrew"
-}
-*/
 
 export const ADD_EVENT = 'ADD_EVENT';
 
