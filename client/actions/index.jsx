@@ -1,5 +1,6 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
+import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
 import { authenticateUser } from '../auth/awsCognito.js';
 
