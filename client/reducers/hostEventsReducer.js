@@ -6,12 +6,12 @@ import {
 } from '../actions/index.jsx';
 
 const hostEventsList = (state = [], action) => {
-  switch (action.type) { // TODO: this appends new events wrongly
+  switch (action.type) {
     case REQUEST_EVENTS:
-      if (!action.payload || !action.payload.data) {
-        return state;
+      if (!action.payload || action.payload.data !== undefined) {
+        return action.payload;
       }
-      return action.payload || action.payload.data;
+      return action.payload;
     case 'ADD_EVENT':
       return [...state, {
         numAttendees: action.numAttendees,
