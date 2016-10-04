@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-// import hostEvents from '../data/hostEvents';
 
 import {
   REQUEST_EVENTS,
