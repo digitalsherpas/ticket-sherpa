@@ -1,20 +1,20 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 import { authenticateUser } from '../auth/awsCognito.js';
+import { browserHistory } from 'react-router';
 
 export const BUY_EVENT = 'BUY_EVENT';
 
 export function buyEvent(info, eventName) {
   const fromAddress = info.walletAddress.value;
   const name = info.name.value;
-  axios.get('/api/events/?eventName='+eventName)
+  axios.get(`/api/events/?eventName=${eventName}`)
   .then(({ data }) => {
     const obj = {
       contractAddress: data.eventContractAddress,
-      fromAddress: fromAddress,
-      name: name,
-      price:  data.price,
+      fromAddress,
+      name,
+      price: data.price,
     };
     axios.post('/api/tickets', obj)
     .then(() => {
@@ -22,7 +22,23 @@ export function buyEvent(info, eventName) {
       browserHistory.push('/hostevents');
     });
   });
+
+  // console.log(contractAddress, 'contractAddress');
+  // contractAddress.then
+
+  // request.then(({ data }) => {
+  //   dispatch({
+  //     type: REQUEST_EVENTS,
+  //     payload: data,
+  //   });
 }
+
+/* Example body of JSON request
+{
+  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
+  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
+  "name": "Andrew"
+}*/
 
 export const ADD_EVENT = 'ADD_EVENT';
 
@@ -49,7 +65,6 @@ export function addEvent(event) {
     startDateTime: eventStartDateTime,
     endDateTime: eventEndDateTime,
   };
-  console.log(obj)
 
   return (dispatch) => {
     return axios.post('/api/events', obj);
@@ -89,7 +104,10 @@ export function requestEvents() {
     }).catch((error) => {
       dispatch({
         type: REQUEST_EVENTS,
-        payload: error,
+        payload: {
+          error,
+          data: false,
+        },
       });
       dispatch({
         type: RECEIVE_EVENTS,

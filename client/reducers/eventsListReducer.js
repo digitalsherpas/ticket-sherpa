@@ -23,6 +23,9 @@ const selectEvent = (state = staticEvents, action) => {
 const eventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
+      if (!action.payload || action.payload.data !== undefined) {
+        return state;
+      }
       return action.payload;
     default:
       return state;

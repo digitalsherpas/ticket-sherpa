@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
-import hostEvents from '../data/hostEvents';
+// import hostEvents from '../data/hostEvents';
 
 import {
-  REQUEST_EVENTS, ADD_EVENT
+  REQUEST_EVENTS,
 } from '../actions/index.jsx';
 
 const hostEventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
+      if (!action.payload || action.payload.data !== undefined) {
+        return state;
+      }
       return action.payload;
     case 'ADD_EVENT':
       return [...state, {

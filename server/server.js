@@ -111,6 +111,7 @@ app.get('/api/events', (req, res) => {
 }
 */
 app.post('/api/events', (req, res) => {
+  console.log('yo');
   rp({
     method: 'POST',
     url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
