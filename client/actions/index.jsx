@@ -1,20 +1,20 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 import { authenticateUser } from '../auth/awsCognito.js';
+import { browserHistory } from 'react-router';
 
 export const BUY_EVENT = 'BUY_EVENT';
 
 export function buyEvent(info, eventName) {
   const fromAddress = info.walletAddress.value;
   const name = info.name.value;
-  axios.get('/api/events/?eventName='+eventName)
+  axios.get(`/api/events/?eventName=${eventName}`)
   .then(({ data }) => {
     const obj = {
       contractAddress: data.eventContractAddress,
-      fromAddress: fromAddress,
-      name: name,
-      price:  data.price,
+      fromAddress,
+      name,
+      price: data.price,
     };
     axios.post('/api/tickets', obj)
     .then(() => {
@@ -23,6 +23,7 @@ export function buyEvent(info, eventName) {
     });
   });
 }
+
 
 export const ADD_EVENT = 'ADD_EVENT';
 
@@ -49,7 +50,6 @@ export function addEvent(event) {
     startDateTime: eventStartDateTime,
     endDateTime: eventEndDateTime,
   };
-  console.log(obj)
 
   return (dispatch) => {
     return axios.post('/api/events', obj);
@@ -89,7 +89,10 @@ export function requestEvents() {
     }).catch((error) => {
       dispatch({
         type: REQUEST_EVENTS,
-        payload: error,
+        payload: {
+          error,
+          data: false,
+        },
       });
       dispatch({
         type: RECEIVE_EVENTS,
