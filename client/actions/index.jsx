@@ -8,20 +8,22 @@ export const BUY_EVENT = 'BUY_EVENT';
 export function buyEvent(info, eventName) {
   const fromAddress = info.walletAddress.value;
   const name = info.name.value;
-  axios.get(`/api/events/?eventName=${eventName}`)
-  .then(({ data }) => {
-    const obj = {
-      contractAddress: data.eventContractAddress,
-      fromAddress,
-      name,
-      price: data.price,
-    };
-    axios.post('/api/tickets', obj)
-    .then(() => {
-      console.log('change pages');
-      browserHistory.push('/hostevents');
+
+  return (dispatch) => {
+    return axios.get('/api/events/?eventName='+eventName)
+    .then(({ data }) => {
+      const obj = {
+        contractAddress: data.eventContractAddress,
+        fromAddress: fromAddress,
+        name: name,
+        price:  data.price,
+      };
+      return axios.post('/api/tickets', obj)
+      .then(() => {
+        browserHistory.push('/events');
+      });
     });
-  });
+  };
 }
 
 
@@ -52,7 +54,10 @@ export function addEvent(event) {
   };
 
   return (dispatch) => {
-    return axios.post('/api/events', obj);
+    return axios.post('/api/events', obj)
+    .then(() => {
+      browserHistory.push('/events');
+    });
   };
 }
 
