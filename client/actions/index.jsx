@@ -16,11 +16,11 @@ export function buyEvent(info, eventName) {
         contractAddress: data.eventContractAddress,
         fromAddress: fromAddress,
         name: name,
-        price:  data.price,
+        price: data.price,
       };
       return axios.post('/api/tickets', obj)
       .then(() => {
-        browserHistory.push('/events');
+        browserHistory.push('/hostevents');
       });
     });
   };
