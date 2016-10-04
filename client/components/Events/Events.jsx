@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
-// import searchEventsContainer from '../../containers/searchEventsContainer.js';
 import SearchEvents from '../Events/SearchEvents.jsx';
 import MDSpinner from 'react-md-spinner';
 
