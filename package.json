@@ -59,8 +59,7 @@
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0",
-    "request-promise": "^4.1.1"
+    "redux-thunk": "^2.1.0"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^1.5.0",
@@ -84,10 +83,7 @@
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
-<<<<<<< 27d9750c7b65747bd56b365f4d2ac66298e7a606
     "request-promise": "^4.1.1",
-=======
->>>>>>> Remove Ethereum Server from front end
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-dev-server": "^1.12.1",
