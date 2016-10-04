@@ -9,7 +9,7 @@ const hostEventsList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_EVENTS:
       if (!action.payload || action.payload.data !== undefined) {
-        return action.payload;
+        return state;
       }
       return action.payload;
     case 'ADD_EVENT':
