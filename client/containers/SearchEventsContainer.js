@@ -9,10 +9,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-const searchEventsContainer = connect(
+const SearchEventsContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
   // actions go here mapDispatchToProps
 )(SearchEvents);
 
-export default searchEventsContainer;
+export default SearchEventsContainer;
