@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const Event = ({ eventName, eventStartDateTime, eventEndDateTime, price }) => (
+const Event = ({ eventName, eventStartDateTime, eventEndDateTime, eventContractAddress, price }) => (
   <li className="eventsList">
     <h2><Link
       to={{ pathname:
@@ -10,6 +10,7 @@ const Event = ({ eventName, eventStartDateTime, eventEndDateTime, price }) => (
         eventName,
         eventStartDateTime,
         eventEndDateTime,
+        eventContractAddress,
         price,
       },
     }}
