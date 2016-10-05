@@ -14,7 +14,7 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
     <p>(((State Placeholder)))</p>
     <p>(((Zip/Postal Code Placeholder)))</p>
     <p>(((Country Placeholder)))</p>
-    <img src="" />
+    <img src="https://images-na.ssl-images-amazon.com/images/G/01/aplusautomation/vendorimages/a6f8620a-9d8b-424b-b36a-eb326129a059.png._CB320335955__SR285,285_.png" />
 
     <h4><Link
       to={{ pathname:

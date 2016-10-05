@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 const Event = ({ eventName, eventStartDateTime, eventEndDateTime, eventContractAddress, price }) => (
   <li className="eventsList">
+    <img src="https://images-na.ssl-images-amazon.com/images/G/01/aplusautomation/vendorimages/a6f8620a-9d8b-424b-b36a-eb326129a059.png._CB320335955__SR285,285_.png" />
     <h2><Link
       to={{ pathname:
       '/events/' + eventName,
