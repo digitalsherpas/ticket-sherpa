@@ -77,7 +77,7 @@ export function requestEvents() {
       type: RECEIVE_EVENTS,
       payload: false,
     });
-    request.then(({ data }) => {
+    return request.then(({ data }) => {
       dispatch({
         type: REQUEST_EVENTS,
         payload: data,
