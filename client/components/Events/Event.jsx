@@ -17,6 +17,8 @@ const Event = ({ eventName, eventStartDateTime, eventEndDateTime, eventContractA
     >{eventName}</Link></h2>
     <p>Date: {eventStartDateTime}</p>
     <p>Price: {price}</p>
+
+    <p>(((City Placeholder)))</p>
   </li>
 );
 
