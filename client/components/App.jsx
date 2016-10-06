@@ -9,7 +9,7 @@ export default class App extends Component {
     return (
       <div>
         <h1><Link to={'/'}>Ticket Sherpa</Link></h1>
-        <searchEventsContainer />
+        <SearchEventsContainer />
         <hr></hr>
         {this.props.children}
       </div>
