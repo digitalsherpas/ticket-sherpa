@@ -15,6 +15,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const session = require('express-session');
 const keys = require('../keys.js');
+
 const app = express();
 
 app.use(session({
@@ -145,11 +146,41 @@ app.post('/api/tickets', (req, res) => {
   });
 });
 
+/* Example body of JSON request
+{
+  "contractAddress": "0x59dec10512ca71cdaf55a9d99ad098bc4131e9f1",
+  "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
+}
+*/
+app.post('/api/verifyAttendee', (req, res) => {
+  rp({
+    method: 'POST',
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/verifyAttendee`,
+    body: req.body,
+    json: true,
+  })
+  .then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+})
+
+/* Example body of JSON request
+{
+  "username": "unique_username",
+  "password": "password",
+  "name": "John Doe",
+  "email": "john@doe.com",
+  "phone_number": "+14702408888" // proper format
+}
+*/
 app.post('/registerUser', (req, res) => {
   rp({
     method: 'POST',
     url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
     body: req.body,
+    json: true,
   }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {

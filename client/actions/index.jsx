@@ -10,16 +10,17 @@ export function buyEvent(info, eventName) {
   const name = info.name.value;
 
   return (dispatch) => {
-    return axios.get('/api/events/?eventName='+eventName)
+    return axios.get(`/api/events/?eventName=${eventName}`)
     .then(({ data }) => {
       const obj = {
         contractAddress: data.eventContractAddress,
-        fromAddress: fromAddress,
-        name: name,
-        price: data.price,
+        fromAddress,
+        name,
+        price: Number(data.price), // TODO: type checking
       };
       return axios.post('/api/tickets', obj)
       .then(() => {
+        console.log('change pages');
         browserHistory.push('/hostevents');
       });
     });
