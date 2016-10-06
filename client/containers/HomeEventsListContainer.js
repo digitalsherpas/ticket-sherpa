@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/index.jsx';
-import SearchEvents from '../components/Search/SearchEvents.jsx';
+import HomeEvents from '../components/Home/HomeEvents.jsx';
 
 const mapStateToProps = state => ({
-  searchEvents: state.eventsListReducer.searchEvents,
+  events: state.eventsListReducer.eventsList,
+  loaded: state.eventsListReducer.receiveEvents,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-const SearchEventsContainer = connect(
+const HomeEventsListContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-  // actions go here mapDispatchToProps
-)(SearchEvents);
+)(HomeEvents);
 
-export default SearchEventsContainer;
+export default HomeEventsListContainer;

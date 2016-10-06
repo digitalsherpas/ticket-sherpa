@@ -25,7 +25,6 @@ app.use(session({
 
 const bodyParser = require('body-parser');
 
-
 // LetsEncrypt SSL settings
 
 // const le = letsencrypt.create({ server: 'staging' });
@@ -192,7 +191,7 @@ app.get('*', (req, res) => {
 // Manual SSL settings (for development)
 // const credentials = {
 //   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
-//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')) 
+//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key'))
 // };
 
 // https.createServer(credentials, app).listen(config.SERVER_PORT);

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import SearchEventsContainer from '../containers/SearchEventsContainer.js';
+import Nav from './Nav.jsx';
 
 // renders logo and maps props
 
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app">
         <h1><Link to={'/'}>Ticket Sherpa</Link></h1>
-        <SearchEventsContainer />
-        <hr></hr>
+        <Nav />
         {this.props.children}
       </div>
     );

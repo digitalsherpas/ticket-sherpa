@@ -51,6 +51,14 @@ export function addEvent(event) {
     // eventCreateDateTime: 'event create date time',
     startDateTime: eventStartDateTime,
     endDateTime: eventEndDateTime,
+    description: event.description.value,
+    'addressLine1': event.addressLine1.value,
+    'addressLine2': event.addressLine2.value,
+    city: event.city.value,
+    state: event.state.value,
+    zipPostalCode: event.zipPostalCode.value,
+    country: event.country.value,
+    image: event.image.value,
   };
 
   return (dispatch) => {
