@@ -171,7 +171,7 @@ app.post('/api/verifyAttendee', (req, res) => {
   "password": "password",
   "name": "John Doe",
   "email": "john@doe.com",
-  "phone_number": "14443332222"
+  "phone_number": "+14702408888" // proper format
 }
 */
 app.post('/registerUser', (req, res) => {
@@ -179,6 +179,7 @@ app.post('/registerUser', (req, res) => {
     method: 'POST',
     url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
     body: req.body,
+    json: true,
   }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
