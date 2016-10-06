@@ -3,6 +3,27 @@ import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
 
+export const REGISTER_USER = 'REGISTER_USER';
+
+export function registerUser(info) {
+  console.log(info, 'info')
+  const userObj = {
+    username: info.username.value,
+    password: info.password.value,
+    name: info.name.value,
+    email: info.email.value,
+    phone_number: info.phonenumber.value,
+  };
+  console.log(userObj);
+
+  return (dispatch) => {
+    return axios.post('/registerUser', userObj)
+    .then(({ data }) => {
+      console.log(data);
+    });
+  };
+}
+
 export const BUY_EVENT = 'BUY_EVENT';
 
 export function buyEvent(info, eventName) {

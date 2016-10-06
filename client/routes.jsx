@@ -10,6 +10,7 @@ import EventDetailsContainer from './containers/EventDetailsContainer.js';
 import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js';
 import LoginContainer from './containers/LoginContainer.js';
 import BuyEventContainer from './containers/BuyEventContainer.js';
+import SignUpContainer from './containers/SignUpContainer.js';
 
 const routes = (
   <Router history={browserHistory}>
@@ -28,6 +29,7 @@ const routes = (
       <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} />
 
       <Route path="/login" component={LoginContainer} />
+      <Route path="/signup" component={SignUpContainer} />
     </Route>
   </Router>
 );

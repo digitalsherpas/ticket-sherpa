@@ -9,6 +9,7 @@ export default class Nav extends Component {
           <li><Link to="/events">Events</Link></li>
           <li><Link to="/host">Host</Link></li>
           <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup">Signup</Link></li>
         </ul>
       </nav>
     );
