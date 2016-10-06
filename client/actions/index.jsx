@@ -26,6 +26,17 @@ export function buyEvent(info, eventName) {
   };
 }
 
+export const SEARCH_EVENTS = 'SEARCH_EVENTS';
+
+export function searchEvents(eventName) {
+  return (dispatch) => {
+    return axios.get('/api/events/?eventName='+eventName)
+    .then(({ data }) => {
+      console.log(data);
+      browserHistory.push('/events/' + data);
+    });
+  };
+}
 
 export const ADD_EVENT = 'ADD_EVENT';
 
@@ -112,15 +123,6 @@ export function requestEvents() {
         payload: true,
       });
     });
-  };
-}
-
-export const SEARCH_EVENTS = 'SEARCH_EVENTS';
-
-export function searchEvents(event) {
-  return {
-    type: SEARCH_EVENTS,
-    event,
   };
 }
 

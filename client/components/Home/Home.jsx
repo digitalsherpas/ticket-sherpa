@@ -12,8 +12,14 @@ export default class Nav extends Component {
         <h1>Welcome to Ticket Sherpa</h1>
         <h4>Your one stop ticket shop</h4>
         {/* <Events /> */}
-        <img height="200px" width="200px" />
-        <SearchEventsContainer />
+        <div className="homeImage">
+          <img height="200px" width="200px" />
+        </div>
+
+        <div className="homeSearch">
+          <SearchEventsContainer />
+        </div>
+
         <HomeEventsListContainer />
       </div>
     );

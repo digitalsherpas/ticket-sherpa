@@ -16,4 +16,15 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.homeImage {
+  display: flex;
+  justify-content: center;
+}
+
+.homeSearch {
+  display: flex;
+  justify-content: center;
 }
