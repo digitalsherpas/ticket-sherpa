@@ -16,7 +16,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .homeImage {
@@ -27,4 +27,14 @@ p {
 .homeSearch {
   display: flex;
   justify-content: center;
+}
+
+.home h1 {
+  display: flex;
+  justify-content: flex-start;;
+}
+
+.home h4 {
+  display: flex;
+  justify-content: flex-start;;
 }
