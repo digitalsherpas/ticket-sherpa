@@ -5,16 +5,16 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
   <div>
     <img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" />
     <h4>Event Name: {eventName}</h4>
-    <p>(((Description Placeholder)))</p>
+    <p>Description: {query.description}</p>
     <p>Price: {query.price}</p>
     <p>Start Date:{query.eventStartDateTime}</p>
-    <p>End Date:{query.eventEndDateTime}</p>
-    <p>(((Street Address Placeholder)))</p>
-    <p>(((Address Line 2 Placeholder)))</p>
-    <p>(((City Placeholder)))</p>
-    <p>(((State Placeholder)))</p>
-    <p>(((Zip/Postal Code Placeholder)))</p>
-    <p>(((Country Placeholder)))</p>
+    <p>End Date: {query.eventEndDateTime}</p>
+    <p>Street Address: {query.addressLine1}</p>
+    <p>Address Line 2: {query.addressLine2}</p>
+    <p>City: {query.city}</p>
+    <p>State: {query.state}</p>
+    <p>Zip/Postal Code: {query.zipPostalCode}</p>
+    <p>Country: {query.country}</p>
     <h4><Link
       to={{ pathname:
         '/buyevent/' + eventName,
@@ -24,8 +24,7 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
     }}
     >Buy Ticket</Link></h4>
 
-    </div>
-  );
-};
+  </div>
+);
 
 export default EventDetails;

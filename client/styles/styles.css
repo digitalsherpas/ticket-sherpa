@@ -5,3 +5,15 @@ a {
 p {
   font-size: 20px;
 }
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeEventsList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import Event from './Event.jsx';
+import Event from '../Events/Event.jsx';
 import SearchEvents from '../Search/SearchEvents.jsx';
 import MDSpinner from 'react-md-spinner';
 
@@ -15,10 +15,8 @@ export default class Events extends Component {
   render() {
     const loaded = this.props.loaded ?
     (
-      <div className="events">
-        <SearchEvents />
-        <h2>Events</h2>
-        <ul>
+      <div>
+        <ul className="homeEventsList">
           {this.props.events.map((event, i) =>
             <Event
               key={i}
@@ -29,19 +27,20 @@ export default class Events extends Component {
       </div>
     ) :
     (
-      <div className="events">
-        <SearchEvents />
-        <h2>Events</h2>
+      <div>
         <MDSpinner singleColor="#03a9f4" />
       </div>
     );
     return (
       <div>
+        <h2>Events</h2>
         { loaded }
       </div>
     );
   }
 }
+
+
 
 // Events.propTypes = {
 //   events: PropTypes.arrayOf(PropTypes.shape({

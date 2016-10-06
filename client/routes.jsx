@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App.jsx';
-import Home from './components/Home.jsx';
+import Home from './components/Home/Home.jsx';
 import HostHome from './components/HostHome.jsx';
 import HostEventsContainer from './containers/HostEventsContainer.js';
 import HostCreateEventContainer from './containers/HostCreateEventContainer.js';
