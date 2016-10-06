@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./"
+    "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
+    "dummydata": "node ./client/data/dummyEventData.js"
   },
   "repository": {
     "type": "git",
