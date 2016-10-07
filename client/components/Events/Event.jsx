@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country }) => (
+const Event = ({ eventName, contractAddress, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country }) => (
   <li>
     <img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" />
     <h2><Link

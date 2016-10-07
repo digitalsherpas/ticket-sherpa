@@ -1,5 +1,6 @@
 a {
   font-size: 20px;
+  text-decoration: none;
 }
 
 p {
@@ -37,4 +38,16 @@ p {
 .home h4 {
   display: flex;
   justify-content: flex-start;;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
 }
