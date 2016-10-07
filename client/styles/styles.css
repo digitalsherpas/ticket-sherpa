@@ -20,6 +20,11 @@ p {
   justify-content: space-between;
 }
 
+.homeEventsList:after {
+  content: "";
+  flex: auto;
+}
+
 .homeImage {
   display: flex;
   justify-content: center;
@@ -40,14 +45,31 @@ p {
   justify-content: flex-start;;
 }
 
-.header {
+.appHeader {
   display: flex;
   align-items: center;
 }
 
-.nav {
+.navComponent {
   list-style-type: none;
   display: flex;
   justify-content: space-around;
   flex: 1;
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.logo {
+  flex: 2;
 }

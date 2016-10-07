@@ -8,11 +8,11 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <div className="header">
+        <div className="appHeader">
           <div className="logo">
             <h1><Link to={'/'}>Ticket Sherpa</Link></h1>
           </div>
-          <div className="nav">
+          <div className="navComponent">
             <Nav />
           </div>
         </div>
