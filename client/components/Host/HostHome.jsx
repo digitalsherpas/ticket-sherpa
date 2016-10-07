@@ -10,6 +10,7 @@ export default class HostHome extends Component {
           <li><Link to="/hostevents">List of Events</Link></li>
           <li><Link to="/hostcreateevent">Create Event</Link></li>
           <li><Link to="/tickets">My Tickets</Link></li>
+          <li><Link to="/marketplace">Marketplace</Link></li>
         </ul>
         <hr></hr>
         {this.props.children}
