@@ -97,8 +97,6 @@ app.get('/api/events', (req, res) => {
 });
 
 app.get('/api/eventsList', (req, res) => {
-  console.log(req.query.readFromDB);
-  console.log(req.query.eventName);
   const reqObj = {
     url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
     json: true,
