@@ -14,8 +14,7 @@ export default class SearchEvents extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.searchEvents(this.refs.search.value));
-    // console.log(this.refs.search.value);
+    this.props.searchEvents(this.refs.search.value);
   }
 
   render() {

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import staticEvents from '../data/events.js';
 
 import {
-  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS,
+  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS, RECEIVE_SEARCH_EVENTS, SEARCH_EVENTS_RESULTS,
 } from '../actions/index.jsx';
 
 const selectEvent = (state = staticEvents, action) => {
@@ -43,11 +43,23 @@ const receiveEvents = (state = false, action) => {
 
 const searchEvents = (state = {}, action) => {
   switch (action.type) {
-    case 'SEARCH_EVENTS':
+    case SEARCH_EVENTS:
       return {
         ...state,
-        searchEvents: action.search,
+        searchEvents: action.payload,
       };
+    default:
+      return state;
+  }
+};
+
+const searchEventsList = (state = [], action) => {
+  switch (action.type) {
+    case SEARCH_EVENTS_RESULTS:
+      if (!action.payload || action.payload.data !== undefined) {
+        return state;
+      }
+      return action.payload;
     default:
       return state;
   }
@@ -58,6 +70,7 @@ const eventsListReducer = combineReducers({
   eventsList,
   receiveEvents,
   searchEvents,
+  searchEventsList,
 });
 
 export default eventsListReducer;
