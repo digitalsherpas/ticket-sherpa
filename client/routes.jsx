@@ -20,7 +20,7 @@ export default class Routes extends Component {
   }
 
   requireAuth(nextState, replace) {
-    if (this.props.auth !== 'Authenticated') {
+    if (!this.props.auth) {
       replace({
         pathname: '/login',
       })
