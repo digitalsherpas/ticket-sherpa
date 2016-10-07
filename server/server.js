@@ -86,12 +86,24 @@ app.get('/api/events', (req, res) => {
       },
       json: true,
     };
-  } else {
-    reqObj = {
-      url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
-    };
   }
 
+  rp(reqObj).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
+app.get('/api/eventsList', (req, res) => {
+  const reqObj = {
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
+    json: true,
+    qs: {
+      readFromDB: req.query.readFromDB,
+      eventName: req.query.eventName,
+    },
+  };
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
