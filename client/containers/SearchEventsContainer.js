@@ -4,7 +4,6 @@ import * as actionCreators from '../actions/index.jsx';
 import SearchEvents from '../components/Search/SearchEvents.jsx';
 
 const mapStateToProps = state => ({
-  searchEvents: state.eventsListReducer.searchEvents,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);

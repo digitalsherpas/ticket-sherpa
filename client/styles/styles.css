@@ -1,5 +1,6 @@
 a {
   font-size: 20px;
+  text-decoration: none;
 }
 
 p {
@@ -16,4 +17,37 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.homeImage {
+  display: flex;
+  justify-content: center;
+}
+
+.homeSearch {
+  display: flex;
+  justify-content: center;
+}
+
+.home h1 {
+  display: flex;
+  justify-content: flex-start;;
+}
+
+.home h4 {
+  display: flex;
+  justify-content: flex-start;;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
 }

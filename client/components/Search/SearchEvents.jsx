@@ -8,8 +8,14 @@ export default class SearchEvents extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // handleChange(e) {
+  //   e.preventDefault()
+  // }
+
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.props.searchEvents(this.refs.search.value));
+    // console.log(this.refs.search.value);
   }
 
   render() {
