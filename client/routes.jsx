@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import App from './components/App.jsx';
 import Home from './components/Home/Home.jsx';
@@ -12,24 +12,40 @@ import LoginContainer from './containers/LoginContainer.js';
 import BuyEventContainer from './containers/BuyEventContainer.js';
 import SignUpContainer from './containers/SignUpContainer.js';
 
-const routes = (
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="/events" component={EventsListContainer}/>
-      <Route path="/events/:eventName" component={EventDetailsContainer}/>
-      <Route path="/hostevents/:eventName" component={HostEventDetailsContainer}/>
-      <Route path="/buyevent/:eventName" component={BuyEventContainer}/>
+export default class Routes extends Component {
+  constructor(props) {
+    super(props);
 
-      <Route path="/host" component={HostHome}/>
-        <Route path="/hostevents" component={HostEventsContainer} />
-        <Route path="/hostcreateevent" component={HostCreateEventContainer} />
-      <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} />
+  this.requireAuth = this.requireAuth.bind(this);
+  }
 
-      <Route path="/login" component={LoginContainer} />
-      <Route path="/signup" component={SignUpContainer} />
-    </Route>
-  </Router>
-);
+  requireAuth(nextState, replace) {
+    if (!this.props.auth) {
+      replace({
+        pathname: '/login',
+      })
+    }
+  }
 
-export default routes;
+  render() {
+    console.log(this.props.auth);
+    return (
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home}/>
+        <Route path="/events" component={EventsListContainer}/>
+        <Route path="/events/:eventName" component={EventDetailsContainer}/>
+        <Route path="/buyevent/:eventName" component={BuyEventContainer} onEnter={this.requireAuth}/>
+
+        <Route path="/host" component={HostHome} onEnter={this.requireAuth}/>
+        <Route path="/hostevents" component={HostEventsContainer} onEnter={this.requireAuth}/>
+        <Route path="/hostcreateevent" component={HostCreateEventContainer} onEnter={this.requireAuth}/>
+        <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} onEnter={this.requireAuth}/>
+
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/signup" component={SignUpContainer} />
+      </Route>
+    </Router>
+  )
+  }
+}

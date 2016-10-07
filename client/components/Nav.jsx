@@ -13,8 +13,7 @@ export default class Nav extends Component {
   }
 
   render() {
-    console.log(this.props.auth);
-    if (this.props.auth === 'Authenticated') {
+    if (this.props.auth) {
       return (
         <nav className="navBar">
           <ul className="navLinks">

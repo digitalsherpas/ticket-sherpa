@@ -23,7 +23,7 @@ export default class Login extends Component {
       return (
         <MDSpinner singleColor="#03a9f4" />
       );
-    } else if (this.props.authenticating === 'complete' && this.props.auth === 'Authenticated') {
+    } else if (this.props.authenticating === 'complete' && this.props.auth) {
       return (
         <div>Logged in</div>
       );

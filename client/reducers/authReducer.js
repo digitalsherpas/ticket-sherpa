@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const authReducer = (state = {
-  auth: 'Not Authenticated',
+  auth: false,
   authenticating: 'none',
 }, action) => {
   switch (action.type) {
@@ -17,7 +17,7 @@ const authReducer = (state = {
       };
     case 'USER_IS_AUTHENTICATED':
       return {
-        auth: 'Authenticated',
+        auth: true,
         authenticating: 'complete',
       };
     case 'USER_AUTHENTICATION_COMPLETE':
@@ -27,7 +27,7 @@ const authReducer = (state = {
       };
     case 'USER_LOG_OUT':
       return {
-        auth: 'Not Authenticated',
+        auth: false,
         authenticating: 'none',
       };
     default:
