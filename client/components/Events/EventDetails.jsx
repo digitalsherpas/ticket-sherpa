@@ -5,6 +5,7 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
   <div>
     <img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" />
     <h4>Event Name: {eventName}</h4>
+    <h4>Contract Address: {query.eventContractAddress}</h4>
     <p>Description: {query.description}</p>
     <p>Price: {query.price}</p>
     <p>Start Date:{query.eventStartDateTime}</p>
@@ -20,6 +21,7 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
         '/buyevent/' + eventName,
         query: {
           eventName,
+          contractAddress: query.eventContractAddress,
         },
     }}
     >Buy Ticket</Link></h4>

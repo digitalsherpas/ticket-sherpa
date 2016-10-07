@@ -47,6 +47,16 @@ export function buyEvent(info, eventName) {
   };
 }
 
+export const SEARCH_EVENTS = 'SEARCH_EVENTS';
+
+export function searchEvents(eventName) {
+  return (dispatch) => {
+    return axios.get('/api/events/?eventName='+eventName)
+    .then(({ data }) => {
+      browserHistory.push('/events/' + data);
+    });
+  };
+}
 
 export const ADD_EVENT = 'ADD_EVENT';
 
@@ -73,8 +83,8 @@ export function addEvent(event) {
     startDateTime: eventStartDateTime,
     endDateTime: eventEndDateTime,
     description: event.description.value,
-    'addressLine1': event.addressLine1.value,
-    'addressLine2': event.addressLine2.value,
+    addressLine1: event.addressLine1.value,
+    addressLine2: event.addressLine2.value,
     city: event.city.value,
     state: event.state.value,
     zipPostalCode: event.zipPostalCode.value,
@@ -133,15 +143,6 @@ export function requestEvents() {
         payload: true,
       });
     });
-  };
-}
-
-export const SEARCH_EVENTS = 'SEARCH_EVENTS';
-
-export function searchEvents(event) {
-  return {
-    type: SEARCH_EVENTS,
-    event,
   };
 }
 
