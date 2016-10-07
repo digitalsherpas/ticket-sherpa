@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 export const REGISTER_USER = 'REGISTER_USER';
 
 export function registerUser(info) {
-  console.log(info, 'info')
   const userObj = {
     username: info.username.value,
     password: info.password.value,
@@ -14,12 +13,12 @@ export function registerUser(info) {
     email: info.email.value,
     phone_number: info.phonenumber.value,
   };
-  console.log(userObj);
 
   return (dispatch) => {
     return axios.post('/registerUser', userObj)
-    .then(({ data }) => {
-      console.log(data);
+    .then(({}) => {
+      console.log('signup success');
+      browserHistory.push('/');
     });
   };
 }
