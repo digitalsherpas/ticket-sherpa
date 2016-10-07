@@ -48,20 +48,10 @@ export function buyEvent(info, eventName) {
 }
 
 export const RECEIVE_SEARCH_EVENTS = 'RECEIVE_SEARCH_EVENTS';
-
-// export function receiveSearchEvents() {
-//   return {
-//     type: RECEIVE_SEARCH_EVENTS,
-//     events,
-//   }
-// }
-
 export const SEARCH_EVENTS = 'SEARCH_EVENTS';
-
 export const SEARCH_EVENTS_RESULTS = 'SEARCH_EVENTS_RESULTS';
 
 export function searchEvents(eventName) {
-
   return (dispatch) => {
     dispatch({
       type: SEARCH_EVENTS,
