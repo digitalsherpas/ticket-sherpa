@@ -194,11 +194,22 @@ export function authenticateLogin(userObj) {
           type: USER_IS_AUTHENTICATED,
           payload: result,
         });
-        browserHistory.push('/');
+        browserHistory.push('/host');
       }
     });
     dispatch({
       type: USER_IS_AUTHENTICATING,
     });
+  };
+}
+
+export const USER_LOG_OUT = 'USER_LOG_OUT';
+
+export function logOut(userObj) {
+  return (dispatch) => {
+    dispatch({
+      type: USER_LOG_OUT,
+    });
+    browserHistory.push('/');
   };
 }

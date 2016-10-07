@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Nav from './Nav.jsx';
+import NavContainer from '../containers/NavContainer.js';
 
 // renders logo and maps props
 
@@ -13,7 +13,7 @@ export default class App extends Component {
             <h1><Link to={'/'}>Ticket Sherpa</Link></h1>
           </div>
           <div className="navComponent">
-            <Nav />
+            <NavContainer />
           </div>
         </div>
         {this.props.children}
