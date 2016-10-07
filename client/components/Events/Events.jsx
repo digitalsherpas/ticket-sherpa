@@ -9,7 +9,6 @@ export default class Events extends Component {
   }
 
   componentWillMount() {
-    this.props.requestEvents();
   }
 
   render() {
@@ -19,7 +18,7 @@ export default class Events extends Component {
         <SearchEvents />
         <h2>Events</h2>
         <ul>
-          {this.props.events.map((event, i) =>
+          {this.props.searchEventsList.map((event, i) =>
             <Event
               key={i}
               {...event}

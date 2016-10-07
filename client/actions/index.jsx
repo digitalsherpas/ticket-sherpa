@@ -47,14 +47,55 @@ export function buyEvent(info, eventName) {
   };
 }
 
+export const RECEIVE_SEARCH_EVENTS = 'RECEIVE_SEARCH_EVENTS';
+
+// export function receiveSearchEvents() {
+//   return {
+//     type: RECEIVE_SEARCH_EVENTS,
+//     events,
+//   }
+// }
+
 export const SEARCH_EVENTS = 'SEARCH_EVENTS';
 
+export const SEARCH_EVENTS_RESULTS = 'SEARCH_EVENTS_RESULTS';
+
 export function searchEvents(eventName) {
+
   return (dispatch) => {
-    return axios.get('/api/events/?eventName='+eventName)
-    .then(({ data }) => {
-      browserHistory.push('/events/' + data);
+    dispatch({
+      type: SEARCH_EVENTS,
+      payload: eventName,
     });
+    dispatch({
+      type: RECEIVE_SEARCH_EVENTS,
+      payload: false,
+    });
+    return axios.get('/api/eventsList?readFromDB=true&eventName=' + eventName)
+      .then((data) => {
+        console.log(data);
+        dispatch({
+          type: SEARCH_EVENTS_RESULTS,
+          payload: data.data,
+        });
+        browserHistory.push('/events');
+        dispatch({
+          type: RECEIVE_SEARCH_EVENTS,
+          payload: true,
+        });
+      }).then((error) => {
+        dispatch({
+          type: SEARCH_EVENTS_RESULTS,
+          payload: {
+            error,
+            data: false,
+          },
+        });
+        dispatch({
+          type: RECEIVE_SEARCH_EVENTS,
+          payload: true,
+        });
+      });
   };
 }
 
