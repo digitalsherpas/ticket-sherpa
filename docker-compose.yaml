@@ -9,6 +9,11 @@ services:
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: tickether
 
+  testrpc:
+    image: testrpc
+    ports:
+      - "8545:8545"
+
   db:
     image: db
     ports:
@@ -18,7 +23,8 @@ services:
     environment:
       DATABASEUSER: docker
       DATABASEPASSWORD: docker
-      DATABASEPORT: postgres:5432
+      DATABASEADDRESS: postgres
+      DATABASEPORT: 5432
     depends_on:
       - postgres
 
@@ -28,9 +34,12 @@ services:
       - "3002:3002"
     links:
       - db
+      - testrpc
     depends_on:
       - db
+      - testrpc
     environment:
+      ETHEREUM_CONNECTION_STRING: http://testrpc:8545
       DB_SERVER_URL: http://db
 
 
