@@ -5,7 +5,8 @@ export default class HostEvent extends Component {
   constructor(props) {
     super(props);
     this.buyTicket = this.buyTicket.bind(this);
-    this.verifyTicket = this.verifyTicket.bind(this);
+    this.hostVerifyTicket = this.hostVerifyTicket.bind(this);
+    this.userVerifyTicket = this.userVerifyTicket.bind(this);
   }
 
   buyTicket(e) {
@@ -25,7 +26,7 @@ export default class HostEvent extends Component {
     });    
   }
 
-  verifyTicket(e) {
+  hostVerifyTicket(e) {
     e.preventDefault();
     const account = web3.eth.coinbase;
     const contractAddress = this.props.location.query.contractAddress;
@@ -41,10 +42,26 @@ export default class HostEvent extends Component {
     });
   }
 
+  userVerifyTicket(e) {
+    e.preventDefault();
+    const qrcodedraw = new QRCodeLib.QRCodeDraw();
+    const qrstring = 'localhost:3000/verify';
+
+    qrcodedraw.draw(this.refs.userVerifyQR, qrstring, function(error,canvas){
+      if(error){
+         return console.log('Error =( ',error);
+      }
+    });
+  }
+
   viewQRCode(e) {
     e.preventDefault();
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const test = qrcodedraw.draw(this.refs.qrcanvas, this.props.location.query.contractAddress, function(error,canvas){
+    const qrstring = this.props.location.query.contractAddress;
+    console.log(qrstring);
+
+
+    qrcodedraw.draw(this.refs.contractQR, qrstring, function(error,canvas){
       if(error){
          return console.log('Error =( ',error);
       }
@@ -64,18 +81,25 @@ export default class HostEvent extends Component {
           <input type="submit"/>
         </form>
 
-        <form onSubmit={this.verifyTicket.bind(this)}>
+        <form onSubmit={this.hostVerifyTicket.bind(this)}>
           <hr></hr>
-          <h2>Verify Ticket</h2>
-          <input type="submit" value="Verify Ticket"/>
+          <h2>Host Verify Ticket</h2>
+          <input type="submit" value="Host Verify Ticket"/>
         </form>
+
+        <form onSubmit={this.userVerifyTicket.bind(this)}>
+          <hr></hr>
+          <h2>User Verify Ticket</h2>
+          <input type="submit" value="User Verify Ticket"/>
+        </form>
+        <canvas ref="userVerifyQR"></canvas>
 
         <form onSubmit={this.viewQRCode.bind(this)}>
           <hr></hr>
           <h2>View QR Code</h2>
           <input type="submit" value="View"/>
         </form>
-        <canvas id="test" ref="qrcanvas"></canvas>
+        <canvas ref="contractQR"></canvas>
 
       </div>
     );

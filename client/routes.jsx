@@ -11,12 +11,12 @@ import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js
 import LoginContainer from './containers/LoginContainer.js';
 import BuyEventContainer from './containers/BuyEventContainer.js';
 import SignUpContainer from './containers/SignUpContainer.js';
+import HostVerifyContainer from './containers/HostVerifyContainer.js';
 
 export default class Routes extends Component {
   constructor(props) {
     super(props);
-
-  this.requireAuth = this.requireAuth.bind(this);
+    this.requireAuth = this.requireAuth.bind(this);
   }
 
   requireAuth(nextState, replace) {
@@ -43,6 +43,7 @@ export default class Routes extends Component {
 
         <Route path="/login" component={LoginContainer} />
         <Route path="/signup" component={SignUpContainer} />
+        <Route path="/verify" component={HostVerifyContainer} />
       </Route>
     </Router>
   )
