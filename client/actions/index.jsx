@@ -73,7 +73,6 @@ export function searchEvents(eventName) {
     });
     return axios.get('/api/eventsList?readFromDB=true&eventName=' + eventName)
       .then((data) => {
-        console.log(data);
         dispatch({
           type: SEARCH_EVENTS_RESULTS,
           payload: data.data,

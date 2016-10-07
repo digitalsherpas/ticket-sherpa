@@ -59,9 +59,7 @@ const searchEventsList = (state = [], action) => {
       if (!action.payload || action.payload.data !== undefined) {
         return state;
       }
-      return {
-        searchEventsList: action.payload,
-      };
+      return action.payload;
     default:
       return state;
   }
