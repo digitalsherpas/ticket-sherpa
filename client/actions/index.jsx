@@ -105,7 +105,7 @@ export const REQUEST_EVENTS = 'REQUEST_EVENTS';
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function requestEvents() {
-  const request = axios.get('/api/events');
+  const request = axios.get('/api/eventsList?readFromDB=true');
   return (dispatch) => {
     dispatch({
       type: RECEIVE_EVENTS,
