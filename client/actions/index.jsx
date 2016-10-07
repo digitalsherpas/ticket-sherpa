@@ -53,7 +53,6 @@ export function searchEvents(eventName) {
   return (dispatch) => {
     return axios.get('/api/events/?eventName='+eventName)
     .then(({ data }) => {
-      console.log(data);
       browserHistory.push('/events/' + data);
     });
   };
