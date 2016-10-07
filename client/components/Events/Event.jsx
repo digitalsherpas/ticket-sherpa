@@ -41,7 +41,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
       },
     }}
     >{eventName}</Link></h2>
-    <p>Date: {eventStartDateTime}</p>
+    <p>Date: {new Date(eventStartDateTime).toLocaleString()}</p>
     <p>Price: {price}</p>
     <p>City: {city}</p>
   </li>

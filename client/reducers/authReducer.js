@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const loginReducer = (state = {
+const authReducer = (state = {
   auth: 'Not Authenticated',
   authenticating: 'none',
 }, action) => {
@@ -25,9 +25,14 @@ const loginReducer = (state = {
         ...state,
         authenticating: 'none',
       };
+    case 'USER_LOG_OUT':
+      return {
+        auth: 'Not Authenticated',
+        authenticating: 'none',
+      };
     default:
       return state;
   }
 };
 
-export default loginReducer;
+export default authReducer;

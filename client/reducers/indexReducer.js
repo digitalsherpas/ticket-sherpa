@@ -4,13 +4,13 @@ import { routerReducer } from 'react-router-redux';
 import eventDetailsReducer from './eventDetailsReducer';
 import eventsListReducer from './eventsListReducer';
 import hostEventsReducer from './hostEventsReducer';
-import loginReducer from './loginReducer';
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
   eventDetailsReducer,
   eventsListReducer,
   hostEventsReducer,
-  loginReducer,
+  authReducer,
   routing: routerReducer,
 });
 
