@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import RoutesContainer from './containers/RoutesContainer.js';
 import store, { history } from './store';
-import AppProvider from './AppProvider.jsx';
+import AppProvider from './components/AppProvider.jsx';
 
 render(
   <AppProvider/>,
