@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
-import SearchEvents from '../Search/SearchEvents.jsx';
+import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
 import MDSpinner from 'react-md-spinner';
 
 export default class Events extends Component {
@@ -15,7 +15,7 @@ export default class Events extends Component {
     const loaded = this.props.loaded ?
     (
       <div className="events">
-        <SearchEvents />
+        <SearchEventsContainer />
         <h2>Events</h2>
         <ul>
           {this.props.searchEventsList.map((event, i) =>
@@ -29,7 +29,7 @@ export default class Events extends Component {
     ) :
     (
       <div className="events">
-        <SearchEvents />
+        <SearchEventsContainer />
         <h2>Events</h2>
         <MDSpinner singleColor="#03a9f4" />
       </div>

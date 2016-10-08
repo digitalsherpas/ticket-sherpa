@@ -4,9 +4,9 @@ const events = [
   {
     "eventName": "Ware",
     "quota": 42118,
-    "ticketPrice": 3510,
-    "startDateTime": "2038-12-30T23:30:30+00:00",
-    "endDateTime": "2038-12-30T23:30:30+00:00",
+    "price": 3510,
+    "eventStartDateTime": "2038-12-30T23:30:30+00:00",
+    "eventEndDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Id duis adipisicing esse magna.",
     "addressLine1": "104 Lafayette Walk, Roosevelt, Maine, 5885",
     "addressLine2": "Menahan Street",
@@ -19,7 +19,7 @@ const events = [
   {
     "eventName": "Branch",
     "quota": 72329,
-    "ticketPrice": 7146,
+    "price": 7146,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Sit cillum exercitation anim proident deserunt do eu.",
@@ -34,7 +34,7 @@ const events = [
   {
     "eventName": "May",
     "quota": 54123,
-    "ticketPrice": 8625,
+    "price": 8625,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Voluptate voluptate eu tempor pariatur pariatur anim nostrud non enim dolor.",
@@ -49,7 +49,7 @@ const events = [
   {
     "eventName": "Hope",
     "quota": 28320,
-    "ticketPrice": 6928,
+    "price": 6928,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Nostrud est nostrud laboris ut adipisicing deserunt adipisicing consectetur labore laboris do.",
@@ -64,7 +64,7 @@ const events = [
   {
     "eventName": "Jami",
     "quota": 66696,
-    "ticketPrice": 2161,
+    "price": 2161,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Eiusmod do consequat irure et duis est do aliqua labore anim ad velit exercitation.",
@@ -79,7 +79,7 @@ const events = [
   {
     "eventName": "Bowen",
     "quota": 91957,
-    "ticketPrice": 2528,
+    "price": 2528,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Quis aliquip quis quis non.",
@@ -94,7 +94,7 @@ const events = [
   {
     "eventName": "Montgomery",
     "quota": 76838,
-    "ticketPrice": 5943,
+    "price": 5943,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Incididunt voluptate laborum laborum quis commodo.",
@@ -109,7 +109,7 @@ const events = [
   {
     "eventName": "Iris",
     "quota": 3669,
-    "ticketPrice": 1218,
+    "price": 1218,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Labore culpa proident enim in laborum fugiat esse consequat enim labore sint nulla id non.",
@@ -124,7 +124,7 @@ const events = [
   {
     "eventName": "May",
     "quota": 47454,
-    "ticketPrice": 8863,
+    "price": 8863,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Do amet excepteur occaecat dolor labore minim mollit.",
@@ -139,7 +139,7 @@ const events = [
   {
     "eventName": "Noble",
     "quota": 29097,
-    "ticketPrice": 7685,
+    "price": 7685,
     "startDateTime": "2038-12-30T23:30:30+00:00",
     "endDateTime": "2038-12-30T23:30:30+00:00",
     "description": "Laboris aliquip fugiat laboris ad duis cillum.",
