@@ -28,7 +28,6 @@ export default class Routes extends Component {
   }
 
   render() {
-    console.log(this.props.auth);
     return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
