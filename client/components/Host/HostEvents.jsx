@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import HostEvent from '../Host/HostEvent.jsx';
+import axios from 'axios';
 
 export default class HostEvents extends Component {
   constructor(props) {
@@ -7,13 +8,17 @@ export default class HostEvents extends Component {
   }
 
   componentWillMount() {
-    this.props.requestEvents();
+    this.props.requestHostEvents();
+    axios.get()
   }
 
   render() {
     return (
       <div className="hostEvents">
-        <h2>Host Events</h2>
+        <h2>My Events</h2>
+
+        <hr></hr>
+        <p>All Events</p>
         <ul>
           {this.props.hostEvents.map((hostEvent, i) =>
             <HostEvent

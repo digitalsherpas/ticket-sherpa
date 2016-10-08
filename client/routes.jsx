@@ -43,11 +43,11 @@ export default class Routes extends Component {
         <Route path="/hostcreateevent" component={HostCreateEventContainer} onEnter={this.requireAuth}/>
         <Route path="/tickets" component={HostTicketsContainer} onEnter={this.requireAuth}/>
         <Route path="/marketplace" component={HostMarketplaceContainer} />
+        <Route path="/verify" component={HostVerifyContainer} />
         <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} onEnter={this.requireAuth}/>
 
         <Route path="/login" component={LoginContainer} />
         <Route path="/signup" component={SignUpContainer} />
-        <Route path="/verify" component={HostVerifyContainer} />
       </Route>
     </Router>
   )

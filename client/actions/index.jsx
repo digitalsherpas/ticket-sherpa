@@ -123,7 +123,11 @@ export function addEvent(event) {
   };
 
   return (dispatch) => {
-    return axios.post('/api/events', obj)
+    return axios.get('/getuser')
+    .then(({data}) => {
+      obj.username = data.username;
+      return axios.post('/api/events', obj);
+    })
     .then(() => {
       browserHistory.push('/events');
     });
@@ -146,6 +150,7 @@ export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function requestEvents() {
   const request = axios.get('/api/eventsList?readFromDB=true');
+
   return (dispatch) => {
     dispatch({
       type: RECEIVE_EVENTS,
@@ -170,6 +175,47 @@ export function requestEvents() {
       });
       dispatch({
         type: RECEIVE_EVENTS,
+        payload: true,
+      });
+    });
+  };
+}
+
+export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
+export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
+
+export function requestHostEvents() {
+  const request = axios.get('/getuser')
+  .then(({data}) => {
+    const hostName = data.username;
+    return axios.get('/api/HostEventsList?readFromDB=true&hostName=' + hostName);
+  });
+
+  return (dispatch) => {
+    dispatch({
+      type: RECEIVE_HOST_EVENTS,
+      payload: false,
+    });
+    return request.then(({ data }) => {
+      console.log(data, 'THIS IS WHAT I WANT')
+      dispatch({
+        type: REQUEST_HOST_EVENTS,
+        payload: data,
+      });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
+        payload: true,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: REQUEST_HOST_EVENTS,
+        payload: {
+          error,
+          data: false,
+        },
+      });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
         payload: true,
       });
     });

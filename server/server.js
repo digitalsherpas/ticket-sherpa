@@ -112,6 +112,22 @@ app.get('/api/eventsList', (req, res) => {
   });
 });
 
+app.get('/api/HostEventsList', (req, res) => {
+  const reqObj = {
+    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/HostEventsList`,
+    json: true,
+    qs: {
+      readFromDB: req.query.readFromDB,
+      hostName: req.query.hostName,
+    },
+  };
+  rp(reqObj).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
 /* Example body of JSON request
 {
   "ticketPrice":"10",
@@ -164,17 +180,17 @@ app.post('/api/tickets', (req, res) => {
   "fromAddress": "0xfa6a88ff72f079e611ab427653eff5ce99cb26b9",
 }
 */
-app.post('/api/verifyAttendee', (req, res) => {
+app.post('/db/addEventToUser', (req, res) => {
+  console.log('in reg server')
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/verifyAttendee`,
+    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
     body: req.body,
     json: true,
-  })
-  .then((obj) => {
-    res.status(200).send(obj);
+  }).then((event) => {
+    console.log(event, 'here');
   }).catch((err) => {
-    res.status(500).send(err.error);
+    reject(err);
   });
 })
 
