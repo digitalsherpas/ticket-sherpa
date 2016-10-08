@@ -9,7 +9,6 @@
     "auth": "node ./node_modules/grunt-cli/bin/grunt auth",
     "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend",
     "lint": "eslint src",
-    "test": "jest",
     "test:watch": "npm test -- --watch",
     "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
     "dummydata": "node ./client/data/dummyEventData.js"
@@ -101,6 +100,7 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-mock-store": "^1.2.1",
+    "redux-persist": "^4.0.0-alpha6",
     "redux-thunk": "^2.1.0",
     "request-promise": "^4.1.1",
     "sinon": "^1.17.6",
