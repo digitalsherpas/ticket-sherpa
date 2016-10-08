@@ -122,6 +122,7 @@ export function addEvent(event) {
   };
 
   return (dispatch) => {
+    // USER HERE
     return axios.get('/getuser')
     .then(({data}) => {
       obj.username = data.username;
@@ -184,25 +185,15 @@ export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
 export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
 
 export function requestHostEvents() {
-  const request = axios.get('/getuser')
-  .then(({data}) => {
-    const hostName = data.username;
-    return axios.get('/api/HostEventsList?readFromDB=true&hostName=' + hostName);
-  });
-
-  return (dispatch) => {
-    dispatch({
-      type: RECEIVE_HOST_EVENTS,
-      payload: false,
-    });
+  return (dispatch, getState) => {
+    const state = getState();
+    const hostName = state.authReducer.username;
+    console.log('GET EVENTS WITH USERNAME:', hostName)
+    const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + hostName);
     return request.then(({ data }) => {
       dispatch({
         type: REQUEST_HOST_EVENTS,
         payload: data,
-      });
-      dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
       });
     }).catch((error) => {
       dispatch({
@@ -212,12 +203,16 @@ export function requestHostEvents() {
           data: false,
         },
       });
-      dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
-      });
     });
   };
+
+  // return (dispatch) => {
+  //   dispatch({
+  //     type: RECEIVE_HOST_EVENTS,
+  //     payload: false,
+  //   });
+    
+  // };
 }
 
 // insert post request to Amazon authentication server here
@@ -234,6 +229,7 @@ export function authenticateLogin(userObj) {
           type: USER_AUTHENTICATION_FAILED,
         });
       } else {
+        result.username = userObj.username;
         dispatch({
           type: USER_IS_AUTHENTICATED,
           payload: result,
