@@ -84,11 +84,15 @@ app.get('/api/events', (req, res) => {
   let reqObj = {};
   if (req.query.eventName) {
     reqObj = {
-      url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+      url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
       qs: {
         eventName: req.query.eventName,
       },
       json: true,
+    };
+  } else {
+    reqObj = {
+      url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
     };
   }
 
@@ -189,7 +193,7 @@ app.post('/api/events', (req, res) => {
   // posts to elasticsearch
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
+    url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/events`,
     body: req.body,
     json: true,
   })
@@ -212,7 +216,7 @@ app.post('/api/tickets', (req, res) => {
   console.log('api tickets called with:', req.body);
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
+    url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
     body: req.body,
     json: true,
   })
@@ -254,7 +258,7 @@ app.post('/db/addEventToUser', (req, res) => {
 app.post('/registerUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
+    url: `${config.ECS_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
     body: req.body,
     json: true,
   }).then((obj) => {
@@ -269,7 +273,7 @@ app.get('/getUserSession', (req, res) => {
     const token = req.get('Authorization').slice(7);
     rp({
       method: 'POST',
-      url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
+      url: `${config.ECS_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
       body: { token },
       json: true,
     }).then((obj) => {
