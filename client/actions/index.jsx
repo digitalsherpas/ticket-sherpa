@@ -40,7 +40,6 @@ export function buyEvent(info, eventName) {
       };
       return axios.post('/api/tickets', obj)
       .then(() => {
-        console.log('change pages');
         browserHistory.push('/hostevents');
       });
     });
@@ -123,7 +122,12 @@ export function addEvent(event) {
   };
 
   return (dispatch) => {
-    return axios.post('/api/events', obj)
+    // USER HERE
+    return axios.get('/getuser')
+    .then(({data}) => {
+      obj.username = data.username;
+      return axios.post('/api/events', obj);
+    })
     .then(() => {
       browserHistory.push('/events');
     });
@@ -146,6 +150,7 @@ export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 export function requestEvents() {
   const request = axios.get('/api/eventsList?readFromDB=true');
+
   return (dispatch) => {
     dispatch({
       type: RECEIVE_EVENTS,
@@ -176,6 +181,41 @@ export function requestEvents() {
   };
 }
 
+export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
+export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
+
+export function requestHostEvents(username) {
+  const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + username);
+  return (dispatch) => {
+    dispatch({
+      type: RECEIVE_HOST_EVENTS,
+      payload: false,
+    });
+    return request.then(({ data }) => {
+      dispatch({
+        type: REQUEST_HOST_EVENTS,
+        payload: data,
+      });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
+        payload: true,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: REQUEST_HOST_EVENTS,
+        payload: {
+          error,
+          data: false,
+        },
+      });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
+        payload: true,
+      });
+    });
+  };
+}
+
 // insert post request to Amazon authentication server here
 
 export const USER_IS_AUTHENTICATING = 'USER_IS_AUTHENTICATING';
@@ -190,6 +230,7 @@ export function authenticateLogin(userObj) {
           type: USER_AUTHENTICATION_FAILED,
         });
       } else {
+        result.username = userObj.username;
         dispatch({
           type: USER_IS_AUTHENTICATED,
           payload: result,

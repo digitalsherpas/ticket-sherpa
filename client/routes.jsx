@@ -11,12 +11,14 @@ import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js
 import LoginContainer from './containers/LoginContainer.js';
 import BuyEventContainer from './containers/BuyEventContainer.js';
 import SignUpContainer from './containers/SignUpContainer.js';
+import HostVerifyContainer from './containers/HostVerifyContainer.js';
+import HostTicketsContainer from './containers/HostTicketsContainer.js';
+import HostMarketplaceContainer from './containers/HostMarketplaceContainer.js';
 
 export default class Routes extends Component {
   constructor(props) {
     super(props);
-
-  this.requireAuth = this.requireAuth.bind(this);
+    this.requireAuth = this.requireAuth.bind(this);
   }
 
   requireAuth(nextState, replace) {
@@ -39,6 +41,9 @@ export default class Routes extends Component {
         <Route path="/host" component={HostHome} onEnter={this.requireAuth}/>
         <Route path="/hostevents" component={HostEventsContainer} onEnter={this.requireAuth}/>
         <Route path="/hostcreateevent" component={HostCreateEventContainer} onEnter={this.requireAuth}/>
+        <Route path="/tickets" component={HostTicketsContainer} onEnter={this.requireAuth}/>
+        <Route path="/marketplace" component={HostMarketplaceContainer} />
+        <Route path="/verify" component={HostVerifyContainer} />
         <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} onEnter={this.requireAuth}/>
 
         <Route path="/login" component={LoginContainer} />

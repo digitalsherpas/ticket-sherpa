@@ -19,6 +19,7 @@ const authReducer = (state = {
       return {
         auth: true,
         authenticating: 'complete',
+        username: action.payload.username
       };
     case 'USER_AUTHENTICATION_COMPLETE':
       return {

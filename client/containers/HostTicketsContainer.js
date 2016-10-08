@@ -1,18 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/index.jsx';
-import HostEvents from '../components/Host/HostEvents.jsx';
+import HostTickets from '../components/Host/HostTickets.jsx';
 
 const mapStateToProps = state => ({
-  hostEvents: state.hostEventsReducer.hostEventsList,
-  username: state.authReducer.username
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-const HostEventsContainer = connect(
+const HostTicketsContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HostEvents);
+)(HostTickets);
 
-export default HostEventsContainer;
+export default HostTickets;

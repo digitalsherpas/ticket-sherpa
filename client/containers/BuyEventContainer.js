@@ -4,6 +4,7 @@ import * as actionCreators from '../actions/index.jsx';
 import BuyEvent from '../components/Events/BuyEvent.jsx';
 
 const mapStateToProps = state => ({
+  username: state.authReducer.username
 });
 
 const mapDispatchToProps = (dispatch) => {
