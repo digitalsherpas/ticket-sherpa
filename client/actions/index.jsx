@@ -40,7 +40,6 @@ export function buyEvent(info, eventName) {
       };
       return axios.post('/api/tickets', obj)
       .then(() => {
-        console.log('change pages');
         browserHistory.push('/hostevents');
       });
     });
@@ -197,7 +196,6 @@ export function requestHostEvents() {
       payload: false,
     });
     return request.then(({ data }) => {
-      console.log(data, 'THIS IS WHAT I WANT')
       dispatch({
         type: REQUEST_HOST_EVENTS,
         payload: data,

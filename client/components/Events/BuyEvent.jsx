@@ -19,7 +19,6 @@ export default class HostEvent extends Component {
 
     axios.get('/getuser')
       .then(function (response) {
-        console.log('User Get', response.data.username);
         const name = response.data.username;
         contract.buyTicket.sendTransaction(name, {from: account, value: web3.toWei(.01, "ether")}, function (err, result) {
           if (!err) {
@@ -76,7 +75,6 @@ export default class HostEvent extends Component {
     e.preventDefault();
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
     const qrstring = this.props.location.query.contractAddress;
-    console.log(qrstring);
 
 
     qrcodedraw.draw(this.refs.contractQR, qrstring, function(error,canvas){

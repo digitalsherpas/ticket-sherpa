@@ -181,14 +181,13 @@ app.post('/api/tickets', (req, res) => {
 }
 */
 app.post('/db/addEventToUser', (req, res) => {
-  console.log('in reg server')
   rp({
     method: 'POST',
     url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
     body: req.body,
     json: true,
   }).then((event) => {
-    console.log(event, 'here');
+    console.log(event);
   }).catch((err) => {
     reject(err);
   });
