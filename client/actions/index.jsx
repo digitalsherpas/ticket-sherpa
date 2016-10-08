@@ -184,16 +184,21 @@ export function requestEvents() {
 export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
 export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
 
-export function requestHostEvents() {
-  return (dispatch, getState) => {
-    const state = getState();
-    const hostName = state.authReducer.username;
-    console.log('GET EVENTS WITH USERNAME:', hostName)
-    const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + hostName);
+export function requestHostEvents(username) {
+  const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + username);
+  return (dispatch) => {
+    dispatch({
+      type: RECEIVE_HOST_EVENTS,
+      payload: false,
+    });
     return request.then(({ data }) => {
       dispatch({
         type: REQUEST_HOST_EVENTS,
         payload: data,
+      });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
+        payload: true,
       });
     }).catch((error) => {
       dispatch({
@@ -203,16 +208,12 @@ export function requestHostEvents() {
           data: false,
         },
       });
+      dispatch({
+        type: RECEIVE_HOST_EVENTS,
+        payload: true,
+      });
     });
   };
-
-  // return (dispatch) => {
-  //   dispatch({
-  //     type: RECEIVE_HOST_EVENTS,
-  //     payload: false,
-  //   });
-    
-  // };
 }
 
 // insert post request to Amazon authentication server here

@@ -8,7 +8,7 @@ export default class HostEvents extends Component {
   }
 
   componentWillMount() {
-    this.props.requestHostEvents();
+    this.props.requestHostEvents(this.props.username);
     axios.get()
   }
 

@@ -5,6 +5,7 @@ import HostEvents from '../components/Host/HostEvents.jsx';
 
 const mapStateToProps = state => ({
   hostEvents: state.hostEventsReducer.hostEventsList,
+  username: state.authReducer.username
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
