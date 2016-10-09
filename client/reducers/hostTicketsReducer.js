@@ -4,7 +4,7 @@ import {
   REQUEST_HOST_EVENTS, REQUEST_TICKETS
 } from '../actions/index.jsx';
 
-const hostEventsList = (state = [], action) => {
+const hostTicketList = (state = [], action) => {
   switch (action.type) {
     case REQUEST_TICKETS:
       if (!action.payload || action.payload.data !== undefined) {
@@ -32,8 +32,8 @@ const hostEventsList = (state = [], action) => {
   }
 };
 
-const hostEventsReducer = combineReducers({
-  hostEventsList,
+const hostTicketsReducer = combineReducers({
+  hostTicketList,
 });
 
-export default hostEventsReducer;
+export default hostTicketsReducer;

@@ -17,12 +17,14 @@ const EventDetails = ({params: { eventName }, location: { query }}) => (
     <p>Zip/Postal Code: {query.zipPostalCode}</p>
     <p>Country: {query.country}</p>
     <p>Contract Address: {query.eventContractAddress}</p>
+    <p>ID: {query.id}</p>
     <h4><Link
       to={{ pathname:
         '/buyevent/' + eventName,
         query: {
           eventName,
           contractAddress: query.eventContractAddress,
+          id: query.id,
         },
     }}
     >Buy Ticket</Link></h4>

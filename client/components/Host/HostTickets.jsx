@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import QRCodeLib from 'qrcode';
+import HostEvent from '../Host/HostEvent.jsx';
 
 export default class HostTickets extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    console.log(this.props)
+    this.props.requestTickets(this.props.username);
+  }
 
   userVerifyTicket(contract) {
     console.log(contract);
@@ -24,6 +33,18 @@ export default class HostTickets extends Component {
   render() {
     return (
       <div>
+        <h2>My Events</h2>
+
+        <hr></hr>
+        <p>All Events</p>
+        <ul>
+          {this.props.hostEvents.map((hostEvent, i) =>
+            <HostEvent
+              key={i}
+              {...hostEvent}
+            />
+          )}
+        </ul>
         <h3>My Tickets</h3>
         <hr></hr>
         <ul>

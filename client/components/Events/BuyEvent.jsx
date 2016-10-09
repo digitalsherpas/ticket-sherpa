@@ -12,6 +12,7 @@ export default class HostEvent extends Component {
 
   buyTicket(e) {
     e.preventDefault();
+    const id = this.props.location.query.id;
     const name = this.props.username;
     const account = web3.eth.coinbase;
     const contractAddress = this.props.location.query.contractAddress;
@@ -22,7 +23,8 @@ export default class HostEvent extends Component {
       if (!err) {
         console.log('Buy Ticket Success: ', result);
         axios.post('/db/addEventToUser', {
-            username: name
+            username: name,
+            eventID: id,
           })
           .then(function (response) {
             console.log(response, 'success in db user post');

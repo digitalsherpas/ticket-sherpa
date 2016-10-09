@@ -89,7 +89,7 @@ export function searchEvents(eventName) {
 
 export const ADD_EVENT = 'ADD_EVENT';
 
-export function addEvent(event) {
+export function addEvent(event, username) {
   const eventStartDateTime = new Date(
     event.eventStartYear.value,
     event.eventStartMonth.value,
@@ -119,15 +119,11 @@ export function addEvent(event) {
     zipPostalCode: event.zipPostalCode.value,
     country: event.country.value,
     image: event.image.value,
+    username: username,
   };
 
   return (dispatch) => {
-    // USER HERE
-    return axios.get('/getuser')
-    .then(({data}) => {
-      obj.username = data.username;
-      return axios.post('/api/events', obj);
-    })
+    return axios.post('/api/events', obj)
     .then(() => {
       browserHistory.push('/events');
     });
@@ -210,6 +206,41 @@ export function requestHostEvents(username) {
       });
       dispatch({
         type: RECEIVE_HOST_EVENTS,
+        payload: true,
+      });
+    });
+  };
+}
+
+export const REQUEST_TICKETS = 'REQUEST_TICKETS';
+export const RECEIVE_TICKETS = 'RECEIVE_TICKETS';
+
+export function requestTickets(username) {
+  const request = axios.get('/api/getTickets?readFromDB=true&userName=' + username);
+  return (dispatch) => {
+    dispatch({
+      type: RECEIVE_TICKETS,
+      payload: false,
+    });
+    return request.then(({ data }) => {
+      dispatch({
+        type: REQUEST_TICKETS,
+        payload: data,
+      });
+      dispatch({
+        type: RECEIVE_TICKETS,
+        payload: true,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: REQUEST_TICKETS,
+        payload: {
+          error,
+          data: false,
+        },
+      });
+      dispatch({
+        type: RECEIVE_TICKETS,
         payload: true,
       });
     });
