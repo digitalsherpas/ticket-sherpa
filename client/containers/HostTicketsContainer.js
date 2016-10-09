@@ -4,7 +4,7 @@ import * as actionCreators from '../actions/index.jsx';
 import HostTickets from '../components/Host/HostTickets.jsx';
 
 const mapStateToProps = state => ({
-  hostEvents: state.hostEventsReducer.hostEventsList,
+  hostTickets: state.hostTicketsReducer.hostTicketList,
   username: state.authReducer.username,
 });
 

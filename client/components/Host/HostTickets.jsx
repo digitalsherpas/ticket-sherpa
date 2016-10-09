@@ -38,7 +38,7 @@ export default class HostTickets extends Component {
         <hr></hr>
         <p>All Events</p>
         <ul>
-          {this.props.hostEvents.map((hostEvent, i) =>
+          {this.props.hostTickets.map((hostEvent, i) =>
             <HostEvent
               key={i}
               {...hostEvent}
