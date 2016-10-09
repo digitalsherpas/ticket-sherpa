@@ -16,15 +16,17 @@ export default class Events extends Component {
     (
       <div className="events">
         <SearchEventsContainer />
-        <h2>Events</h2>
-        <ul>
-          {this.props.searchEventsList.map((event, i) =>
-            <Event
-              key={i}
-              {...event}
-            />
-          )}
-        </ul>
+        <div className="events-header">
+          <h2>Events</h2>
+          <ul>
+            {this.props.searchEventsList.map((event, i) =>
+              <Event
+                key={i}
+                {...event}
+              />
+            )}
+          </ul>
+        </div>
       </div>
     ) :
     (

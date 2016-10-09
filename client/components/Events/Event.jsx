@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import Moment from 'moment';
 
 const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country }) => (
   <li>
@@ -41,7 +42,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
       },
     }}
     >{eventName}</Link></h2>
-    <p>Date: {new Date(eventStartDateTime).toLocaleString()}</p>
+    <p>Date: {Moment().format('MMMM Do YYYY, h:mm A')}</p>
     <p>Price: {price}</p>
     <p>City: {city}</p>
   </li>
