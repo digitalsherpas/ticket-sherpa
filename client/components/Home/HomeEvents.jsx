@@ -15,25 +15,20 @@ export default class Events extends Component {
   render() {
     const loaded = this.props.loaded ?
     (
-      <div>
-        <ul className="homeEventsList">
-          {this.props.events.map((event, i) =>
-            <Event
-              key={i}
-              {...event}
-            />
-          )}
-        </ul>
-      </div>
+      <ul className="homeEventsList">
+        {this.props.events.map((event, i) =>
+          <Event
+            key={i}
+            {...event}
+          />
+        )}
+      </ul>
     ) :
     (
-      <div>
-        <MDSpinner singleColor="#03a9f4" />
-      </div>
+      <MDSpinner singleColor="#03a9f4" />
     );
     return (
       <div>
-        <h2>Events</h2>
         { loaded }
       </div>
     );

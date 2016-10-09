@@ -17,8 +17,8 @@ export default class Nav extends Component {
       return (
         <nav className="navBar">
           <ul className="navLinks">
-            <li><Link to="/host">My Account</Link></li>
-            <li><Link onClick={this.handleSubmit} to="/">Log Out</Link></li>
+            <li className="nav-link-item"><Link to="/host">My Account</Link></li>
+            <li className="nav-link-item"><Link onClick={this.handleSubmit} to="/">Log Out</Link></li>
           </ul>
         </nav>
       );
@@ -26,8 +26,8 @@ export default class Nav extends Component {
       return (
         <nav className="navBar">
           <ul className="navLinks">
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Signup</Link></li>
+            <li className="nav-link-item"><Link to="/login">Login</Link></li>
+            <li className="nav-link-item"><Link to="/signup">Signup</Link></li>
           </ul>
         </nav>
       );

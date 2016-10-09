@@ -2,14 +2,6 @@ module.exports = function (grunt) {
 // config
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    processhtml: {
-      dist: {
-        files: {
-          'compiled/index.html': ['client/index.html'],
-        },
-      },
-    },
-
     shell: {
       options: {
         stderr: false,
@@ -22,18 +14,25 @@ module.exports = function (grunt) {
       },
       startAuthServer: {
         command: 'nodemon server/auth/authserver.js',
+      },
+    },
+    less: {
+      build: {
+        files: {
+          'client/styles/main.css': 'client/styles/main.less' // destination file and source file
+        }
       }
     }
   });
 
 // dependencies
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
 // tasks
   grunt.registerTask('build', [
+    'less',
     'shell:compile',
-    'processhtml',
   ]);
 
   grunt.registerTask('startServer', ['shell:startDevServer']);
