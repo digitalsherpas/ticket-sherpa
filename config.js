@@ -4,6 +4,7 @@ module.exports = {
   ETH_SERVER_PORT: 3002,
   AUTH_SERVER_PORT: 3003,
   DB_SERVER_PORT: 3004,
+  ES_SERVER_PORT: 3005,
   BLOCKCHAIN_PORT: 8545,
   SECRET_OR_KEY: 'gustybanjo',
   SERVER_URL: 'http://localhost',

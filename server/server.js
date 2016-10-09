@@ -128,6 +128,21 @@ app.get('/api/HostEventsList', (req, res) => {
   });
 });
 
+app.get('/api/searchEvents', (req, res) => {
+  const reqObj = {
+    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    json: true,
+    qs: {
+      eventName: req.query.eventName,
+    },
+  };
+  rp(reqObj).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
 /* Example body of JSON request
 {
   "ticketPrice":"10",
@@ -139,6 +154,20 @@ app.get('/api/HostEventsList', (req, res) => {
 }
 */
 app.post('/api/events', (req, res) => {
+  // posts to ethereum
+  rp({
+    method: 'POST',
+    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    body: req.body,
+    json: true,
+  })
+  .then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+
+  // posts to elasticsearch
   rp({
     method: 'POST',
     url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,

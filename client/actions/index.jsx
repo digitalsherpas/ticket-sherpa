@@ -60,7 +60,7 @@ export function searchEvents(eventName) {
       type: RECEIVE_SEARCH_EVENTS,
       payload: false,
     });
-    return axios.get('/api/eventsList?readFromDB=true&eventName=' + eventName)
+    return axios.get('/api/searchEvents?eventName=' + eventName)
       .then((data) => {
         dispatch({
           type: SEARCH_EVENTS_RESULTS,
