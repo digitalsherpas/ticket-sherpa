@@ -13,7 +13,7 @@ export default class Nav extends Component {
         <h4>Your one stop ticket shop</h4> */}
         {/* <Events /> */}
         <div className="homeImage">
-          <img src="../../styles/images/eventbrite_homepage_image.jpg" />
+          <img src={require('../../styles/images/eventbrite_homepage_image.jpg')} />
         </div>
 
         <div className="homeSearch">
