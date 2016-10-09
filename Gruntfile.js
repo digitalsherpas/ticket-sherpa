@@ -2,6 +2,13 @@ module.exports = function (grunt) {
 // config
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    processhtml: {
+      dist: {
+        files: {
+          'dist/index.html': ['client/index.html'],
+        },
+      },
+    },
     shell: {
       options: {
         stderr: false,
@@ -19,19 +26,21 @@ module.exports = function (grunt) {
     less: {
       build: {
         files: {
-          'client/styles/main.css': 'client/styles/main.less' // destination file and source file
-        }
-      }
-    }
+          'dist/main.css': 'client/styles/main.less', // destination file and source file
+        },
+      },
+    },
   });
 
 // dependencies
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-processhtml');
 
 // tasks
   grunt.registerTask('build', [
     'less',
+    'processhtml',
     'shell:compile',
   ]);
 

@@ -66,7 +66,7 @@ const useWebpackMiddleware = (expressApp) => {
 useWebpackMiddleware(app);
 
 // main server
-app.use(express.static(path.join(__dirname, '/../client')));
+app.use(express.static(path.join(__dirname, '/../dist')));
 
 app.get('/', (req, res) => {
   res.render('index');
