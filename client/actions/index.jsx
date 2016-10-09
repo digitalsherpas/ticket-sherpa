@@ -178,23 +178,14 @@ export function requestEvents() {
 }
 
 export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
-export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
 
 export function requestHostEvents(username) {
   const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + username);
   return (dispatch) => {
-    dispatch({
-      type: RECEIVE_HOST_EVENTS,
-      payload: false,
-    });
     return request.then(({ data }) => {
       dispatch({
         type: REQUEST_HOST_EVENTS,
         payload: data,
-      });
-      dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
       });
     }).catch((error) => {
       dispatch({
@@ -203,33 +194,20 @@ export function requestHostEvents(username) {
           error,
           data: false,
         },
-      });
-      dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
       });
     });
   };
 }
 
 export const REQUEST_TICKETS = 'REQUEST_TICKETS';
-export const RECEIVE_TICKETS = 'RECEIVE_TICKETS';
 
 export function requestTickets(username) {
   const request = axios.get('/api/getTickets?readFromDB=true&userName=' + username);
   return (dispatch) => {
-    dispatch({
-      type: RECEIVE_TICKETS,
-      payload: false,
-    });
     return request.then(({ data }) => {
       dispatch({
         type: REQUEST_TICKETS,
         payload: data,
-      });
-      dispatch({
-        type: RECEIVE_TICKETS,
-        payload: true,
       });
     }).catch((error) => {
       dispatch({
@@ -238,10 +216,6 @@ export function requestTickets(username) {
           error,
           data: false,
         },
-      });
-      dispatch({
-        type: RECEIVE_TICKETS,
-        payload: true,
       });
     });
   };

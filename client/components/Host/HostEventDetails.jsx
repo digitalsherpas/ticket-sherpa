@@ -1,6 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import QRCodeLib from 'qrcode';
 
 export default class HostEventDetails extends Component {
+  userVerifyTicket(contract) {
+    console.log(contract);
+    const qrcodedraw = new QRCodeLib.QRCodeDraw();
+    const qrstring = 'localhost:3000/verify';
+
+    qrcodedraw.draw(this.refs.userVerifyQR, qrstring, function(error,canvas){
+      if(error){
+         return console.log('Error =( ',error);
+      }
+    });
+  }
+
+  sellTicket(e) {
+    e.preventDefault();
+    console.log('sell ticket')
+  }
+
   render() {
     const i = this.props.hostEvent.findIndex((event) =>
       event.eventName === this.props.params.eventName);
@@ -24,6 +42,10 @@ export default class HostEventDetails extends Component {
         <h3>Event Create Date Time: {eventCreateDateTime}</h3>
         <h3>Event Start Date Time: {eventStartDateTime}</h3>
         <h3>Event End Date Time: {eventEndDateTime}</h3>
+        <input type="submit" value="View QR Code" onClick={this.userVerifyTicket.bind(this, '0x47cda3544d436887a0ba2a0fb104b0a82c78edcc')}/>
+        <input type="submit" value="Sell Ticket" onClick={this.sellTicket.bind(this)}></input>
+        <p></p>
+        <canvas ref="userVerifyQR"></canvas>
       </div>
     );
   }

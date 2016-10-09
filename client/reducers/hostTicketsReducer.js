@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
-  REQUEST_TICKETS
+  REQUEST_TICKETS,
 } from '../actions/index.jsx';
 
 const hostTicketList = (state = [], action) => {
