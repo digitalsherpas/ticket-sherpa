@@ -4,9 +4,8 @@ const APP_DIR = path.resolve(__dirname, 'client');
 const SERVER_DIR = path.resolve(__dirname, 'server');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client', 'webpack/hot/dev-server',
     APP_DIR + '/index.jsx'
   ],
   output: {
@@ -14,7 +13,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [{
@@ -23,7 +21,7 @@ module.exports = {
     },
     {
       test: /\.jsx?/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['babel'],
       include: APP_DIR
     },
     {

@@ -44,26 +44,29 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-const webpackcompiler = webpack(webpackconfig);
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+  console.log('Loading hot reloader');
+  const webpackcompiler = webpack(webpackconfig);
 
-// enable webpack middleware for hot-reloads in development
-const useWebpackMiddleware = (expressApp) => {
-  expressApp.use(webpackDevMiddleware(webpackcompiler, {
-    publicPath: webpackconfig.output.publicPath,
-    stats: {
-      colors: true,
-      chunks: false, // this reduces the amount of stuff I see in my terminal;
-      // configure to your needs
-      'errors-only': true,
-    },
-  }));
+  // enable webpack middleware for hot-reloads in development
+  const useWebpackMiddleware = (expressApp) => {
+    expressApp.use(webpackDevMiddleware(webpackcompiler, {
+      publicPath: '/',
+      stats: {
+        colors: true,
+        chunks: false, // this reduces the amount of stuff I see in my terminal;
+        // configure to your needs
+        'errors-only': true,
+      },
+    }));
 
-  expressApp.use(webpackHotMiddleware(webpackcompiler, {}));
+    expressApp.use(webpackHotMiddleware(webpackcompiler, {}));
 
-  return expressApp;
-};
+    return expressApp;
+  };
 
-useWebpackMiddleware(app);
+  useWebpackMiddleware(app);
+}
 
 // main server
 app.use(express.static(path.join(__dirname, '/../dist')));
@@ -284,3 +287,4 @@ app.get('*', (req, res) => {
 // https.createServer(credentials, app).listen(config.SERVER_PORT);
 
 app.listen(config.SERVER_PORT);
+console.log(`Server listening on port: ${config.SERVER_PORT}`);
