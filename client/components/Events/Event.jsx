@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Moment from 'moment';
 
-const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country }) => (
+const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id }) => (
   <li>
     <Link
       to={{ pathname:
@@ -20,6 +20,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
         state,
         zipPostalCode,
         country,
+        id,
       },
     }}
     ><img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" /></Link>
@@ -39,6 +40,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
         state,
         zipPostalCode,
         country,
+        id,
       },
     }}
     >{eventName}</Link></h2>

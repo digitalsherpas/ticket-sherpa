@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class HostEvent extends Component {
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addEvent(this.refs);
+    this.props.addEvent(this.refs, this.props.username);
   }
   render() {
     return (

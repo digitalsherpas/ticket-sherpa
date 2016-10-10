@@ -143,6 +143,22 @@ app.get('/api/searchEvents', (req, res) => {
   });
 });
 
+app.get('/api/getTickets', (req, res) => {
+  const reqObj = {
+    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
+    json: true,
+    qs: {
+      readFromDB: req.query.readFromDB,
+      userName: req.query.userName,
+    },
+  };
+  rp(reqObj).then((obj) => {
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.status(500).send(err.error);
+  });
+});
+
 /* Example body of JSON request
 {
   "ticketPrice":"10",

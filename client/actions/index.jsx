@@ -3,26 +3,6 @@ import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
 
-export const REGISTER_USER = 'REGISTER_USER';
-
-export function registerUser(info) {
-  const userObj = {
-    username: info.username.value,
-    password: info.password.value,
-    name: info.name.value,
-    email: info.email.value,
-    phone_number: info.phonenumber.value,
-  };
-
-  return (dispatch) => {
-    return axios.post('/registerUser', userObj)
-    .then(({}) => {
-      console.log('signup success');
-      browserHistory.push('/');
-    });
-  };
-}
-
 export const BUY_EVENT = 'BUY_EVENT';
 
 export function buyEvent(info, eventName) {
@@ -89,7 +69,7 @@ export function searchEvents(eventName) {
 
 export const ADD_EVENT = 'ADD_EVENT';
 
-export function addEvent(event) {
+export function addEvent(event, username) {
   const eventStartDateTime = new Date(
     event.eventStartYear.value,
     event.eventStartMonth.value,
@@ -119,15 +99,11 @@ export function addEvent(event) {
     zipPostalCode: event.zipPostalCode.value,
     country: event.country.value,
     image: event.image.value,
+    username: username,
   };
 
   return (dispatch) => {
-    // USER HERE
-    return axios.get('/getuser')
-    .then(({data}) => {
-      obj.username = data.username;
-      return axios.post('/api/events', obj);
-    })
+    return axios.post('/api/events', obj)
     .then(() => {
       browserHistory.push('/events');
     });
@@ -182,23 +158,14 @@ export function requestEvents() {
 }
 
 export const REQUEST_HOST_EVENTS = 'REQUEST_HOST_EVENTS';
-export const RECEIVE_HOST_EVENTS = 'RECEIVE_HOST_EVENTS';
 
 export function requestHostEvents(username) {
   const request = axios.get('/api/HostEventsList?readFromDB=true&hostName=' + username);
   return (dispatch) => {
-    dispatch({
-      type: RECEIVE_HOST_EVENTS,
-      payload: false,
-    });
     return request.then(({ data }) => {
       dispatch({
         type: REQUEST_HOST_EVENTS,
         payload: data,
-      });
-      dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
       });
     }).catch((error) => {
       dispatch({
@@ -208,10 +175,49 @@ export function requestHostEvents(username) {
           data: false,
         },
       });
+    });
+  };
+}
+
+export const REQUEST_TICKETS = 'REQUEST_TICKETS';
+
+export function requestTickets(username) {
+  const request = axios.get('/api/getTickets?readFromDB=true&userName=' + username);
+  return (dispatch) => {
+    return request.then(({ data }) => {
       dispatch({
-        type: RECEIVE_HOST_EVENTS,
-        payload: true,
+        type: REQUEST_TICKETS,
+        payload: data,
       });
+    }).catch((error) => {
+      dispatch({
+        type: REQUEST_TICKETS,
+        payload: {
+          error,
+          data: false,
+        },
+      });
+    });
+  };
+}
+
+// AUTHENTICATION ACTIONS
+export const REGISTER_USER = 'REGISTER_USER';
+
+export function registerUser(info) {
+  const userObj = {
+    username: info.username.value,
+    password: info.password.value,
+    name: info.name.value,
+    email: info.email.value,
+    phone_number: info.phonenumber.value,
+  };
+
+  return (dispatch) => {
+    return axios.post('/registerUser', userObj)
+    .then(({}) => {
+      console.log('signup success');
+      browserHistory.push('/');
     });
   };
 }

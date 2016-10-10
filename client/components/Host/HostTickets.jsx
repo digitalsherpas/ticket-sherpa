@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import QRCodeLib from 'qrcode';
+import Event from '../Events/Event.jsx';
 
 export default class HostTickets extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.requestTickets(this.props.username);
+  }
 
   userVerifyTicket(contract) {
     console.log(contract);
@@ -24,20 +31,16 @@ export default class HostTickets extends Component {
   render() {
     return (
       <div>
-        <h3>My Tickets</h3>
+        <h2>My Events</h2>
         <hr></hr>
         <ul>
-          <li>Event 1</li>
-          <input type="submit" value="View QR Code" onClick={this.userVerifyTicket.bind(this, '0x47cda3544d436887a0ba2a0fb104b0a82c78edcc')}/>
-          <input type="submit" value="Sell Ticket" onClick={this.sellTicket.bind(this)}></input>
-          <li>Event 2</li>
-          <input type="submit" value="View QR Code" onClick={this.userVerifyTicket.bind(this, '0x47cda3544d436887a0ba2a0fb104b0a82c78edcc')}/>
-          <input type="submit" value="Sell Ticket" onClick={this.sellTicket.bind(this)}></input>
-          <li>Event 3</li>
-          <input type="submit" value="View QR Code" onClick={this.userVerifyTicket.bind(this, '0x47cda3544d436887a0ba2a0fb104b0a82c78edcc')}/>
-          <input type="submit" value="Sell Ticket" onClick={this.sellTicket.bind(this)}></input>
+          {this.props.hostTickets.map((ticket, i) =>
+            <Event
+              key={i}
+              {...ticket}
+            />
+          )}
         </ul>
-        <canvas ref="userVerifyQR"></canvas>
       </div>
 
     );
