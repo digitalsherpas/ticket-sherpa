@@ -8,5 +8,5 @@ module.exports = {
   BLOCKCHAIN_PORT: 8545,
   SECRET_OR_KEY: 'gustybanjo',
   SERVER_URL: 'http://localhost',
-  ECS_URL: 'http://52.33.65.180',
+  // ECS_URL: 'http://52.33.65.180',
 };
