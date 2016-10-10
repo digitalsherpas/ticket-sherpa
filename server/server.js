@@ -1,5 +1,3 @@
-'use strict';
-
 // SSL dependencies
 // const fs = require('fs');;
 // const https = require('https');
@@ -180,25 +178,23 @@ app.post('/api/events', (req, res) => {
   // posts to ethereum
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
-    body: req.body,
-    json: true,
-  })
-  .then((obj) => {
-    res.status(200).send(obj);
-  }).catch((err) => {
-    res.status(500).send(err.error);
-  });
-
-  // posts to elasticsearch
-  rp({
-    method: 'POST',
     url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/events`,
     body: req.body,
     json: true,
   })
-  .then((obj) => {
-    res.status(200).send(obj);
+  .then(() => {
+    // posts to elasticsearch
+    rp({
+      method: 'POST',
+      url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+      body: req.body,
+      json: true,
+    })
+    .then((obj) => {
+      res.status(200).send(obj);
+    }).catch((err) => {
+      res.status(500).send(err.error);
+    });
   }).catch((err) => {
     res.status(500).send(err.error);
   });
@@ -213,7 +209,6 @@ app.post('/api/events', (req, res) => {
 }
 */
 app.post('/api/tickets', (req, res) => {
-  console.log('api tickets called with:', req.body);
   rp({
     method: 'POST',
     url: `${config.ECS_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
@@ -223,7 +218,7 @@ app.post('/api/tickets', (req, res) => {
   .then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
@@ -240,11 +235,11 @@ app.post('/db/addEventToUser', (req, res) => {
     body: req.body,
     json: true,
   }).then((event) => {
-    console.log(event);
+    res.status(200).send(event);
   }).catch((err) => {
-    reject(err);
+    res.status(500).send(err);
   });
-})
+});
 
 /* Example body of JSON request
 {

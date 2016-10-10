@@ -1,5 +1,11 @@
 version: '2'
 services:
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+
   postgres:
     image: postgres
     ports:
@@ -46,3 +52,12 @@ services:
       - db
     environment:
       DB_SERVER_URL: http://db
+
+  es:
+    image: es
+    ports:
+      - "3005:3005"
+    links:
+      - elasticsearch
+    environment:
+      ES_URL: http://elasticsearch
