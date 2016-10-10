@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import HostEvent from '../Host/HostEvent.jsx';
+import Event from '../Events/Event.jsx';
 
 export default class HostTickets extends Component {
   constructor(props) {
@@ -34,10 +34,10 @@ export default class HostTickets extends Component {
         <h2>My Events</h2>
         <hr></hr>
         <ul>
-          {this.props.hostTickets.map((hostEvent, i) =>
-            <HostEvent
+          {this.props.hostTickets.map((ticket, i) =>
+            <Event
               key={i}
-              {...hostEvent}
+              {...ticket}
             />
           )}
         </ul>
