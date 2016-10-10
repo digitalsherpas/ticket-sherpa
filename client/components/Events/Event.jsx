@@ -48,7 +48,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
     >{eventName}</Link></h2>
     <p>Date: {Moment().format('MMMM Do YYYY, h:mm A')}</p>
     <p>Price: {price}</p>
-    <p>City: {city}</p>
+    <p>Location: {city + ', ' + state}</p>
   </li>
 );
 
