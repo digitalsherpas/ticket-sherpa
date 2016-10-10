@@ -8,6 +8,8 @@ export default class HostEvent extends Component {
   render() {
     return (
       <div>
+        <h2>Create Event</h2>
+        <hr></hr>
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h3>Event Name</h3>
           <input type="text" ref="eventName" placeholder="Event Name"/>
