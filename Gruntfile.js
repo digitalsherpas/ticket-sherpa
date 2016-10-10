@@ -1,4 +1,7 @@
-module.exports = function (grunt) {
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+
+module.exports = (grunt) => {
 // config
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -19,8 +22,11 @@ module.exports = function (grunt) {
       startDevServer: {
         command: 'nodemon server/server.js',
       },
-      startAuthServer: {
-        command: 'nodemon server/auth/authserver.js',
+      startServer: {
+        command: 'NODE_ENV=PRODUCTION node server/server.js',
+      },
+      buildProduction: {
+        command: 'node ./node_modules/webpack/bin/webpack.js -p --config webpack.production.config.js --progress --colors',
       },
     },
     less: {
@@ -38,15 +44,19 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-processhtml');
 
 // tasks
+  grunt.registerTask('dev', [
+    'build',
+    'shell:startDevServer',
+  ]);
+  grunt.registerTask('prod', [
+    'less',
+    'processhtml',
+    'shell:buildProduction',
+    'shell:startServer',
+  ]);
   grunt.registerTask('build', [
     'less',
     'processhtml',
     'shell:compile',
   ]);
-
-  grunt.registerTask('startServer', ['shell:startDevServer']);
-
-  grunt.registerTask('dev', ['build', 'startServer']);
-
-  grunt.registerTask('auth', ['shell:startAuthServer']);
 };
