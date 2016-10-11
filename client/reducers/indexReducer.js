@@ -8,7 +8,7 @@ import hostTicketsReducer from './hostTicketsReducer';
 import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
-  eventDetailsReducer,
+  // eventDetailsReducer,
   eventsListReducer,
   hostEventsReducer,
   hostTicketsReducer,

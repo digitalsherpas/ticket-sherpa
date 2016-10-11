@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "test:watch": "npm test -- --watch",
     "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
-    "dummydata": "node ./client/data/dummyEventData.js",
+    "dummydata": "node ./data/dummyEventData.js",
     "prod": "node ./node_modules/grunt-cli/bin/grunt prod"
   },
   "repository": {
