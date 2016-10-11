@@ -277,17 +277,14 @@ export function checkAddress(event, username) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
   const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value},${event.country.value}`;
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
-  // store a reference from the db
+
   if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
     console.log('it\'s type checking correctly');
     return (dispatch) => {
       return axios.post(requestUrl)
       .then((results) => {
         // if geoencode returns a valid address
-        console.log(results);
-        console.log(results.data.results.length);
         if (results.data.results.length > 0) {
-          console.log('checking the length of this array');
           return function addEvent(event, username) {
             const eventStartDateTime = new Date(
               event.eventStartYear.value,
@@ -300,14 +297,10 @@ export function checkAddress(event, username) {
               event.eventEndDay.value,
               event.eventEndTime.value).toISOString();
             const obj = {
-              // type: ADD_EVENT,
-              // numAttendees: '0',
-              // attendeesPaid: '0',
               quota: event.quota.value,
               ticketPrice: event.price.value,
               eventName: event.eventName.value,
               senderAddress: event.walletAddress.value,
-              // eventCreateDateTime: 'event create date time',
               startDateTime: eventStartDateTime,
               endDateTime: eventEndDateTime,
               description: event.description.value,
@@ -336,6 +329,7 @@ export function checkAddress(event, username) {
         }
       }).catch((error) => {
         console.log('there was an error sending the data to the geoencoding api');
+        alert('There was an error with your submission. Please try again later.');
       });
     }
   } else {
