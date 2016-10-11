@@ -4,11 +4,20 @@ import axios from 'axios';
 
 export default class HostTicketDetails extends Component {
 
+  componentDidMount() {
+    const i = this.props.hostTickets.findIndex((event) =>
+      event.eventName === this.props.params.eventName);
+
+    const eventContractAddress = this.props.hostTickets[i].eventContractAddress;
+    const userWalletAddress = this.props.hostTickets[i].userWalletAddress;
+
+    this.userVerifyTicket(eventContractAddress, userWalletAddress);
+  }
+
   userVerifyTicket(eventContractAddress, userWalletAddress, e) {
-    e.preventDefault();
     const name = this.props.username;
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = 'localhost:3000/?verify/&name=' + name +
+    const qrstring = 'localhost:3000/verify/?&name=' + name +
                     '&eventContractAddress=' + eventContractAddress +
                     '&userWalletAddress=' + userWalletAddress;
 
@@ -30,8 +39,6 @@ export default class HostTicketDetails extends Component {
     const price = this.props.hostTickets[i].price;
     const eventStartDateTime = this.props.hostTickets[i].eventStartDateTime;
     const eventEndDateTime = this.props.hostTickets[i].eventEndDateTime;
-    const eventContractAddress = this.props.hostTickets[i].eventContractAddress;
-    const userWalletAddress = this.props.hostTickets[i].userWalletAddress;
 
     // event address
     const addressLine1 = this.props.hostTickets[i].addressLine1;
@@ -43,13 +50,7 @@ export default class HostTicketDetails extends Component {
 
     return (
       <div>
-        <form onSubmit={this.userVerifyTicket.bind(this, this.props.hostTickets[i].eventContractAddress, this.props.hostTickets[i].userWalletAddress)}>
-          <h2>User Verify Ticket</h2>
-          <p>Bought with address: {userWalletAddress}</p>
-          <p>QR text: localhost:3000/verify/?&name={this.props.username}&eventContractAddress={eventContractAddress}&userWalletAddress={userWalletAddress}</p>
-          <input type="submit" value="User Verify Ticket"/>
-        </form>
-        <canvas ref="userVerifyQR"></canvas>
+        
 
         <h2>Event Info</h2>
         <h4>Event Name: {eventName}</h4>
@@ -68,6 +69,8 @@ export default class HostTicketDetails extends Component {
         <h4>State: {state}</h4>
         <h4>Country: {country}</h4>
         <hr></hr>
+        <h2>Ticket QR Code</h2>
+        <canvas ref="userVerifyQR"></canvas>
         </div>
     );
   }

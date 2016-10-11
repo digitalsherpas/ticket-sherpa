@@ -185,7 +185,6 @@ export function requestTickets(username) {
   const request = axios.get('/api/getTickets?readFromDB=true&userName=' + username);
   return (dispatch) => {
     return request.then(({ data }) => {
-      console.log(data, 'HERE NOW');
       dispatch({
         type: REQUEST_TICKETS,
         payload: data,
