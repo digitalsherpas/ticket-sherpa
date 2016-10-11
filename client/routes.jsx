@@ -50,9 +50,6 @@ export default class Routes extends Component {
 
         <Route path="/login" component={LoginContainer} />
         <Route path="/signup" component={SignUpContainer} />
-
-        {/* interim route for maps */}
-        <Route path="/map" component={Maps} />
       </Route>
     </Router>
   )
