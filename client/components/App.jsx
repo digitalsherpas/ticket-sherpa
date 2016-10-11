@@ -12,9 +12,7 @@ export default class App extends Component {
           <div className="header__logo">
             <h1><Link to={'/'}>Ticket Sherpa</Link></h1>
           </div>
-          {/* <div className="header__nav"> */}
             <NavContainer />
-          {/* </div> */}
         </div>
         {this.props.children}
       </div>
