@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import QRCodeLib from 'qrcode';
-import axios from 'axios'
+import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 export default class HostEvent extends Component {
   constructor(props) {
@@ -20,14 +21,14 @@ export default class HostEvent extends Component {
     contract.buyTicket.sendTransaction(name, {from: account, value: web3.toWei(.01, "ether")}, function (err, result) {
       if (!err) {
         console.log('Buy Ticket Success: ', result);
-        console.log(account, 'account here');
-        axios.post('/db/addEventToUser', {
+        return axios.post('/db/addEventToUser', {
             username: name,
             eventID: id,
             address: account,
           })
           .then(function (response) {
             console.log(response, 'success in db user post');
+            browserHistory.push('/tickets');
           })
           .catch(function (error) {
             console.log(error, 'error in db user post');
@@ -38,18 +39,6 @@ export default class HostEvent extends Component {
     });    
   }
 
-  viewQRCode(e) {
-    e.preventDefault();
-    const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = this.props.location.query.contractAddress;
-
-
-    qrcodedraw.draw(this.refs.contractQR, qrstring, function(error, canvas) {
-      if (error) {
-         return console.log('Error =( ', error);
-      }
-    });
-  }
   render() {
     return (
       <div>
@@ -60,13 +49,6 @@ export default class HostEvent extends Component {
           <h2>Buy With Meta Mask</h2>
           <input type="submit"/>
         </form>
-
-        <form onSubmit={this.viewQRCode.bind(this)}>
-          <h2>Buy With QR Code</h2>
-          <p>QR text: {this.props.location.query.contractAddress}</p>
-          <input type="submit" value="View"/>
-        </form>
-        <canvas ref="contractQR"></canvas>
 
       </div>
     );

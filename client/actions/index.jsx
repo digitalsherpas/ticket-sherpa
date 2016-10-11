@@ -21,7 +21,7 @@ export function buyEvent(info, eventName) {
       };
       return axios.post('/api/tickets', obj)
       .then(() => {
-        browserHistory.push('/hostevents');
+        browserHistory.push('/tickets');
       });
     });
   };
@@ -86,9 +86,9 @@ export function addEvent(event, username) {
     // numAttendees: '0',
     // attendeesPaid: '0',
     quota: event.quota.value,
-    ticketPrice: event.price.value,
+    price: web3.toWei(event.price.value, 'ether'),
     eventName: event.eventName.value,
-    senderAddress: event.walletAddress.value,
+    senderAddress: web3.eth.coinbase,
     // eventCreateDateTime: 'event create date time',
     startDateTime: eventStartDateTime,
     endDateTime: eventEndDateTime,
@@ -102,11 +102,14 @@ export function addEvent(event, username) {
     image: event.image.value,
     username: username,
   };
+  console.log(obj);
+  console.log(JSON.stringify(obj))
 
   return (dispatch) => {
+    browserHistory.push('/events');
     return axios.post('/api/events', obj)
     .then(() => {
-      browserHistory.push('/events');
+      browserHistory.push('/hostevents');
     });
   };
 }

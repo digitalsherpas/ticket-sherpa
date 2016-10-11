@@ -5,6 +5,7 @@ import EventDetails from '../components/Events/EventDetails.jsx';
 
 const mapStateToProps = state => ({
   event: state.eventsListReducer.selectEvent,
+  username: state.authReducer.username
 });
 
 const mapDispatchToProps = (dispatch) => {

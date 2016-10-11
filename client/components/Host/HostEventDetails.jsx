@@ -26,7 +26,7 @@ export default class HostEventDetails extends Component {
     const eventName = this.props.hostEvent[i].eventName;
     const description = this.props.hostEvent[i].description;
     const image = this.props.hostEvent[i].image;
-    const price = this.props.hostEvent[i].price;
+    const prices = this.props.hostEvent[i].price;
     const eventStartDateTime = this.props.hostEvent[i].eventStartDateTime;
     const eventEndDateTime = this.props.hostEvent[i].eventEndDateTime;
 
@@ -55,7 +55,7 @@ export default class HostEventDetails extends Component {
         <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
         <h4>Image: {image}</h4>
-        <h4>Price: {price}</h4>
+        <h4>Price: {prices}</h4>
         <h4>Event Start Date & Time: {eventStartDateTime}</h4>
         <h4>Event End Date & Time: {eventEndDateTime}</h4>
         <hr></hr>
@@ -77,10 +77,9 @@ export default class HostEventDetails extends Component {
         <h4>Event Create Date Time: {eventCreateDateTime}</h4>
         <h4>Created At: {createdAt}</h4>
         <h4>Updated At: {updatedAt}</h4>
-
+        <hr />
+        <h4>Number of Attendees</h4>
         <input type="submit" value="View Number Of Attendees" onClick={this.getAttendees.bind(this, eventContractAddress)}></input>
-        <p></p>
-        <canvas ref="userVerifyQR"></canvas>
       </div>
     );
   }
@@ -89,11 +88,22 @@ export default class HostEventDetails extends Component {
 HostEventDetails.propTypes = {
   hostEvent: PropTypes.arrayOf(PropTypes.shape({
     quota: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
     eventName: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    addressLine1: PropTypes.string.isRequired,
+    addressLine2: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    zipPostalCode: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    hostname: PropTypes.string.isRequired,
+    eventContractAddress: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
     eventCreateDateTime: PropTypes.string.isRequired,
     eventStartDateTime: PropTypes.string.isRequired,
     eventEndDateTime: PropTypes.string.isRequired,
-
   }).isRequired).isRequired,
 };

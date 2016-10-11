@@ -14,7 +14,7 @@ export default class HostEvent extends Component {
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h3>Event Name</h3>
           <input type="text" ref="eventName" placeholder="Event Name"/>
-          <h3>Price</h3>
+          <h3>Price in Ether</h3>
           <input type="text" ref="price" placeholder="Price"/>
           <h3>Quota</h3>
           <input type="text" ref="quota" placeholder="Quota"/>
@@ -56,9 +56,6 @@ export default class HostEvent extends Component {
           <input type="text" ref="country" placeholder="Country"/>
           <h5>Image Url</h5>
           <input type="text" ref="image" placeholder="Image Url"/>
-
-          <h3>Wallet Address</h3>
-          <input type="text" ref="walletAddress" placeholder="Wallet Address"/>
           <h3>Submit</h3>
           <input type="submit"/>
         </form>

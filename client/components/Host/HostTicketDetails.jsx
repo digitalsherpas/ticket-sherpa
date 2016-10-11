@@ -81,7 +81,6 @@ HostTicketDetails.propTypes = {
     eventName: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
     eventStartDateTime: PropTypes.string.isRequired,
     eventEndDateTime: PropTypes.string.isRequired,
     addressLine1: PropTypes.string.isRequired,
