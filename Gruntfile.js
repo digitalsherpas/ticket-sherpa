@@ -1,6 +1,3 @@
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.js');
-
 module.exports = (grunt) => {
 // config
   grunt.initConfig({
@@ -36,12 +33,17 @@ module.exports = (grunt) => {
         },
       },
     },
+    watch: {
+      files: './client/styles/**/*.less',
+      tasks: ['less'],
+    },
   });
 
 // dependencies
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 // tasks
   grunt.registerTask('dev', [
