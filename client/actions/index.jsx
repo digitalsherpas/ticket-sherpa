@@ -268,6 +268,7 @@ export function checkAddress(event) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
   const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value}`;
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
+  // store a reference from the db
 
   return (dispatch) => {
     return axios.post(requestUrl)
