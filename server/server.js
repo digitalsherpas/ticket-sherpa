@@ -146,7 +146,7 @@ app.get('/api/getTickets', (req, res) => {
 
 /* Example body of JSON request
 {
-  "ticketPrice":"10",
+  "price":"10",
   "eventName" : "The Best Event",
   "quota" : "100",
   "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19",
