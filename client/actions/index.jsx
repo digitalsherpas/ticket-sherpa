@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
+import keys from '../../keys.js';
 
 export const BUY_EVENT = 'BUY_EVENT';
 
@@ -258,5 +259,20 @@ export function logOut(userObj) {
       type: USER_LOG_OUT,
     });
     browserHistory.push('/');
+  };
+}
+
+export const CHECK_ADDRESS = 'CHECK_ADDRESS';
+
+export function checkAddress(event) {
+  const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+  const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value}`;
+  const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
+
+  return (dispatch) => {
+    return axios.post(requestUrl)
+    .then((results) => {
+      console.log(results);
+    });
   };
 }
