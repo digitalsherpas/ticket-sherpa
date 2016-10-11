@@ -7,7 +7,7 @@ import hostEventsReducer from './hostEventsReducer';
 import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
-  eventDetailsReducer,
+  // eventDetailsReducer,
   eventsListReducer,
   hostEventsReducer,
   authReducer,

@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-import staticEvents from '../data/events.js';
 
 import {
   SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS, RECEIVE_SEARCH_EVENTS, SEARCH_EVENTS_RESULTS,
 } from '../actions/index.jsx';
 
-const selectEvent = (state = staticEvents, action) => {
+const selectEvent = (state = [], action) => {
   switch (action.type) {
     case 'SELECT_EVENT':
       return [...state, {
