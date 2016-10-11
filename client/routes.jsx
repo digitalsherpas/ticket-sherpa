@@ -9,11 +9,9 @@ import EventsListContainer from './containers/EventsListContainer.js';
 import EventDetailsContainer from './containers/EventDetailsContainer.js';
 import HostEventDetailsContainer from './containers/HostEventDetailsContainer.js';
 import LoginContainer from './containers/LoginContainer.js';
-import BuyEventContainer from './containers/BuyEventContainer.js';
 import SignUpContainer from './containers/SignUpContainer.js';
 import HostVerifyContainer from './containers/HostVerifyContainer.js';
 import HostTicketsContainer from './containers/HostTicketsContainer.js';
-import HostMarketplaceContainer from './containers/HostMarketplaceContainer.js';
 import HostTicketDetailsContainer from './containers/HostTicketDetailsContainer.js';
 
 export default class Routes extends Component {
@@ -37,14 +35,12 @@ export default class Routes extends Component {
         <IndexRoute component={Home}/>
         <Route path="/events" component={EventsListContainer}/>
         <Route path="/events/:eventName" component={EventDetailsContainer}/>
-        <Route path="/buyevent/:eventName" component={BuyEventContainer} onEnter={this.requireAuth}/>
 
         <Route path="/host" component={HostHome} onEnter={this.requireAuth}/>
         <Route path="/hostevents" component={HostEventsContainer} onEnter={this.requireAuth}/>
         <Route path="/hostcreateevent" component={HostCreateEventContainer} onEnter={this.requireAuth}/>
         <Route path="/tickets" component={HostTicketsContainer} onEnter={this.requireAuth}/>
         <Route path="/tickets/:eventName" component={HostTicketDetailsContainer} onEnter={this.requireAuth}/>
-        <Route path="/marketplace" component={HostMarketplaceContainer} />
         <Route path="/verify" component={HostVerifyContainer} />
         <Route path="/hostEvents/:eventName" component={HostEventDetailsContainer} onEnter={this.requireAuth}/>
 

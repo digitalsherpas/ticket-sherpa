@@ -10,7 +10,7 @@ export default class HostEvent extends Component {
     return (
       <div>
         <h2>Create Event</h2>
-        <hr></hr>
+        <hr />
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h3>Event Name</h3>
           <input type="text" ref="eventName" placeholder="Event Name"/>
@@ -56,6 +56,7 @@ export default class HostEvent extends Component {
           <input type="text" ref="country" placeholder="Country"/>
           <h5>Image Url</h5>
           <input type="text" ref="image" placeholder="Image Url"/>
+
           <h3>Submit</h3>
           <input type="submit"/>
         </form>

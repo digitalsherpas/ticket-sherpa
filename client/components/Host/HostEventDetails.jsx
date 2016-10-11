@@ -26,7 +26,7 @@ export default class HostEventDetails extends Component {
     const eventName = this.props.hostEvent[i].eventName;
     const description = this.props.hostEvent[i].description;
     const image = this.props.hostEvent[i].image;
-    const prices = this.props.hostEvent[i].price;
+    const price = this.props.hostEvent[i].price / 1000000000000000000;
     const eventStartDateTime = this.props.hostEvent[i].eventStartDateTime;
     const eventEndDateTime = this.props.hostEvent[i].eventEndDateTime;
 
@@ -55,7 +55,7 @@ export default class HostEventDetails extends Component {
         <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
         <h4>Image: {image}</h4>
-        <h4>Price: {prices}</h4>
+        <h4>Price: {price} ETH</h4>
         <h4>Event Start Date & Time: {eventStartDateTime}</h4>
         <h4>Event End Date & Time: {eventEndDateTime}</h4>
         <hr></hr>

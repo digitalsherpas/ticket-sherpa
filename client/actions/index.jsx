@@ -102,8 +102,6 @@ export function addEvent(event, username) {
     image: event.image.value,
     username: username,
   };
-  console.log(obj);
-  console.log(JSON.stringify(obj))
 
   return (dispatch) => {
     browserHistory.push('/events');

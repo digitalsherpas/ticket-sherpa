@@ -36,7 +36,7 @@ export default class HostTicketDetails extends Component {
     const eventName = this.props.hostTickets[i].eventName;
     const description = this.props.hostTickets[i].description;
     const image = this.props.hostTickets[i].image;
-    const price = this.props.hostTickets[i].price;
+    const price = this.props.hostTickets[i].price / 1000000000000000000;
     const eventStartDateTime = this.props.hostTickets[i].eventStartDateTime;
     const eventEndDateTime = this.props.hostTickets[i].eventEndDateTime;
 
@@ -50,13 +50,11 @@ export default class HostTicketDetails extends Component {
 
     return (
       <div>
-        
-
         <h2>Event Info</h2>
         <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
         <h4>Image: {image}</h4>
-        <h4>Price: {price}</h4>
+        <h4>Price: {price} ETH</h4>
         <h4>Event Start Date & Time: {eventStartDateTime}</h4>
         <h4>Event End Date & Time: {eventEndDateTime}</h4>
         <hr></hr>
