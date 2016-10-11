@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Moment from 'moment';
 
 const HostEvent = ({ eventName, eventStartDateTime }) => (
-  <li className="host-event-list-item">
+  <li className="content__events-list-item">
     <h4><Link to={`/hostevents/${eventName}`}>{eventName}</Link></h4>
     <p>{Moment().format('MMMM Do YYYY, h:mm A')}</p>
   </li>

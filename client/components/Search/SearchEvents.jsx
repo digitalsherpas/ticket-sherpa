@@ -19,11 +19,10 @@ export default class SearchEvents extends Component {
 
   render() {
     return (
-      <div>
+      <div className='home__search-bar'>
         <form onSubmit={this.handleSubmit}>
-          <h4>Search</h4>
-          <input ref="search" type="text" />
-          <button>Submit</button>
+            <input className="home__search-input" ref="search" type="text" />
+            <button className="home_search-submit-btn">Submit</button>
         </form>
       </div>
     );

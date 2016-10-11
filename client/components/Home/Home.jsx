@@ -8,19 +8,19 @@ import Events from '../Events/Events.jsx';
 export default class Nav extends Component {
   render() {
     return (
-      <div className="home">
+      <div className="content">
         {/* <h1>Welcome to Ticket Sherpa</h1>
         <h4>Your one stop ticket shop</h4> */}
         {/* <Events /> */}
-        <div className="homeImage">
+        <div className="home__image-container">
           <img src={require('../../styles/images/eventbrite_homepage_image.jpg')} />
         </div>
 
-        <div className="homeSearch">
+        <div className="home__search">
           <SearchEventsContainer />
         </div>
 
-        <div className="events-title">
+        <div className="home__events-title">
           <h2>Events</h2>
         </div>
           <HomeEventsListContainer />

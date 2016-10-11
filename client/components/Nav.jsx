@@ -16,18 +16,18 @@ export default class Nav extends Component {
     if (this.props.auth) {
       return (
         <nav className="navBar">
-          <ul className="navLinks">
-            <li className="nav-link-item"><Link to="/host">My Account</Link></li>
-            <li className="nav-link-item"><Link onClick={this.handleSubmit} to="/">Log Out</Link></li>
+          <ul className="header__nav">
+            <li className="header__nav-item"><Link to="/host">My Account</Link></li>
+            <li className="header__nav-item"><Link onClick={this.handleSubmit} to="/">Log Out</Link></li>
           </ul>
         </nav>
       );
     } else {
       return (
         <nav className="navBar">
-          <ul className="navLinks">
-            <li className="nav-link-item"><Link to="/login">Login</Link></li>
-            <li className="nav-link-item"><Link to="/signup">Signup</Link></li>
+          <ul className="header__nav">
+            <li className="header__nav-item"><Link to="/login">Login</Link></li>
+            <li className="header__nav-item"><Link to="/signup">Signup</Link></li>
           </ul>
         </nav>
       );
