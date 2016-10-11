@@ -4,14 +4,18 @@ import axios from 'axios';
 
 export default class HostTicketDetails extends Component {
 
-  userVerifyTicket(e) {
+  userVerifyTicket(eventContractAddress, e) {
     e.preventDefault();
+    const name = this.props.username;
+    const address = web3.eth.coinbase;
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = 'localhost:3000/verify';
+    const qrstring = 'localhost:3000/?verify/&name=' + name +
+                    '&eventContractAddress=' + eventContractAddress +
+                    '&userWalletAddress=' + address;
 
     qrcodedraw.draw(this.refs.userVerifyQR, qrstring, function(error, canvas) {
       if (error) {
-         return console.log('Error =( ',error);
+         console.log('Error =( ',error);
       }
     });
   }
@@ -39,6 +43,13 @@ export default class HostTicketDetails extends Component {
 
     return (
       <div>
+        <form onSubmit={this.userVerifyTicket.bind(this, this.props.hostTickets[i].eventContractAddress)}>
+          <h2>User Verify Ticket</h2>
+          <p>QR text: localhost:3000/verify/?&name={this.props.username}&eventContractAddress={eventContractAddress}&userWalletAddress={web3.eth.coinbase}</p>
+          <input type="submit" value="User Verify Ticket"/>
+        </form>
+        <canvas ref="userVerifyQR"></canvas>
+
         <h2>Event Info</h2>
         <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
@@ -56,14 +67,7 @@ export default class HostTicketDetails extends Component {
         <h4>State: {state}</h4>
         <h4>Country: {country}</h4>
         <hr></hr>
-
-        <form onSubmit={this.userVerifyTicket.bind(this)}>
-          <h2>User Verify Ticket</h2>
-          <input type="submit" value="User Verify Ticket"/>
-        </form>
-        <canvas ref="userVerifyQR"></canvas>
-
-      </div>
+        </div>
     );
   }
 }

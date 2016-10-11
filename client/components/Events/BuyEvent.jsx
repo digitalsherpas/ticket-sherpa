@@ -6,8 +6,6 @@ export default class HostEvent extends Component {
   constructor(props) {
     super(props);
     this.buyTicket = this.buyTicket.bind(this);
-    this.hostVerifyTicket = this.hostVerifyTicket.bind(this);
-    this.userVerifyTicket = this.userVerifyTicket.bind(this);
   }
 
   buyTicket(e) {
@@ -22,9 +20,11 @@ export default class HostEvent extends Component {
     contract.buyTicket.sendTransaction(name, {from: account, value: web3.toWei(.01, "ether")}, function (err, result) {
       if (!err) {
         console.log('Buy Ticket Success: ', result);
+        console.log(account, 'account here');
         axios.post('/db/addEventToUser', {
             username: name,
             eventID: id,
+            address: account,
           })
           .then(function (response) {
             console.log(response, 'success in db user post');
@@ -56,15 +56,14 @@ export default class HostEvent extends Component {
 
         <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
           <h1>Buy Ticket</h1>
-          <h2>Name</h2>
-          <input type="text" ref="name" placeholder="Name"/>
+          <hr />
           <h2>Buy With Meta Mask</h2>
           <input type="submit"/>
         </form>
 
         <form onSubmit={this.viewQRCode.bind(this)}>
-          <hr></hr>
           <h2>Buy With QR Code</h2>
+          <p>QR text: {this.props.location.query.contractAddress}</p>
           <input type="submit" value="View"/>
         </form>
         <canvas ref="contractQR"></canvas>
