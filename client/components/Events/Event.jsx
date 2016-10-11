@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import Moment from 'moment';
 
 const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id }) => (
-  <li>
+  <li className="home__event-item">
+  <div className="home__event-container">
     <Link
       to={{ pathname:
       '/events/' + eventName,
@@ -23,7 +24,8 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
         id,
       },
     }}
-    ><img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" /></Link>
+    ><img className="home__event-image" src={require('../../styles/images/ticketsherpa-logo.png')} /></Link>
+    </div>
     <h2><Link
       to={{ pathname:
       '/events/' + eventName,
