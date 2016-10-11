@@ -13,10 +13,8 @@ export default class HostEvents extends Component {
   render() {
     return (
       <div className="hostEvents">
-        <h2>My Events</h2>
-
+        <h2>My Created Events</h2>
         <hr></hr>
-        <p>All Events</p>
         <ul className="host-events-list">
           {this.props.hostEvents.map((hostEvent, i) =>
             <HostEvent
