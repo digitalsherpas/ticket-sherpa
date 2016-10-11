@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
 import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
 import MDSpinner from 'react-md-spinner';
-import Maps from '../Events/Maps.jsx';
+import MapsContainer from '../../containers/MapsContainer.js';
 
 export default class Events extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class Events extends Component {
     (
       <div className="events">
         <SearchEventsContainer />
-        <Maps />
+        <MapsContainer />
         <div className="events-header">
           <h2>Events</h2>
           <ul>

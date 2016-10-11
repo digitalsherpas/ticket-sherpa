@@ -6,6 +6,7 @@ import eventsListReducer from './eventsListReducer';
 import hostEventsReducer from './hostEventsReducer';
 import hostTicketsReducer from './hostTicketsReducer';
 import authReducer from './authReducer';
+import mapsReducer from './mapsReducer';
 
 const rootReducer = combineReducers({
   // eventDetailsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   hostEventsReducer,
   hostTicketsReducer,
   authReducer,
+  mapsReducer,
   routing: routerReducer,
 });
 
