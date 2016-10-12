@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 import Moment from 'moment';
 import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
 
-
 export default class EventDetails extends Component {
   constructor(props) {
     super(props);

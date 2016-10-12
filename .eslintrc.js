@@ -1,3 +1,6 @@
 module.exports = {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "no-param-reassign": 1
+  }
 };

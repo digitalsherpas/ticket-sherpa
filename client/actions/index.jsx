@@ -261,7 +261,7 @@ export function checkAddress(event, username) {
 
             return axios.post('/api/events', obj)
             .then(() => {
-              browserHistory.push('/events');
+              browserHistory.push('/hostevents');
             }).catch((error) => {
               console.log('an error occurred saving the event to the db');
             });

@@ -1,0 +1,66 @@
+version: '2'
+services:
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: tickether
+
+  # testrpc:
+  #   image: docker.io/lentan/testrpc
+  #   ports:
+  #     - "8545:8545"
+
+  db:
+    image: db
+    ports:
+      - "3004:3004"
+    links:
+      - postgres
+      - es
+    environment:
+      ES_SERVER_URL: http://es
+      DATABASEUSER: docker
+      DATABASEPASSWORD: docker
+      DATABASEADDRESS: postgres
+      DATABASEPORT: 5432
+
+  # eth:
+  #   image: eth
+  #   ports:
+  #     - "3002:3002"
+  #   links:
+  #     - db
+  #     - testrpc
+  #   environment:
+  #     ETHEREUM_CONNECTION_STRING: http://testrpc:8545
+  #     ETHEREUM_CONNECTION_STRING: http://54.190.58.228:8545
+  #     DB_SERVER_URL: http://db
+
+
+  auth:
+    image: auth
+    ports:
+      - "3003:3003"
+    links:
+      - db
+    environment:
+      DB_SERVER_URL: http://db
+
+  es:
+    image: es
+    ports:
+      - "3005:3005"
+    links:
+      - elasticsearch
+    environment:
+      ES_URL: http://elasticsearch

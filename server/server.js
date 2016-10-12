@@ -1,10 +1,3 @@
-'use strict';
-
-// SSL dependencies
-// const fs = require('fs');;
-// const https = require('https');
-// const letsencrypt = require('letsencrypt');
-
 const express = require('express');
 const path = require('path');
 const config = require('../config');
@@ -25,21 +18,6 @@ app.use(session({
 }));
 
 const bodyParser = require('body-parser');
-
-// LetsEncrypt SSL settings
-
-// const le = letsencrypt.create({ server: 'staging' });
-// let opts = {
-//   domains: ['lentan.info'], email: 'user@email.com', agreeTos: true
-// };
-
-// le.register(opts).then((certs) => {
-//   console.log(certs);
-// }).catch((error) => {
-//   console.log(error);
-// });
-
-// app.use(le.middleware());
 
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
@@ -84,24 +62,28 @@ app.get('/api/events', (req, res) => {
   let reqObj = {};
   if (req.query.eventName) {
     reqObj = {
-      url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+      url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
       qs: {
         eventName: req.query.eventName,
       },
       json: true,
+    };
+  } else {
+    reqObj = {
+      url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
     };
   }
 
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
 app.get('/api/eventsList', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -111,13 +93,13 @@ app.get('/api/eventsList', (req, res) => {
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
 app.get('/api/HostEventsList', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/HostEventsList`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/HostEventsList`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -127,13 +109,13 @@ app.get('/api/HostEventsList', (req, res) => {
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
 app.get('/api/searchEvents', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    url: `${config.ECS_URL || config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
     json: true,
     qs: {
       eventName: req.query.eventName,
@@ -142,13 +124,13 @@ app.get('/api/searchEvents', (req, res) => {
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
 app.get('/api/getTickets', (req, res) => {
   const reqObj = {
-    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
+    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -158,13 +140,13 @@ app.get('/api/getTickets', (req, res) => {
   rp(reqObj).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
 /* Example body of JSON request
 {
-  "ticketPrice":"10",
+  "price":"10",
   "eventName" : "The Best Event",
   "quota" : "100",
   "senderAddress": "0x4dad76b49a53f22b80b18b276234365d54de8c19",
@@ -176,29 +158,29 @@ app.post('/api/events', (req, res) => {
   // posts to ethereum
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
     body: req.body,
     json: true,
   })
-  .then((obj) => {
-    res.status(200).send(obj);
+  .then((event) => {
+    res.status(200).send(event);
   }).catch((err) => {
-    res.status(500).send(err.error);
-  });
-
-  // posts to elasticsearch
-  rp({
-    method: 'POST',
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
-    body: req.body,
-    json: true,
-  })
-  .then((obj) => {
-    res.status(200).send(obj);
-  }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
+// // posts to elasticsearch
+// rp({
+//   method: 'POST',
+//   url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+//   body:{},
+//   json: true,
+// })
+// .then((obj) => {
+//   res.status(200).send(obj);
+// }).catch((err) => {
+//   res.status(500).send(err);
+// });
+
 
 
 /* Example body of JSON request
@@ -211,14 +193,14 @@ app.post('/api/events', (req, res) => {
 app.post('/api/tickets', (req, res) => {
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
     body: req.body,
     json: true,
   })
   .then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
@@ -231,15 +213,15 @@ app.post('/api/tickets', (req, res) => {
 app.post('/db/addEventToUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
+    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
     body: req.body,
     json: true,
   }).then((event) => {
-    console.log(event);
+    res.status(200).send(event);
   }).catch((err) => {
-    reject(err);
+    res.status(500).send(err);
   });
-})
+});
 
 /* Example body of JSON request
 {
@@ -253,13 +235,13 @@ app.post('/db/addEventToUser', (req, res) => {
 app.post('/registerUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
+    url: `${config.ECS_URL || config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
     body: req.body,
     json: true,
   }).then((obj) => {
     res.status(200).send(obj);
   }).catch((err) => {
-    res.status(500).send(err.error);
+    res.status(500).send(err);
   });
 });
 
@@ -268,14 +250,14 @@ app.get('/getUserSession', (req, res) => {
     const token = req.get('Authorization').slice(7);
     rp({
       method: 'POST',
-      url: `${config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
+      url: `${config.ECS_URL || config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
       body: { token },
       json: true,
     }).then((obj) => {
       req.session.user = obj;
       res.status(200).send(obj);
     }).catch((err) => {
-      res.status(500).send(err.error);
+      res.status(500).send(err);
     });
   } else {
     res.status(403).send('Authorization failed');
@@ -293,14 +275,6 @@ app.get('/getUser', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
-
-// Manual SSL settings (for development)
-// const credentials = {
-//   cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
-//   key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key'))
-// };
-
-// https.createServer(credentials, app).listen(config.SERVER_PORT);
 
 app.listen(config.SERVER_PORT);
 console.log(`Server listening on port: ${config.SERVER_PORT}`);
