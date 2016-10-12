@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
+import keys from '../../keys.js';
 
 export const BUY_EVENT = 'BUY_EVENT';
 
@@ -259,4 +260,80 @@ export function logOut(userObj) {
     });
     browserHistory.push('/');
   };
+}
+
+// export const CHECK_BLANK = 'CHECK_BLANK';
+// export function checkBlanks(event) {
+//   return (dispatch) => {
+//     dispatch({
+//       type: CHECK_BLANK,
+//     });
+//   };
+// }
+
+export const CHECK_ADDRESS = 'CHECK_ADDRESS';
+
+export function checkAddress(event, username) {
+  const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+  const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value},${event.country.value}`;
+  const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
+
+  if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
+    console.log('it\'s type checking correctly');
+    return (dispatch) => {
+      return axios.post(requestUrl)
+      .then((results) => {
+        // if geoencode returns a valid address
+        if (results.data.results.length > 0) {
+          return function addEvent(event, username) {
+            const eventStartDateTime = new Date(
+              event.eventStartYear.value,
+              event.eventStartMonth.value,
+              event.eventStartDay.value,
+              event.eventStartTime.value).toISOString();
+            const eventEndDateTime = new Date(
+              event.eventEndYear.value,
+              event.eventEndMonth.value,
+              event.eventEndDay.value,
+              event.eventEndTime.value).toISOString();
+            const obj = {
+              quota: event.quota.value,
+              ticketPrice: event.price.value,
+              eventName: event.eventName.value,
+              senderAddress: event.walletAddress.value,
+              startDateTime: eventStartDateTime,
+              endDateTime: eventEndDateTime,
+              description: event.description.value,
+              addressLine1: event.addressLine1.value,
+              addressLine2: event.addressLine2.value,
+              city: event.city.value,
+              state: event.state.value,
+              zipPostalCode: event.zipPostalCode.value,
+              country: event.country.value,
+              image: event.image.value,
+              latitude: results.data.results[0].geometry.location.lat,
+              longitude: results.data.results[0].geometry.location.lng,
+              username: username,
+            };
+
+            return axios.post('/api/events', obj)
+            .then(() => {
+              browserHistory.push('/events');
+            }).catch((error) => {
+              console.log('an error occurred saving the event to the db');
+            });
+          }(event, username);
+        } else {
+          alert('Please enter a valid address!');
+          console.log('the event address is invalid with geoencoding api');
+        }
+      }).catch((error) => {
+        console.log('there was an error sending the data to the geoencoding api');
+        alert('There was an error with your submission. Please try again later.');
+      });
+    }
+  } else {
+    console.log('please type in an address');
+    alert('Please enter an address!');
+  }
 }

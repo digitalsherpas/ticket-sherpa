@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
-import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
+import EventsSearchContainer from '../../containers/EventsSearchContainer.js';
 import MDSpinner from 'react-md-spinner';
+import MapsContainer from '../../containers/MapsContainer.js';
 
 export default class Events extends Component {
   constructor(props) {
@@ -15,23 +16,33 @@ export default class Events extends Component {
     const loaded = this.props.loaded ?
     (
       <div className="events">
-        <SearchEventsContainer />
-        <div className="events-header">
-          <h2>Events</h2>
-          <ul>
-            {this.props.searchEventsList.map((event, i) =>
-              <Event
-                key={i}
-                {...event}
-              />
-            )}
-          </ul>
+        <div className="events__search">
+          <EventsSearchContainer />
+        </div>
+        <div className="events__content">
+          <div className="events__map-container">
+            <MapsContainer />
+          </div>
+
+
+          <div className="events__list">
+            <h2>Events</h2>
+            <ul className="events__list-ul">
+              {this.props.searchEventsList.map((event, i) =>
+                <Event
+                  key={i}
+                  {...event}
+                  className=".events__list-ul--li"
+                />
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     ) :
     (
       <div className="events">
-        <SearchEventsContainer />
+        <EventsSearchContainer />
         <h2>Events</h2>
         <MDSpinner singleColor="#03a9f4" />
       </div>
