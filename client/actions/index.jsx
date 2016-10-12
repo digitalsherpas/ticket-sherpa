@@ -241,7 +241,7 @@ export function checkAddress(event, username) {
 
             const obj = {
               quota: event.quota.value,
-              price: event.price.value,
+              price: web3.toWei(event.price.value, 'ether'),
               eventName: event.eventName.value,
               senderAddress: web3.eth.coinbase,
               startDateTime: eventStartDateTime,
