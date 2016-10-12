@@ -1,9 +1,19 @@
+@font-color: #45494E;
 @font-size: 20px;
 
 a {
   text-decoration: none;
+  &:link, &:visited {
+    color: @font-color;
+  }
 }
 
 body {
-  background-color: #F8F8FA
+  background-color: #F8F8FA;
+  font-family: 'Open Sans', sans-serif;
+  color: @font-color;
+}
+
+h2 {
+  margin: 0;
 }

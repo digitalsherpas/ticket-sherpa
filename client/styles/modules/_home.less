@@ -3,28 +3,38 @@
 @search-bar-border-radius: 3px;
 @event-background: #fff;
 @event-border: #EFF2F5;
+@search-bar-color: #FFBF00;
+@font: 'Open Sans', sans-serif;
+@font-size: 16px;
 
 .home__image-container img {
   display: block;
   width: 100%;
   height: auto;
+  filter: brightness(50%);
 }
 
 .search-bar-layout {
   padding: @search-bar-padding;
-  border: 1px solid @grey-outline;
+  border: 1px solid @search-bar-color;
 }
 
 .home__search-input {
   &:extend(.search-bar-layout);
   border-top-left-radius: @search-bar-border-radius;
   border-bottom-left-radius: @search-bar-border-radius;
+
 }
 
-.home_search-submit-btn {
+.home__search-submit-btn {
   &:extend(.search-bar-layout);
   border-top-right-radius: @search-bar-border-radius;
   border-bottom-right-radius: @search-bar-border-radius;
+  color: white;
+  background-color: #FFBF00;
+  font-family: @font;
+  font-size: @font-size;
+  flex: 1;
 }
 
 .home__event-item {
@@ -41,4 +51,43 @@
 
 .home__event-container {
   text-align: center;
+}
+
+.home__overlay {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  color: white;
+  z-index: 1;
+  flex-direction: column;
+  h1, p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+::-webkit-input-placeholder {
+  font-family: @font;
+  font-size: @font-size;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  font-family: @font;
+  font-size: @font-size;
+
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  font-family: @font;
+  font-size: @font-size;
+
+}
+
+:-ms-input-placeholder {
+  font-family: @font;
+  font-size: @font-size;
+
 }
