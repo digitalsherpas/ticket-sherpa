@@ -5,25 +5,31 @@ import HomeEventsListContainer from '../../containers/HomeEventsListContainer';
 // TODO: add reducer, similar to eventsList
 import Events from '../Events/Events.jsx';
 
-export default class Nav extends Component {
+export default class Home extends Component {
   render() {
     return (
       <div className="content">
-        {/* <h1>Welcome to Ticket Sherpa</h1>
-        <h4>Your one stop ticket shop</h4> */}
-        {/* <Events /> */}
         <div className="home__image-container">
+          <div className="home__overlay">
+            <h1>
+              Sell Tickets
+            </h1>
+            <p>
+              Manage your events through code. No middleman fees.
+            </p>
+          </div>
           <img src={require('../../styles/images/eventbrite_homepage_image.jpg')} />
         </div>
+        <div className="event-container">
+          <div className="home__search">
+            <SearchEventsContainer />
+          </div>
 
-        <div className="home__search">
-          <SearchEventsContainer />
+          <div className="home__events-title">
+            <h2>Events</h2>
+          </div>
+            <HomeEventsListContainer />
         </div>
-
-        <div className="home__events-title">
-          <h2>Events</h2>
-        </div>
-          <HomeEventsListContainer />
       </div>
     );
   }

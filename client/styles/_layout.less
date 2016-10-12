@@ -1,4 +1,5 @@
-@margin: 8px;
+@content-margin: 5%;
+@margin: 10px;
 
 .app {
   display: flex;
@@ -16,7 +17,7 @@ body {
 .header {
   display: flex;
   align-items: center;
-  margin: @margin @margin 0 @margin;
+  margin: @margin;
 }
 
 .content {
@@ -25,10 +26,11 @@ body {
   flex: 1;
 }
 
+.event-container {
+  margin: 0 @content-margin;
+}
+
 .home__search {
-  display: flex;
-  justify-content: center;
-  flex:1;
   padding: 40px;
 }
 
@@ -37,8 +39,21 @@ body {
   align-items: center;
 }
 
+.home__search-bar-form {
+  width: 100%;
+  display: flex;
+}
+.home__search-input {
+  flex: 4;
+}
+
+.home_search-submit-btn {
+  flex: 1;
+}
+
 .home__image-container {
   flex: 2;
+  position: relative;
 }
 
 .home__events-container {
