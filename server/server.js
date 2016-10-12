@@ -62,7 +62,7 @@ app.get('/api/events', (req, res) => {
   let reqObj = {};
   if (req.query.eventName) {
     reqObj = {
-      url: `${config.ECS_URL || config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
+      url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/findEvent`,
       qs: {
         eventName: req.query.eventName,
       },
@@ -70,7 +70,7 @@ app.get('/api/events', (req, res) => {
     };
   } else {
     reqObj = {
-      url: `${config.ECS_URL || config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
+      url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/getAllEvents`,
     };
   }
 
@@ -83,7 +83,7 @@ app.get('/api/events', (req, res) => {
 
 app.get('/api/eventsList', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -99,7 +99,7 @@ app.get('/api/eventsList', (req, res) => {
 
 app.get('/api/HostEventsList', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/HostEventsList`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/HostEventsList`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -115,7 +115,7 @@ app.get('/api/HostEventsList', (req, res) => {
 
 app.get('/api/searchEvents', (req, res) => {
   const reqObj = {
-    url: `${config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    url: `${config.ECS_URL || config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
     json: true,
     qs: {
       eventName: req.query.eventName,
@@ -130,7 +130,7 @@ app.get('/api/searchEvents', (req, res) => {
 
 app.get('/api/getTickets', (req, res) => {
   const reqObj = {
-    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
+    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -158,7 +158,7 @@ app.post('/api/events', (req, res) => {
   // posts to ethereum
   rp({
     method: 'POST',
-    url: `${config.ECS_URL || config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/events`,
     body: req.body,
     json: true,
   })
@@ -193,7 +193,7 @@ app.post('/api/events', (req, res) => {
 app.post('/api/tickets', (req, res) => {
   rp({
     method: 'POST',
-    url: `${config.ECS_URL || config.SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
+    url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/tickets`,
     body: req.body,
     json: true,
   })
@@ -213,12 +213,14 @@ app.post('/api/tickets', (req, res) => {
 app.post('/db/addEventToUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${process.env.DB_SERVER_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
+    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
     body: req.body,
     json: true,
   }).then((event) => {
+    console.log('NO ERR HERE')
     res.status(200).send(event);
   }).catch((err) => {
+    console.log('ITS AN ERR');
     res.status(500).send(err);
   });
 });
