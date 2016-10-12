@@ -68,58 +68,6 @@ export function searchEvents(eventName) {
   };
 }
 
-export const ADD_EVENT = 'ADD_EVENT';
-
-export function addEvent(event, username) {
-
-  console.log(event)
-  const eventStartDateTime = new Date(event.eventStartDateAndTime.state.inputValue).toISOString();
-  const eventEndDateTime = new Date(event.eventEndDateAndTime.state.inputValue).toISOString();
-  const image = event.imageupload.value;
-
-  // const eventStartDateTime = new Date(
-  //   event.eventStartYear.value,
-  //   event.eventStartMonth.value,
-  //   event.eventStartDay.value,
-  //   event.eventStartTime.value).toISOString();
-  // const eventEndDateTime = new Date(
-  //   event.eventEndYear.value,
-  //   event.eventEndMonth.value,
-  //   event.eventEndDay.value,
-  //   event.eventEndTime.value).toISOString();
-  const obj = {
-    // type: ADD_EVENT,
-    // numAttendees: '0',
-    // attendeesPaid: '0',
-    quota: event.quota.value,
-    price: web3.toWei(event.price.value, 'ether'),
-    eventName: event.eventName.value,
-    senderAddress: web3.eth.coinbase,
-    // eventCreateDateTime: 'event create date time',
-    startDateTime: eventStartDateTime,
-    endDateTime: eventEndDateTime,
-    description: event.description.value,
-    addressLine1: event.addressLine1.value,
-    addressLine2: event.addressLine2.value,
-    city: event.city.value,
-    state: event.state.value,
-    zipPostalCode: '',
-    country: '',
-    image: event.image.value,
-    username: username,
-  };
-
-  console.log(obj, 'finished obj')
-
-  // return (dispatch) => {
-  //   browserHistory.push('/events');
-  //   return axios.post('/api/events', obj)
-  //   .then(() => {
-  //     browserHistory.push('/hostevents');
-  //   });
-  // };
-}
-
 export const SELECT_EVENT = 'SELECT_EVENT';
 
 export function selectEvent(event) {
@@ -271,14 +219,6 @@ export function logOut(userObj) {
   };
 }
 
-// export const CHECK_BLANK = 'CHECK_BLANK';
-// export function checkBlanks(event) {
-//   return (dispatch) => {
-//     dispatch({
-//       type: CHECK_BLANK,
-//     });
-//   };
-// }
 
 export const CHECK_ADDRESS = 'CHECK_ADDRESS';
 
@@ -295,21 +235,15 @@ export function checkAddress(event, username) {
         // if geoencode returns a valid address
         if (results.data.results.length > 0) {
           return function addEvent(event, username) {
-            const eventStartDateTime = new Date(
-              event.eventStartYear.value,
-              event.eventStartMonth.value,
-              event.eventStartDay.value,
-              event.eventStartTime.value).toISOString();
-            const eventEndDateTime = new Date(
-              event.eventEndYear.value,
-              event.eventEndMonth.value,
-              event.eventEndDay.value,
-              event.eventEndTime.value).toISOString();
+            const eventStartDateTime = new Date(event.eventStartDateAndTime.state.inputValue).toISOString();
+            const eventEndDateTime = new Date(event.eventEndDateAndTime.state.inputValue).toISOString();
+            const image = event.imageupload.value;
+
             const obj = {
               quota: event.quota.value,
-              ticketPrice: event.price.value,
+              price: event.price.value,
               eventName: event.eventName.value,
-              senderAddress: event.walletAddress.value,
+              senderAddress: web3.eth.coinbase,
               startDateTime: eventStartDateTime,
               endDateTime: eventEndDateTime,
               description: event.description.value,
@@ -319,7 +253,7 @@ export function checkAddress(event, username) {
               state: event.state.value,
               zipPostalCode: event.zipPostalCode.value,
               country: event.country.value,
-              image: event.image.value,
+              image: event.imageupload.value,
               latitude: results.data.results[0].geometry.location.lat,
               longitude: results.data.results[0].geometry.location.lng,
               username: username,

@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime'
-import Geosuggest from 'react-geosuggest';
-import * as cloudinary from 'cloudinary-core';
 
 export default class HostEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.refs.eventStartDateAndTime.state.inputValue);
-    console.log(this.refs.eventEndDateAndTime.state.inputValue);
-    console.log(this.refs.address.state.userInput);
-    console.log(this.refs.imageupload.value);
     this.props.checkAddress(this.refs, this.props.username);
-    // this.props.addEvent(this.refs, this.props.username);
   }
 
   componentDidMount() {
@@ -48,7 +41,7 @@ export default class HostEvent extends Component {
           <h3>Quota</h3>
           <input type="text" ref="quota" placeholder="Quota"/>
           <h3>Description</h3>
-          <input type="text" ref="quota" placeholder="Quota"/>
+          <input type="text" ref="description" placeholder="Quota"/>
           <hr />
 
           <h3>Event Start Date & Time</h3>
@@ -59,15 +52,24 @@ export default class HostEvent extends Component {
           <Datetime ref='eventEndDateAndTime' />
           <hr />
 
-          <h3>Event Address</h3>
-          <Geosuggest ref="address"/>
-          <hr />
-
           <button type="button" d="upload_widget_opener" ref="imageupload" onClick={this.uploadImage.bind(this)}>Upload Image</button>
 
+          <h3>Event Address</h3>
+          <h5>Street Address</h5>
+          <input type="text" ref="addressLine1" placeholder="Street Address"/>
+          <h5>Address Line 2</h5>
+          <input type="text" ref="addressLine2" placeholder="Address Line 2"/>
+          <h5>City</h5>
+          <input type="text" ref="city" placeholder="City"/>
+          <h5>State</h5>
+          <input type="text" ref="state" placeholder="State"/>
+          <h5>Zip/Postal Code</h5>
+          <input type="text" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
+          <h5>Country</h5>
+          <input type="text" ref="country" placeholder="Country"/>
           <h3>Submit</h3>
           <input type="submit"/>
-        </form>
+          </form>
       </div>
     );
   }
