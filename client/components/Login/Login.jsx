@@ -29,13 +29,15 @@ export default class Login extends Component {
       );
     } else {
       return (
-        <form ref="loginForm" onSubmit={this.handleSubmit.bind(this)}>
-          <h4>Username</h4>
-          <input ref="username" type="text" />
-          <h4>Password</h4>
-          <input ref="password" type="password" />
-          <button type="submit">Submit</button>
-        </form>
+        <div className="content__container">
+          <form ref="loginForm" onSubmit={this.handleSubmit.bind(this)}>
+            <h3>Username</h3>
+            <input ref="username" type="text" />
+            <h3>Password</h3>
+            <input ref="password" type="password" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       );
     }
   }

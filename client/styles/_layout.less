@@ -1,5 +1,4 @@
 @content-margin: 5%;
-@margin: 10px;
 
 .app {
   display: flex;
@@ -14,10 +13,13 @@ body {
   margin: 0px;
 }
 
+h2 {
+  margin: 0;
+}
+
 .header {
   display: flex;
   align-items: center;
-  margin: @margin;
 }
 
 .content {
@@ -26,7 +28,7 @@ body {
   flex: 1;
 }
 
-.event-container {
+.event__container {
   margin: 0 @content-margin;
 }
 
@@ -47,13 +49,18 @@ body {
   flex: 4;
 }
 
-.home_search-submit-btn {
+.home__search-submit-btn {
   flex: 1;
 }
 
 .home__image-container {
   flex: 2;
   position: relative;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .home__events-container {
@@ -64,7 +71,6 @@ body {
 }
 
 .home__events {
-  list-style-type: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -73,4 +79,13 @@ body {
 
 .home__events-title {
   flex: 1;
+}
+
+.home__event-item {
+  margin: 0 0 20px 0;
+  width: 25%;
+}
+
+.home__event-image {
+  width: 50%;
 }

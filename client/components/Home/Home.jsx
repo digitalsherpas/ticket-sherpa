@@ -20,7 +20,7 @@ export default class Home extends Component {
           </div>
           <img src={require('../../styles/images/eventbrite_homepage_image.jpg')} />
         </div>
-        <div className="event-container">
+        <div className="event__container">
           <div className="home__search">
             <SearchEventsContainer />
           </div>

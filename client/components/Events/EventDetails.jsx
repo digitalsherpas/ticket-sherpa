@@ -1,10 +1,10 @@
-
-
 import React, { Component } from 'react';
 import QRCodeLib from 'qrcode';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router';
+import Moment from 'moment';
+import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
 
 
 export default class EventDetails extends Component {
@@ -49,20 +49,21 @@ export default class EventDetails extends Component {
     const query = this.props.location.query;
     return (
       <div>
-
-        <img src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" />
+        <SearchEventsContainer />
+        <div className="content__container">
         <h4>Event Name: {query.eventName}</h4>
-        <h4>Contract Address: {query.eventContractAddress}</h4>
         <p>Description: {query.description}</p>
         <p>Price: {query.price / 1000000000000000000} ETH</p>
-        <p>Start Date:{query.eventStartDateTime}</p>
-        <p>End Date: {query.eventEndDateTime}</p>
+        <p>Start Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
+        <p>End Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
+        <hr/>
         <p>Street Address: {query.addressLine1}</p>
         <p>Address Line 2: {query.addressLine2}</p>
         <p>City: {query.city}</p>
         <p>State: {query.state}</p>
         <p>Zip/Postal Code: {query.zipPostalCode}</p>
         <p>Country: {query.country}</p>
+        <hr/>
         <p>Contract Address: {query.eventContractAddress}</p>
         <p>ID: {query.id}</p>
 
@@ -72,7 +73,7 @@ export default class EventDetails extends Component {
           <h2>Buy With Meta Mask</h2>
           <input type="submit"/>
         </form>
-
+        </div>
       </div>
     );
   }
