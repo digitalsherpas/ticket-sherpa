@@ -11,99 +11,31 @@ import Marker from 'google-maps-react/dist/components/Marker.js';
 export class Container extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markers: [
-        {
-          lat: 37.773972,
-          lng: -122.431297,
-        },
-        {
-          lat: 37.773973,
-          lng: -122.431297,
-        },
-        // {
-        //
-        // }
-      ],
-    };
-    this.setMarkers = this.setMarkers.bind(this);
   }
-
-  // open info window and set state for selected map marker
-  // onMarkerClick(props, marker, e) {
-  //   this.setState({
-  //     selectedPlace: props,
-  //     activeMarker: marker,
-  //     showingInfoWindow: true
-  //   });
-  // }
-  //
-  // // close info window for selected map marker
-  // onInfoWindowClose() {
-  //   this.setState({
-  //     showingInfoWindow: false,
-  //     activeMarker: null
-  //   });
-  // }
-  //
-  // // closes open info window if map is clicked on
-  // onMapClicked(props) {
-  //   if (this.state.showingInfoWindow) {
-  //     this.setState({
-  //       showingInfoWindow: false,
-  //       activeMarker: null
-  //     });
-  //   }
-  // }
-  //
-  // // set state of current array of markers
-  setMarkers(markerArray) {
-    this.setState({
-      markers: markerArray
-    });
-  }
-  //
-  // LogInUser(username) {
-  //   this.setState({username: username});
-  //   this.setState({loggedIn: true});
-  // }
-  //
-  // LogOutUser() {
-  //   this.setState({loggedIn: false});
-  //   this.setState({username: ''});
-  // }
 
   render() {
     // puts the current state of map markers into an array that can be rendered
     const Markers =
-        this.state.markers
-        .map((marker, index) => (
-          <Marker
-            key={index}
-            // onClick={this.onMarkerClick}
-            // company={marker['company']}
-            // jobtitle={marker['jobtitle']}
-            // snippet={marker['snippet']}
-            // url={marker['url']}
-            // jobkey={marker['jobkey']}
-            position={{lat: marker['lat'], lng: marker['lng']}} />
-        ));
+      this.props.searchEventsList
+      .map((marker, index) => (
+        <Marker
+          key={index}
+          position={{lat: marker['latitude'], lng: marker['longitude']}} />
+      ));
+
+    // console.log(this.props.searchEventsList, 'props search events list');
     return (
-      <div className='application'>
-        {/* SearchBar will pass data to setMarkers */}
-        {/* <SearchBar setMarkers={this.setMarkers}/> */}
-        <div className='overallContainer'>
-          {/* sideBar contains signin/register and logged in components*/}
-          {/* {sideBar} */}
-          <div className='mapContainer'>
+      <div className='events__map'>
         {/* Google Maps component */}
-            <Map google={this.props.google}
-              style={{width: '50%', height: '50%', position: 'relative'}}
-              className={'map'}>
-              {Markers}
-            </Map>
-          </div>
-        </div>
+        <Map google={this.props.google}
+          style={{width: '50%', height: '100%'}}
+          className={'events__map'}
+          zoom={12}
+          // center={{lat: 37.331686, lng: -122.030656}}
+
+          >
+          {Markers}
+        </Map>
       </div>
     );
   }
