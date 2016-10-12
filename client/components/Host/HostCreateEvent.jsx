@@ -27,27 +27,31 @@ export default class HostEvent extends Component {
   }
 
   render() {
+    const yesterday = Datetime.moment().subtract(1, 'day');
+    const valid = function( current ){
+        return current.isAfter( yesterday );
+    };
     return (
       <div className="content__container">
         <h2>Create Event</h2>
         <hr />
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h3>Event Name</h3>
-          <input type="text" ref="eventName" placeholder="Event Name"/>
+          <input type="text" ref="eventName" placeholder="Event Name" />
           <h3>Price in Ether</h3>
-          <input type="text" ref="price" placeholder="Price"/>
+          <input type="text" ref="price" placeholder="Price" />
           <h3>Quota</h3>
-          <input type="text" ref="quota" placeholder="Quota"/>
+          <input type="text" ref="quota" placeholder="Quota" />
           <h3>Description</h3>
-          <input type="text" ref="description" placeholder="Quota"/>
+          <input type="text" ref="description" placeholder="Quota" />
           <hr />
 
           <h3>Event Start Date & Time</h3>
-          <Datetime ref='eventStartDateAndTime' />
+          <Datetime ref='eventStartDateAndTime' isValidDate={ valid }/>
           <hr />
 
           <h3>Event End Date Time</h3>
-          <Datetime ref='eventEndDateAndTime' />
+          <Datetime ref='eventEndDateAndTime' isValidDate={ valid } />
           <hr />
 
           <button type="button" d="upload_widget_opener" ref="imageupload" onClick={this.uploadImage.bind(this)}>Upload Image</button>
