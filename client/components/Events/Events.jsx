@@ -13,6 +13,17 @@ export default class Events extends Component {
   }
 
   render() {
+    const searchEventsLength = this.props.searchEventsList.length === 0 ?
+    (
+      <div>
+        <h2>No events were found</h2>
+      </div>
+    ) :
+    (
+      <div>
+      </div>
+    )
+
     const loaded = this.props.loaded ?
     (
       <div className="events">
@@ -27,7 +38,8 @@ export default class Events extends Component {
 
           <div className="events__list">
             <h2>Events</h2>
-            <ul className="events__list-ul">
+            {searchEventsLength}
+            <div className="events__list-ul">
               {this.props.searchEventsList.map((event, i) =>
                 <Event
                   key={i}
@@ -35,7 +47,7 @@ export default class Events extends Component {
                   className=".events__list-ul--li"
                 />
               )}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -54,13 +66,3 @@ export default class Events extends Component {
     );
   }
 }
-
-// Events.propTypes = {
-//   events: PropTypes.arrayOf(PropTypes.shape({
-//     eventName: PropTypes.string.isRequired,
-//     date: PropTypes.string.isRequired,
-//     time: PropTypes.string.isRequired,
-//     address: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//   }).isRequired).isRequired,
-// };
