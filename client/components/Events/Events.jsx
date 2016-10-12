@@ -13,13 +13,28 @@ export default class Events extends Component {
   }
 
   render() {
+    const searchEventsLength = this.props.searchEventsList.length === 0 ?
+    (
+      <div>
+        <h2>No events were found</h2>
+      </div>
+    ) :
+    (
+      <div>
+      </div>
+    )
+
+    const subclass = this.props.location.pathname.substr(1);
+    console.log(subclass);
+
     const loaded = this.props.loaded ?
     (
       <div className="events">
-        <div className="events__search">
+        <div className={subclass + '__search'}>
+        {/* "events__search" */}
           <EventsSearchContainer />
         </div>
-        <div className="events__content">
+        <div className={subclass + '__content'}>
           <div className="events__map-container">
             <MapsContainer />
           </div>
@@ -27,6 +42,7 @@ export default class Events extends Component {
 
           <div className="events__list">
             <h2>Events</h2>
+            {searchEventsLength}
             <ul className="events__list-ul">
               {this.props.searchEventsList.map((event, i) =>
                 <Event

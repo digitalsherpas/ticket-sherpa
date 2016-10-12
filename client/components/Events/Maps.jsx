@@ -23,20 +23,15 @@ export class Container extends React.Component {
           position={{lat: marker['latitude'], lng: marker['longitude']}} />
       ));
 
-    // console.log(this.props.searchEventsList, 'props search events list');
     return (
-      <div className='events__map'>
-        {/* Google Maps component */}
-        <Map google={this.props.google}
-          style={{width: '100%', height: '100%'}}
-          className={'events__map'}
-          zoom={12}
-          // center={{lat: 37.331686, lng: -122.030656}}
-
-          >
-          {Markers}
-        </Map>
-      </div>
+      <Map google={this.props.google}
+        style={{width: '100%', height: '100vh'}}
+        className={'events__map'}
+        zoom={12}
+        // center={{lat: 37.331686, lng: -122.030656}}
+        >
+        {Markers}
+      </Map>
     );
   }
 }
