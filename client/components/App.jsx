@@ -17,7 +17,7 @@ export default class App extends Component {
           </div>
           {(() => {
             if (this.props.location.pathname !== '/') {
-              return (<div>
+              return (<div className="header__search-container">
                 <SearchEventsContainer/>
               </div>);
             }

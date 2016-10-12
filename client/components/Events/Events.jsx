@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import Event from './Event.jsx';
-import EventsSearchContainer from '../../containers/EventsSearchContainer.js';
 import MDSpinner from 'react-md-spinner';
 import MapsContainer from '../../containers/MapsContainer.js';
 
@@ -28,7 +27,6 @@ export default class Events extends Component {
     (
       <div className="events">
         <div className="events__search">
-          <EventsSearchContainer />
         </div>
         <div className="events__content">
           <div className="events__map-container">
@@ -54,7 +52,6 @@ export default class Events extends Component {
     ) :
     (
       <div className="events">
-        <EventsSearchContainer />
         <h2>Events</h2>
         <MDSpinner singleColor="#03a9f4" />
       </div>

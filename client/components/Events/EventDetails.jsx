@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router';
 import Moment from 'moment';
-import SearchEventsContainer from '../../containers/SearchEventsContainer.js';
 
 export default class EventDetails extends Component {
   constructor(props) {
@@ -65,10 +64,8 @@ export default class EventDetails extends Component {
         <p>ID: {query.id}</p>
 
         <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
-          <h1>Buy Ticket</h1>
-          <hr />
-          <h2>Buy With Meta Mask</h2>
-          <input type="submit"/>
+          <h4>Buy Ticket</h4>
+          <input type="submit" value="Buy with Meta Mask"/>
         </form>
       </div>
     );
