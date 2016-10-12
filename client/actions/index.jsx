@@ -71,16 +71,22 @@ export function searchEvents(eventName) {
 export const ADD_EVENT = 'ADD_EVENT';
 
 export function addEvent(event, username) {
-  const eventStartDateTime = new Date(
-    event.eventStartYear.value,
-    event.eventStartMonth.value,
-    event.eventStartDay.value,
-    event.eventStartTime.value).toISOString();
-  const eventEndDateTime = new Date(
-    event.eventEndYear.value,
-    event.eventEndMonth.value,
-    event.eventEndDay.value,
-    event.eventEndTime.value).toISOString();
+
+  console.log(event)
+  const eventStartDateTime = new Date(event.eventStartDateAndTime.state.inputValue).toISOString();
+  const eventEndDateTime = new Date(event.eventEndDateAndTime.state.inputValue).toISOString();
+  const image = event.imageupload.value;
+
+  // const eventStartDateTime = new Date(
+  //   event.eventStartYear.value,
+  //   event.eventStartMonth.value,
+  //   event.eventStartDay.value,
+  //   event.eventStartTime.value).toISOString();
+  // const eventEndDateTime = new Date(
+  //   event.eventEndYear.value,
+  //   event.eventEndMonth.value,
+  //   event.eventEndDay.value,
+  //   event.eventEndTime.value).toISOString();
   const obj = {
     // type: ADD_EVENT,
     // numAttendees: '0',
@@ -97,19 +103,21 @@ export function addEvent(event, username) {
     addressLine2: event.addressLine2.value,
     city: event.city.value,
     state: event.state.value,
-    zipPostalCode: event.zipPostalCode.value,
-    country: event.country.value,
+    zipPostalCode: '',
+    country: '',
     image: event.image.value,
     username: username,
   };
 
-  return (dispatch) => {
-    browserHistory.push('/events');
-    return axios.post('/api/events', obj)
-    .then(() => {
-      browserHistory.push('/hostevents');
-    });
-  };
+  console.log(obj, 'finished obj')
+
+  // return (dispatch) => {
+  //   browserHistory.push('/events');
+  //   return axios.post('/api/events', obj)
+  //   .then(() => {
+  //     browserHistory.push('/hostevents');
+  //   });
+  // };
 }
 
 export const SELECT_EVENT = 'SELECT_EVENT';
