@@ -5,6 +5,7 @@ import Nav from '../components/Nav.jsx';
 
 const mapStateToProps = state => ({
   auth: state.authReducer.auth,
+  username: state.authReducer.username,
 });
 
 const mapDispatchToProps = dispatch => {

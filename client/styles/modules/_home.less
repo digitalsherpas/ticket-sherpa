@@ -8,9 +8,6 @@
 @font-size: 16px;
 
 .home__image-container img {
-  display: block;
-  width: 100%;
-  height: auto;
   filter: brightness(50%);
 }
 
@@ -34,23 +31,17 @@
   background-color: #FFBF00;
   font-family: @font;
   font-size: @font-size;
-  flex: 1;
 }
 
 .home__event-item {
   background-color: @event-background;
   border: 1px solid @event-border;
-  margin: 0 0 20px 0;
-  width: 25%;
-  padding: 20px;
-}
-
-.home__event-image {
-  width: 50%;
 }
 
 .home__event-container {
   text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #EFF2F5;
 }
 
 .home__overlay {
@@ -67,6 +58,10 @@
     margin-top: 0px;
     margin-bottom: 0px;
   }
+}
+
+.home__events {
+  list-style-type: none;
 }
 
 ::-webkit-input-placeholder {
