@@ -28,7 +28,6 @@ export default class Events extends Component {
     (
       <div className="events">
         <div className="events__search">
-        {/* "events__search" */}
           <EventsSearchContainer />
         </div>
         <div className="events__content">
