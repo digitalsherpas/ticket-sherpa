@@ -5,7 +5,7 @@ import Moment from 'moment';
 const HostEvent = ({ eventName, eventStartDateTime }) => (
   <li className="content__events-list-item">
     <h4><Link to={`/hostevents/${eventName}`}>{eventName}</Link></h4>
-    <p>{Moment().format('MMMM Do YYYY, h:mm A')}</p>
+    <p>{Moment().format('MMM Do YYYY, h:mm A')}</p>
   </li>
 );
 

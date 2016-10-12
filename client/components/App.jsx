@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import NavContainer from '../containers/NavContainer.js';
+import SearchEventsContainer from '../containers/SearchEventsContainer.js';
 
 // renders logo and maps props
 
@@ -14,7 +15,15 @@ export default class App extends Component {
               <Link className="header__logo" to={'/'}>Ticket Sherpa</Link>
             </h2>
           </div>
-            <NavContainer />
+          {(() => {
+            if (this.props.location.pathname !== '/') {
+              return (<div>
+                <SearchEventsContainer/>
+              </div>);
+            }
+            return null;
+          })()}
+          <NavContainer />
         </div>
         {this.props.children}
       </div>
