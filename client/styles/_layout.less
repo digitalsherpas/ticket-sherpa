@@ -20,6 +20,11 @@ h2 {
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.header__navigation {
+  margin-left: 20px;
 }
 
 .content {
@@ -36,20 +41,20 @@ h2 {
   padding: 40px;
 }
 
-.home__search-bar {
+.nav__search-bar {
   display: flex;
   align-items: center;
 }
 
-.home__search-bar-form {
+.nav__search-bar-form {
   width: 100%;
   display: flex;
 }
-.home__search-input {
+.nav__search-input {
   flex: 4;
 }
 
-.home__search-submit-btn {
+.nav__search-submit-btn {
   flex: 1;
 }
 
@@ -64,17 +69,23 @@ h2 {
 }
 
 .home__events-container {
-  flex: 5;
+  // flex: 5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  // margin: 0 0 20px 0;
   ul {
     padding-left: 0px;
   }
 }
 
-.home__events {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.content__event-container {
+  width: 25%;
+  min-width: 200px;
+  background-color: #fff;
+  border: 1px solid #EFF2F5;
+  margin: 0 0 20px 0;
 }
 
 .home__events-title {
@@ -86,6 +97,6 @@ h2 {
   width: 25%;
 }
 
-.home__event-image {
+.content__event-image {
   width: 50%;
 }
