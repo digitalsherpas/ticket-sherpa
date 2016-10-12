@@ -51,28 +51,28 @@ export default class EventDetails extends Component {
       <div>
         <SearchEventsContainer />
         <div className="content__container">
-        <h4>Event Name: {query.eventName}</h4>
-        <p>Description: {query.description}</p>
-        <p>Price: {query.price / 1000000000000000000} ETH</p>
-        <p>Start Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
-        <p>End Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
-        <hr/>
-        <p>Street Address: {query.addressLine1}</p>
-        <p>Address Line 2: {query.addressLine2}</p>
-        <p>City: {query.city}</p>
-        <p>State: {query.state}</p>
-        <p>Zip/Postal Code: {query.zipPostalCode}</p>
-        <p>Country: {query.country}</p>
-        <hr/>
-        <p>Contract Address: {query.eventContractAddress}</p>
-        <p>ID: {query.id}</p>
+          <h4>Event Name: {query.eventName}</h4>
+          <p>Description: {query.description}</p>
+          <p>Price: {query.price / 1000000000000000000} ETH</p>
+          <p>Start Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
+          <p>End Date: {Moment(query.eventStartDateTime).format('MMMM Do YYYY, h:mm A')}</p>
+          <hr/>
+          <p>Street Address: {query.addressLine1}</p>
+          <p>Address Line 2: {query.addressLine2}</p>
+          <p>City: {query.city}</p>
+          <p>State: {query.state}</p>
+          <p>Zip/Postal Code: {query.zipPostalCode}</p>
+          <p>Country: {query.country}</p>
+          <hr/>
+          <p>Contract Address: {query.eventContractAddress}</p>
+          <p>ID: {query.id}</p>
 
-        <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
-          <h1>Buy Ticket</h1>
-          <hr />
-          <h2>Buy With Meta Mask</h2>
-          <input type="submit"/>
-        </form>
+          <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
+            <h1>Buy Ticket</h1>
+            <hr />
+            <h2>Buy With Meta Mask</h2>
+            <input type="submit"/>
+          </form>
         </div>
       </div>
     );
