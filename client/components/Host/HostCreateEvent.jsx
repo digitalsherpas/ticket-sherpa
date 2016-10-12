@@ -30,7 +30,7 @@ export default class HostEvent extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content__container">
         <h2>Create Event</h2>
         <hr />
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>

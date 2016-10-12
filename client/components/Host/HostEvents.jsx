@@ -12,7 +12,7 @@ export default class HostEvents extends Component {
 
   render() {
     return (
-      <div className="hostEvents">
+      <div className="content__container">
         <h2>My Created Events</h2>
         <hr></hr>
         <p>All Events</p>

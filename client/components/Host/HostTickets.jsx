@@ -14,7 +14,7 @@ export default class HostTickets extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content__container">
         <h2>My Bought Tickets</h2>
         <hr></hr>
         <ul>

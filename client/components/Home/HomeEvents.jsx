@@ -17,10 +17,12 @@ export default class Events extends Component {
     (
       <ul className="home__events">
         {this.props.events.map((event, i) =>
-          <Event
-            key={i}
-            {...event}
-          />
+          <div className="home__event-list-item">
+            <Event
+              key={i}
+              {...event}
+            />
+          </div>
         )}
       </ul>
     ) :

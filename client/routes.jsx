@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory, applyRouterMiddleware} from 'react-router';
 import App from './components/App.jsx';
 import Home from './components/Home/Home.jsx';
 import HostHome from './components/Host/HostHome.jsx';
@@ -13,6 +13,7 @@ import SignUpContainer from './containers/SignUpContainer.js';
 import HostVerifyContainer from './containers/HostVerifyContainer.js';
 import HostTicketsContainer from './containers/HostTicketsContainer.js';
 import HostTicketDetailsContainer from './containers/HostTicketDetailsContainer.js';
+import { useScroll } from 'react-router-scroll';
 
 export default class Routes extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Routes extends Component {
 
   render() {
     return (
-    <Router history={browserHistory}>
+    <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/events" component={EventsListContainer}/>
