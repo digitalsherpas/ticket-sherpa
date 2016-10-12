@@ -217,10 +217,8 @@ app.post('/db/addEventToUser', (req, res) => {
     body: req.body,
     json: true,
   }).then((event) => {
-    console.log('NO ERR HERE')
     res.status(200).send(event);
   }).catch((err) => {
-    console.log('ITS AN ERR');
     res.status(500).send(err);
   });
 });
