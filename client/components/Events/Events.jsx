@@ -70,13 +70,3 @@ export default class Events extends Component {
     );
   }
 }
-
-// Events.propTypes = {
-//   events: PropTypes.arrayOf(PropTypes.shape({
-//     eventName: PropTypes.string.isRequired,
-//     date: PropTypes.string.isRequired,
-//     time: PropTypes.string.isRequired,
-//     address: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//   }).isRequired).isRequired,
-// };
