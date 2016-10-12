@@ -43,7 +43,7 @@ export default class Events extends Component {
           <div className="events__list">
             <h2>Events</h2>
             {searchEventsLength}
-            <ul className="events__list-ul">
+            <div className="events__list-ul">
               {this.props.searchEventsList.map((event, i) =>
                 <Event
                   key={i}
@@ -51,7 +51,7 @@ export default class Events extends Component {
                   className=".events__list-ul--li"
                 />
               )}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

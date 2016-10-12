@@ -73,7 +73,7 @@ export class Container extends React.Component {
 
     return (
       <Map google={this.props.google}
-        style={{width: '100%', height: '100vh'}}
+        style={{width: '100%', height: '100%'}}
         className={'events__map'}
         zoom={12}
         // center={{lat: 37.331686, lng: -122.030656}}
@@ -82,7 +82,6 @@ export class Container extends React.Component {
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
-          className="such_awesome_class"
           >
           <div>
             <h2>{this.state.selectedPlace.name}</h2>
