@@ -38,6 +38,8 @@ export class Container extends React.Component {
   }
 
   render() {
+
+    console.log(this.props.searchEventsList);
     // puts the current state of map markers into an array that can be rendered
     const Markers =
       this.props.searchEventsList

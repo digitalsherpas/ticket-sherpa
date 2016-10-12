@@ -258,7 +258,7 @@ export function checkAddress(event, username) {
               longitude: results.data.results[0].geometry.location.lng,
               username: username,
             };
-
+            console.log('obj being posted to the contract', obj);
             return axios.post('/api/events', obj)
             .then(() => {
               browserHistory.push('/hostevents');
