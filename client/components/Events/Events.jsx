@@ -19,19 +19,20 @@ export default class Events extends Component {
         <div className="events__search">
           <EventsSearchContainer />
         </div>
-
         <div className="events__content">
           <div className="events__map-container">
             <MapsContainer />
           </div>
 
+
           <div className="events__list">
             <h2>Events</h2>
-            <ul>
+            <ul className="events__list-ul">
               {this.props.searchEventsList.map((event, i) =>
                 <Event
                   key={i}
                   {...event}
+                  className=".events__list-ul--li"
                 />
               )}
             </ul>

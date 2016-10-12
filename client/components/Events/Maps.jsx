@@ -28,7 +28,7 @@ export class Container extends React.Component {
       <div className='events__map'>
         {/* Google Maps component */}
         <Map google={this.props.google}
-          style={{width: '50%', height: '100%'}}
+          style={{width: '100%', height: '100%'}}
           className={'events__map'}
           zoom={12}
           // center={{lat: 37.331686, lng: -122.030656}}
