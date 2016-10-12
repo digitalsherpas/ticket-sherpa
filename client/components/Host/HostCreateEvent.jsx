@@ -1,45 +1,58 @@
 import React, { Component } from 'react';
+import Datetime from 'react-datetime'
 
 export default class HostEvent extends Component {
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.checkAddress(this.refs, this.props.username);
-    // this.props.addEvent(this.refs, this.props.username);
   }
+
+  componentDidMount() {
+    const cloudinary = document.createElement("script");
+    cloudinary.src = "//widget.cloudinary.com/global/all.js";
+    cloudinary.async = true;
+
+    document.body.appendChild(cloudinary);
+  }
+
+  uploadImage() {
+    let context = this;
+    window.cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
+      function (error, result) {
+        if (!error) {
+          context.refs.imageupload.value = result[0].secure_url;
+        } else {
+          console.log('error', error);
+        }
+      });
+  }
+
   render() {
     return (
       <div>
         <h2>Create Event</h2>
-        <hr></hr>
+        <hr />
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
           <h3>Event Name</h3>
           <input type="text" ref="eventName" placeholder="Event Name"/>
-          <h3>Price</h3>
+          <h3>Price in Ether</h3>
           <input type="text" ref="price" placeholder="Price"/>
           <h3>Quota</h3>
           <input type="text" ref="quota" placeholder="Quota"/>
+          <h3>Description</h3>
+          <input type="text" ref="description" placeholder="Quota"/>
+          <hr />
 
           <h3>Event Start Date & Time</h3>
-          <h5>Day</h5>
-          <input type="text" ref="eventStartDay" placeholder="Event Start Date Time"/>
-          <h5>Month</h5>
-          <input type="text" ref="eventStartMonth" placeholder="Event Start Date Time"/>
-          <h5>Year</h5>
-          <input type="text" ref="eventStartYear" placeholder="Event Start Date Time"/>
-          <h5>Time</h5>
-          <input type="text" ref="eventStartTime" placeholder="Event Start Date Time"/>
+          <Datetime ref='eventStartDateAndTime' />
+          <hr />
 
           <h3>Event End Date Time</h3>
-          <h5>Day</h5>
-          <input type="text" ref="eventEndDay" placeholder="Event Start Date Time"/>
-          <h5>Month</h5>
-          <input type="text" ref="eventEndMonth" placeholder="Event Start Date Time"/>
-          <h5>Year</h5>
-          <input type="text" ref="eventEndYear" placeholder="Event Start Date Time"/>
-          <h5>Time</h5>
-          <input type="text" ref="eventEndTime" placeholder="Event Start Date Time"/>
-          <h5>Description</h5>
-          <input type="text" ref="description" placeholder="Description"/>
+          <Datetime ref='eventEndDateAndTime' />
+          <hr />
+
+          <button type="button" d="upload_widget_opener" ref="imageupload" onClick={this.uploadImage.bind(this)}>Upload Image</button>
 
           <h3>Event Address</h3>
           <h5>Street Address</h5>
@@ -54,14 +67,9 @@ export default class HostEvent extends Component {
           <input type="text" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
           <h5>Country</h5>
           <input type="text" ref="country" placeholder="Country"/>
-          <h5>Image Url</h5>
-          <input type="text" ref="image" placeholder="Image Url"/>
-
-          <h3>Wallet Address</h3>
-          <input type="text" ref="walletAddress" placeholder="Wallet Address"/>
           <h3>Submit</h3>
           <input type="submit"/>
-        </form>
+          </form>
       </div>
     );
   }
