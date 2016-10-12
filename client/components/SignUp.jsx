@@ -5,21 +5,22 @@ export default class SignUp extends Component {
     e.preventDefault();
     this.props.registerUser(this.refs);
   }
+
   render() {
     return (
-      <div className="content__container">
-        <h3>Sign Up</h3>
+      <div className="signup__container">
+        <h3 className="signup__container-h2">Sign Up</h3>
         <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
-          <p>User Name - Ex: Bob</p>
-          <input type="text" ref="username" placeholder="User Name"/>
-          <p>Password - Ex: password</p>
+          <p>Username</p>
+          <input type="text" ref="username" placeholder="Username"/>
+          <p>Password</p>
           <input type="password" ref="password" placeholder="Password"/>
-          <p>Name - Ex: John Doe</p>
-          <input type="text" ref="name" placeholder="Name"/>
-          <p>Email - Ex: email@email.com</p>
-          <input type="text" ref="email" placeholder="Email"/>
-          <p>Phone Number - Ex: +14702408888</p>
-          <input type="text" ref="phonenumber" placeholder="Phone Number"/>
+          <p>Name</p>
+          <input type="text" ref="name" placeholder="e.g. John Doe"/>
+          <p>Email</p>
+          <input type="text" ref="email" placeholder="email@gmail.com"/>
+          <p>Phone Number</p>
+          <input type="text" ref="phonenumber" placeholder="e.g. +14702408888"/>
           <input type="submit"/>
         </form>
       </div>
