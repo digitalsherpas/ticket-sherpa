@@ -24,17 +24,14 @@ export default class Events extends Component {
       </div>
     )
 
-    const subclass = this.props.location.pathname.substr(1);
-    console.log(subclass);
-
     const loaded = this.props.loaded ?
     (
       <div className="events">
-        <div className={subclass + '__search'}>
+        <div className="events__search">
         {/* "events__search" */}
           <EventsSearchContainer />
         </div>
-        <div className={subclass + '__content'}>
+        <div className="events__content">
           <div className="events__map-container">
             <MapsContainer />
           </div>
