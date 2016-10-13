@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import Event from './Event.jsx';
+import MapEvent from './MapEvent.jsx';
 import MDSpinner from 'react-md-spinner';
 import MapsContainer from '../../containers/MapsContainer.js';
 
@@ -34,13 +34,13 @@ export default class Events extends Component {
       </div>
       <div className="events__content">
 
-      <div className="events__list">
+      <div className="maps__list">
       {this.searchResults()}
       {this.props.searchEventsList.map((event, i) =>
-        <Event
+        <MapEvent
         key={i}
         {...event}
-        className=".events__list-ul--li"
+        className="events__list-ul--li"
         />
       )}
       </div>
@@ -63,7 +63,7 @@ export default class Events extends Component {
   render() {
 
     return (
-        this.renderFunction()
+      this.renderFunction()
     );
   }
 }

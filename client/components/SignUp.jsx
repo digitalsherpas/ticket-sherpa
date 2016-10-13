@@ -5,21 +5,22 @@ export default class SignUp extends Component {
     e.preventDefault();
     this.props.registerUser(this.refs);
   }
+
   render() {
     return (
-      <div className="content__container">
-        <h3>Sign Up</h3>
-        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit.bind(this)}>
-          <p>User Name - Ex: Bob</p>
-          <input type="text" ref="username" placeholder="User Name"/>
-          <p>Password - Ex: password</p>
-          <input type="password" ref="password" placeholder="Password"/>
-          <p>Name - Ex: John Doe</p>
-          <input type="text" ref="name" placeholder="Name"/>
-          <p>Email - Ex: email@email.com</p>
-          <input type="text" ref="email" placeholder="Email"/>
-          <p>Phone Number - Ex: +14702408888</p>
-          <input type="text" ref="phonenumber" placeholder="Phone Number"/>
+      <div className="authentication__container">
+        <h2 className="authentication__container-header">Sign Up</h2>
+        <form className="authentication__content" ref="commentForm" onSubmit={this.handleSubmit.bind(this)}>
+          <h4 className="authentication__content-field">Username</h4>
+          <input className="authentication__content-input" type="text" ref="username" placeholder="Username"/>
+          <h4 className="authentication__content-field">Password</h4>
+          <input className="authentication__content-input" type="password" ref="password" placeholder="Password"/>
+          <h4 className="authentication__content-field">Name</h4>
+          <input className="authentication__content-input" type="text" ref="name" placeholder="e.g. John Doe"/>
+          <h4 className="authentication__content-field">Email</h4>
+          <input className="authentication__content-input" type="text" ref="email" placeholder="e.g. email@email.com"/>
+          <h4 className="authentication__content-field">Phone Number</h4>
+          <input className="authentication__content-input" type="text" ref="phonenumber" placeholder="e.g. +14702408888"/>
           <input type="submit"/>
         </form>
       </div>
