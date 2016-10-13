@@ -17,7 +17,7 @@ module.exports = (grunt) => {
         command: 'node ./node_modules/webpack/bin/webpack.js',
       },
       startDevServer: {
-        command: 'nodemon server/server.js',
+        command: 'NODE_ENV=development nodemon server/server.js',
       },
       startServer: {
         command: 'NODE_ENV=production node server/server.js',
