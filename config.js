@@ -55,6 +55,7 @@ if (process.env.NODE_ENV === 'development') {
     DB_SERVER_PORT: 3004,
     ES_SERVER_URL: 'http://52.33.65.180',
     ES_SERVER_PORT: 3005,
+    POSTGRES_CONNECTION_STRING: 'postgres://docker:docker@postgres:5432',
   };
 } else {
   throw new Error('NODE_ENV environment variable not valid');
