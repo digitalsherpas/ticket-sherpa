@@ -49,7 +49,7 @@ export default class HostTicketDetails extends Component {
     const country = this.props.hostTickets[i].country;
 
     return (
-      <div>
+      <div className="content__container">
         <h2>Event Info</h2>
         <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
