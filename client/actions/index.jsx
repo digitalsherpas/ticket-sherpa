@@ -199,7 +199,7 @@ export function authenticateLogin(userObj) {
           type: USER_IS_AUTHENTICATED,
           payload: result,
         });
-        browserHistory.push('/host');
+        browserHistory.push('/account');
       }
     });
     dispatch({

@@ -5,7 +5,7 @@ export default class HostHome extends Component {
   render() {
     return (
       <div className="content__container">
-        <h2>Host</h2>
+        <h2>My Account</h2>
         <ul>
           <li><Link to="/tickets">My Bought Tickets</Link></li>
           <hr></hr>

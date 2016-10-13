@@ -37,7 +37,7 @@ export default class Routes extends Component {
         <Route path="/events" component={EventsListContainer}/>
         <Route path="/events/:eventName" component={EventDetailsContainer}/>
 
-        <Route path="/host" component={HostHome} onEnter={this.requireAuth}/>
+        <Route path="/account" component={HostHome} onEnter={this.requireAuth}/>
         <Route path="/hostevents" component={HostEventsContainer} onEnter={this.requireAuth}/>
         <Route path="/hostcreateevent" component={HostCreateEventContainer} onEnter={this.requireAuth}/>
         <Route path="/tickets" component={HostTicketsContainer} onEnter={this.requireAuth}/>
