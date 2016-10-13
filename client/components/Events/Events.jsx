@@ -34,7 +34,7 @@ export default class Events extends Component {
       </div>
       <div className="events__content">
 
-      <div className="maps__list">
+      <div className="map__list">
       {this.searchResults()}
       {this.props.searchEventsList.map((event, i) =>
         <MapEvent
