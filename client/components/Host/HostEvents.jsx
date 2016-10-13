@@ -15,15 +15,14 @@ export default class HostEvents extends Component {
       <div className="content__container">
         <h2>My Created Events</h2>
         <hr></hr>
-        <p>All Events</p>
-        <ul className="content__events-list">
+        <div className="content__events-list">
           {this.props.hostEvents.map((hostEvent, i) =>
             <HostEvent
               key={i}
               {...hostEvent}
             />
           )}
-        </ul>
+        </div>
       </div>
     );
   }
