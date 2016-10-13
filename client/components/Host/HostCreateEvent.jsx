@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import Modal from 'react-modal';
 import { browserHistory } from 'react-router';
-import CloudinaryImage from 'react-cloudinary-img';
 
 export default class HostEvent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
+  }
 
   componentDidMount() {
     const cloudinary = document.createElement("script");
@@ -19,22 +22,17 @@ export default class HostEvent extends Component {
     this.props.checkAddress(this.refs, this.props.username);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.checkAddress(this.refs, this.props.username);
-  }
-
   uploadImage() {
     let context = this;
     window.cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
       function (error, result) {
         if (!error) {
           context.refs.imageupload.value = result[0].secure_url;
-          return result;
+          context.setState({imagePreviewUrl: result[0].secure_url})
         } else {
           console.log('error', error);
         }
-      });
+      }).bind(this);
   }
 
   requestCloseFn() {
@@ -46,6 +44,7 @@ export default class HostEvent extends Component {
     if (typeof web3 !== 'undefined') {
       metaMaskNotInstalled = false;
     }
+
     const customModalStyle = {
       content: {
         top: '50%',
@@ -56,10 +55,17 @@ export default class HostEvent extends Component {
         transform: 'translate(-50%, -50%)',
       },
     };
+
+    let {imagePreviewUrl} = this.state;
+
     const yesterday = Datetime.moment().subtract(1, 'day');
-    const valid = function( current ){
+    const startDateValid = function( current ){
         return current.isAfter( yesterday );
     };
+
+    const endDateValid = function( current ){
+        return current.isAfter( yesterday );
+    }
 
     return (
       <div className="content__container">
@@ -72,18 +78,18 @@ export default class HostEvent extends Component {
           <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
         </Modal>
         <form ref="eventForm" onSubmit={this.handleSubmit.bind(this)}>
-          <div className="event-form">
+          <div className="event__container">
 
-            <div className="create-event-header">Create An Event</div>
-            <div className="event-details-wrapper">Event Details</div>
-            <div className="event-details-container">
-              <div className="event-title-description">
+            <div className="event__create-header">Create An Event</div>
+            <div className="event__details-wrapper">Event Details</div>
+            <div className="event__details-container">
+              <div className="event__details-container-left">
                 <div>Event Title</div>
-                <div><input className="event-name-input" type="text" ref="eventName" placeholder="Give your event a name" /></div>
+                <div><input className="event__input-fields" type="text" ref="eventName" placeholder="Give your event a name" /></div>
                 <div>Description</div>
-                <div><input className="event-name-input" type="text" ref="description" placeholder="Description" /></div>
+                <div><input className="event__input-fields" type="text" ref="description" placeholder="Description" /></div>
               </div>
-              <div className="event-other-description">
+              <div className="event__details-container-right">
                 <div>Event Price (ETH)</div>
                 <div><input  type="text" ref="price" placeholder="Price" /></div>
                 <div>Quota</div>
@@ -91,39 +97,50 @@ export default class HostEvent extends Component {
               </div>
             </div>
 
-            <div className="event-start-end-container">
-              <div className="start-date-picker">
-                <div><span>Event Start Date & Time</span></div>
-                <div><Datetime ref='eventStartDateAndTime' isValidDate={ valid }/></div>
+            <div className="event__start-end-container">
+              <div className="event__start-date-picker">
+                <div><span>Starts</span></div>
+                <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
-              <div className="end-date-picker">
-                <div><span>Event End Date & Time</span></div>
-                <div><Datetime ref='eventEndDateAndTime' isValidDate={ valid } /></div>
+              <div className="event__end-date-picker">
+                <div><span>Ends</span></div>
+                <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
             </div>
 
-            <div className="event-location-container">
-              <div className="event-location-left">
+            <div className="event__location-container">
+              <div className="event__location-left">
                 <div>Event Location</div>
-                <input type="text" className="event-location-input" ref="addressLine1" placeholder="Street Address"/>
-                <input type="text" className="event-location-input" ref="addressLine2" placeholder="Address Line 2"/>
-                <input type="text" className="event-location-input" ref="city" placeholder="City"/>
-                <input type="text" className="event-location-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
-                <input type="text" className="event-location-input" ref="state" placeholder="State"/>
-                <input type="text" className="event-location-input" ref="country" placeholder="Country"/>
+                <input type="text" className="event__location-input" ref="addressLine1" placeholder="Street Address"/>
+                <input type="text" className="event__location-input" ref="addressLine2" placeholder="Address Line 2"/>
+                <input type="text" className="event__location-input" ref="city" placeholder="City"/>
+                <input type="text" className="event__location-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
+                <input type="text" className="event__location-input" ref="state" placeholder="State"/>
+                <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
               </div>
-              <div className="event-location-right">
-                <a href='#'><div className="image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>Image Upload</div></a>
+              <div className="event__location-right">
+                
+              </div>
+            </div>
+
+            <div className="event__image-container">
+              <div className="event__image-container-left">
+                <a href='#'>
+                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
+                    <img className="event__image-container-preview" src={imagePreviewUrl}/>
+                  </div>
+                </a>
+              </div>
+              <div className="event-image-container-right">
               </div>
             </div>
 
             <div>
-            <input type="submit" value="Create Event"/>
+            <input type="submit" value="Create Event" onClick={this.handleSubmit.bind(this)}/>
             </div>
           </div>
         </form>
-        <CloudinaryImage image={this.ref} cloudName="lentan" options={{ width: 100, height: 100, crop: 'fill' }} className="img-rounded" />
-      </div>
+        </div>
     );
   }
 }
