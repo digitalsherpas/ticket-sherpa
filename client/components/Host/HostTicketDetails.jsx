@@ -23,7 +23,7 @@ export default class HostTicketDetails extends Component {
 
     qrcodedraw.draw(this.refs.userVerifyQR, qrstring, function(error, canvas) {
       if (error) {
-         console.log('Error =( ',error);
+         alert('Unable to draw QR code')
       }
     });
   }

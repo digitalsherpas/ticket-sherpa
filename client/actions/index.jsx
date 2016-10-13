@@ -174,7 +174,6 @@ export function registerUser(info) {
   return (dispatch) => {
     return axios.post('/registerUser', userObj)
     .then(({}) => {
-      console.log('signup success');
       browserHistory.push('/');
     });
   };
@@ -228,7 +227,6 @@ export function checkAddress(event, username) {
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
 
   if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
-    console.log('it\'s type checking correctly');
     return (dispatch) => {
       return axios.post(requestUrl)
       .then((results) => {
@@ -258,25 +256,20 @@ export function checkAddress(event, username) {
               longitude: results.data.results[0].geometry.location.lng,
               username: username,
             };
-            console.log('obj being posted to the contract', obj);
             return axios.post('/api/events', obj)
             .then(() => {
               browserHistory.push('/hostevents');
             }).catch((error) => {
-              console.log('an error occurred saving the event to the db');
             });
           }(event, username);
         } else {
           alert('Please enter a valid address!');
-          console.log('the event address is invalid with geoencoding api');
         }
       }).catch((error) => {
-        console.log('there was an error sending the data to the geoencoding api');
         alert('There was an error with your submission. Please try again later.');
       });
     }
   } else {
-    console.log('please type in an address');
     alert('Please enter an address!');
   }
 }

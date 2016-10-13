@@ -30,12 +30,10 @@ module.exports = {
             Authorization: authHeader,
           },
         });
-        console.log('Authentication success');
         if (cb) cb(null, result);
       },
 
       onFailure: (error) => {
-        console.log(error);
         if (cb) cb(error, null);
       },
     });

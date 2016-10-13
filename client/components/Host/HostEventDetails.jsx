@@ -11,9 +11,8 @@ export default class HostEventDetails extends Component {
 
     contract.getNumAttendees({},function (err, result) {
       if (!err) {
-        console.log('Result: ', parseInt(result));
+        alert('Result: ', parseInt(result));
       } else {
-        console.dir('Error: ', arguments);
       }
     });
   }

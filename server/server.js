@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const config = require('../config');
@@ -272,6 +273,17 @@ app.get('/getUser', (req, res) => {
   } else {
     res.status(500).send('Not Authenticated');
   }
+});
+
+app.post('/dev/logging', (req, res) => {
+  console.log(req.body);
+  fs.appendFile(path.join(__dirname, 'logs'), req.body.message + '\n', (error) => {
+    if (!error) {
+      res.status(200).send('Logged to server logs.');
+    } else {
+      res.status(500).send('Error occured when logging to server logs.');
+    }
+  });
 });
 
 app.get('*', (req, res) => {
