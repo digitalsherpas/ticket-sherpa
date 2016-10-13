@@ -25,9 +25,6 @@ export default class HostEvent extends Component {
       function (error, result) {
         if (!error) {
           context.refs.imageupload.value = result[0].secure_url;
-          return result;
-        } else {
-          console.log('error', error);
         }
       });
   }
