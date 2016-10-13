@@ -19,10 +19,10 @@ export default class SearchEvents extends Component {
 
   render() {
     return (
-      <div className='nav__search-bar'>
-        <form className="nav__search-bar-form" onSubmit={this.handleSubmit}>
-          <input className="nav__search-input" ref="search" type="text" placeholder="Search for events"/>
-          <button className="nav__search-submit-btn">Search</button>
+      <div className='nav__home-search-bar'>
+        <form className="nav__home-search-bar-form" onSubmit={this.handleSubmit}>
+          <input className="nav__home-search-input" ref="search" type="text" placeholder="Search for events"/>
+          <button className="nav__home-search-submit-btn">Search</button>
         </form>
       </div>
     );

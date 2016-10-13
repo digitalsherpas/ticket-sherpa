@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import NavContainer from '../containers/NavContainer.js';
-import SearchEventsContainer from '../containers/SearchEventsContainer.js';
+import NavSearchEventsContainer from '../containers/NavSearchEventsContainer.js';
 
 // renders logo and maps props
 
@@ -18,7 +18,7 @@ export default class App extends Component {
           {(() => {
             if (this.props.location.pathname !== '/') {
               return (<div className="header__search-container">
-                <SearchEventsContainer/>
+                <NavSearchEventsContainer/>
               </div>);
             }
             return null;
