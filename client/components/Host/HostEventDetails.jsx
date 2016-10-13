@@ -49,11 +49,11 @@ export default class HostEventDetails extends Component {
     // const attendeesPaid = this.props.hostEvent[i].attendeesPaid;
 
     return (
-      <div>
+      <div className="content__container">
         <h2>Event Info</h2>
-        <h4>Event Name: {eventName}</h4>
         <h4>Description: {description}</h4>
-        <h4>Image: {image}</h4>
+        <h4>Image:</h4>
+          <img className="content__event-image" src={image}/>
         <h4>Price: {price} ETH</h4>
         <h4>Event Start Date & Time: {eventStartDateTime}</h4>
         <h4>Event End Date & Time: {eventEndDateTime}</h4>
