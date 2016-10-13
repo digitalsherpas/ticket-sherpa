@@ -17,6 +17,11 @@ module.exports = {
       'process.env': {
         'NODE_ENV': '"production"'
       }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'HOST_ENV': '"web"'
+      }
     })
   ],
   module: {
