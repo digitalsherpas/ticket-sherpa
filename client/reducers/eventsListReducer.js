@@ -78,13 +78,7 @@ const searchEventsList = (state = [], action) => {
 const checkAddress = (state = {}, action) => {
   switch (action.type) {
     case CHECK_ADDRESS:
-      // console.log('check if it\'s entering check address');
       return state;
-    case SERVER_ERROR:
-      return {
-        ...state,
-        SERVER_ERROR: action.payload,
-      };
     case GEOENCODE_ERROR:
       return {
         ...state,
@@ -95,12 +89,42 @@ const checkAddress = (state = {}, action) => {
         ...state,
         GEOENCODE_SERVER_ERROR: action.payload,
       };
+    default:
+      return state;
+  }
+};
+
+const checkAddressEntered = (state = true, action) => {
+  switch (action.type) {
     case NO_ADDRESS:
-      console.log('no address was provided');
-      return {
-        ...state,
-        NO_ADDRESS: action.payload,
-      };
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const checkServerError = (state = true, action) => {
+  switch (action.type) {
+    case SERVER_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const checkGeoencodeError = (state = true, action) => {
+  switch (action.type) {
+    case GEOENCODE_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const checkGeoencodeServerError = (state = true, action) => {
+  switch (action.type) {
+    case GEOENCODE_SERVER_ERROR:
+      return action.payload;
     default:
       return state;
   }
@@ -113,6 +137,10 @@ const eventsListReducer = combineReducers({
   searchEvents,
   searchEventsList,
   checkAddress,
+  checkAddressEntered,
+  checkServerError,
+  checkGeoencodeError,
+  checkGeoencodeServerError,
 });
 
 export default eventsListReducer;

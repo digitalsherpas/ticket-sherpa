@@ -282,18 +282,17 @@ export function checkAddress(event, username) {
             console.log('the event address is invalid with geoencoding api');
           }
         }).catch((error) => {
+          // possible, but highly unlikely
           dispatch({
             type: GEOENCODE_SERVER_ERROR,
-            payload: false,
+            payload: 'There was an error with our server. Please try again later.',
           });
-          console.log('there was an error sending the data to the geoencoding api');
-          alert('There was an error with your submission. Please try again later.');
         });
       }
     } else {
       dispatch({
         type: NO_ADDRESS,
-        payload: false,
+        payload: 'Please enter an address',
       });
     }
   }

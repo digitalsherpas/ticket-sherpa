@@ -7,6 +7,29 @@ export default class HostEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
+
+    this.state = {
+      noAddress: '',
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
+    this.checkAddressEntered = this.checkAddressEntered.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.checkAddressEntered();
+    this.props.checkAddress(this.refs, this.props.username);
+    console.log(this.props.checkGeoencodeServerError());
+  }
+
+  checkAddressEntered() {
+    if (this.refs.addressLine1.value.length === 0 && this.refs.city.value.length === 0 && this.refs.state.value.length === 0 && this.refs.zipPostalCode.value.length === 0) {
+      this.setState({
+        noAddress: this.props.addressEntered,
+      });
+    }
   }
 
   componentDidMount() {
@@ -119,7 +142,7 @@ export default class HostEvent extends Component {
                 <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
               </div>
               <div className="event__location-right">
-                
+
               </div>
             </div>
 
