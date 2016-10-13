@@ -19,6 +19,9 @@ module.exports = (grunt) => {
       startDevServer: {
         command: 'NODE_ENV=development nodemon server/server.js',
       },
+      startFrontendServer: {
+        command: 'HOST_ENV=frontend NODE_ENV=development nodemon server/server.js',
+      },
       startServer: {
         command: 'NODE_ENV=production node server/server.js',
       },
@@ -49,6 +52,10 @@ module.exports = (grunt) => {
   grunt.registerTask('dev', [
     'build',
     'shell:startDevServer',
+  ]);
+  grunt.registerTask('frontend', [
+    'build',
+    'shell:startFrontendServer',
   ]);
   grunt.registerTask('prod', [
     'less',

@@ -1,6 +1,5 @@
 var endpoints = {};
-
-if (process.env.NODE_ENV === 'frontend') {
+if (process.env.HOST_ENV === 'frontend') {
   endpoints = {
     // WEB_SERVER_URL: '', // do not call URL directly, use relative urls
     WEB_SERVER_PORT: 3000,
