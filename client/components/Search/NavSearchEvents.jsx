@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // create a React Component to search through passed down events
-export default class SearchEvents extends Component {
+export default class NavSearchEvents extends Component {
   constructor(props) {
     super(props);
 
@@ -19,12 +19,10 @@ export default class SearchEvents extends Component {
 
   render() {
     return (
-      <div className='nav__home-search-bar'>
-        <form className="nav__home-search-bar-form" onSubmit={this.handleSubmit}>
-          <input className="nav__home-search-input" ref="search" type="text" placeholder="Search for events"/>
-          <button className="nav__home-search-submit-btn">Search</button>
-        </form>
-      </div>
+      <form className="nav__search-bar-form" onSubmit={this.handleSubmit}>
+        <input className="nav__search-input" ref="search" type="text" placeholder="Search for events"/>
+        {/* <button className="nav__search-submit-btn">Search</button> */}
+      </form>
     );
   }
 }
