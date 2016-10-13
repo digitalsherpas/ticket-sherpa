@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Datetime from 'react-datetime';
 import Modal from 'react-modal';
 import { browserHistory } from 'react-router';
+import CloudinaryImage from 'react-cloudinary-img';
 
 export default class HostEvent extends Component {
 
@@ -10,7 +11,7 @@ export default class HostEvent extends Component {
     cloudinary.src = "//widget.cloudinary.com/global/all.js";
     cloudinary.async = true;
 
-    document.body.appendChild(cloudinary);    
+    document.body.appendChild(cloudinary);
   }
 
   handleSubmit(e) {
@@ -24,6 +25,9 @@ export default class HostEvent extends Component {
       function (error, result) {
         if (!error) {
           context.refs.imageupload.value = result[0].secure_url;
+          return result;
+        } else {
+          console.log('error', error);
         }
       });
   }
@@ -114,10 +118,8 @@ export default class HostEvent extends Component {
             <input type="submit" value="Create Event"/>
             </div>
           </div>
-
         </form>
-        <div>
-        </div>
+        <CloudinaryImage image={this.ref} cloudName="lentan" options={{ width: 100, height: 100, crop: 'fill' }} className="img-rounded" />
       </div>
     );
   }
