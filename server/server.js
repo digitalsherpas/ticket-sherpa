@@ -231,8 +231,7 @@ app.post('/db/addEventToUser', (req, res) => {
   "username": "unique_username",
   "password": "password",
   "name": "John Doe",
-  "email": "john@doe.com",
-  "phone_number": "+14702408888" // proper format
+  "email": "john@doe.com"
 }
 */
 app.post('/registerUser', (req, res) => {
