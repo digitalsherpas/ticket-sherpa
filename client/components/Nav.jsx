@@ -18,7 +18,7 @@ export default class Nav extends Component {
           <nav className="header__navigation">
             <ul className="header__nav">
               <li className="header__nav-item">Hello,&nbsp;{this.props.username}!</li>
-              <li className="header__nav-item"><Link to="/host">My Account</Link></li>
+              <li className="header__nav-item"><Link to="/account">My Account</Link></li>
               <li className="header__nav-item"><Link onClick={this.handleSubmit} to="/">Log Out</Link></li>
             </ul>
           </nav>
