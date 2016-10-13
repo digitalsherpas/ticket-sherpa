@@ -11,43 +11,44 @@ export default class Events extends Component {
   componentWillMount() {
   }
 
-  render() {
-    const searchEventsLength = this.props.searchEventsList.length === 0 ?
-    (
-      <div>
-        <h2>No events were found</h2>
-      </div>
-    ) :
-    (
-      <div>
-      </div>
-    )
+  searchResults() {
+    if (this.props.searchEventsList.length === 0) {
+      return (
+        <div>
+          <h2>No events were found</h2>
+        </div>
+      )
+    } else {
+      return (
+        null
+      );
+    }
+  }
 
+  renderFunction() {
     const loaded = this.props.loaded ?
     (
-      <div className="events">
-        <div className="events__search">
-        </div>
-        <div className="events__content">
-          <div className="events__map-container">
-            <MapsContainer />
-          </div>
+      <div className="event__container-map-list">
+      <div>
+        <h2>Events</h2>
+      </div>
+      <div className="events__content">
 
-
-          <div className="events__list">
-            <h2>Events</h2>
-            {searchEventsLength}
-            <div className="events__list-ul">
-              {this.props.searchEventsList.map((event, i) =>
-                <Event
-                  key={i}
-                  {...event}
-                  className=".events__list-ul--li"
-                />
-              )}
-            </div>
-          </div>
+      <div className="events__list">
+      {this.searchResults()}
+      {this.props.searchEventsList.map((event, i) =>
+        <Event
+        key={i}
+        {...event}
+        className=".events__list-ul--li"
+        />
+      )}
+      </div>
+        <div className="map">
+        <MapsContainer />
         </div>
+
+      </div>
       </div>
     ) :
     (
@@ -56,10 +57,13 @@ export default class Events extends Component {
         <MDSpinner singleColor="#03a9f4" />
       </div>
     );
+    return loaded;
+  }
+
+  render() {
+
     return (
-      <div>
-        { loaded }
-      </div>
+        this.renderFunction()
     );
   }
 }
