@@ -19,6 +19,8 @@ export default class HostEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log('here')
+    console.log(this.refs)
     this.props.checkAddress(this.refs, this.props.username);
   }
 
@@ -29,9 +31,8 @@ export default class HostEvent extends Component {
       function (error, result) {
         console.log(context, 'IN FUNC');
         if (!error) {
-          // context.refs.imageupload.value = result[0].secure_url;
+          context.refs.imageupload.value = result[0].secure_url;
           context.setState({imagePreviewUrl: result[0].secure_url})
-          console.log(context, 'after')
         } else {
           console.log('error', error);
         }
@@ -47,6 +48,7 @@ export default class HostEvent extends Component {
     if (typeof web3 !== 'undefined') {
       metaMaskNotInstalled = false;
     }
+
     const customModalStyle = {
       content: {
         top: '50%',
@@ -57,11 +59,17 @@ export default class HostEvent extends Component {
         transform: 'translate(-50%, -50%)',
       },
     };
+
+    let {imagePreviewUrl} = this.state;
+
     const yesterday = Datetime.moment().subtract(1, 'day');
-    const valid = function( current ){
+    const startDateValid = function( current ){
         return current.isAfter( yesterday );
     };
-    let {imagePreviewUrl} = this.state;
+
+    const endDateValid = function( current ){
+        return current.isAfter( yesterday );
+    }
 
     return (
       <div className="content__container">
@@ -95,12 +103,12 @@ export default class HostEvent extends Component {
 
             <div className="event__start-end-container">
               <div className="event__start-date-picker">
-                <div><span>Event Start Date & Time</span></div>
-                <div><Datetime ref='eventStartDateAndTime' isValidDate={ valid }/></div>
+                <div><span>Starts</span></div>
+                <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
               <div className="event__end-date-picker">
-                <div><span>Event End Date & Time</span></div>
-                <div><Datetime ref='eventEndDateAndTime' isValidDate={ valid } /></div>
+                <div><span>Ends</span></div>
+                <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
             </div>
 
@@ -115,11 +123,19 @@ export default class HostEvent extends Component {
                 <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
               </div>
               <div className="event__location-right">
+                
+              </div>
+            </div>
+
+            <div className="event__image-container">
+              <div className="event__image-container-left">
                 <a href='#'>
-                  <div className="image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
-                    <img width="100%" height="100%" src={imagePreviewUrl}/>
+                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
+                    <img className="event__image-container-preview" src={imagePreviewUrl}/>
                   </div>
                 </a>
+              </div>
+              <div className="event-image-container-right">
               </div>
             </div>
 
