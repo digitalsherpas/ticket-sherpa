@@ -19,17 +19,13 @@ export default class HostEvent extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('here')
-    console.log(this.refs)
     this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
-    console.log(this);
     let context = this;
     window.cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
       function (error, result) {
-        console.log(context, 'IN FUNC');
         if (!error) {
           context.refs.imageupload.value = result[0].secure_url;
           context.setState({imagePreviewUrl: result[0].secure_url})
