@@ -30,13 +30,13 @@ export default class Login extends Component {
     } else {
       return (
         <div className="authentication__container">
-          <h3 className="authentication__container-header">Login</h3>
+          <h2 className="authentication__container-header">Login</h2>
           <form className="authentication__content" ref="loginForm" onSubmit={this.handleSubmit.bind(this)}>
-            <h3 className="authentication__content-field">Username</h3>
+            <h4 className="authentication__content-field">Username</h4>
             <input className="authentication__content-input" type="text" ref="username" />
-            <h3 className="authentication__content-field">Password</h3>
+            <h4 className="authentication__content-field">Password</h4>
             <input className="authentication__content-input" type="password" ref="password" />
-            <button type="submit">Submit</button>
+            <button className="authentication__submit" type="submit">Submit</button>
           </form>
         </div>
       );
