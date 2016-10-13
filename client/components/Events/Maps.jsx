@@ -1,10 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import { Router, Link } from 'react-router';
 import Map, {GoogleApiWrapper} from 'google-maps-react';
 import keys from '../../../keys.js';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
+
+window.lala = function() {
+  alert('he');
+}
+
+const buildUrl = (url, parameters) => {
+  var qs = "";
+  for(var key in parameters) {
+    var value = parameters[key];
+    qs += encodeURIComponent(key) + "=" + encodeURIComponent(value) + "&";
+  }
+  if (qs.length > 0){
+    qs = qs.substring(0, qs.length-1); //chop off last "&"
+    url = url + "?" + qs;
+  }
+  return url;
+}
 
 export class Container extends React.Component {
   constructor(props) {
@@ -61,7 +78,7 @@ export class Container extends React.Component {
           id={marker['id']}
         />
       ));
-
+    var ctxt = this;
     return (
       <Map google={this.props.google}
         style={{width: '100%', height: '100%', position: 'relative'}}
@@ -75,12 +92,8 @@ export class Container extends React.Component {
           >
           <div>
             <h2>{this.state.selectedPlace.name}</h2>
-            {/* <Link href={
-              `/events/${this.state.selectedPlace.name}?addressLine1=${this.state.selectedPlace.addressLine1}&addressLine2=${this.state.selectedPlace.addressLine2}&city=${this.state.selectedPlace.city}&country=${this.state.selectedPlace.country}&description=${this.state.selectedPlace.description}&eventEndDateTime=${this.state.selectedPlace.eventEndDateTime}&eventName=${this.state.selectedPlace.name}&eventStartDateTime=${this.state.selectedPlace.eventStartDateTime}&state=${this.state.selectedPlace.state}&zipPostalCode=${this.state.selectedPlace.zipPostalCode}`
-              }
-            >
-              Event Details
-            </Link> */}
+            <a href='javascript:lala()'>
+            {this.state.selectedPlace.name}</a>
           </div>
         </InfoWindow>
       </Map>
