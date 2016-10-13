@@ -17,7 +17,7 @@ export default class HostTicketDetails extends Component {
   userVerifyTicket(eventContractAddress, userWalletAddress, e) {
     const name = this.props.username;
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = 'localhost:3000/verify/?&name=' + name +
+    const qrstring = '/verify/?&name=' + name +
                     '&eventContractAddress=' + eventContractAddress +
                     '&userWalletAddress=' + userWalletAddress;
 
