@@ -19,6 +19,11 @@ export default class HostEvent extends Component {
     this.props.checkAddress(this.refs, this.props.username);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.checkAddress(this.refs, this.props.username);
+  }
+
   uploadImage() {
     let context = this;
     window.cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
