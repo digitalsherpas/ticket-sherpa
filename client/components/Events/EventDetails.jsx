@@ -23,21 +23,17 @@ export default class EventDetails extends Component {
 
     contract.buyTicket.sendTransaction(name, {from: account, value: price}, function (err, result) {
       if (!err) {
-        console.log('Buy Ticket Success: ', result);
         return axios.post('/db/addEventToUser', {
             username: name,
             eventID: id,
             address: account,
           })
           .then(function (response) {
-            console.log(response, 'success in db user post');
             browserHistory.push('/tickets');
           })
           .catch(function (error) {
-            console.log(error, 'error in db user post');
           });
       } else {
-        console.dir('Buy Ticket Error: ', arguments);
       }
     });
   }

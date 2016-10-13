@@ -160,10 +160,4 @@ events.forEach((event) => {
     body: event,
     json: true,
   })
-  .then(() =>{
-    console.log('event created')
-  })
-  .catch((err) => {
-    console.log(err)
-  })
 })

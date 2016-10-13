@@ -17,10 +17,10 @@ module.exports = (grunt) => {
         command: 'node ./node_modules/webpack/bin/webpack.js',
       },
       startDevServer: {
-        command: 'nodemon server/server.js',
+        command: 'NODE_ENV=development nodemon server/server.js',
       },
       startServer: {
-        command: 'NODE_ENV=PRODUCTION node server/server.js',
+        command: 'NODE_ENV=production node server/server.js',
       },
       buildProduction: {
         command: 'node ./node_modules/webpack/bin/webpack.js -p --config webpack.production.config.js --progress --colors',

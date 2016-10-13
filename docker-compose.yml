@@ -28,11 +28,13 @@ services:
       - postgres
       - es
     environment:
-      ES_SERVER_URL: http://es
-      DATABASEUSER: docker
-      DATABASEPASSWORD: docker
-      DATABASEADDRESS: postgres
-      DATABASEPORT: 5432
+      NODE_ENV: production
+      HOST_ENV: ecs
+      # ES_SERVER_URL: http://es
+      # DATABASEUSER: docker
+      # DATABASEPASSWORD: docker
+      # DATABASEADDRESS: postgres
+      # DATABASEPORT: 5432
 
   # eth:
   #   image: eth
@@ -54,7 +56,8 @@ services:
     links:
       - db
     environment:
-      DB_SERVER_URL: http://db
+      NODE_ENV: production
+      HOST_ENV: ecs
 
   es:
     image: es
@@ -63,4 +66,5 @@ services:
     links:
       - elasticsearch
     environment:
-      ES_URL: http://elasticsearch
+      NODE_ENV: production
+      HOST_ENV: ecs

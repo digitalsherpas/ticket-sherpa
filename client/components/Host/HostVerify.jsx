@@ -14,14 +14,7 @@ export default class HostVerify extends Component {
 
     const test = contract.verifyAttendee(account, {from: account}, function (err, result) {
       if (!err) {
-        console.log('Result: ', result);
-        if (result !== "Not Verified") {
-          console.log('Verified');
-        } else {
-          console.log('Not Verified');
-        }
-      } else {
-        console.dir('Error: ', arguments);
+        alert('Result: ', result);
       }
     });
   }

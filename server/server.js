@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const config = require('../config');
@@ -24,7 +25,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-if (process.env.NODE_ENV !== 'PRODUCTION') {
+if (process.env.NODE_ENV !== 'production') {
   console.log('Loading hot reloader');
   const webpackcompiler = webpack(webpackconfig);
 
@@ -117,7 +118,7 @@ app.get('/api/HostEventsList', (req, res) => {
 
 app.get('/api/searchEvents', (req, res) => {
   const reqObj = {
-    url: `${config.ECS_URL || config.SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
+    url: `${config.ES_SERVER_URL}:${config.ES_SERVER_PORT}/api/events`,
     json: true,
     qs: {
       eventName: req.query.eventName,
@@ -132,7 +133,7 @@ app.get('/api/searchEvents', (req, res) => {
 
 app.get('/api/getTickets', (req, res) => {
   const reqObj = {
-    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
+    url: `${config.DB_SERVER_URL}:${config.DB_SERVER_PORT}/db/getTickets`,
     json: true,
     qs: {
       readFromDB: req.query.readFromDB,
@@ -215,7 +216,7 @@ app.post('/api/tickets', (req, res) => {
 app.post('/db/addEventToUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${process.env.DB_SERVER_URL || config.ECS_URL || config.SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
+    url: `${config.DB_SERVER_URL}:${config.DB_SERVER_PORT}/db/addEventToUser`,
     body: req.body,
     json: true,
   }).then((event) => {
@@ -230,14 +231,13 @@ app.post('/db/addEventToUser', (req, res) => {
   "username": "unique_username",
   "password": "password",
   "name": "John Doe",
-  "email": "john@doe.com",
-  "phone_number": "+14702408888" // proper format
+  "email": "john@doe.com"
 }
 */
 app.post('/registerUser', (req, res) => {
   rp({
     method: 'POST',
-    url: `${config.ECS_URL || config.SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
+    url: `${config.AUTH_SERVER_URL}:${config.AUTH_SERVER_PORT}/registerUser`,
     body: req.body,
     json: true,
   }).then((obj) => {
@@ -252,7 +252,7 @@ app.get('/getUserSession', (req, res) => {
     const token = req.get('Authorization').slice(7);
     rp({
       method: 'POST',
-      url: `${config.ECS_URL || config.SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
+      url: `${config.AUTH_SERVER_URL}:${config.AUTH_SERVER_PORT}/verifyUser`,
       body: { token },
       json: true,
     }).then((obj) => {
@@ -278,5 +278,5 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
 
-app.listen(config.SERVER_PORT);
-console.log(`Server listening on port: ${config.SERVER_PORT}`);
+app.listen(config.WEB_SERVER_PORT);
+console.log(`Server listening on port: ${config.WEB_SERVER_PORT}`);

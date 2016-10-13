@@ -67,7 +67,6 @@ const searchEventsList = (state = [], action) => {
 const checkAddress = (state = [], action) => {
   switch (action.type) {
     case CHECK_ADDRESS:
-      console.log('check if it\'s entering check address');
     default:
       return state;
   }

@@ -17,13 +17,13 @@ export default class HostTicketDetails extends Component {
   userVerifyTicket(eventContractAddress, userWalletAddress, e) {
     const name = this.props.username;
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = 'localhost:3000/verify/?&name=' + name +
+    const qrstring = 'https://www.ticketsherpa.co/verify/?&name=' + name +
                     '&eventContractAddress=' + eventContractAddress +
                     '&userWalletAddress=' + userWalletAddress;
 
     qrcodedraw.draw(this.refs.userVerifyQR, qrstring, function(error, canvas) {
       if (error) {
-         console.log('Error =( ',error);
+         alert('Unable to draw QR code')
       }
     });
   }
