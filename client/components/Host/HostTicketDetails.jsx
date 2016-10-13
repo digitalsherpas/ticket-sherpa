@@ -17,7 +17,7 @@ export default class HostTicketDetails extends Component {
   userVerifyTicket(eventContractAddress, userWalletAddress, e) {
     const name = this.props.username;
     const qrcodedraw = new QRCodeLib.QRCodeDraw();
-    const qrstring = '/verify/?&name=' + name +
+    const qrstring = 'https://www.ticketsherpa.co/verify/?&name=' + name +
                     '&eventContractAddress=' + eventContractAddress +
                     '&userWalletAddress=' + userWalletAddress;
 
