@@ -75,12 +75,12 @@ export class Container extends React.Component {
           >
           <div>
             <h2>{this.state.selectedPlace.name}</h2>
-            <Link href={
+            {/* <Link href={
               `/events/${this.state.selectedPlace.name}?addressLine1=${this.state.selectedPlace.addressLine1}&addressLine2=${this.state.selectedPlace.addressLine2}&city=${this.state.selectedPlace.city}&country=${this.state.selectedPlace.country}&description=${this.state.selectedPlace.description}&eventEndDateTime=${this.state.selectedPlace.eventEndDateTime}&eventName=${this.state.selectedPlace.name}&eventStartDateTime=${this.state.selectedPlace.eventStartDateTime}&state=${this.state.selectedPlace.state}&zipPostalCode=${this.state.selectedPlace.zipPostalCode}`
               }
             >
               Event Details
-            </Link>
+            </Link> */}
           </div>
         </InfoWindow>
       </Map>

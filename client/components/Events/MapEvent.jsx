@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Moment from 'moment';
 
-const MapEvent = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id }) => (
+const MapEvent = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id, image }) => (
   <div className="map__events-container">
     <div className="map__events-image-container">
       <Link
@@ -22,9 +22,10 @@ const MapEvent = ({ eventName, description, eventStartDateTime, eventEndDateTime
           zipPostalCode,
           country,
           id,
+          image
         },
       }}
-      ><img className="map__events-image" src={require('../../styles/images/ticketsherpa-logo.png')} /></Link>
+      ><img className="map__events-image" src={image} /></Link>
     </div>
     <div className="map__events-text">
       <h2><Link
@@ -44,6 +45,7 @@ const MapEvent = ({ eventName, description, eventStartDateTime, eventEndDateTime
           zipPostalCode,
           country,
           id,
+          image
         },
       }}
       >{eventName}</Link></h2>

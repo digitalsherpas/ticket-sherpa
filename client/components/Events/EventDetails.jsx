@@ -44,6 +44,7 @@ export default class EventDetails extends Component {
     return (
       <div className="content__container">
         <h4>Event Name: {query.eventName}</h4>
+        <img length="200px" width="200px" src={query.image}/>
         <p>Description: {query.description}</p>
         <p>Price: {query.price / 1000000000000000000} ETH</p>
         <p>Start Date: {Moment(query.eventStartDateTime).format('MMM Do YYYY, h:mm A')}</p>

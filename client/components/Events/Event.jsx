@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Moment from 'moment';
 
-const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id }) => (
+const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id, image }) => (
   <div className="content__event-container">
     <div className="content__event-image-container">
       <Link
@@ -22,9 +22,10 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
           zipPostalCode,
           country,
           id,
+          image,
         },
       }}
-      ><img className="content__event-image" src={require('../../styles/images/ticketsherpa-logo.png')} /></Link>
+      ><img className="content__event-image" src={image} /></Link>
     </div>
     <div className="content__event-text">
       <h2><Link
@@ -44,6 +45,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
           zipPostalCode,
           country,
           id,
+          image,
         },
       }}
       >{eventName}</Link></h2>
