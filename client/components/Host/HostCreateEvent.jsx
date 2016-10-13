@@ -6,11 +6,10 @@ import { browserHistory } from 'react-router';
 export default class HostEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
-
     this.state = {
+      imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png',
       noAddress: '',
-    }
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
@@ -37,11 +36,6 @@ export default class HostEvent extends Component {
     cloudinary.async = true;
 
     document.body.appendChild(cloudinary);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
@@ -148,7 +142,7 @@ export default class HostEvent extends Component {
             <div className="event__image-container">
               <div className="event__image-container-left">
                 <a href='#'>
-                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
+                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage}>
                     <img className="event__image-container-preview" src={imagePreviewUrl}/>
                   </div>
                 </a>
@@ -156,9 +150,9 @@ export default class HostEvent extends Component {
               <div className="event-image-container-right">
               </div>
             </div>
-
+            <h1>{this.state.noAddress}</h1>
             <div>
-            <input type="submit" value="Create Event" onClick={this.handleSubmit.bind(this)}/>
+            <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
             </div>
           </div>
         </form>
