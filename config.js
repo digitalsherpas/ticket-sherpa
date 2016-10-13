@@ -39,6 +39,7 @@ if (process.env.NODE_ENV === 'development') {
   endpoints = {
     DB_SERVER_URL: 'http://52.33.65.180',
     DB_SERVER_PORT: 3004,
+    ETH_SERVER_PORT: 3002,
     ETHEREUM_CONNECTION_STRING: 'http://localhost:8545',
     BLOCKCHAIN_PORT: 8545,
   };
