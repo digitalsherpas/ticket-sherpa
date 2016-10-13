@@ -65,9 +65,7 @@ export default class HostEvent extends Component {
       <div className="content__container">
         <Modal
           isOpen={metaMaskNotInstalled}
-          // onAfterOpen={afterOpenFn}
           onRequestClose={this.requestCloseFn.bind(this)}
-          // closeTimeoutMS={n}
           style={customModalStyle}>
           <h3>Ticket Sherpa runs on the decentralized Ethereum network using Smart Contracts.</h3>
           <h4>In order to purchase tickets or create events, you need to:</h4>
