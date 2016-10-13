@@ -12,7 +12,8 @@
     "test:watch": "npm test -- --watch",
     "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
     "dummydata": "node ./data/dummyEventData.js",
-    "prod": "node ./node_modules/grunt-cli/bin/grunt prod"
+    "prod": "node ./node_modules/grunt-cli/bin/grunt prod",
+    "frontend": "node ./node_modules/grunt-cli/bin/grunt frontend & node ./node_modules/grunt-cli/bin/grunt watch"
   },
   "repository": {
     "type": "git",

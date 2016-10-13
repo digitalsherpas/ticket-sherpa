@@ -1,6 +1,19 @@
 var endpoints = {};
-
-if (process.env.NODE_ENV === 'development') {
+if (process.env.HOST_ENV === 'frontend') {
+  endpoints = {
+    // WEB_SERVER_URL: '', // do not call URL directly, use relative urls
+    WEB_SERVER_PORT: 3000,
+    ETH_SERVER_URL: 'http://54.190.58.228',
+    ETH_SERVER_PORT: 3002,
+    AUTH_SERVER_URL: 'http://52.33.65.180',
+    AUTH_SERVER_PORT: 3003,
+    DB_SERVER_URL: 'http://52.33.65.180',
+    DB_SERVER_PORT: 3004,
+    ES_SERVER_URL: 'http://52.33.65.180',
+    ES_SERVER_PORT: 3005,
+    POSTGRES_CONNECTION_STRING: 'postgres://docker:docker@postgres:5432',
+  };
+} else if (process.env.NODE_ENV === 'development') {
   endpoints = {
     WEB_SERVER_URL: 'http://localhost',
     WEB_SERVER_PORT: 3000,
