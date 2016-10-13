@@ -8,10 +8,6 @@ export default class NavSearchEvents extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(e) {
-  //   e.preventDefault()
-  // }
-
   handleSubmit(e) {
     e.preventDefault();
     this.props.searchEvents(this.refs.search.value);
