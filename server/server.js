@@ -274,17 +274,6 @@ app.get('/getUser', (req, res) => {
   }
 });
 
-app.post('/dev/logging', (req, res) => {
-  console.log(req.body);
-  fs.appendFile(path.join(__dirname, 'logs'), req.body.message + '\n', (error) => {
-    if (!error) {
-      res.status(200).send('Logged to server logs.');
-    } else {
-      res.status(500).send('Error occured when logging to server logs.');
-    }
-  });
-});
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
