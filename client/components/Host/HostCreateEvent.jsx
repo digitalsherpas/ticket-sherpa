@@ -45,15 +45,12 @@ export default class HostEvent extends Component {
                 <div>Description</div>
                 <div><input className="event-name-input" type="text" ref="description" placeholder="Description" /></div>
               </div>
-              <div>
+              <div className="event-other-description">
                 <div>Event Price (ETH)</div>
                 <div><input  type="text" ref="price" placeholder="Price" /></div>
                 <div>Quota</div>
                 <div><input type="text" ref="quota" placeholder="Quota" /></div>
-              </div>   
-              
-              
-              
+              </div>
             </div>
 
             <div className="event-start-end-container">
@@ -70,31 +67,22 @@ export default class HostEvent extends Component {
             <div className="event-location-container">
               <div className="event-location-left">
                 <div>Event Location</div>
-                <div>Street Address</div>
                 <input type="text" className="event-location-input" ref="addressLine1" placeholder="Street Address"/>
-                <div>Address Line 2</div>
                 <input type="text" className="event-location-input" ref="addressLine2" placeholder="Address Line 2"/>
-              </div>
-              <div className="event-location-right">
-                <div>City</div>
                 <input type="text" className="event-location-input" ref="city" placeholder="City"/>
-                <div>State</div>
-                <input type="text" className="event-location-input" ref="state" placeholder="State"/>
-                <div>Zip/Postal Code</div>
                 <input type="text" className="event-location-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
-                <div>Country</div>
+                <input type="text" className="event-location-input" ref="state" placeholder="State"/>
                 <input type="text" className="event-location-input" ref="country" placeholder="Country"/>
               </div>
+              <div className="event-location-right">
+                <a href='#'><div className="image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>Image Upload</div></a>
+              </div>
             </div>
 
-            <div className="image-upload-container">
-              <div><button type="button" d="upload_widget_opener" ref="imageupload" onClick={this.uploadImage.bind(this)}>Upload Image</button></div>
-              <canvas></canvas>
+            <div>
+            <input type="submit" value="Create Event"/>
             </div>
-
           </div>
-          <div>Submit</div>
-          <input type="submit"/>
 
         </form>
       </div>
