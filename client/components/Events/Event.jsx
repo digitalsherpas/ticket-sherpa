@@ -28,7 +28,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
       ><img className="content__event-image" src={image} /></Link>
     </div>
     <div className="content__event-text">
-      <h2><Link
+      <h3 className="content__event-title"><Link
         to={{ pathname:
         '/events/' + eventName,
         query: {
@@ -48,7 +48,7 @@ const Event = ({ eventName, description, eventStartDateTime, eventEndDateTime, e
           image,
         },
       }}
-      >{eventName}</Link></h2>
+      >{eventName}</Link></h3>
       <p>Date: {Moment(eventStartDateTime).format('MMM Do YYYY, h:mm A')}</p>
       <p>Price: {price / 1000000000000000000} ETH</p>
       <p>City: {city + ', ' + state}</p>
