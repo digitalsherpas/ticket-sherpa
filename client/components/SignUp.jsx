@@ -19,8 +19,8 @@ export default class SignUp extends Component {
           <input className="authentication__content-input" type="text" ref="name" placeholder="e.g. John Doe"/>
           <h4 className="authentication__content-field">Email</h4>
           <input className="authentication__content-input" type="text" ref="email" placeholder="e.g. email@email.com"/>
-          <h4 className="authentication__content-field">Phone Number</h4>
-          <input className="authentication__content-input" type="text" ref="phonenumber" placeholder="e.g. +14702408888"/>
+          {/* <h4 className="authentication__content-field">Phone Number</h4>
+          <input className="authentication__content-input" type="text" ref="phonenumber" placeholder="e.g. +14702408888"/> */}
           <input type="submit"/>
         </form>
       </div>

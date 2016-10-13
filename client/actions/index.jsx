@@ -168,7 +168,7 @@ export function registerUser(info) {
     password: info.password.value,
     name: info.name.value,
     email: info.email.value,
-    phone_number: info.phonenumber.value,
+    // phone_number: info.phonenumber.value,
   };
 
   return (dispatch) => {
