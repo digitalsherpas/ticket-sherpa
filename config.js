@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
     ES_SERVER_URL: 'http://localhost',
     ES_SERVER_PORT: 3005,
     // change your environment variables based on your local postgres database settings
-    POSTGRES_CONNECTION_STRING: `postgres://${process.env.DATABASEUSER || 'postgres'}:${process.env.DATABASEPASSWORD || 'password'}@${process.env.DATABASEADDRESS || 'localhost'}:${process.env.DATABASEPORT || '5432'}/tickether`,
+    // POSTGRES_CONNECTION_STRING: `postgres://${process.env.DATABASEUSER || 'postgres'}:${process.env.DATABASEPASSWORD || 'password'}@${process.env.DATABASEADDRESS || 'localhost'}:${process.env.DATABASEPORT || '5432'}/tickether`,
     ETHEREUM_CONNECTION_STRING: 'http://localhost:8545',
     BLOCKCHAIN_PORT: 8545,
     ELASTICSEARCH_URL: 'http://localhost',
