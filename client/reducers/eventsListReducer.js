@@ -1,7 +1,17 @@
 import { combineReducers } from 'redux';
 
 import {
-  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS, RECEIVE_SEARCH_EVENTS, SEARCH_EVENTS_RESULTS, CHECK_ADDRESS,
+  SELECT_EVENT,
+  INVALIDATE_EVENT,
+  REQUEST_EVENTS,
+  RECEIVE_EVENTS,
+  SEARCH_EVENTS,
+  RECEIVE_SEARCH_EVENTS,
+  SEARCH_EVENTS_RESULTS,
+  SERVER_ERROR,
+  GEOENCODE_ERROR,
+  GEOENCODE_SERVER_ERROR,
+  NO_ADDRESS,
 } from '../actions/index.jsx';
 
 const selectEvent = (state = [], action) => {
@@ -46,6 +56,26 @@ const searchEvents = (state = {}, action) => {
       return {
         ...state,
         searchEvents: action.payload,
+      };
+    case SERVER_ERROR:
+      return {
+        ...state,
+        SERVER_ERROR: action.payload,
+      };
+    case GEOENCODE_ERROR:
+      return {
+        ...state,
+        GEOENCODE_ERROR: action.payload,
+      };
+    case GEOENCODE_SERVER_ERROR:
+      return {
+        ...state,
+        GEOENCODE_SERVER_ERROR: action.payload,
+      };
+    case NO_ADDRESS:
+      return {
+        ...state,
+        NO_ADDRESS: action.payload,
       };
     default:
       return state;
