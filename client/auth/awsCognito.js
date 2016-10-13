@@ -25,7 +25,7 @@ module.exports = {
       onSuccess: (result) => {
         const authHeader = `Bearer ${result.getAccessToken().getJwtToken()}`;
         axios({
-          url: `${config.SERVER_URL}:${config.SERVER_PORT}/getUserSession`,
+          url: '/getUserSession',
           headers: {
             Authorization: authHeader,
           },
@@ -41,4 +41,3 @@ module.exports = {
     });
   },
 };
-
