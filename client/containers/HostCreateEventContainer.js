@@ -7,9 +7,7 @@ const mapStateToProps = state => ({
   hostEventsCreate: state.hostEventsReducer.hostEventsList,
   username: state.authReducer.username,
   addressEntered: state.eventsListReducer.checkAddressEntered,
-  serverError: state.eventsListReducer.checkServerError,
-  geoencodeError: state.eventsListReducer.checkGeoencodeError,
-  geoencodeServerError: state.eventsListReducer.checkGeoencodeServerError,
+  checkError: state.eventsListReducer.checkError,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);

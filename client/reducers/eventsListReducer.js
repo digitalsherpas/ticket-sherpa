@@ -9,9 +9,7 @@ import {
   RECEIVE_SEARCH_EVENTS,
   SEARCH_EVENTS_RESULTS,
   CHECK_ADDRESS,
-  SERVER_ERROR,
-  GEOENCODE_ERROR,
-  GEOENCODE_SERVER_ERROR,
+  ERROR,
   NO_ADDRESS,
 } from '../actions/index.jsx';
 
@@ -79,16 +77,6 @@ const checkAddress = (state = {}, action) => {
   switch (action.type) {
     case CHECK_ADDRESS:
       return state;
-    case GEOENCODE_ERROR:
-      return {
-        ...state,
-        GEOENCODE_ERROR: action.payload,
-      };
-    case GEOENCODE_SERVER_ERROR:
-      return {
-        ...state,
-        GEOENCODE_SERVER_ERROR: action.payload,
-      };
     default:
       return state;
   }
@@ -103,27 +91,9 @@ const checkAddressEntered = (state = true, action) => {
   }
 };
 
-const checkServerError = (state = true, action) => {
+const checkError = (state = true, action) => {
   switch (action.type) {
-    case SERVER_ERROR:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const checkGeoencodeError = (state = true, action) => {
-  switch (action.type) {
-    case GEOENCODE_ERROR:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const checkGeoencodeServerError = (state = true, action) => {
-  switch (action.type) {
-    case GEOENCODE_SERVER_ERROR:
+    case ERROR:
       return action.payload;
     default:
       return state;
@@ -138,9 +108,7 @@ const eventsListReducer = combineReducers({
   searchEventsList,
   checkAddress,
   checkAddressEntered,
-  checkServerError,
-  checkGeoencodeError,
-  checkGeoencodeServerError,
+  checkError,
 });
 
 export default eventsListReducer;

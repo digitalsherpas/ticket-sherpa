@@ -21,7 +21,6 @@ export default class HostEvent extends Component {
     e.preventDefault();
     this.checkAddressEntered();
     this.props.checkAddress(this.refs, this.props.username);
-    console.log(this.props.checkGeoencodeServerError());
   }
 
   checkAddressEntered() {

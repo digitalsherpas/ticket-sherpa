@@ -219,9 +219,7 @@ export function logOut(userObj) {
 
 
 export const CHECK_ADDRESS = 'CHECK_ADDRESS';
-export const SERVER_ERROR = 'SERVER_ERROR';
-export const GEOENCODE_ERROR = 'GEOENCODE_ERROR';
-export const GEOENCODE_SERVER_ERROR = 'GEOENCODE_SERVER_ERROR';
+export const ERROR = 'ERROR';
 export const NO_ADDRESS = 'NO_ADDRESS';
 
 export function checkAddress(event, username) {
@@ -267,24 +265,21 @@ export function checkAddress(event, username) {
                 browserHistory.push('/hostevents');
               }).catch((error) => {
                 dispatch({
-                  type: SERVER_ERROR,
-                  payload: false,
+                  type: ERROR,
+                  payload: 'There was an error with our server. Please try again later.',
                 });
-                console.log('an error occurred saving the event to the db');
               });
             }(event, username);
           } else {
             dispatch({
-              type: GEOENCODE_ERROR,
-              payload: false,
+              type: ERROR,
+              payload: 'The address you entered is invalid. Please enter a valid address',
             });
-            alert('Please enter a valid address!');
-            console.log('the event address is invalid with geoencoding api');
           }
         }).catch((error) => {
           // possible, but highly unlikely
           dispatch({
-            type: GEOENCODE_SERVER_ERROR,
+            type: ERROR,
             payload: 'There was an error with our server. Please try again later.',
           });
         });
