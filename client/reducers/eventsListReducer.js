@@ -8,6 +8,7 @@ import {
   SEARCH_EVENTS,
   RECEIVE_SEARCH_EVENTS,
   SEARCH_EVENTS_RESULTS,
+  CHECK_ADDRESS,
   SERVER_ERROR,
   GEOENCODE_ERROR,
   GEOENCODE_SERVER_ERROR,
@@ -57,26 +58,6 @@ const searchEvents = (state = {}, action) => {
         ...state,
         searchEvents: action.payload,
       };
-    case SERVER_ERROR:
-      return {
-        ...state,
-        SERVER_ERROR: action.payload,
-      };
-    case GEOENCODE_ERROR:
-      return {
-        ...state,
-        GEOENCODE_ERROR: action.payload,
-      };
-    case GEOENCODE_SERVER_ERROR:
-      return {
-        ...state,
-        GEOENCODE_SERVER_ERROR: action.payload,
-      };
-    case NO_ADDRESS:
-      return {
-        ...state,
-        NO_ADDRESS: action.payload,
-      };
     default:
       return state;
   }
@@ -94,9 +75,32 @@ const searchEventsList = (state = [], action) => {
   }
 };
 
-const checkAddress = (state = [], action) => {
+const checkAddress = (state = {}, action) => {
   switch (action.type) {
     case CHECK_ADDRESS:
+      // console.log('check if it\'s entering check address');
+      return state;
+    case SERVER_ERROR:
+      return {
+        ...state,
+        SERVER_ERROR: action.payload,
+      };
+    case GEOENCODE_ERROR:
+      return {
+        ...state,
+        GEOENCODE_ERROR: action.payload,
+      };
+    case GEOENCODE_SERVER_ERROR:
+      return {
+        ...state,
+        GEOENCODE_SERVER_ERROR: action.payload,
+      };
+    case NO_ADDRESS:
+      console.log('no address was provided');
+      return {
+        ...state,
+        NO_ADDRESS: action.payload,
+      };
     default:
       return state;
   }

@@ -295,8 +295,6 @@ export function checkAddress(event, username) {
         type: NO_ADDRESS,
         payload: false,
       });
-      console.log('please type in an address');
-      alert('Please enter an address!');
     }
   }
 }
