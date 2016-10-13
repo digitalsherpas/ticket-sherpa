@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 import { Link } from 'react-router';
 import Moment from 'moment';
+import Modal from 'react-modal';
 
 export default class EventDetails extends Component {
   constructor(props) {
@@ -38,11 +39,38 @@ export default class EventDetails extends Component {
     });
   }
 
+  requestCloseFn() {
+    browserHistory.push('/');
+  }
 
   render() {
+    let metaMaskNotInstalled = true;
+    if (typeof web3 !== 'undefined') {
+      metaMaskNotInstalled = false;
+    }
+    const customModalStyle = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
     const query = this.props.location.query;
     return (
       <div className="content__container">
+        <Modal
+          isOpen={metaMaskNotInstalled}
+          // onAfterOpen={afterOpenFn}
+          onRequestClose={this.requestCloseFn.bind(this)}
+          // closeTimeoutMS={n}
+          style={customModalStyle}>
+          <h3>Ticket Sherpa runs on the decentralized Ethereum network using Smart Contracts.</h3>
+          <h4>In order to purchase tickets or create events, you need to:</h4>
+          <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
+        </Modal>
         <h4>Event Name: {query.eventName}</h4>
         <img length="200px" width="200px" src={query.image}/>
         <p>Description: {query.description}</p>

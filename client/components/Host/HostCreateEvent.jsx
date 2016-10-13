@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import Datetime from 'react-datetime'
+import Datetime from 'react-datetime';
+import Modal from 'react-modal';
+import { browserHistory } from 'react-router';
 
 export default class HostEvent extends Component {
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.checkAddress(this.refs, this.props.username);
-  }
 
   componentDidMount() {
     const cloudinary = document.createElement("script");
     cloudinary.src = "//widget.cloudinary.com/global/all.js";
     cloudinary.async = true;
 
-    document.body.appendChild(cloudinary);
+    document.body.appendChild(cloudinary);    
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
@@ -26,13 +28,42 @@ export default class HostEvent extends Component {
       });
   }
 
+  requestCloseFn() {
+    browserHistory.push('/account');
+  }
+
   render() {
+    let metaMaskNotInstalled = true;
+    if (typeof web3 !== 'undefined') {
+      metaMaskNotInstalled = false;
+    }
+    const customModalStyle = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
     const yesterday = Datetime.moment().subtract(1, 'day');
     const valid = function( current ){
         return current.isAfter( yesterday );
     };
+
     return (
       <div className="content__container">
+        <Modal
+          isOpen={metaMaskNotInstalled}
+          // onAfterOpen={afterOpenFn}
+          onRequestClose={this.requestCloseFn.bind(this)}
+          // closeTimeoutMS={n}
+          style={customModalStyle}>
+          <h3>Ticket Sherpa runs on the decentralized Ethereum network using Smart Contracts.</h3>
+          <h4>In order to purchase tickets or create events, you need to:</h4>
+          <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
+        </Modal>
         <form ref="eventForm" onSubmit={this.handleSubmit.bind(this)}>
           <div className="event-form">
 
@@ -85,6 +116,8 @@ export default class HostEvent extends Component {
           </div>
 
         </form>
+        <div>
+        </div>
       </div>
     );
   }

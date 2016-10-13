@@ -102,6 +102,7 @@
     "react-datetime": "^2.6.0",
     "react-dom": "^0.14.6",
     "react-md-spinner": "^0.1.0",
+    "react-modal": "^1.5.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
