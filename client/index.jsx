@@ -8,5 +8,5 @@ import AppProvider from './components/AppProvider.jsx';
 
 render(
   <AppProvider/>,
-  document.getElementById('root')
+  document.body
 );

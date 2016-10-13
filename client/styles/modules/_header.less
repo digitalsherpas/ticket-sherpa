@@ -7,7 +7,8 @@
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 0px;
-
+  height: 100%;
+  align-items: center;
   a:hover {
       color: #FF4900;
   }
@@ -15,7 +16,12 @@
 
 .header__nav-item {
   padding-left: 10px;
-  padding-right: 10px
+  padding-right: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #eff2f5;
+  white-space: nowrap;
 }
 
 .header__logo-container {
@@ -25,10 +31,15 @@
 .header__logo {
   color: #0393ff !important;
   font-family: 'Quicksand', sans-serif;
+  white-space: nowrap;
 }
 
 .header__logo-text {
   margin-top: 0px;
   margin-bottom: 0px;
   padding: 15px;
+}
+
+.header__search-container {
+  flex: 1;
 }

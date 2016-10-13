@@ -64,7 +64,7 @@ export class Container extends React.Component {
 
     return (
       <Map google={this.props.google}
-        style={{width: '100%', height: '100%'}}
+        style={{width: '100%', height: '100%', position: 'relative'}}
         className={'events__map'}
         zoom={12}
         >
