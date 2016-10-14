@@ -45,7 +45,7 @@ export default class HostEvent extends Component {
   }
 
   uploadImage() {
-    cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
+    cloudinary.openUploadWidget.bind(this)({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
       function (error, result) {
         if (!error) {
           this.refs.imageupload.value = result[0].secure_url;

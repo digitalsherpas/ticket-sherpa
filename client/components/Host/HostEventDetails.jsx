@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import QRCodeLib from 'qrcode';
 import axios from 'axios'
+import Moment from 'moment';
 
 export default class HostEventDetails extends Component {
 
@@ -55,8 +56,8 @@ export default class HostEventDetails extends Component {
         <h4>Image:</h4>
           <img className="content__event-image" src={image}/>
         <h4>Price: {price} ETH</h4>
-        <h4>Event Start Date & Time: {eventStartDateTime}</h4>
-        <h4>Event End Date & Time: {eventEndDateTime}</h4>
+        <p>Start Date: {Moment(isNaN(Number(eventStartDateTime)) ? eventStartDateTime : Number(eventStartDateTime)).format('MMM Do YYYY, h:mm A')}</p>
+        <p>End Date: {Moment(isNaN(Number(eventEndDateTime)) ? eventEndDateTime : Number(eventEndDateTime)).format('MMM Do YYYY, h:mm A')}</p>
         <hr></hr>
 
         <h2>Event Address</h2>
