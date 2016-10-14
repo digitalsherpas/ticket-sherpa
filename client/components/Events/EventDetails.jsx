@@ -75,8 +75,8 @@ export default class EventDetails extends Component {
         <img length="200px" width="200px" src={query.image}/>
         <p>Description: {query.description}</p>
         <p>Price: {query.price / 1000000000000000000} ETH</p>
-        <p>Start Date: {Moment(query.eventStartDateTime).format('MMM Do YYYY, h:mm A')}</p>
-        <p>End Date: {Moment(query.eventStartDateTime).format('MMM Do YYYY, h:mm A')}</p>
+        <p>Start Date: {Moment(isNaN(Number(query.eventStartDateTime)) ? query.eventStartDateTime : Number(query.eventStartDateTime)).format('MMM Do YYYY, h:mm A')}</p>
+        <p>End Date: {Moment(isNaN(Number(query.eventEndDateTime)) ? query.eventEndDateTime : Number(query.eventEndDateTime)).format('MMM Do YYYY, h:mm A')}</p>
         <hr/>
         <p>Street Address: {query.addressLine1}</p>
         <p>Address Line 2: {query.addressLine2}</p>
