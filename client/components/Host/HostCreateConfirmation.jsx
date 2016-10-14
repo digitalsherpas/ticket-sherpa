@@ -25,7 +25,7 @@ export default class HostCreateConfirmation extends Component {
           isOpen={true}
           onRequestClose={this.requestCloseFn.bind(this)}
           style={customModalStyle}>
-          <h3>Creating Event</h3>
+          <h3>Your event is being created and verified on the blockchain. It will appear on your account page momentarily.</h3>
         </Modal>
       </div>
     );
