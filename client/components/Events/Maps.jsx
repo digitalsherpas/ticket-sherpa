@@ -22,7 +22,6 @@ const buildUrl = (url, parameters) => {
 
 window.getEventDetailsFromDB = (eventName) => {
   axios.get('http://localhost:3000/api/dbEvents?readFromDB=true&eventName=' + eventName).then(({ data }) => {
-    console.log(data);
     browserHistory.push(buildUrl('/events/' + eventName, data));
   })
 }
@@ -83,7 +82,6 @@ export class Container extends React.Component {
           id={marker['id']}
         />
       ));
-    var ctxt = this;
     return (
       <Map google={this.props.google}
         style={{width: '100%', height: '100%', position: 'relative'}}
