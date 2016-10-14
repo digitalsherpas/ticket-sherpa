@@ -133,7 +133,7 @@ export default class HostEvent extends Component {
               </div>
 
               <h2 className="createEvent__container-subheader">4) Image</h2>
-              <div className="createEvent__container-section">
+              <div className="createEvent__container-section-image">
                 <a href='#'>
                   <div className="createEvent__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
                     <img className="createEvent__image" src={imagePreviewUrl}/>
