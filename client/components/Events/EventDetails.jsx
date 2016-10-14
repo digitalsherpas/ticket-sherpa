@@ -76,6 +76,12 @@ export default class EventDetails extends Component {
             <img className="ticket__header-left" height="50%" width="50%" src={query.image} />
             <div className="ticket__header-right">
               <div className="ticket__header-name">{query.eventName}</div>
+
+              <div className="ticket__description">
+                <div className="ticket__header-title">Description</div>
+                <div>{query.description}</div>
+              </div>
+
               <div className="ticket__date-time">
                 <div className="ticket__header-title">Time</div>
                 <div className="ticket__header-start">
@@ -84,11 +90,6 @@ export default class EventDetails extends Component {
                 <div className="ticket__header-end">
                   End: {Moment(isNaN(Number(query.eventEndDateTime)) ? query.eventEndDateTime : Number(query.eventEndDateTime)).format('MMM Do YYYY, h:mm A')}
                 </div>
-              </div>
-              
-              <div className="ticket__description">
-                <div className="ticket__header-title">Description</div>
-                <div>{query.description}</div>
               </div>
 
               <div className="ticket__header-location">
@@ -106,11 +107,11 @@ export default class EventDetails extends Component {
                 </form>
               </div>
           </div>
-          </div>          
+          </div>
 
         </div>
 
-        
+
       </div>
     );
   }
