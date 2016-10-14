@@ -13,6 +13,7 @@ import SignUpContainer from './containers/SignUpContainer.js';
 import HostVerifyContainer from './containers/HostVerifyContainer.js';
 import HostTicketsContainer from './containers/HostTicketsContainer.js';
 import HostTicketDetailsContainer from './containers/HostTicketDetailsContainer.js';
+import HostCreateConfirmation from './components/Host/HostCreateConfirmation.jsx';
 import { useScroll } from 'react-router-scroll';
 
 export default class Routes extends Component {
@@ -47,6 +48,7 @@ export default class Routes extends Component {
 
         <Route path="/login" component={LoginContainer} />
         <Route path="/signup" component={SignUpContainer} />
+        <Route path="/hostcreateconfirmation" component={HostCreateConfirmation} />
       </Route>
     </Router>
   )
