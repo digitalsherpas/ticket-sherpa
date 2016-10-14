@@ -303,3 +303,23 @@ export function updateNumAttendees(numAttendees) {
     });
   };
 }
+
+export const TICKET_VERIFYING = 'TICKET_VERIFYING';
+export const TICKET_VERIFIED = 'TICKET_VERIFIED';
+
+export function updateTicketVerificationStatus(status) {
+  return (dispatch) => {
+    dispatch({
+      type: TICKET_VERIFIED,
+      payload: status,
+    })
+  }
+}
+
+export function updateTicketVerificationStarted() {
+  return (dispatch) => {
+    dispatch({
+      type: TICKET_VERIFYING,
+    })
+  }
+}

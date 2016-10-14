@@ -80,7 +80,7 @@ h2 {
 
 .content__event-container {
   width: 25%;
-  min-width: 200px;
+  min-width: 300px;
   background-color: #fff;
   border: 1px solid @border-color;
   margin: 0 0 20px 0;
@@ -98,7 +98,8 @@ h2 {
 }
 
 .content__event-image {
-  height: 100px;
+  height:100%;
+  width:auto;
 }
 
 .authentication__container {
@@ -111,6 +112,23 @@ h2 {
   background-color: #fff;
   border: 1px solid @border-color;
   padding: 20px;
+}
+
+.authentication__verified-container {
+  font-size: 0.8em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.authentication__verified-info {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.authentication__verified-tick {
+  height: auto;
+  width: 100%
 }
 
 .authentication__container-header {
