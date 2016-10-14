@@ -39,7 +39,7 @@ export default class HostVerify extends Component {
             <p>Event Contract Address: {query.eventContractAddress}</p>
           </div>
           <div className="content__verify-checkmark-container">
-            <img className="content__verify-checkmark"src={require('../../../client/styles/images/checkmark.png')}/>
+            <img className="content__verify-checkmark" src={this.props.ticketIsVerified ? require('../../../client/styles/images/checkmark.png') : 'http://www.achterstehoef.nl/images/spinner.gif'} />
           </div>
         </div>
       </div>
