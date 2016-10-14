@@ -2,12 +2,12 @@
 @search-bar-padding: 12px 10px 10px 10px;
 @search-bar-border-radius: 3px;
 @event-background: #fff;
-@event-border: #EFF2F5;
-@search-bar-color: #FFBF00;
+@event-border: #d2d8de;
+@search-bar-color: #FF4900;
 @font: 'Open Sans', sans-serif;
 @font-size: 16px;
 
-.home__image-container img {
+.home__big-image {
   filter: brightness(50%);
 }
 
@@ -28,7 +28,7 @@
   border-top-right-radius: @search-bar-border-radius;
   border-bottom-right-radius: @search-bar-border-radius;
   color: white;
-  background-color: #FFBF00;
+  background-color: @search-bar-color;
   font-family: @font;
   font-size: @font-size;
 }
@@ -40,7 +40,7 @@
 
 .content__event-image-container {
   text-align: center;
-  border-bottom: 1px solid #EFF2F5;
+  border-bottom: 1px solid @event-border;
 }
 
 .home__overlay {
@@ -57,6 +57,16 @@
     margin-top: 0px;
     margin-bottom: 0px;
   }
+}
+
+.home__ether-logo {
+  width: 15%;
+  background-color: #ebebef;
+  padding: 5px;
+}
+
+.home__overlay-title {
+  font-size: 3em;
 }
 
 ::-webkit-input-placeholder {
