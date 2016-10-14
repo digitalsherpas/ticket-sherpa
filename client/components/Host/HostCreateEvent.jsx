@@ -6,28 +6,7 @@ import { browserHistory } from 'react-router';
 export default class HostEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png',
-      noAddress: '',
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.uploadImage = this.uploadImage.bind(this);
-    this.checkAddressEntered = this.checkAddressEntered.bind(this);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.checkAddressEntered();
-    this.props.checkAddress(this.refs, this.props.username);
-  }
-
-  checkAddressEntered() {
-    if (this.refs.addressLine1.value.length === 0 && this.refs.city.value.length === 0 && this.refs.state.value.length === 0 && this.refs.zipPostalCode.value.length === 0) {
-      this.setState({
-        noAddress: this.props.addressEntered,
-      });
-    }
+    this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
   }
 
   componentDidMount() {
@@ -36,6 +15,11 @@ export default class HostEvent extends Component {
     cloudinary.async = true;
 
     document.body.appendChild(cloudinary);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
@@ -135,14 +119,14 @@ export default class HostEvent extends Component {
                 <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
               </div>
               <div className="event__location-right">
-
+                
               </div>
             </div>
 
             <div className="event__image-container">
               <div className="event__image-container-left">
                 <a href='#'>
-                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage}>
+                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
                     <img className="event__image-container-preview" src={imagePreviewUrl}/>
                   </div>
                 </a>
@@ -150,9 +134,9 @@ export default class HostEvent extends Component {
               <div className="event-image-container-right">
               </div>
             </div>
-            <h4>{this.state.noAddress}</h4>
+
             <div>
-            <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
+            <input type="submit" value="Create Event" onClick={this.handleSubmit.bind(this)}/>
             </div>
           </div>
         </form>
