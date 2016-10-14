@@ -10,6 +10,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const session = require('express-session');
+const favicon = require('serve-favicon');
 const keys = require('../keys.js');
 
 const app = express();
@@ -48,6 +49,9 @@ if (process.env.NODE_ENV !== 'production') {
 
   useWebpackMiddleware(app);
 }
+
+// serves favicon
+app.use(favicon(__dirname + '/../dist/favicon.ico'));
 
 // main server
 app.use(express.static(path.join(__dirname, '/../dist')));

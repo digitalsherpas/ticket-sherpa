@@ -112,6 +112,7 @@
     "redux-persist": "^4.0.0-alpha6",
     "redux-thunk": "^2.1.0",
     "request-promise": "^4.1.1",
+    "serve-favicon": "^2.3.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "url-loader": "^0.5.7",
