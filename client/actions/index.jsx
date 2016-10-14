@@ -256,6 +256,8 @@ export function checkAddress(event, username) {
               longitude: results.data.results[0].geometry.location.lng,
               username: username,
             };
+            browserHistory.push('/hostcreateconfirmation');
+
             return axios.post('/api/events', obj)
             .then(() => {
               browserHistory.push('/hostevents');
