@@ -16,16 +16,15 @@ export default class HostEvent extends Component {
   }
 
   handleSubmit(e) {
-    console.log('in submit')
     e.preventDefault();
-    // this.checkAddressEntered();
+    this.checkAddressEntered();
     this.props.checkAddress(this.refs, this.props.username);
   }
 
   checkAddressEntered() {
     if (this.refs.addressLine1.value.length === 0 || this.refs.city.value.length === 0 || this.refs.state.value.length === 0 || this.refs.zipPostalCode.value.length === 0) {
       this.setState({
-        noAddress: this.props.addressEntered,
+        noAddress: this.props.error,
       });
     }
   }
@@ -36,11 +35,6 @@ export default class HostEvent extends Component {
     cloudinary.async = true;
 
     document.body.appendChild(cloudinary);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
@@ -97,7 +91,7 @@ export default class HostEvent extends Component {
           <h4>In order to purchase tickets or create events, you need to:</h4>
           <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
         </Modal>
-        <form ref="eventForm" onSubmit={this.handleSubmit.bind(this)}>
+        <form ref="eventForm" onSubmit={this.handleSubmit}>
           <div className="event__container">
 
             <div className="event__create-header">Create An Event</div>
@@ -156,7 +150,8 @@ export default class HostEvent extends Component {
             </div>
 
             <div>
-            <input type="submit" value="Create Event" onClick={this.handleSubmit.bind(this)}/>
+              <h4>{this.state.noAddress}</h4>
+              <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
             </div>
           </div>
         </form>

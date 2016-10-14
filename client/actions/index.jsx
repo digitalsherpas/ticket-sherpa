@@ -220,6 +220,7 @@ export function logOut(userObj) {
 
 
 export const CHECK_ADDRESS = 'CHECK_ADDRESS';
+export const ERROR_ADDRESS = 'ERROR_ADDRESS';
 
 export function checkAddress(event, username) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -263,24 +264,31 @@ export function checkAddress(event, username) {
              browserHistory.push('/hostevents');
            }).catch((error) => {
              dispatch({
-               type: ERROR,
-               payload: 'There was an error with our server. Please try again later.',
+               type: ERROR_ADDRESS,
+               payload: 'There was an error submitting your request. Please try again later',
              });
            });
          }(event, username);
        } else {
          dispatch({
-           type: ERROR,
-           payload: 'The address you entered is invalid. Please enter a valid address',
+           type: ERROR_ADDRESS,
+           payload: 'Please submit a valid address',
          });
        }
      }).catch((error) => {
        // possible, but highly unlikely
        dispatch({
-         type: ERROR,
-         payload: 'There was an error with our server. Please try again later.',
+         type: ERROR_ADDRESS,
+         payload: 'There was an error submitting your request. Please try again later',
        });
      });
+    };
+  } else {
+    return (dispatch) => {
+      dispatch({
+        type: ERROR_ADDRESS,
+        payload: 'Please provide an address',
+      });
     };
   }
 }
