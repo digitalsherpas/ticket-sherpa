@@ -1,4 +1,3 @@
-// import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 import { authenticateUser } from '../auth/awsCognito.js';
 import { browserHistory } from 'react-router';
@@ -220,56 +219,75 @@ export function logOut(userObj) {
 
 
 export const CHECK_ADDRESS = 'CHECK_ADDRESS';
+export const ERROR = 'ERROR';
+export const NO_ADDRESS = 'NO_ADDRESS';
 
 export function checkAddress(event, username) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
   const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value},${event.country.value}`;
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
 
-  if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
-    return (dispatch) => {
-      return axios.post(requestUrl)
-      .then((results) => {
-        // if geoencode returns a valid address
-        if (results.data.results.length > 0) {
-          return function addEvent(event, username) {
-            const eventStartDateTime = new Date(event.eventStartDateAndTime.state.inputValue).toISOString();
-            const eventEndDateTime = new Date(event.eventEndDateAndTime.state.inputValue).toISOString();
-            const image = event.imageupload.value;
+  return (dispatch) => {
+    if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
+      return (dispatch) => {
+        return axios.post(requestUrl)
+        .then((results) => {
+          // if geoencode returns a valid address
+          if (results.data.results.length > 0) {
+            return function addEvent(event, username) {
+              const eventStartDateTime = new Date(event.eventStartDateAndTime.state.inputValue).toISOString();
+              const eventEndDateTime = new Date(event.eventEndDateAndTime.state.inputValue).toISOString();
+              const image = event.imageupload.value;
 
-            const obj = {
-              quota: event.quota.value,
-              price: web3.toWei(event.price.value, 'ether'),
-              eventName: event.eventName.value,
-              senderAddress: web3.eth.coinbase,
-              startDateTime: eventStartDateTime,
-              endDateTime: eventEndDateTime,
-              description: event.description.value,
-              addressLine1: event.addressLine1.value,
-              addressLine2: event.addressLine2.value,
-              city: event.city.value,
-              state: event.state.value,
-              zipPostalCode: event.zipPostalCode.value,
-              country: event.country.value,
-              image: event.imageupload.value,
-              latitude: results.data.results[0].geometry.location.lat,
-              longitude: results.data.results[0].geometry.location.lng,
-              username: username,
-            };
-            return axios.post('/api/events', obj)
-            .then(() => {
-              browserHistory.push('/hostevents');
-            }).catch((error) => {
+              const obj = {
+                quota: event.quota.value,
+                price: web3.toWei(event.price.value, 'ether'),
+                eventName: event.eventName.value,
+                senderAddress: web3.eth.coinbase,
+                startDateTime: eventStartDateTime,
+                endDateTime: eventEndDateTime,
+                description: event.description.value,
+                addressLine1: event.addressLine1.value,
+                addressLine2: event.addressLine2.value,
+                city: event.city.value,
+                state: event.state.value,
+                zipPostalCode: event.zipPostalCode.value,
+                country: event.country.value,
+                image: event.imageupload.value,
+                latitude: results.data.results[0].geometry.location.lat,
+                longitude: results.data.results[0].geometry.location.lng,
+                username: username,
+              };
+
+              return axios.post('/api/events', obj)
+              .then(() => {
+                browserHistory.push('/hostevents');
+              }).catch((error) => {
+                dispatch({
+                  type: ERROR,
+                  payload: 'There was an error with our server. Please try again later.',
+                });
+              });
+            }(event, username);
+          } else {
+            dispatch({
+              type: ERROR,
+              payload: 'The address you entered is invalid. Please enter a valid address',
             });
-          }(event, username);
-        } else {
-          alert('Please enter a valid address!');
-        }
-      }).catch((error) => {
-        alert('There was an error with your submission. Please try again later.');
+          }
+        }).catch((error) => {
+          // possible, but highly unlikely
+          dispatch({
+            type: ERROR,
+            payload: 'There was an error with our server. Please try again later.',
+          });
+        });
+      }
+    } else {
+      dispatch({
+        type: NO_ADDRESS,
+        payload: 'Please enter an address',
       });
     }
-  } else {
-    alert('Please enter an address!');
   }
 }
