@@ -174,7 +174,7 @@ export function registerUser(info) {
   return (dispatch) => {
     return axios.post('/registerUser', userObj)
     .then(({}) => {
-      browserHistory.push('/');
+      browserHistory.push('/login');
     });
   };
 }
@@ -225,7 +225,7 @@ export function checkAddress(event, username) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
   const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value},${event.country.value}`;
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
-  
+
   if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
     return (dispatch) => {
       return axios.post(requestUrl)
@@ -283,4 +283,16 @@ export function checkAddress(event, username) {
      });
     };
   }
+}
+
+export const UPDATE_NUM_ATTENDEES = 'UPDATE_NUM_ATTENDEES';
+
+export function updateNumAttendees(numAttendees) {
+  console.log('updateNumAttendees called', numAttendees)
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_NUM_ATTENDEES,
+      payload: numAttendees,
+    });
+  };
 }
