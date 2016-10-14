@@ -53,7 +53,7 @@ export default class HostTicketDetails extends Component {
       <div className="content__container">
         <div className="ticket__container">
           <div className="ticket__header">
-            <img className="ticket-header-left" height="50%" width="50%" src={image} />
+            <img className="ticket__header-left" height="50%" width="50%" src={image} />
             
           </div>
           <div className="ticket__info">
