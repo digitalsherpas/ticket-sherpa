@@ -82,7 +82,7 @@ export default class HostEvent extends Component {
     }
 
     return (
-      <div className="content__container">
+      <div className="createEvent__container">
         <Modal
           isOpen={metaMaskNotInstalled}
           onRequestClose={this.requestCloseFn.bind(this)}
@@ -91,12 +91,12 @@ export default class HostEvent extends Component {
           <h4>In order to purchase tickets or create events, you need to:</h4>
           <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
         </Modal>
-        <form ref="eventForm" onSubmit={this.handleSubmit}>
-          <div className="createEvent__container">
+        <form className="createEvent__form" ref="eventForm" onSubmit={this.handleSubmit}>
+          <div className="createEvent__container-div">
 
             <h1 className="createEvent__container-header">Create An Event</h1>
-            <h3 className="createEvent__container-subheader">Details</h3>
             <div className="createEvent__container-content">
+              <h2 className="createEvent__container-subheader">1) Details</h2>
               <div className="createEvent__container-section">
                 <h4 className="createEvent__container-field">Title</h4>
                 <input className="createEvent__container-input" type="text" ref="eventName" placeholder="Give your event a name" />
@@ -108,16 +108,16 @@ export default class HostEvent extends Component {
                 <input className="createEvent__container-input" type="text" ref="quota" placeholder="Quota" />
               </div>
 
+              <h2 className="createEvent__container-subheader">2) Date</h2>
               <div className="createEvent__container-section">
-                <h3 className="createEvent__container-subheader">Date</h3>
                 <h4 className="createEvent__container-field"><span>Starts</span></h4>
                 <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
                 <h4 className="createEvent__container-field"><span>Ends</span></h4>
                 <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
 
+              <h2 className="createEvent__container-subheader">3) Location</h2>
               <div className="createEvent__container-section">
-                <h3 className="createEvent__container-subheader">Location</h3>
                 <h4 className="createEvent__container-field">Street Address</h4>
                 <input type="text" className="createEvent__container-input" ref="addressLine1" placeholder="Street Address"/>
                 <h4 className="createEvent__container-field">Line 2</h4>
@@ -132,17 +132,13 @@ export default class HostEvent extends Component {
                 <input type="text" className="createEvent__container-input" ref="country" placeholder="Country"/>
               </div>
 
+              <h2 className="createEvent__container-subheader">4) Image</h2>
               <div className="createEvent__container-section">
-                <h3 className="createEvent__container-subheader">Image</h3>
-                <div className="createEvent__image-container-left">
-                  <a href='#'>
-                    <div className="createEvent__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
-                      <img className="createEvent__image-container-preview" src={imagePreviewUrl}/>
-                    </div>
-                  </a>
-                </div>
-                <div className="event-image-container-right">
-                </div>
+                <a href='#'>
+                  <div className="createEvent__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
+                    <img className="createEvent__image" src={imagePreviewUrl}/>
+                  </div>
+                </a>
               </div>
 
               <div>
