@@ -229,7 +229,6 @@ export function checkAddress(event, username) {
 
   return (dispatch) => {
     if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
-      console.log('it\'s type checking correctly');
       return (dispatch) => {
         return axios.post(requestUrl)
         .then((results) => {
