@@ -63,7 +63,7 @@ export default class HostEventDetails extends Component {
         <h2>{eventName}</h2>
         <h4>Description: {description}</h4>
         <h4>Image:</h4>
-          <img className="content__event-image" src={image}/>
+          <img width="40%" height="40%" src={image}/>
         <h4>Price: {price} ETH</h4>
         <p>Start Date: {Moment(isNaN(Number(eventStartDateTime)) ? eventStartDateTime : Number(eventStartDateTime)).format('MMM Do YYYY, h:mm A')}</p>
         <p>End Date: {Moment(isNaN(Number(eventEndDateTime)) ? eventEndDateTime : Number(eventEndDateTime)).format('MMM Do YYYY, h:mm A')}</p>
