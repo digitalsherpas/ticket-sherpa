@@ -51,7 +51,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // serves favicon
-app.use(favicon(__dirname + '/../dist/favicon.ico'));
+app.use(favicon(path.join(__dirname, '/../client/styles/images/favicon.ico')));
 
 // main server
 app.use(express.static(path.join(__dirname, '/../dist')));
