@@ -12,7 +12,6 @@ export default class HostEvent extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.uploadImage = this.uploadImage.bind(this);
     this.checkAddressEntered = this.checkAddressEntered.bind(this);
   }
 
@@ -24,7 +23,7 @@ export default class HostEvent extends Component {
   }
 
   checkAddressEntered() {
-    if (this.refs.addressLine1.value.length === 0 && this.refs.city.value.length === 0 && this.refs.state.value.length === 0 && this.refs.zipPostalCode.value.length === 0) {
+    if (this.refs.addressLine1.value.length === 0 || this.refs.city.value.length === 0 || this.refs.state.value.length === 0 || this.refs.zipPostalCode.value.length === 0) {
       this.setState({
         noAddress: this.props.addressEntered,
       });
