@@ -84,6 +84,25 @@ app.get('/api/events', (req, res) => {
   });
 });
 
+app.get('/api/dbEvents', (req, res) => {
+  if (!req.query.eventName) {
+    res.status(500).send('Please specify an event name');
+  } else {
+    const reqObj = {
+      url: `${config.DB_SERVER_URL}:${config.DB_SERVER_PORT}/db/findEvent`,
+      qs: {
+        eventName: req.query.eventName,
+      },
+      json: true,
+    };
+    rp(reqObj).then((obj) => {
+      res.status(200).send(obj);
+    }).catch((err) => {
+      res.status(500).send('Error occured when fetching information from the database:', err);
+    });
+  }
+});
+
 app.get('/api/eventsList', (req, res) => {
   const reqObj = {
     url: `${config.ETH_SERVER_URL}:${config.ETH_SERVER_PORT}/api/eventsList`,
