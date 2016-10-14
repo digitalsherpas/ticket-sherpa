@@ -30,7 +30,7 @@ export default class Events extends Component {
     (
       <div className="event__container-map-list">
       <div>
-        <h2 className="map__events-header">Events</h2>
+        <h1 className="map__events-header">Events</h1>
       </div>
       <div className="events__content">
 
@@ -53,7 +53,7 @@ export default class Events extends Component {
     ) :
     (
       <div className="events">
-        <h2>Events</h2>
+        <h1>Events</h1>
         <MDSpinner singleColor="#03a9f4" />
       </div>
     );

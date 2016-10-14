@@ -12,21 +12,19 @@ export default class HostEvent extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.uploadImage = this.uploadImage.bind(this);
     this.checkAddressEntered = this.checkAddressEntered.bind(this);
   }
 
   handleSubmit(e) {
-    console.log('in submit')
     e.preventDefault();
-    // this.checkAddressEntered();
+    this.checkAddressEntered();
     this.props.checkAddress(this.refs, this.props.username);
   }
 
   checkAddressEntered() {
-    if (this.refs.addressLine1.value.length === 0 && this.refs.city.value.length === 0 && this.refs.state.value.length === 0 && this.refs.zipPostalCode.value.length === 0) {
+    if (this.refs.addressLine1.value.length === 0 || this.refs.city.value.length === 0 || this.refs.state.value.length === 0 || this.refs.zipPostalCode.value.length === 0) {
       this.setState({
-        noAddress: this.props.addressEntered,
+        noAddress: this.props.error,
       });
     }
   }
@@ -37,11 +35,6 @@ export default class HostEvent extends Component {
     cloudinary.async = true;
 
     document.body.appendChild(cloudinary);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.checkAddress(this.refs, this.props.username);
   }
 
   uploadImage() {
@@ -89,7 +82,7 @@ export default class HostEvent extends Component {
     }
 
     return (
-      <div className="content__container">
+      <div className="createEvent__container">
         <Modal
           isOpen={metaMaskNotInstalled}
           onRequestClose={this.requestCloseFn.bind(this)}
@@ -98,66 +91,60 @@ export default class HostEvent extends Component {
           <h4>In order to purchase tickets or create events, you need to:</h4>
           <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
         </Modal>
-        <form ref="eventForm" onSubmit={this.handleSubmit.bind(this)}>
-          <div className="event__container">
+        <form className="createEvent__form" ref="eventForm" onSubmit={this.handleSubmit}>
+          <div className="createEvent__container-div">
 
-            <div className="event__create-header">Create An Event</div>
-            <div className="event__details-wrapper">Event Details</div>
-            <div className="event__details-container">
-              <div className="event__details-container-left">
-                <div>Event Title</div>
-                <div><input className="event__input-fields" type="text" ref="eventName" placeholder="Give your event a name" /></div>
-                <div>Description</div>
-                <div><input className="event__input-fields" type="text" ref="description" placeholder="Description" /></div>
+            <h1 className="createEvent__container-header">Create An Event</h1>
+            <div className="createEvent__container-content">
+              <h2 className="createEvent__container-subheader">1) Details</h2>
+              <div className="createEvent__container-section">
+                <h4 className="createEvent__container-field">Title</h4>
+                <input className="createEvent__container-input" type="text" ref="eventName" placeholder="Give your event a name" />
+                <h4 className="createEvent__container-field">Description</h4>
+                <input className="createEvent__container-input" type="text" ref="description" placeholder="Description" />
+                <h4 className="createEvent__container-field">Price (ETH)</h4>
+                <input className="createEvent__container-input" type="text" ref="price" placeholder="Price" />
+                <h4 className="createEvent__container-field">Quota</h4>
+                <input className="createEvent__container-input" type="text" ref="quota" placeholder="Quota" />
               </div>
-              <div className="event__details-container-right">
-                <div>Event Price (ETH)</div>
-                <div><input  type="text" ref="price" placeholder="Price" /></div>
-                <div>Quota</div>
-                <div><input type="text" ref="quota" placeholder="Quota" /></div>
-              </div>
-            </div>
 
-            <div className="event__start-end-container">
-              <div className="event__start-date-picker">
-                <div><span>Starts</span></div>
+              <h2 className="createEvent__container-subheader">2) Date</h2>
+              <div className="createEvent__container-section">
+                <h4 className="createEvent__container-field"><span>Starts</span></h4>
                 <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
-              </div>
-              <div className="event__end-date-picker">
-                <div><span>Ends</span></div>
+                <h4 className="createEvent__container-field"><span>Ends</span></h4>
                 <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
-            </div>
 
-            <div className="event__location-container">
-              <div className="event__location-left">
-                <div>Event Location</div>
-                <input type="text" className="event__location-input" ref="addressLine1" placeholder="Street Address"/>
-                <input type="text" className="event__location-input" ref="addressLine2" placeholder="Address Line 2"/>
-                <input type="text" className="event__location-input" ref="city" placeholder="City"/>
-                <input type="text" className="event__location-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
-                <input type="text" className="event__location-input" ref="state" placeholder="State"/>
-                <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
+              <h2 className="createEvent__container-subheader">3) Location</h2>
+              <div className="createEvent__container-section">
+                <h4 className="createEvent__container-field">Street Address</h4>
+                <input type="text" className="createEvent__container-input" ref="addressLine1" placeholder="Street Address"/>
+                <h4 className="createEvent__container-field">Line 2</h4>
+                <input type="text" className="createEvent__container-input" ref="addressLine2" placeholder="Address Line 2"/>
+                <h4 className="createEvent__container-field">City</h4>
+                <input type="text" className="createEvent__container-input" ref="city" placeholder="City"/>
+                <h4 className="createEvent__container-field">State</h4>
+                <input type="text" className="createEvent__container-input" ref="state" placeholder="State"/>
+                <h4 className="createEvent__container-field">Zip/Postal Code</h4>
+                <input type="text" className="createEvent__container-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
+                <h4 className="createEvent__container-field">Country</h4>
+                <input type="text" className="createEvent__container-input" ref="country" placeholder="Country"/>
               </div>
-              <div className="event__location-right">
 
-              </div>
-            </div>
-
-            <div className="event__image-container">
-              <div className="event__image-container-left">
+              <h2 className="createEvent__container-subheader">4) Image</h2>
+              <div className="createEvent__container-section-image">
                 <a href='#'>
-                  <div className="event__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
-                    <img className="event__image-container-preview" src={imagePreviewUrl}/>
+                  <div className="createEvent__image-container" ref="imageupload" onClick={this.uploadImage.bind(this)}>
+                    <img className="createEvent__image" src={imagePreviewUrl}/>
                   </div>
                 </a>
               </div>
-              <div className="event-image-container-right">
-              </div>
-            </div>
 
-            <div>
-            <input type="submit" value="Create Event" onClick={this.handleSubmit.bind(this)}/>
+              <div>
+                <h4 className="createEvent__container-field">{this.state.noAddress}</h4>
+                <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
+              </div>
             </div>
           </div>
         </form>
