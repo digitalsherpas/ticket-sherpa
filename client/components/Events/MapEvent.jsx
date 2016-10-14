@@ -17,30 +17,32 @@ const buildUrl = (url, parameters) => {
 
 const MapEvent = ({ eventName, description, eventStartDateTime, eventEndDateTime, eventContractAddress, price, addressLine1, addressLine2, city, state, zipPostalCode, country, id, image }) => (
   <div className="map__events-container">
-    <div className="map__events-image-container">
-      {/* <Link
-        to={{ pathname:
-        '/events/' + eventName,
-        query: {
-          eventName,
-          description,
-          eventStartDateTime,
-          eventEndDateTime,
-          eventContractAddress,
-          price,
-          addressLine1,
-          addressLine2,
-          city,
-          state,
-          zipPostalCode,
-          country,
-          id,
-          image
-        },
-      }}
-      ><img className="map__events-image" src={image} /></Link> */}
-      <a href={'javascript:getEventDetailsFromDB("' + eventName + '")'}><img className="map__events-image" src={image} /></a>
-    </div>
+    <a href={'javascript:getEventDetailsFromDB("' + eventName + '")'}>
+      <div className="map__events-image-container">
+        {/* <Link
+          to={{ pathname:
+          '/events/' + eventName,
+          query: {
+            eventName,
+            description,
+            eventStartDateTime,
+            eventEndDateTime,
+            eventContractAddress,
+            price,
+            addressLine1,
+            addressLine2,
+            city,
+            state,
+            zipPostalCode,
+            country,
+            id,
+            image
+          },
+        }}
+        ><img className="map__events-image" src={image} /></Link> */}
+        <img className="map__events-image" src={image} />
+      </div>
+    </a>
     <div className="map__events-text">
       {/* <h2><Link
         to={{ pathname:
