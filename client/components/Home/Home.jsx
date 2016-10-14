@@ -15,11 +15,10 @@ export default class Home extends Component {
               Sell Tickets
             </h1>
             <p>
-              Manage your events through code. No middleman fees.
-            </p>
-            <br/>
-            <p>
               A decentralized event ticketing platform built on Ethereum.
+            </p>
+            <p>
+              Manage your events through code. No middleman fees.
             </p>
           </div>
           <img className="home__big-image" src={require('../../styles/images/eventbrite_homepage_image.jpg')} />

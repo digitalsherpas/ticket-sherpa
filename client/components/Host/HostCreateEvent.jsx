@@ -9,6 +9,7 @@ export default class HostEvent extends Component {
     this.state = {
       imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png',
       noAddress: '',
+      requiredFields: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +26,7 @@ export default class HostEvent extends Component {
     if (this.refs.addressLine1.value.length === 0 || this.refs.city.value.length === 0 || this.refs.state.value.length === 0 || this.refs.zipPostalCode.value.length === 0) {
       this.setState({
         noAddress: this.props.error,
+        requiredFields: '  -  This is a required field',
       });
     }
   }
@@ -98,35 +100,35 @@ export default class HostEvent extends Component {
             <div className="createEvent__container-content">
               <h2 className="createEvent__container-subheader">1) Details</h2>
               <div className="createEvent__container-section">
-                <h4 className="createEvent__container-field">Title</h4>
+                <h4 className="createEvent__container-field">Title {this.state.requiredFields}</h4>
                 <input className="createEvent__container-input" type="text" ref="eventName" placeholder="Give your event a name" />
-                <h4 className="createEvent__container-field">Description</h4>
+                <h4 className="createEvent__container-field">Description {this.state.requiredFields}</h4>
                 <input className="createEvent__container-input" type="text" ref="description" placeholder="Description" />
-                <h4 className="createEvent__container-field">Price (ETH)</h4>
+                <h4 className="createEvent__container-field">Price (ETH) {this.state.requiredFields}</h4>
                 <input className="createEvent__container-input" type="text" ref="price" placeholder="Price" />
-                <h4 className="createEvent__container-field">Quota</h4>
+                <h4 className="createEvent__container-field">Quota {this.state.requiredFields}</h4>
                 <input className="createEvent__container-input" type="text" ref="quota" placeholder="Quota" />
               </div>
 
               <h2 className="createEvent__container-subheader">2) Date</h2>
               <div className="createEvent__container-section">
-                <h4 className="createEvent__container-field"><span>Starts</span></h4>
+                <h4 className="createEvent__container-field"><span>Starts {this.state.requiredFields}</span></h4>
                 <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
-                <h4 className="createEvent__container-field"><span>Ends</span></h4>
+                <h4 className="createEvent__container-field"><span>Ends {this.state.requiredFields}</span></h4>
                 <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
 
               <h2 className="createEvent__container-subheader">3) Location</h2>
               <div className="createEvent__container-section">
-                <h4 className="createEvent__container-field">Street Address</h4>
+                <h4 className="createEvent__container-field">Street Address {this.state.requiredFields}</h4>
                 <input type="text" className="createEvent__container-input" ref="addressLine1" placeholder="Street Address"/>
                 <h4 className="createEvent__container-field">Line 2</h4>
                 <input type="text" className="createEvent__container-input" ref="addressLine2" placeholder="Address Line 2"/>
-                <h4 className="createEvent__container-field">City</h4>
+                <h4 className="createEvent__container-field">City {this.state.requiredFields}</h4>
                 <input type="text" className="createEvent__container-input" ref="city" placeholder="City"/>
-                <h4 className="createEvent__container-field">State</h4>
+                <h4 className="createEvent__container-field">State {this.state.requiredFields}</h4>
                 <input type="text" className="createEvent__container-input" ref="state" placeholder="State"/>
-                <h4 className="createEvent__container-field">Zip/Postal Code</h4>
+                <h4 className="createEvent__container-field">Zip/Postal Code {this.state.requiredFields}</h4>
                 <input type="text" className="createEvent__container-input" ref="zipPostalCode" placeholder="Zip/Postal Code"/>
                 <h4 className="createEvent__container-field">Country</h4>
                 <input type="text" className="createEvent__container-input" ref="country" placeholder="Country"/>
@@ -142,8 +144,8 @@ export default class HostEvent extends Component {
               </div>
 
               <div>
-                <h4 className="createEvent__container-field">{this.state.noAddress}</h4>
-                <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
+                <h4 className="createEvent__container-field-error">{this.state.noAddress}</h4>
+                <input className="nav__home-search-submit-btn" type="submit" value="Create Event" onClick={this.handleSubmit}/>
               </div>
             </div>
           </div>
