@@ -6,7 +6,33 @@ import { browserHistory } from 'react-router';
 export default class HostEvent extends Component {
   constructor(props) {
     super(props);
+<<<<<<< c9cb24a35f8d31cfbdb039cfd60b8a1f7dcc4517
     this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
+=======
+    this.state = {
+      imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png',
+      noAddress: '',
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
+    this.checkAddressEntered = this.checkAddressEntered.bind(this);
+  }
+
+  handleSubmit(e) {
+    console.log('in submit')
+    e.preventDefault();
+    // this.checkAddressEntered();
+    this.props.checkAddress(this.refs, this.props.username);
+  }
+
+  checkAddressEntered() {
+    if (this.refs.addressLine1.value.length === 0 && this.refs.city.value.length === 0 && this.refs.state.value.length === 0 && this.refs.zipPostalCode.value.length === 0) {
+      this.setState({
+        noAddress: this.props.addressEntered,
+      });
+    }
+>>>>>>> Fix dispatcher in index
   }
 
   componentDidMount() {
