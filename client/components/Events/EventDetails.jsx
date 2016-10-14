@@ -77,7 +77,7 @@ export default class EventDetails extends Component {
             <div className="ticket__header-right">
               <div className="ticket__header-name">{query.eventName}</div>
               <div className="ticket__date-time">
-                <div className="ticket__header-title">Location</div>
+                <div className="ticket__header-title">Time</div>
                 <div className="ticket__header-start">
                   Start: {Moment(isNaN(Number(query.eventStartDateTime)) ? query.eventStartDateTime : Number(query.eventStartDateTime)).format('MMM Do YYYY, h:mm A')}
                 </div>
@@ -102,7 +102,7 @@ export default class EventDetails extends Component {
                 <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
                   <div className="ticket__header-title">Price</div>
                   <div>{query.price / 1000000000000000000} ETH</div>
-                  <input className="ticket__button" type="submit" value="Buy Ticket"/>
+                  <button className="nav__home-search-submit-btn">Buy Ticket</button>
                 </form>
               </div>
           </div>
