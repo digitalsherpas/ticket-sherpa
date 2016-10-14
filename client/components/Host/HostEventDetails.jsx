@@ -60,7 +60,7 @@ export default class HostEventDetails extends Component {
 
     return (
       <div className="content__container">
-        <h2>Event Info</h2>
+        <h2>{eventName}</h2>
         <h4>Description: {description}</h4>
         <h4>Image:</h4>
           <img className="content__event-image" src={image}/>
