@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Link } from 'react-router';
+import { Router, Link, browserHistory } from 'react-router';
+import axios from 'axios';
 import Map, {GoogleApiWrapper} from 'google-maps-react';
 import keys from '../../../keys.js';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
-
-window.lala = function() {
-  alert('he');
-}
 
 const buildUrl = (url, parameters) => {
   var qs = "";
@@ -22,6 +19,14 @@ const buildUrl = (url, parameters) => {
   }
   return url;
 }
+
+window.getEventDetailsFromDB = (eventName) => {
+  axios.get('http://localhost:3000/api/events?eventName=' + eventName).then(({ data }) => {
+    console.log(data);
+    browserHistory.push(buildUrl('/events/' + eventName, data));
+  })
+}
+
 
 export class Container extends React.Component {
   constructor(props) {
@@ -92,7 +97,7 @@ export class Container extends React.Component {
           >
           <div>
             <h2>{this.state.selectedPlace.name}</h2>
-            <a href='javascript:lala()'>
+            <a href={'javascript:getEventDetailsFromDB("' + this.state.selectedPlace.name + '")'}>
             {this.state.selectedPlace.name}</a>
           </div>
         </InfoWindow>
