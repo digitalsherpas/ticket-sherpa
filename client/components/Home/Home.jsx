@@ -15,7 +15,7 @@ export default class Home extends Component {
               Sell Tickets
             </h1>
             <p>
-              A decentralized platform built on Ethereum.
+              A decentralized event ticketing platform built on Ethereum.
             </p>
             <p>
               Manage your events through code. No middleman fees.
