@@ -225,7 +225,7 @@ export function checkAddress(event, username) {
   const googleApi = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
   const eventAddress = `${event.addressLine1.value},${event.addressLine2.value},${event.city.value},${event.state.value},${event.zipPostalCode.value},${event.country.value}`;
   const requestUrl = `${googleApi}${eventAddress}&key=${keys.GOOGLE_MAPS_API_KEY}`;
-
+  
   if (event.addressLine1.value.length > 0 && event.city.value.length > 0 && event.state.value.length > 0 && event.zipPostalCode.value.length > 0) {
     return (dispatch) => {
       return axios.post(requestUrl)
@@ -259,19 +259,28 @@ export function checkAddress(event, username) {
             browserHistory.push('/hostcreateconfirmation');
 
             return axios.post('/api/events', obj)
-            .then(() => {
-              browserHistory.push('/hostevents');
-            }).catch((error) => {
-            });
-          }(event, username);
-        } else {
-          alert('Please enter a valid address!');
-        }
-      }).catch((error) => {
-        alert('There was an error with your submission. Please try again later.');
-      });
-    }
-  } else {
-    alert('Please enter an address!');
+           .then(() => {
+             browserHistory.push('/hostevents');
+           }).catch((error) => {
+             dispatch({
+               type: ERROR,
+               payload: 'There was an error with our server. Please try again later.',
+             });
+           });
+         }(event, username);
+       } else {
+         dispatch({
+           type: ERROR,
+           payload: 'The address you entered is invalid. Please enter a valid address',
+         });
+       }
+     }).catch((error) => {
+       // possible, but highly unlikely
+       dispatch({
+         type: ERROR,
+         payload: 'There was an error with our server. Please try again later.',
+       });
+     });
+    };
   }
 }
