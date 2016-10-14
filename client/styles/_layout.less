@@ -1,4 +1,5 @@
 @content-margin: 5%;
+@border-color: #d2d8de;
 
 .app {
   width: 100%;
@@ -58,11 +59,12 @@ h2 {
 .home__image-container {
   flex: 2;
   position: relative;
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
+}
+
+.home__big-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .home__events-container {
@@ -80,9 +82,10 @@ h2 {
   width: 25%;
   min-width: 200px;
   background-color: #fff;
-  border: 1px solid #EFF2F5;
+  border: 1px solid @border-color;
   margin: 0 0 20px 0;
   padding: 20px;
+  border-radius: 4px;
 }
 
 .home__events-title {
@@ -106,7 +109,7 @@ h2 {
   align-items: center;
   margin: 0 35%;
   background-color: #fff;
-  border: 1px solid #EFF2F5;
+  border: 1px solid @border-color;
   padding: 20px;
 }
 
@@ -137,7 +140,7 @@ h2 {
 .map__events-container {
   min-width: 200px;
   background-color: #fff;
-  border: 1px solid #EFF2F5;
+  border: 1px solid @border-color;
   margin: 0 0 8px 0;
 }
 
@@ -150,7 +153,7 @@ h2 {
 .map__events-image-container {
   text-align: center;
   padding: 0px;
-  border-bottom: 1px solid #EFF2F5;
+  border-bottom: 1px solid @border-color;
 }
 
 .map__events-image {
