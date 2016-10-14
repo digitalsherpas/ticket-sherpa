@@ -6,9 +6,6 @@ import { browserHistory } from 'react-router';
 export default class HostEvent extends Component {
   constructor(props) {
     super(props);
-<<<<<<< c9cb24a35f8d31cfbdb039cfd60b8a1f7dcc4517
-    this.state = {imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png'};
-=======
     this.state = {
       imagePreviewUrl: 'http://i.imgur.com/CwfPFDI.png',
       noAddress: '',
@@ -32,7 +29,6 @@ export default class HostEvent extends Component {
         noAddress: this.props.addressEntered,
       });
     }
->>>>>>> Fix dispatcher in index
   }
 
   componentDidMount() {
