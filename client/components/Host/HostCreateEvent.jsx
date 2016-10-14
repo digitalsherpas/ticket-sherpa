@@ -94,37 +94,37 @@ export default class HostEvent extends Component {
         <form ref="eventForm" onSubmit={this.handleSubmit}>
           <div className="event__container">
 
-            <div className="event__create-header">Create An Event</div>
-            <div className="event__details-wrapper">Event Details</div>
-            <div className="event__details-container">
-              <div className="event__details-container-left">
-                <div>Event Title</div>
-                <div><input className="event__input-fields" type="text" ref="eventName" placeholder="Give your event a name" /></div>
-                <div>Description</div>
-                <div><input className="event__input-fields" type="text" ref="description" placeholder="Description" /></div>
+            <h2 className="event__container-header">Create An Event</h2>
+            <h3 className="event__container-subheader">Details</h3>
+            <div className="event__container-content">
+              <div className="event__container-field">
+                <h4>Title</h4>
+                <input className="event__container-input" type="text" ref="eventName" placeholder="Give your event a name" />
+                <h4>Description</h4>
+                <input className="event__container-input" type="text" ref="description" placeholder="Description" />
               </div>
-              <div className="event__details-container-right">
-                <div>Event Price (ETH)</div>
+              <div className="event__container-content">
+                <h4>Price (ETH)</h4>
                 <div><input  type="text" ref="price" placeholder="Price" /></div>
-                <div>Quota</div>
+                <h4>Quota</h4>
                 <div><input type="text" ref="quota" placeholder="Quota" /></div>
               </div>
             </div>
 
             <div className="event__start-end-container">
               <div className="event__start-date-picker">
-                <div><span>Starts</span></div>
+                <h4><span>Starts</span></h4>
                 <div><Datetime ref='eventStartDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
               <div className="event__end-date-picker">
-                <div><span>Ends</span></div>
+                <h4><span>Ends</span></h4>
                 <div><Datetime ref='eventEndDateAndTime' isValidDate={ startDateValid } closeOnSelect={true}/></div>
               </div>
             </div>
 
             <div className="event__location-container">
               <div className="event__location-left">
-                <div>Event Location</div>
+                <h4>Location</h4>
                 <input type="text" className="event__location-input" ref="addressLine1" placeholder="Street Address"/>
                 <input type="text" className="event__location-input" ref="addressLine2" placeholder="Address Line 2"/>
                 <input type="text" className="event__location-input" ref="city" placeholder="City"/>
