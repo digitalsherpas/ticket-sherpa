@@ -15,7 +15,7 @@ export default class Events extends Component {
     if (this.props.searchEventsList.length === 0) {
       return (
         <div>
-          <h2>No events were found</h2>
+          <h4>No events were found</h4>
         </div>
       )
     } else {
