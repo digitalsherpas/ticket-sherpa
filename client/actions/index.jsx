@@ -261,7 +261,6 @@ export function checkAddress(event, username) {
 
             return axios.post('/api/events', obj)
            .then(() => {
-             browserHistory.push('/hostevents');
            }).catch((error) => {
              dispatch({
                type: ERROR_ADDRESS,
