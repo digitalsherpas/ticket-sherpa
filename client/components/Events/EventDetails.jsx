@@ -73,7 +73,7 @@ export default class EventDetails extends Component {
         </Modal>
         <div className="ticket__container">
           <div className="ticket__header">
-            <img className="ticket-header-left" height="50%" width="50%" src={query.image} />
+            <img className="ticket__header-left" height="50%" width="50%" src={query.image} />
             <div className="ticket__header-right">
               <div className="ticket__header-name">{query.eventName}</div>
               <div className="ticket__date-time">
