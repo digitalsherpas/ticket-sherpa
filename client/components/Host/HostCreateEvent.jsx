@@ -150,7 +150,7 @@ export default class HostEvent extends Component {
               <div className="event-image-container-right">
               </div>
             </div>
-            <h1>{this.state.noAddress}</h1>
+            <h4>{this.state.noAddress}</h4>
             <div>
             <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
             </div>
