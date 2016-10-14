@@ -22,12 +22,18 @@ export default class HostVerify extends Component {
   render() {
     const query = this.props.location.query;
     return (
-      <div>
-        <h3>Host Verify</h3>
-        <p>Name: {query.name}</p>
-        <p>User Wallet Address: {query.userWalletAddress}</p>
-        <p>Event Contract Address: {query.eventContractAddress}</p>
-        <input type="submit" value="Host Verify Ticket" onClick={this.hostVerifyTicket.bind(this, query.eventContractAddress, query.userWalletAddress)}></input>
+      <div className="content__container">
+        <div className="content__verify-container">
+          <div className="content__verify-text">
+            <h3>Host Verify</h3>
+            <p>Name: {query.name}</p>
+            <p>User Wallet Address: {query.userWalletAddress}</p>
+            <p>Event Contract Address: {query.eventContractAddress}</p>
+          </div>
+          <div className="content__verify-checkmark-container">
+            <img className="content__verify-checkmark"src={require('../../../client/styles/images/checkmark.png')}/>
+          </div>
+        </div>
       </div>
     );
   }
