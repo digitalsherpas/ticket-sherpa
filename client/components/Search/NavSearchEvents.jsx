@@ -16,6 +16,7 @@ export default class NavSearchEvents extends Component {
   render() {
     return (
       <form className="nav__search-bar-form" onSubmit={this.handleSubmit}>
+      <img className="nav__magnifying-glass-img" src={require('../../styles/images/magnifying-glass.png')}/>
         <input className="nav__search-input" ref="search" type="text" placeholder="Search for events"/>
         {/* <button className="nav__search-submit-btn">Search</button> */}
       </form>
