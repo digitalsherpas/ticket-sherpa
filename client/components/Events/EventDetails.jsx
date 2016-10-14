@@ -93,12 +93,10 @@ export default class EventDetails extends Component {
 
               <div className="ticket__header-location">
                 <div className="ticket__header-title">Location</div>
-                <div>Street Address: {query.addressLine1}</div>
-                <div>Address Line 2: {query.addressLine2}</div>
-                <div>City: {query.city}</div>
-                <div>State: {query.state}</div>
-                <div>Zip/Postal Code: {query.zipPostalCode}</div>
-                <div>Country: {query.country}</div>
+                <div>{query.addressLine1}</div>
+                <div>{query.addressLine2}</div>
+                <div>{query.city}, {query.state}, {query.zipPostalCode}</div>
+                <div> {query.country}</div>
               </div>
               <div className="ticket__buy-ticket  ">
                 <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>

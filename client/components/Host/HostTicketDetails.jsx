@@ -73,8 +73,7 @@ export default class HostTicketDetails extends Component {
                 <div className="ticket__info-address-header-bought">Event Location</div>
                 <div className="ticket__info-address-1">{addressLine1}</div>
                 <div className="ticket__info-address-2">{addressLine2}</div>
-                <div className="ticket__info-address-city">{city}, {zipPostalCode}</div>
-                <div className="ticket__info-address-state">{state}, {country}</div>
+                <div className="ticket__info-address-city">{city}, {state}, {zipPostalCode}</div>
             </div>
 
           </div>
