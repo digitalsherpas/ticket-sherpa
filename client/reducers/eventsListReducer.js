@@ -1,16 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
-  SELECT_EVENT,
-  INVALIDATE_EVENT,
-  REQUEST_EVENTS,
-  RECEIVE_EVENTS,
-  SEARCH_EVENTS,
-  RECEIVE_SEARCH_EVENTS,
-  SEARCH_EVENTS_RESULTS,
-  CHECK_ADDRESS,
-  ERROR,
-  NO_ADDRESS,
+  SELECT_EVENT, INVALIDATE_EVENT, REQUEST_EVENTS, RECEIVE_EVENTS, SEARCH_EVENTS, RECEIVE_SEARCH_EVENTS, SEARCH_EVENTS_RESULTS, CHECK_ADDRESS,
 } from '../actions/index.jsx';
 
 const selectEvent = (state = [], action) => {
@@ -73,28 +64,9 @@ const searchEventsList = (state = [], action) => {
   }
 };
 
-const checkAddress = (state = {}, action) => {
+const checkAddress = (state = [], action) => {
   switch (action.type) {
     case CHECK_ADDRESS:
-      return state;
-    default:
-      return state;
-  }
-};
-
-const checkAddressEntered = (state = true, action) => {
-  switch (action.type) {
-    case NO_ADDRESS:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const checkError = (state = true, action) => {
-  switch (action.type) {
-    case ERROR:
-      return action.payload;
     default:
       return state;
   }
@@ -107,8 +79,6 @@ const eventsListReducer = combineReducers({
   searchEvents,
   searchEventsList,
   checkAddress,
-  checkAddressEntered,
-  checkError,
 });
 
 export default eventsListReducer;
