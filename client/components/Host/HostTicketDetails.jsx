@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import QRCodeLib from 'qrcode';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class HostTicketDetails extends Component {
 
@@ -50,26 +51,39 @@ export default class HostTicketDetails extends Component {
 
     return (
       <div className="content__container">
-        <h2>Event Info</h2>
-        <h4>Event Name: {eventName}</h4>
-        <h4>Description: {description}</h4>
-        <h4>Image: {image}</h4>
-        <h4>Price: {price} ETH</h4>
-        <h4>Event Start Date & Time: {eventStartDateTime}</h4>
-        <h4>Event End Date & Time: {eventEndDateTime}</h4>
-        <hr></hr>
+        <div className="ticket__container">
+          <div className="ticket__header">
+            <img className="ticket__header-left" height="50%" width="50%" src={image} />
+            
+          </div>
+          <div className="ticket__info">
+            <div className="ticket__info-left">
+              
+              <div>
+                <div className="ticket__header-name">{eventName}</div>
+                <div className="ticket__bought-time">Time</div>
+                <div className="ticket__header-start">{moment.utc(eventStartDateTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
+                <div className="ticket__header-end">{moment.utc(eventEndDateTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}</div>
+                <div className="ticket__header-bought-description">Description</div>
+                <div>{description}</div>
+                
+              </div>
+            </div>
+              <div className="ticket__info-right">
+                <div className="ticket__info-address-header-bought">Event Location</div>
+                <div className="ticket__info-address-1">{addressLine1}</div>
+                <div className="ticket__info-address-2">{addressLine2}</div>
+                <div className="ticket__info-address-city">{city}, {state}, {zipPostalCode}</div>
+            </div>
 
-        <h2>Event Address</h2>
-        <h4>Address Line 1: {addressLine1}</h4>
-        <h4>Address Line 2: {addressLine2}</h4>
-        <h4>City: {city}</h4>
-        <h4>Zip Code: {zipPostalCode}</h4>
-        <h4>State: {state}</h4>
-        <h4>Country: {country}</h4>
-        <hr></hr>
-        <h2>Ticket QR Code</h2>
-        <canvas ref="userVerifyQR"></canvas>
+          </div>
+          <div>
+            <div className="ticket__info-qr">
+              <canvas ref="userVerifyQR"></canvas>
+            </div>
+          </div>
         </div>
+    </div>
     );
   }
 }

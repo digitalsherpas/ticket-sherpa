@@ -25,8 +25,8 @@ export default class Nav extends Component {
                   </Link>
                   <div className="dropdown-content">
                     <Link to="/tickets">My Tickets</Link>
-                    <Link to="/hostcreateevent">My Events</Link>
-                    <Link to="/hostevents">Create New Event</Link>
+                    <Link to="/hostevents">My Events</Link>
+                    <Link to="/hostcreateevent">Create New Event</Link>
                   </div>
                 </div>
               </li>

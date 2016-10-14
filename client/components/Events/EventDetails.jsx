@@ -71,27 +71,46 @@ export default class EventDetails extends Component {
           <h4>In order to purchase tickets or create events, you need to:</h4>
           <a href="https://metamask.io"><img width="200px" src='http://i.imgur.com/t8is7Ud.png' /></a>
         </Modal>
-        <h4>Event Name: {query.eventName}</h4>
-        <img length="200px" width="200px" src={query.image}/>
-        <p>Description: {query.description}</p>
-        <p>Price: {query.price / 1000000000000000000} ETH</p>
-        <p>Start Date: {Moment(isNaN(Number(query.eventStartDateTime)) ? query.eventStartDateTime : Number(query.eventStartDateTime)).format('MMM Do YYYY, h:mm A')}</p>
-        <p>End Date: {Moment(isNaN(Number(query.eventEndDateTime)) ? query.eventEndDateTime : Number(query.eventEndDateTime)).format('MMM Do YYYY, h:mm A')}</p>
-        <hr/>
-        <p>Street Address: {query.addressLine1}</p>
-        <p>Address Line 2: {query.addressLine2}</p>
-        <p>City: {query.city}</p>
-        <p>State: {query.state}</p>
-        <p>Zip/Postal Code: {query.zipPostalCode}</p>
-        <p>Country: {query.country}</p>
-        <hr/>
-        <p>Contract Address: {query.eventContractAddress}</p>
-        <p>ID: {query.id}</p>
+        <div className="ticket__container">
+          <div className="ticket__header">
+            <img className="ticket__header-left" height="50%" width="50%" src={query.image} />
+            <div className="ticket__header-right">
+              <div className="ticket__header-name">{query.eventName}</div>
+              <div className="ticket__date-time">
+                <div className="ticket__header-title">Location</div>
+                <div className="ticket__header-start">
+                  Start: {Moment(isNaN(Number(query.eventStartDateTime)) ? query.eventStartDateTime : Number(query.eventStartDateTime)).format('MMM Do YYYY, h:mm A')}
+                </div>
+                <div className="ticket__header-end">
+                  End: {Moment(isNaN(Number(query.eventEndDateTime)) ? query.eventEndDateTime : Number(query.eventEndDateTime)).format('MMM Do YYYY, h:mm A')}
+                </div>
+              </div>
+              
+              <div className="ticket__description">
+                <div className="ticket__header-title">Description</div>
+                <div>{query.description}</div>
+              </div>
 
-        <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
-          <h4>Buy Ticket</h4>
-          <input type="submit" value="Buy with Meta Mask"/>
-        </form>
+              <div className="ticket__header-location">
+                <div className="ticket__header-title">Location</div>
+                <div>{query.addressLine1}</div>
+                <div>{query.addressLine2}</div>
+                <div>{query.city}, {query.state}, {query.zipPostalCode}</div>
+                <div> {query.country}</div>
+              </div>
+              <div className="ticket__buy-ticket  ">
+                <form ref="commentForm" className="comment-form" onSubmit={this.buyTicket.bind(this)}>
+                  <div className="ticket__header-title">Price</div>
+                  <div>{query.price / 1000000000000000000} ETH</div>
+                  <input className="ticket__button" type="submit" value="Buy Ticket"/>
+                </form>
+              </div>
+          </div>
+          </div>          
+
+        </div>
+
+        
       </div>
     );
   }
