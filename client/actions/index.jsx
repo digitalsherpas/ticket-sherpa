@@ -288,7 +288,6 @@ export function checkAddress(event, username) {
 export const UPDATE_NUM_ATTENDEES = 'UPDATE_NUM_ATTENDEES';
 
 export function updateNumAttendees(numAttendees) {
-  console.log('updateNumAttendees called', numAttendees)
   return (dispatch) => {
     dispatch({
       type: UPDATE_NUM_ATTENDEES,
