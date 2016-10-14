@@ -145,7 +145,7 @@ export default class HostEvent extends Component {
 
               <div>
                 <h4 className="createEvent__container-field-error">{this.state.noAddress}</h4>
-                <input type="submit" value="Create Event" onClick={this.handleSubmit}/>
+                <input className="nav__home-search-submit-btn" type="submit" value="Create Event" onClick={this.handleSubmit}/>
               </div>
             </div>
           </div>

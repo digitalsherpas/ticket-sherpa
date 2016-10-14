@@ -287,7 +287,7 @@ export function checkAddress(event, username) {
     return (dispatch) => {
       dispatch({
         type: ERROR_ADDRESS,
-        payload: 'Please provide an address',
+        payload: 'Please fill in all required fields',
       });
     };
   }
