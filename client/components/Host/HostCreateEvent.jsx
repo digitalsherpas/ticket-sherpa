@@ -45,16 +45,15 @@ export default class HostEvent extends Component {
   }
 
   uploadImage() {
-    let context = this;
     cloudinary.openUploadWidget({ cloud_name: 'lentan', upload_preset: 'fuwmrjsq'},
       function (error, result) {
         if (!error) {
-          context.refs.imageupload.value = result[0].secure_url;
-          context.setState({imagePreviewUrl: result[0].secure_url})
+          this.refs.imageupload.value = result[0].secure_url;
+          this.setState({imagePreviewUrl: result[0].secure_url})
         } else {
           console.log('error', error);
         }
-      }).bind(this);
+      }.bind(this));
   }
 
   requestCloseFn() {
@@ -141,7 +140,7 @@ export default class HostEvent extends Component {
                 <input type="text" className="event__location-input" ref="country" placeholder="Country"/>
               </div>
               <div className="event__location-right">
-                
+
               </div>
             </div>
 
