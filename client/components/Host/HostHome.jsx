@@ -6,12 +6,12 @@ export default class HostHome extends Component {
     return (
       <div className="content__container">
         <h2>My Account</h2>
-        <ul>
-          <li><Link to="/tickets">My Bought Tickets</Link></li>
+        <div>
+          <p><Link to="/tickets">My Bought Tickets</Link></p>
           <hr></hr>
-          <li><Link to="/hostcreateevent">Create Event</Link></li>
-          <li><Link to="/hostevents">My Created Events</Link></li>
-        </ul>
+          <p><Link to="/hostcreateevent">Create Event</Link></p>
+          <p><Link to="/hostevents">My Created Events</Link></p>
+        </div>
         {this.props.children}
       </div>
     );

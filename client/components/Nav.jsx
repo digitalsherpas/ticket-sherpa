@@ -17,8 +17,18 @@ export default class Nav extends Component {
       return (
           <nav className="header__navigation">
             <ul className="header__nav">
+              <li className="header__nav-item">Hello,&nbsp;{this.props.username}!</li>
               <li className="header__nav-item">
-                <Link to="/account"> Hello,&nbsp;{this.props.username}!</Link>
+                <div className="dropdown">
+                  <Link to="/account">
+                    <button className="dropbtn">My Account</button>
+                  </Link>
+                  <div className="dropdown-content">
+                    <Link to="/tickets">My Tickets</Link>
+                    <Link to="/hostcreateevent">My Events</Link>
+                    <Link to="/hostevents">Create New Event</Link>
+                  </div>
+                </div>
               </li>
               <li className="header__nav-item">
                 <Link onClick={this.handleSubmit} to="/">Log Out</Link>
